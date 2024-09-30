@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_final_PII___Agencia_de_autos
 {
-    internal class Program
+    internal class Vehiculo
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
