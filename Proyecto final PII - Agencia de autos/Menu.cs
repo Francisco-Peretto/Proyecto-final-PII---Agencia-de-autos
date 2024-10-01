@@ -340,14 +340,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
         int ArrayMarcas() // INCOMPLETO. FALTA ARRAY DE MARCAS
         {
             int id_marca = 0;
-            string[] segmentos = { "" };
+            string[] marcas = { "" };
             bool loopMarca = false;
 
             while (!loopMarca)
             {
-                foreach (string segmento in segmentos)
+                foreach (string marca in marcas)
                 {
-                    Console.WriteLine(segmento);
+                    Console.WriteLine(marca);
                 }
 
                 Console.Write("Ingrese el número correspondiente a la marca del vehículo a registrar: ");
