@@ -23,7 +23,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             this.pId_vehiculo = id_vehiculo;
             this.pPatente = patente;
-            this.pKiolometros = kilometros;
+            this.pKilometros = kilometros;
             this.pAnio = anio;
             this.pId_marca = id_marca;
             this.pModelo = modelo;
@@ -37,7 +37,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             this.pId_vehiculo = 0;
             this.pPatente = "";
-            this.pKiolometros = 0;
+            this.pKilometros = 0;
             this.pAnio = 0;
             this.pId_marca = 0;
             this.pModelo = "";
@@ -105,7 +105,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 patente = value;
             }
         }
-        public double pKiolometros
+        public double pKilometros
         {
             get { return kilometros; }
             set
@@ -149,6 +149,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 color = value;
             }
+        }
+        public virtual string MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
+        {
+            return $"ID Vehículo: {pId_vehiculo}\n" +
+               $"Patente: {pPatente}\n" +
+               $"Kilómetros: {pKilometros}\n" +
+               $"Año: {pAnio}\n" +
+               $"ID Marca: {pId_marca}\n" +
+               $"Modelo: {pModelo}\n" +
+               $"ID Segmento: {pId_segmento}\n" +
+               $"ID Combustible: {pId_combustible}\n" +
+               $"Precio de Venta: {pPrecio_vta}\n" +
+               $"Observaciones: {pObservaciones}\n" +
+               $"Color: {pColor}";
+            Console.Write($"Id Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
+                $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
+                $"- Segmento: {this.pId_segmento} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +
+                $"- Observaciones: {this.pObservaciones} - Color: {this.pColor} ");
         }
     }
 }

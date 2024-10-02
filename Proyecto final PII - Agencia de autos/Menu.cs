@@ -10,8 +10,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
     {
         int posicionActual;
         bool bucle;
+        Concesionaria concesionaria = new Concesionaria();
 
-        void MenuPrincipal()
+        public void MenuPrincipal()
         {
             string[] menuOpciones = { "Vehículos", "Clientes", "Ventas", "Parámetros", "Salir" };
             posicionActual = 0;
@@ -64,7 +65,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                         else if (posicionActual == 3)
                         {
-                           MenuParametros();
+                            MenuParametros();
                         }
 
                         Console.WriteLine("\nPresione una tecla para continuar.");
@@ -120,148 +121,38 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     case ConsoleKey.Spacebar:
                         if (posicionActual == menuOpcionesVehiculos.Length - 1)
                         {
-                            Console.WriteLine("\nSaliendo del menú vehículos.");
+                            Console.WriteLine("\nSaliendo del menú de vehículos.");
                             bucle = true;
+                            // A probar. Tal vez haya que llamar a MenuVehiculos()
                         }
                         else if (posicionActual == 0)
                         {
-                            int id_vehiculo, anio, id_marca, id_combustible, id_segmento;
-                            string patente, observaciones, color, modelo;
-                            double kilometros, precio_vta;
-
-                            Console.Write("Ingrese el id del vehículo a registrar: "); // ID vehículo
-                            if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                            {
-                                Console.WriteLine("Error. Presione una tecla y reintente.");
-                                Console.ReadKey();
-                                Console.Clear();
-                            }
-
-                            // Convencionar los detalles de las patentes
-                            Console.Write("Ingrese la patente del vehículo a registrar: "); // Patente
-                            patente = Console.ReadLine();
-
-                            Console.Write("Ingrese los kilómetros del vehículo a registrar: "); // Kilómetros
-                            if (!double.TryParse(Console.ReadLine(), out kilometros))
-                            {
-                                Console.WriteLine("Error. Presione una tecla y reintente.");
-                                Console.ReadKey();
-                                Console.Clear();
-                            }
-
-                            Console.Write("Ingrese el año del vehículo a registrar: "); // Año. Se puede establecer rango min-max
-                            if (!int.TryParse(Console.ReadLine(), out anio))
-                            {
-                                Console.WriteLine("Error. Presione una tecla y reintente.");
-                                Console.ReadKey();
-                                Console.Clear();
-                            }
-
-                            id_marca = ArrayMarcas(); // id_marca INCOMPLETO. FALTA ARRAY DE MARCAS
-                            id_combustible = ArrayCombustibles();
-                            
-                            Console.Write("Ingrese el precio de venta del vehículo a registrar: "); // Precio
-                            if (!double.TryParse(Console.ReadLine(), out precio_vta))
-                            {
-                                Console.WriteLine("Error. Presione una tecla y reintente.");
-                                Console.ReadKey();
-                                Console.Clear();
-                            }
-
-                            Console.Write("Ingrese las observaciones del vehículo a registrar o déje el espacio en blanco: "); // Observaciones
-                            observaciones = Console.ReadLine();
-                            if (observaciones == "")
-                            {
-                                observaciones = "Sin observaciones";
-                            }
-
-                            Console.Write("Ingrese el color del vehículo a registrar: "); // color. SE PUEDE HACER UNA LISTA DE COLORES
-                            patente = Console.ReadLine();
-                            
-                            // id_segmento. 1-4 auto, 5-7 moto, 8 camión
-                            id_segmento = ArraySegmentos();
-                            switch (id_segmento)
-                            {
-                                case 1:
-                                case 2:
-                                case 3:
-                                case 4:
-
-                                    //Llamar a constructor de auto-camioneta
-                                    //auto(id_vehiculo, kilometros, anio, id_marca, id_combustible, precio_vta, observaciones, patente, id_segmento);
-                                    break;
-                                case 5:
-                                case 6:
-                                case 7:
-                                    int cilindrada;
-                                    Console.Write("Ingrese la cilindrada de la moto a registrar: "); // cilindrada. Se puede establecer lista de cilindradas
-                                    if (!int.TryParse(Console.ReadLine(), out cilindrada))
-                                    {
-                                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                                        Console.ReadKey();
-                                        Console.Clear();
-                                    }
-
-                                    //Llamar a constructor de moto
-                                    //moto((id_vehiculo, kilometros, anio, id_marca, id_combustible, precio_vta, observaciones, patente, id_segmento, cilindrada)
-
-                                    break;
-                                case 8:
-
-                                    int caja_carga, dimension_caja, carga_max;
-                                    Console.Write("Ingrese la caja de carga del camión a registrar: "); // caja_carga. Esto qué es? Un INT?
-                                    if (!int.TryParse(Console.ReadLine(), out caja_carga))
-                                    {
-                                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                                        Console.ReadKey();
-                                        Console.Clear();
-                                    }
-
-                                    Console.Write("Ingrese la dimensión de la caja a registrar: "); // dimension_caja supongo que es un volúmen en cm3? también se puede pedir ancho * largo * profundidad pero me parece demasiado
-                                    if (!int.TryParse(Console.ReadLine(), out dimension_caja))
-                                    {
-                                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                                        Console.ReadKey();
-                                        Console.Clear();
-                                    }
-
-                                    Console.Write("Ingrese la carga máxima del camión a registrar: "); // carga_max
-                                    if (!int.TryParse(Console.ReadLine(), out carga_max))
-                                    {
-                                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                                        Console.ReadKey();
-                                        Console.Clear();
-                                    }
-
-                                    //Llamar a constructor de camión
-                                    //camion.(id_vehiculo, kilometros, anio, id_marca, id_combustible, precio_vta, observaciones, patente, id_segmento, caja_carga, dimension_caja, carga_max)
-                                    break;
-
-                                default:
-                                    Console.WriteLine("Error");
-                                    break;
-                            }
+                            concesionaria.CargarVehiculo();
                         }
 
                         else if (posicionActual == 1)
                         {
-                            MenuClientes();
+                            // concesionaria.ModificarVehiculo();
                         }
 
                         else if (posicionActual == 2)
                         {
-                            MenuVentas();
+                            // concesionaria.EliminarVehiculo();
                         }
 
                         else if (posicionActual == 3)
                         {
-                            MenuParametros();
+                            // concesionaria.ListarVehiculo();
+                        }
+
+                        else if (posicionActual == 4)
+                        {
+                            // concesionaria.BuscarVehiculo();
                         }
 
                         Console.WriteLine("\nPresione una tecla para continuar.");
                         Console.ReadKey();
                         break;
-
 
                     case ConsoleKey.UpArrow:
                         posicionActual = Math.Max(0, posicionActual - 1);
@@ -276,16 +167,88 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
                 }
             }
+        }
 
-        }   // Dentro de cada menú ha de consultar el tipo para acceder al constructor
-
-            // Menú clientes
+        // Menú clientes
         void MenuClientes()
         {
             string[] menuOpcionesClientes = { "Agregar nuevo cliente", "Modificar cliente", "Eliminar cliente", "Listar clientes", "Buscar cliente", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
+
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuOpcionesClientes.Length; i++)
+                {
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuOpcionesClientes[i]);
+                    Console.ResetColor();
+                }
+
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuOpcionesClientes.Length - 1)
+                        {
+                            Console.WriteLine("\nSaliendo del menú de clientes.");
+                            bucle = true;
+                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                        }
+                        else if (posicionActual == 0)
+                        {
+                            // concesionaria.CargarCliente();
+                        }
+
+                        else if (posicionActual == 1)
+                        {
+                            // concesionaria.ModificarCliente();
+                        }
+
+                        else if (posicionActual == 2)
+                        {
+                            // concesionaria.EliminarCliente();
+                        }
+
+                        else if (posicionActual == 3)
+                        {
+                            // concesionaria.ListarCliente();
+                        }
+
+                        else if (posicionActual == 4)
+                        {
+                            // concesionaria.BuscarCliente();
+                        }
+
+                        Console.WriteLine("\nPresione una tecla para continuar.");
+                        Console.ReadKey();
+                        break;
+
+                    case ConsoleKey.UpArrow:
+                        posicionActual = Math.Max(0, posicionActual - 1);
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        posicionActual = Math.Min(menuOpcionesClientes.Length - 1, posicionActual + 1);
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
+                }
+            }
         }
 
         // Menú Ventas
@@ -295,107 +258,516 @@ namespace Proyecto_final_PII___Agencia_de_autos
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
+
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuOpcionesVentas.Length; i++)
+                {
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuOpcionesVentas[i]);
+                    Console.ResetColor();
+                }
+
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuOpcionesVentas.Length - 1)
+                        {
+                            Console.WriteLine("\nSaliendo del menú de ventas.");
+                            bucle = true;
+                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                        }
+                        else if (posicionActual == 0)
+                        {
+                            // concesionaria.CargarVenta();
+                        }
+
+                        else if (posicionActual == 1)
+                        {
+                            // concesionaria.ModificarVenta();
+                        }
+
+                        else if (posicionActual == 2)
+                        {
+                            // concesionaria.EliminarVenta();
+                        }
+
+                        else if (posicionActual == 3)
+                        {
+                            // concesionaria.ListarVenta();
+                        }
+
+                        else if (posicionActual == 4)
+                        {
+                            // concesionaria.BuscarVenta();
+                        }
+
+                        Console.WriteLine("\nPresione una tecla para continuar.");
+                        Console.ReadKey();
+                        break;
+
+                    case ConsoleKey.UpArrow:
+                        posicionActual = Math.Max(0, posicionActual - 1);
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        posicionActual = Math.Min(menuOpcionesVentas.Length - 1, posicionActual + 1);
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
+                }
+            }
         }
 
         // Menú Parámetros
         void MenuParametros()
-        {
-            string[] menuOpcionesParámetros = { "Marcas", "Modelos", "Colores", "Localidades", "Provincias", "Salir" };
+        {   // Agregar, listar, eliminar
+            string[] menuOpcionesParametros = { "Marcas", "Modelos", "Colores", "Localidades", "Provincias", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
-        }
 
-        // Esta función array puede ser cambiada por una lista de segmentos proveniente de un archivo si es creada
-        int ArraySegmentos()
-        {
-            int id_segmento = 0;
-            string[] segmentos = { "1 - Sedan", "2 - Coupe", "3 - SUV", "4 - Pick Up", "5 - Enduro", "6 - Rutera", "7 - Scooter", "8 - Camión" };
-            bool loopSegmento = false;
-
-            while (!loopSegmento)
+            while (!bucle)
             {
-                foreach (string segmento in segmentos)
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuOpcionesParametros.Length; i++)
                 {
-                    Console.WriteLine(segmento);
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuOpcionesParametros[i]);
+                    Console.ResetColor();
                 }
 
-                Console.Write("Ingrese el número correspondiente al tipo de vehículo a registrar: ");
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuOpcionesParametros.Length - 1)
+                        {
+                            Console.WriteLine("\nSaliendo del menú de parámetros.");
+                            bucle = true;
+                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                        }
+                        else if (posicionActual == 0) // Marcas
+                        {
+                            MenuMarcas();
+                        }
 
-                if (!int.TryParse(Console.ReadLine(), out id_segmento) && id_segmento >= 1 && id_segmento <= 8)
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else 
-                {
-                    loopSegmento = true;
-                    return id_segmento;
+                        else if (posicionActual == 1) // Modelos
+                        {
+                            MenuModelos();
+                        }
+
+                        else if (posicionActual == 2) // Colores
+                        {
+                            MenuColores();
+                        }
+
+                        else if (posicionActual == 3) // Localidades
+                        {
+                            MenuLocalidades();
+                        }
+
+                        else if (posicionActual == 4) // Provincias
+                        {
+                            MenuProvincias();
+                        }
+
+                        Console.WriteLine("\nPresione una tecla para continuar.");
+                        Console.ReadKey();
+                        break;
+
+                    case ConsoleKey.UpArrow:
+                        posicionActual = Math.Max(0, posicionActual - 1);
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        posicionActual = Math.Min(menuOpcionesParametros.Length - 1, posicionActual + 1);
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
-            return 0;
-        }
 
-        int ArrayMarcas() // INCOMPLETO. FALTA ARRAY DE MARCAS
-        {
-            int id_marca = 0;
-            string[] marcas = { "" };
-            bool loopMarca = false;
+            void MenuMarcas()
+            {   // Agregar, listar, eliminar
+                string[] menuMarcas = { "Agregar marca", "Listar marcas", "Eliminar marca", "Salir" };
+                posicionActual = 0;
+                Console.CursorVisible = false;
+                bucle = false;
 
-            while (!loopMarca)
-            {
-                foreach (string marca in marcas)
+                while (!bucle)
                 {
-                    Console.WriteLine(marca);
-                }
-
-                Console.Write("Ingrese el número correspondiente a la marca del vehículo a registrar: ");
-
-                if (!int.TryParse(Console.ReadLine(), out id_marca) && id_marca >= 1 && id_marca <= 8) // modificar
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
                     Console.Clear();
-                }
-                else
-                {
-                    loopMarca = true;
-                    return id_marca;
+                    Console.ResetColor();
+                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                    Console.WriteLine("-------------------------------------------");
+
+                    for (int i = 0; i < menuMarcas.Length; i++)
+                    {
+                        if (posicionActual == i)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + (char)62 + " ");
+                        }
+                        Console.WriteLine(menuMarcas[i]);
+                        Console.ResetColor();
+                    }
+
+                    ConsoleKeyInfo tecla = Console.ReadKey();
+                    switch (tecla.Key)
+                    {
+                        case ConsoleKey.Enter:
+                        case ConsoleKey.Spacebar:
+                            if (posicionActual == menuMarcas.Length - 1)
+                            {
+                                Console.WriteLine("\nSaliendo del menú de parámetros.");
+                                bucle = true;
+                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            }
+                            else if (posicionActual == 0)
+                            {
+                                // concesionaria.AgregarMarca()
+                            }
+
+                            else if (posicionActual == 1)
+                            {
+                                // concesionaria.ListarMarca()
+                            }
+
+                            else if (posicionActual == 2)
+                            {
+                                // concesionaria.EliminarMarca()
+                            }
+
+                            Console.WriteLine("\nPresione una tecla para continuar.");
+                            Console.ReadKey();
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            posicionActual = Math.Max(0, posicionActual - 1);
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            posicionActual = Math.Min(menuMarcas.Length - 1, posicionActual + 1);
+                            break;
+
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
                 }
             }
-            return 0;
-        }
 
-        int ArrayCombustibles()
-        {
-            int id_combustible = 0;
-            string[] combustibles = { "1 - Nafta", "2 - Diesel", "3 - GNC", "4 - Eléctrico" };
-            bool loopCombustible = false;
+            void MenuModelos()
+            {   // Agregar, listar, eliminar
+                string[] menuModelos = { "Agregar modelo", "Listar modelos", "Eliminar modelo", "Salir" };
+                posicionActual = 0;
+                Console.CursorVisible = false;
+                bucle = false;
 
-            while (!loopCombustible)
-            {
-                foreach (string combustible in combustibles)
+                while (!bucle)
                 {
-                    Console.WriteLine(combustible);
-                }
-
-                Console.Write("Ingrese el número correspondiente al tipo de combustible: ");
-
-                if (!int.TryParse(Console.ReadLine(), out id_combustible) || id_combustible < 1 || id_combustible > 4)
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
                     Console.Clear();
-                }
-                else
-                {
-                    loopCombustible = true;
-                    return id_combustible;
+                    Console.ResetColor();
+                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                    Console.WriteLine("-------------------------------------------");
+
+                    for (int i = 0; i < menuModelos.Length; i++)
+                    {
+                        if (posicionActual == i)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + (char)62 + " ");
+                        }
+                        Console.WriteLine(menuModelos[i]);
+                        Console.ResetColor();
+                    }
+
+                    ConsoleKeyInfo tecla = Console.ReadKey();
+                    switch (tecla.Key)
+                    {
+                        case ConsoleKey.Enter:
+                        case ConsoleKey.Spacebar:
+                            if (posicionActual == menuModelos.Length - 1)
+                            {
+                                Console.WriteLine("\nSaliendo del menú de parámetros.");
+                                bucle = true;
+                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            }
+                            else if (posicionActual == 0)
+                            {
+                                // concesionaria.AgregarMarca()
+                            }
+
+                            else if (posicionActual == 1)
+                            {
+                                // concesionaria.ListarMarca()
+                            }
+
+                            else if (posicionActual == 2)
+                            {
+                                // concesionaria.EliminarMarca()
+                            }
+
+                            Console.WriteLine("\nPresione una tecla para continuar.");
+                            Console.ReadKey();
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            posicionActual = Math.Max(0, posicionActual - 1);
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            posicionActual = Math.Min(menuModelos.Length - 1, posicionActual + 1);
+                            break;
+
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
                 }
             }
-            return 0;
-        }
 
+            void MenuColores()
+            {   // Agregar, listar, eliminar
+                string[] menuColores = { "Agregar color", "Listar colores", "Eliminar color", "Salir" };
+                posicionActual = 0;
+                Console.CursorVisible = false;
+                bucle = false;
+
+                while (!bucle)
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                    Console.WriteLine("-------------------------------------------");
+
+                    for (int i = 0; i < menuColores.Length; i++)
+                    {
+                        if (posicionActual == i)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + (char)62 + " ");
+                        }
+                        Console.WriteLine(menuColores[i]);
+                        Console.ResetColor();
+                    }
+
+                    ConsoleKeyInfo tecla = Console.ReadKey();
+                    switch (tecla.Key)
+                    {
+                        case ConsoleKey.Enter:
+                        case ConsoleKey.Spacebar:
+                            if (posicionActual == menuColores.Length - 1)
+                            {
+                                Console.WriteLine("\nSaliendo del menú de parámetros.");
+                                bucle = true;
+                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            }
+                            else if (posicionActual == 0)
+                            {
+                                // concesionaria.AgregarColor()
+                            }
+
+                            else if (posicionActual == 1)
+                            {
+                                // concesionaria.ListarColor()
+                            }
+
+                            else if (posicionActual == 2)
+                            {
+                                // concesionaria.EliminarColor()
+                            }
+
+                            Console.WriteLine("\nPresione una tecla para continuar.");
+                            Console.ReadKey();
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            posicionActual = Math.Max(0, posicionActual - 1);
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            posicionActual = Math.Min(menuColores.Length - 1, posicionActual + 1);
+                            break;
+
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                }
+            }
+
+            void MenuLocalidades()
+            {   // Agregar, listar, eliminar
+                string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Eliminar localidad", "Salir" };
+                posicionActual = 0;
+                Console.CursorVisible = false;
+                bucle = false;
+
+                while (!bucle)
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                    Console.WriteLine("-------------------------------------------");
+
+                    for (int i = 0; i < menuLocalidades.Length; i++)
+                    {
+                        if (posicionActual == i)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + (char)62 + " ");
+                        }
+                        Console.WriteLine(menuLocalidades[i]);
+                        Console.ResetColor();
+                    }
+
+                    ConsoleKeyInfo tecla = Console.ReadKey();
+                    switch (tecla.Key)
+                    {
+                        case ConsoleKey.Enter:
+                        case ConsoleKey.Spacebar:
+                            if (posicionActual == menuLocalidades.Length - 1)
+                            {
+                                Console.WriteLine("\nSaliendo del menú de parámetros.");
+                                bucle = true;
+                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            }
+                            else if (posicionActual == 0)
+                            {
+                                // concesionaria.AgregarLocalidad()
+                            }
+
+                            else if (posicionActual == 1)
+                            {
+                                // concesionaria.ListarLocalidad()
+                            }
+
+                            else if (posicionActual == 2)
+                            {
+                                // concesionaria.EliminarLocalidad()
+                            }
+
+                            Console.WriteLine("\nPresione una tecla para continuar.");
+                            Console.ReadKey();
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            posicionActual = Math.Max(0, posicionActual - 1);
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            posicionActual = Math.Min(menuLocalidades.Length - 1, posicionActual + 1);
+                            break;
+
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                }
+            }
+
+            void MenuProvincias()
+            {   // Agregar, listar, eliminar
+                string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Eliminar provincia", "Salir" };
+                posicionActual = 0;
+                Console.CursorVisible = false;
+                bucle = false;
+
+                while (!bucle)
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                    Console.WriteLine("-------------------------------------------");
+
+                    for (int i = 0; i < menuProvincias.Length; i++)
+                    {
+                        if (posicionActual == i)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + (char)62 + " ");
+                        }
+                        Console.WriteLine(menuProvincias[i]);
+                        Console.ResetColor();
+                    }
+
+                    ConsoleKeyInfo tecla = Console.ReadKey();
+                    switch (tecla.Key)
+                    {
+                        case ConsoleKey.Enter:
+                        case ConsoleKey.Spacebar:
+                            if (posicionActual == menuProvincias.Length - 1)
+                            {
+                                Console.WriteLine("\nSaliendo del menú de parámetros.");
+                                bucle = true;
+                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            }
+                            else if (posicionActual == 0)
+                            {
+                                // concesionaria.AgregarProvincia()
+                            }
+
+                            else if (posicionActual == 1)
+                            {
+                                // concesionaria.ListarProvincia()
+                            }
+
+                            else if (posicionActual == 2)
+                            {
+                                // concesionaria.EliminarProvincia()
+                            }
+
+                            Console.WriteLine("\nPresione una tecla para continuar.");
+                            Console.ReadKey();
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            posicionActual = Math.Max(0, posicionActual - 1);
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            posicionActual = Math.Min(menuProvincias.Length - 1, posicionActual + 1);
+                            break;
+
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                }
+            }
+        }
     }
 }

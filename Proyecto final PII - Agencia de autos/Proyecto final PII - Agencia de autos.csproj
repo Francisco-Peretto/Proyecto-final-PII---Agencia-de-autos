@@ -43,10 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCamioneta.cs" />
+    <Compile Include="Camion.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Combustible.cs" />
+    <Compile Include="Concesionaria.cs" />
+    <Compile Include="Localidad.cs" />
+    <Compile Include="Marca.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="Moto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provincia.cs" />
+    <Compile Include="Segmento.cs" />
     <Compile Include="Vehiculo.cs" />
     <Compile Include="Venta.cs" />
   </ItemGroup>
