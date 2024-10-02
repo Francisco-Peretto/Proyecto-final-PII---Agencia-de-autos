@@ -1,230 +1,390 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Proyecto_final_PII___Agencia_de_autos
 {
     internal class Concesionaria
     {
-        public Concesionaria() { }
 
+
+        List<Vehiculo> _listaVehiculos;
+        List<Venta> _listaVentas;
+        List<Cliente> _listaClientes;
+        List<Marca> _listaMarcas;
+        List<Segmento> _listaSegmentos;
+        List<Combustible> _listaCombustibles;
+        List<Localidad> _listaLocalidades;
+        List<Provincia> _listaProvincias;
+        List<Moto> _listaMotos;
+        List<AutoCamioneta> _listaAutoCamionetas;
+        List<Camion> _listaCamiones;
+
+        // constructores
+        public Concesionaria(List<Vehiculo> _listaVehiculos, List<Venta> _listaVentas, List<Cliente> _listaClientes,
+            List<Marca> _listaMarcas, List<Segmento> _listaSegmentos, List<Combustible> _listaCombustibles,
+            List<Localidad> _listaLocalidades, List<Provincia> _listaProvincias, List<Moto> _listaMotos, List<AutoCamioneta> _listaAutoCamionetas,
+            List<Camion> _listaCamiones)
+        {
+            this._listaVehiculos = new List<Vehiculo>();
+            this._listaVentas = new List<Venta>();
+            this._listaClientes = new List<Cliente>();
+            this._listaMarcas = new List<Marca>();
+            this._listaSegmentos = new List<Segmento>();
+            this._listaCombustibles = new List<Combustible>();
+            this._listaLocalidades = new List<Localidad>();
+            this._listaProvincias = new List<Provincia>();
+            this._listaMotos = new List<Moto>();
+            this._listaAutoCamionetas = new List<AutoCamioneta>();
+            this._listaCamiones = new List<Camion>();
+        }
+        public Concesionaria()
+        {
+            this._listaVehiculos = new List<Vehiculo>();
+            this._listaVentas = new List<Venta>();
+            this._listaClientes = new List<Cliente>();
+            this._listaMarcas = new List<Marca>();
+            this._listaSegmentos = new List<Segmento>();
+            this._listaCombustibles = new List<Combustible>();
+            this._listaLocalidades = new List<Localidad>();
+            this._listaProvincias = new List<Provincia>();
+            this._listaMotos = new List<Moto>();
+            this._listaAutoCamionetas = new List<AutoCamioneta>();
+            this._listaCamiones = new List<Camion>();
+        }
+        // metodos
+        public void CargarVehiculos(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+
+                while (reader.EndOfStream)
+                {
+                    string cadena = reader.ReadLine();
+                    string[] split = cadena.Split(':');
+
+                    int id_vehiculo = int.Parse(split[0]);
+                    string patente = split[1];
+                    double kilometros = double.Parse(split[2]);
+                    int anio = int.Parse(split[3]);
+                    int id_marca = int.Parse(split[4]);
+                    string modelo = split[5];
+                    int id_segmento = int.Parse(split[6]);
+                    int id_combustible = int.Parse(split[7]);
+                    double precio_vta = double.Parse(split[8]);
+                    string observaciones = split[9];
+                    string color = split[10];
+
+                    Vehiculo v = new Vehiculo(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color);
+                    _listaVehiculos.Add(v);
+                }
+                archivo.Close();
+                reader.Close();
+            }
+        }
+        public void CargarVentas(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+
+                while (reader.EndOfStream)
+                {
+                    string cadena = reader.ReadLine();
+                    string[] split = cadena.Split(':');
+
+                    int id_cliente = int.Parse(split[0]);
+                    int id_vehiculo = int.Parse(split[1]);
+                    DateTime fecha_compra = DateTime.Parse(split[2]);
+                    DateTime fecha_entrega = DateTime.Parse(split[3]);
+                    double subtotal = double.Parse(split[4]);
+                    int iva = int.Parse(split[5]);
+                    int descuento = int.Parse(split[6]);
+                    double total = double.Parse(split[7]);
+
+                    Venta ventas = new Venta(id_cliente, id_vehiculo, fecha_compra, fecha_entrega, subtotal, iva, descuento, total);
+                    _listaVentas.Add(ventas);
+                }
+                archivo.Close();
+                reader.Close();
+            }
+        }
+        public void CargarClientes(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+
+                while (reader.EndOfStream)
+                {
+                    string cadena = reader.ReadLine();
+                    string[] split = cadena.Split(':');
+
+                    int id_cliente = int.Parse(split[0]);
+                    string cliente = split[1];
+                    long cuit = int.Parse(split[2]);
+                    string domicilio = split[3];
+                    int id_localidad = int.Parse(split[4]);
+                    long telefono = long.Parse(split[5]);
+                    string correo = split[6];
+
+                    Cliente clientes = new Cliente(id_cliente, cliente, cuit, domicilio, id_localidad, telefono, correo);
+                    _listaClientes.Add(clientes);
+                }
+                archivo.Close();
+                reader.Close();
+            }
+        }
+        public void CargarMarcas()
+        {
+
+        }
+        public void CargarSegmentos(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+
+                while (reader.EndOfStream)
+                {
+                    string cadena = reader.ReadLine();
+                    string[] split = cadena.Split(':');
+
+                    int id_segmento = int.Parse(split[0]);
+                    string segmento = split[1];
+
+                    Segmento segmentos = new Segmento(id_segmento, segmento);
+                    _listaSegmentos.Add(segmentos);
+                }
+                archivo.Close();
+                reader.Close();
+            }
+        }
+        public void CargarCombustibles(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+
+                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+
+                while (reader.EndOfStream)
+                {
+                    string cadena = reader.ReadLine();
+                    string[] split = cadena.Split(':');
+
+
+                    int id_combustible = int.Parse(split[0]);
+                    string combustible = split[1];
+
+
+                    Combustible combustibles = new Combustible(id_combustible, combustible);
+                    _listaCombustibles.Add(combustibles);
+                }
+                archivo.Close();
+                reader.Close();
+            }
+        }
+        public void CargarLocalidades(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+
+                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+
+                while (reader.EndOfStream)
+                {
+                    string cadena = reader.ReadLine();
+                    string[] split = cadena.Split(';');
+
+
+                    int id_combustible = int.Parse(split[0]);
+                    string combustible = split[1];
+
+
+                    Combustible combustibles = new Combustible(id_combustible, combustible);
+                    _listaCombustibles.Add(combustibles);
+                }
+                archivo.Close();
+                reader.Close();
+            }
+        }
+        public void CargarProvincias()
+        {
+
+        }
         public void CargarVehiculo()
         {
-            int id_vehiculo, anio, id_marca, id_combustible, id_segmento;
-            string patente, observaciones, color, modelo;
+            int id_vehiculo, anio, id_marca, id_combustible, id_segmento, cilindrada, dimension_caja, carga_max, largocaja, anchocaja;
             double kilometros, precio_vta;
-            // Los métodos Array van a desaparecer o a modificarse una vez estén las listas
+            bool caja_carga;
+            Vehiculo vehi = new Vehiculo();
+            Moto mot = new Moto();
+            AutoCamioneta autcam = new AutoCamioneta();
+            Camion cam = new Camion();
 
-            Console.Write("Ingrese el id del vehículo a registrar: "); // ID vehículo
+            // Los métodos Array van a desaparecer o a modificarse una vez estén las listas
+            Console.Clear();
+            Console.Write("\t\t\t*****CARGA DE VEHICULO*****\n\n");
+            Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
             if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
                 Console.WriteLine("Error. Presione una tecla y reintente.");
                 Console.ReadKey();
                 Console.Clear();
             }
+            vehi.pId_vehiculo = id_vehiculo;
 
-            // Convencionar los detalles de las patentes
-            Console.Write("Ingrese la patente del vehículo a registrar: "); // Patente
-            patente = Console.ReadLine();
+            Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
+            //patente = Console.ReadLine();
+            vehi.pPatente = Console.ReadLine();
 
-            Console.Write("Ingrese los kilómetros del vehículo a registrar: "); // Kilómetros
+            Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
             if (!double.TryParse(Console.ReadLine(), out kilometros))
             {
                 Console.WriteLine("Error. Presione una tecla y reintente.");
                 Console.ReadKey();
                 Console.Clear();
             }
+            vehi.pKilometros = kilometros;
 
-            Console.Write("Ingrese el año del vehículo a registrar: "); // Año. Se puede establecer rango min-max
+            Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año. Se puede establecer rango min-max
             if (!int.TryParse(Console.ReadLine(), out anio))
             {
                 Console.WriteLine("Error. Presione una tecla y reintente.");
                 Console.ReadKey();
                 Console.Clear();
             }
+            vehi.pAnio = anio;
 
-            id_marca = ArrayMarcas(); // id_marca INCOMPLETO. FALTA ARRAY DE MARCAS
+            Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: ");
+            if (!int.TryParse(Console.ReadLine(), out id_marca))
+            {
+                Console.WriteLine("Error. Presione una tecla y reintente.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            vehi.pId_marca = id_marca;
 
-            id_combustible = ArrayCombustibles();
+            Console.Write("\nIngrese el nombre del MODELO del vehiculo a registrar: ");
+            vehi.pModelo = Console.ReadLine();
 
-            Console.Write("Ingrese el precio de venta del vehículo a registrar: "); // Precio
+            Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
+            if (!int.TryParse(Console.ReadLine(), out id_segmento))
+            {
+                Console.WriteLine("Error. Presione una tecla y reintente.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            vehi.pId_segmento = id_segmento;
+            if (vehi.pId_segmento >= 5 && vehi.pId_segmento <= 7)
+            {
+                vehi = new Moto();
+                Console.Write("\nIngrese la CILINDRADA: ");
+                if (!int.TryParse(Console.ReadLine(), out cilindrada))
+                {
+                    Console.WriteLine("Error. Presione una tecla y reintente.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                ((Moto)vehi).pCilindrada = cilindrada;
+
+
+            }
+            else if (vehi.pId_segmento == 8)
+            {
+                vehi = new Camion();
+                Console.Write("\nIngrese si el camion posee caja (true/false): ");
+                if (!bool.TryParse(Console.ReadLine(), out caja_carga))
+                {
+                    Console.WriteLine("Error. Presione una tecla y reintente.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                ((Camion)vehi).pCaja_Carga = caja_carga;
+
+                Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
+                if (!int.TryParse(Console.ReadLine(), out largocaja))
+                {
+                    Console.WriteLine("Error. Presione una tecla y reintente.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
+                if (!int.TryParse(Console.ReadLine(), out anchocaja))
+                {
+                    Console.WriteLine("Error. Presione una tecla y reintente.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                dimension_caja = largocaja * anchocaja;
+                ((Camion)vehi).pDimension_caja = dimension_caja;
+
+                Console.Write("\nIngrese la CARGA MAXIMA de la caja del camion (en kg): ");
+                if (!int.TryParse(Console.ReadLine(), out carga_max))
+                {
+                    Console.WriteLine("Error. Presione una tecla y reintente.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                ((Camion)vehi).pCarga_max = carga_max;
+
+            }
+            else
+            {
+                vehi = new Vehiculo();
+            }
+
+            Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: ");
+            if (!int.TryParse(Console.ReadLine(), out id_combustible))
+            {
+                Console.WriteLine("Error. Presione una tecla y reintente.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            vehi.pId_combustible = id_combustible;
+
+
+            Console.Write("\nIngrese el precio de venta del vehículo a registrar: "); // Precio
             if (!double.TryParse(Console.ReadLine(), out precio_vta))
             {
                 Console.WriteLine("Error. Presione una tecla y reintente.");
                 Console.ReadKey();
                 Console.Clear();
             }
+            vehi.pPrecio_vta = precio_vta;
 
-            Console.Write("Ingrese las observaciones del vehículo a registrar o déje el espacio en blanco: "); // Observaciones
-            observaciones = Console.ReadLine();
-            if (observaciones == "")
+            Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones
+            vehi.pObservaciones = Console.ReadLine();
+            if (vehi.pObservaciones == " ")
             {
-                observaciones = "Sin observaciones";
+                vehi.pObservaciones = "Sin observaciones";
             }
 
-            Console.Write("Ingrese el color del vehículo a registrar: "); // color. SE PUEDE HACER UNA LISTA DE COLORES
-            color = Console.ReadLine();
+            Console.Write("\nIngrese el COLOR del vehículo a registrar: "); // color. SE PUEDE HACER UNA LISTA DE COLORES
+            vehi.pColor = Console.ReadLine();
 
-            // modelo = arrayModelo();
-            modelo = Console.ReadLine();
+            _listaVehiculos.Add(vehi);
 
-            // id_segmento. 1-4 auto, 5-7 moto, 8 camión
-            id_segmento = ArraySegmentos();
-
-            switch (id_segmento)
-            {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                    // va a funcionar bien hasta arreglar los detalles
-                    AutoCamioneta autoCamioneta = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible,
-                 precio_vta, observaciones, color);
-                    //Agregar a lista
-                    break;
-                case 5:
-                case 6:
-                case 7:
-                    int cilindrada;
-                    Console.Write("Ingrese la cilindrada de la moto a registrar: "); // cilindrada. Se puede establecer lista de cilindradas
-                    if (!int.TryParse(Console.ReadLine(), out cilindrada))
-                    {
-                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-
-                    // va a funcionar bien hasta arreglar los detalles
-                    Moto moto = new Moto(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color, cilindrada);
-
-                    break;
-                case 8:
-
-                    int caja_carga, dimension_caja, carga_max;
-                    Console.Write("Ingrese la caja de carga del camión a registrar: "); // caja_carga. Esto qué es? Un INT?
-                    if (!int.TryParse(Console.ReadLine(), out caja_carga))
-                    {
-                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-
-                    Console.Write("Ingrese la dimensión de la caja a registrar: "); // dimension_caja supongo que es un volúmen en cm3? también se puede pedir ancho * largo * profundidad pero me parece demasiado
-                    if (!int.TryParse(Console.ReadLine(), out dimension_caja))
-                    {
-                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-
-                    Console.Write("Ingrese la carga máxima del camión a registrar: "); // carga_max
-                    if (!int.TryParse(Console.ReadLine(), out carga_max))
-                    {
-                        Console.WriteLine("Error. Presione una tecla y reintente.");
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-
-                    // va a funcionar bien hasta arreglar los detalles
-                    Camion camion = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, carga_max);
-                    break;
-
-                default:
-                    Console.WriteLine("Error");
-                    break;
-            }
         }
 
-        int ArraySegmentos()
+        public void mostrarDatos()
         {
-            int id_segmento = 0;
-            string[] segmentos = { "1 - Sedan", "2 - Coupe", "3 - SUV", "4 - Pick Up", "5 - Enduro", "6 - Rutera", "7 - Scooter", "8 - Camión" };
-            bool loopSegmento = false;
-
-            while (!loopSegmento)
+            foreach(Vehiculo vehi in _listaVehiculos)
             {
-                foreach (string segmento in segmentos)
-                {
-                    Console.WriteLine(segmento);
-                }
-
-                Console.Write("Ingrese el número correspondiente al tipo de vehículo a registrar: ");
-
-                if (!int.TryParse(Console.ReadLine(), out id_segmento) && id_segmento >= 1 && id_segmento <= 8)
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else
-                {
-                    loopSegmento = true;
-                    return id_segmento;
-                }
+                Console.WriteLine(vehi.MostrarDatos());
             }
-            return 0;
-        }
-
-        int ArrayMarcas() // INCOMPLETO. FALTA ARRAY DE MARCAS
-        {
-            int id_marca = 0;
-            string[] marcas = { "" };
-            bool loopMarca = false;
-
-            while (!loopMarca)
-            {
-                foreach (string marca in marcas)
-                {
-                    Console.WriteLine(marca);
-                }
-
-                Console.Write("Ingrese el número correspondiente a la marca del vehículo a registrar: ");
-
-                if (!int.TryParse(Console.ReadLine(), out id_marca) && id_marca >= 1 && id_marca <= 8) // modificar
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else
-                {
-                    loopMarca = true;
-                    return id_marca;
-                }
-            }
-            return 0;
-        }
-
-        int ArrayCombustibles()
-        {
-            int id_combustible = 0;
-            string[] combustibles = { "1 - Nafta", "2 - Diesel", "3 - GNC", "4 - Eléctrico" };
-            bool loopCombustible = false;
-
-            while (!loopCombustible)
-            {
-                foreach (string combustible in combustibles)
-                {
-                    Console.WriteLine(combustible);
-                }
-
-                Console.Write("Ingrese el número correspondiente al tipo de combustible: ");
-
-                if (!int.TryParse(Console.ReadLine(), out id_combustible) || id_combustible < 1 || id_combustible > 4)
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else
-                {
-                    loopCombustible = true;
-                    return id_combustible;
-                }
-            }
-            return 0;
         }
     }
 }
+

@@ -13,10 +13,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string color)
             :base(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible,
                  precio_vta, observaciones, color)
-        { }
+        { 
 
-        public override void MostrarDatos()
+        }
+        public AutoCamioneta()
         {
+
+        }
+        public override string MostrarDatos()
+        {
+            return base.MostrarDatos();
             base.MostrarDatos();
         }
     }

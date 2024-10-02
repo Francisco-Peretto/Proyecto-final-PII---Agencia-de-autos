@@ -10,6 +10,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
     {
         static void Main(string[] args)
         {
+            Concesionaria con = new Concesionaria ();
+            Vehiculo vehiculo = new Vehiculo ();
+            int opc;
+            /*
+            con.CargarVehiculo();
+            con.mostrarDatos();
+            Console.ReadKey();
+            */
+            do
+            {
+                Console.Clear();
+                con.CargarVehiculo();
+                con.mostrarDatos();
+                Console.WriteLine("\n\nIngrese 1");
+                opc = int.Parse(Console.ReadLine());
+            } while (opc == 1);
+             Console.ReadKey();
+            /*
             Menu menu = new Menu();
             menu.MenuPrincipal();
 

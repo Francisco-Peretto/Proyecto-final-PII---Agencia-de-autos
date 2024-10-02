@@ -16,15 +16,35 @@ namespace Proyecto_final_PII___Agencia_de_autos
             : base(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible,
                  precio_vta, observaciones, color)
         { 
-            this.Cilindrada = cilindrada;
+            this.pCilindrada = cilindrada;
+        }
+        public Moto()     
+        {
+            this.pCilindrada = 0;
         }
 
         public int Cilindrada {  get { return _cilindrada; } set { _cilindrada = value; } }
-
+        /*
         public override void MostrarDatos()
         {
             base.MostrarDatos();
             Console.WriteLine($"Cilindrada: {this.Cilindrada}");
+        }
+        */
+        public override string MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
+        {
+            return base.MostrarDatos() + $"\nCilindrada: {pCilindrada}";
+            Console.Write($"Id Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
+                $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
+                $"- Segmento: {this.pId_segmento} - Cilindrada: {this.pCilindrada} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +
+                $"- Observaciones: {this.pObservaciones} - Color: {this.pColor} ");
+        }
+
+        //GETTERS Y SETTERS
+        public int pCilindrada
+        {
+            get { return _cilindrada; }
+            set { _cilindrada = value; }
         }
     }
 }
