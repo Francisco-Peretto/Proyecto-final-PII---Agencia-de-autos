@@ -518,7 +518,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             void MenuMarcas()
             {   // Agregar, listar, eliminar
-                string[] menuMarcas = { "Agregar marca", "Listar marcas", "Eliminar marca", "Salir" };
+                string[] menuMarcas = { "Agregar marca", "Listar marcas", "Modificar marca", "Eliminar marca", "Salir" };
                 posicionActual = 0;
                 Console.CursorVisible = false;
                 bucle = false;
@@ -568,6 +568,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 // concesionaria.EliminarMarca()
                             }
 
+                            else if (posicionActual == 2)
+                            {
+                                // concesionaria.EliminarMarca()
+                            }
+
                             Console.WriteLine("\nPresione una tecla para continuar.");
                             Console.ReadKey();
                             break;
@@ -595,7 +600,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             void MenuModelos()
             {   // Agregar, listar, eliminar
-                string[] menuModelos = { "Agregar modelo", "Listar modelos", "Eliminar modelo", "Salir" };
+                string[] menuModelos = { "Agregar modelo", "Listar modelos", "Modificar modelo", "Eliminar modelo", "Salir" };
                 posicionActual = 0;
                 Console.CursorVisible = false;
                 bucle = false;
@@ -642,6 +647,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                             else if (posicionActual == 2)
                             {
+                                // concesionaria.ModificarMarca()
+                            }
+
+                            else if (posicionActual == 2)
+                            {
                                 // concesionaria.EliminarMarca()
                             }
 
@@ -672,7 +682,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             void MenuColores()
             {   // Agregar, listar, eliminar
-                string[] menuColores = { "Agregar color", "Listar colores", "Eliminar color", "Salir" };
+                string[] menuColores = { "Agregar color", "Listar colores", "Modificar color", "Eliminar color", "Salir" };
                 posicionActual = 0;
                 Console.CursorVisible = false;
                 bucle = false;
@@ -722,6 +732,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 // concesionaria.EliminarColor()
                             }
 
+                            else if (posicionActual == 3)
+                            {
+                                // concesionaria.EliminarColor()
+                            }
+
                             Console.WriteLine("\nPresione una tecla para continuar.");
                             Console.ReadKey();
                             break;
@@ -749,7 +764,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             void MenuLocalidades()
             {   // Agregar, listar, eliminar
-                string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Eliminar localidad", "Salir" };
+                string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Modificar localidad", "Eliminar localidad", "Salir" };
                 posicionActual = 0;
                 Console.CursorVisible = false;
                 bucle = false;
@@ -796,6 +811,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                             else if (posicionActual == 2)
                             {
+                                // concesionaria.ModificarLocalidad()
+                            }
+
+                            else if (posicionActual == 3)
+                            {
                                 // concesionaria.EliminarLocalidad()
                             }
 
@@ -826,7 +846,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             void MenuProvincias()
             {   // Agregar, listar, eliminar
-                string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Eliminar provincia", "Salir" };
+                string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Modificar provincia", "Eliminar provincia", "Salir" };
                 posicionActual = 0;
                 Console.CursorVisible = false;
                 bucle = false;
@@ -872,6 +892,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
 
                             else if (posicionActual == 2)
+                            {
+                                // concesionaria.ListarProvincia()
+                            }
+
+                            else if (posicionActual == 3)
                             {
                                 // concesionaria.EliminarProvincia()
                             }
