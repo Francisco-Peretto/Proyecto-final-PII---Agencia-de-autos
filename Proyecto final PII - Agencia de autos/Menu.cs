@@ -130,61 +130,61 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.WriteLine("\nSaliendo del menú de vehículos.");
                             MenuPrincipal();
                         }
-                        else if (posicionActual == 0) 
+                        else if (posicionActual == 0)
                         {
-                                string[] menuTresVehiculos = { "Registrar un auto o una camioneta", "Registar una moto", "Registrar un camión", "Salir" };
-                                posicionActual = 0;
-                                Console.CursorVisible = false;
-                                bucle = false;
+                            string[] menuTresVehiculos = { "Registrar un auto o una camioneta", "Registar una moto", "Registrar un camión", "Salir" };
+                            posicionActual = 0;
+                            Console.CursorVisible = false;
+                            bucle = false;
 
-                                while (!bucle)
+                            while (!bucle)
+                            {
+                                Console.Clear();
+                                Console.ResetColor();
+                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                                Console.WriteLine("-------------------------------------------");
+
+                                for (int i = 0; i < menuTresVehiculos.Length; i++)
                                 {
-                                    Console.Clear();
-                                    Console.ResetColor();
-                                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                                    Console.WriteLine("-------------------------------------------");
-
-                                    for (int i = 0; i < menuTresVehiculos.Length; i++)
+                                    if (posicionActual == i)
                                     {
-                                        if (posicionActual == i)
-                                        {
-                                            Console.BackgroundColor = ConsoleColor.Blue;
-                                            Console.ForegroundColor = ConsoleColor.Yellow;
-                                            Console.Write(" " + (char)62 + " ");
-                                        }
-                                        Console.WriteLine(menuTresVehiculos[i]);
-                                        Console.ResetColor();
+                                        Console.BackgroundColor = ConsoleColor.Blue;
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.Write(" " + (char)62 + " ");
                                     }
+                                    Console.WriteLine(menuTresVehiculos[i]);
+                                    Console.ResetColor();
+                                }
 
-                                    ConsoleKeyInfo tecla2 = Console.ReadKey();
-                                    switch (tecla2.Key)
-                                    {
-                                        case ConsoleKey.Enter:
-                                        case ConsoleKey.Spacebar:
-                                            if (posicionActual == menuTresVehiculos.Length - 1)
-                                            {
-                                                Console.WriteLine("\nSaliendo del menú de vehículos.");
-                                                bucle = true;
-                                                MenuVehiculos();
-                                            }
-                                            else if (posicionActual == 0)
-                                            {
-                                                // concesionario.CargarAutoCamioneta();
-                                            }
+                                ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                switch (tecla2.Key)
+                                {
+                                    case ConsoleKey.Enter:
+                                    case ConsoleKey.Spacebar:
+                                        if (posicionActual == menuTresVehiculos.Length - 1)
+                                        {
+                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
+                                            bucle = true;
+                                            MenuVehiculos();
+                                        }
+                                        else if (posicionActual == 0)
+                                        {
+                                            // concesionario.CargarAutoCamioneta();
+                                        }
 
-                                            else if (posicionActual == 1)
-                                            {
-                                                // concesionario.CargarMoto();
-                                            }
+                                        else if (posicionActual == 1)
+                                        {
+                                            // concesionario.CargarMoto();
+                                        }
 
-                                            else if (posicionActual == 2)
-                                            {
-                                                // concesionaria.CargarCamion();
-                                            }
+                                        else if (posicionActual == 2)
+                                        {
+                                            // concesionaria.CargarCamion();
+                                        }
 
-                                            Console.WriteLine("\nPresione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            break;
+                                        Console.WriteLine("\nPresione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        break;
 
                                     case ConsoleKey.UpArrow:
                                         if (posicionActual == 0)
@@ -201,33 +201,330 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         break;
 
                                     default:
-                                            Console.WriteLine("Opción no válida.");
-                                            break;
-                                    
+                                        Console.WriteLine("Opción no válida.");
+                                        break;
+
                                 }
                             }
                         }
 
                         else if (posicionActual == 1)
                         {
-                            // concesionaria.ModificarVehiculo();
+
+                            string[] menuTresModificaciones = { "Modificar un auto o una camioneta", "Modificar una moto", "Modificar un camión", "Salir" };
+                            posicionActual = 0;
+                            Console.CursorVisible = false;
+                            bucle = false;
+
+                            while (!bucle)
+                            {
+                                Console.Clear();
+                                Console.ResetColor();
+                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                                Console.WriteLine("-------------------------------------------");
+
+                                for (int i = 0; i < menuTresModificaciones.Length; i++)
+                                {
+                                    if (posicionActual == i)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Blue;
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.Write(" " + (char)62 + " ");
+                                    }
+                                    Console.WriteLine(menuTresModificaciones[i]);
+                                    Console.ResetColor();
+                                }
+
+                                ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                switch (tecla2.Key)
+                                {
+                                    case ConsoleKey.Enter:
+                                    case ConsoleKey.Spacebar:
+                                        if (posicionActual == menuTresModificaciones.Length - 1)
+                                        {
+                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
+                                            bucle = true;
+                                            MenuVehiculos();
+                                        } 
+                                        else if (posicionActual == 0) // Buscar por ID
+                                        {
+                                            // concesionario.ModificarAutoCamioneta();
+                                        }
+
+                                        else if (posicionActual == 1)
+                                        {
+                                            // concesionario.ModificarMoto();
+                                        }
+
+                                        else if (posicionActual == 2)
+                                        {
+                                            // concesionaria.ModificarCamion();
+                                        }
+
+                                        Console.WriteLine("\nPresione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        break;
+
+                                    case ConsoleKey.UpArrow:
+                                        if (posicionActual == 0)
+                                            posicionActual = menuTresModificaciones.Length - 1;
+                                        else
+                                            posicionActual--;
+                                        break;
+
+                                    case ConsoleKey.DownArrow:
+                                        if (posicionActual == menuTresModificaciones.Length - 1)
+                                            posicionActual = 0;
+                                        else
+                                            posicionActual++;
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Opción no válida.");
+                                        break;
+
+                                }
+                            }
                         }
 
                         else if (posicionActual == 2)
                         {
                             // concesionaria.EliminarVehiculo();
+                            string[] menuTresEliminaciones = { "Eliminar un auto o una camioneta", "Eliminar una moto", "Eliminar un camión", "Salir" };
+                            posicionActual = 0;
+                            Console.CursorVisible = false;
+                            bucle = false;
+
+                            while (!bucle)
+                            {
+                                Console.Clear();
+                                Console.ResetColor();
+                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                                Console.WriteLine("-------------------------------------------");
+
+                                for (int i = 0; i < menuTresEliminaciones.Length; i++)
+                                {
+                                    if (posicionActual == i)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Blue;
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.Write(" " + (char)62 + " ");
+                                    }
+                                    Console.WriteLine(menuTresEliminaciones[i]);
+                                    Console.ResetColor();
+                                }
+
+                                ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                switch (tecla2.Key)
+                                {
+                                    case ConsoleKey.Enter:
+                                    case ConsoleKey.Spacebar:
+                                        if (posicionActual == menuTresEliminaciones.Length - 1)
+                                        {
+                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
+                                            bucle = true;
+                                            MenuVehiculos();
+                                        }
+                                        else if (posicionActual == 0) // Buscar por ID
+                                        {
+                                            // concesionario.EliminarAutoCamioneta();
+                                        }
+
+                                        else if (posicionActual == 1)
+                                        {
+                                            // concesionario.EliminarMoto();
+                                        }
+
+                                        else if (posicionActual == 2)
+                                        {
+                                            // concesionaria.EliminarCamion();
+                                        }
+
+                                        Console.WriteLine("\nPresione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        break;
+
+                                    case ConsoleKey.UpArrow:
+                                        if (posicionActual == 0)
+                                            posicionActual = menuTresEliminaciones.Length - 1;
+                                        else
+                                            posicionActual--;
+                                        break;
+
+                                    case ConsoleKey.DownArrow:
+                                        if (posicionActual == menuTresEliminaciones.Length - 1)
+                                            posicionActual = 0;
+                                        else
+                                            posicionActual++;
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Opción no válida.");
+                                        break;
+                                }
+                            }
                         }
 
                         else if (posicionActual == 3)
                         {
                             // concesionaria.ListarVehiculo();
+                            string[] menuListas = { "Listar autos y camionetas", "Listar motos", "Listar camiónes", "Listar todos los vehículos", "Salir" };
+                            posicionActual = 0;
+                            Console.CursorVisible = false;
+                            bucle = false;
+
+                            while (!bucle)
+                            {
+                                Console.Clear();
+                                Console.ResetColor();
+                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                                Console.WriteLine("-------------------------------------------");
+
+                                for (int i = 0; i < menuListas.Length; i++)
+                                {
+                                    if (posicionActual == i)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Blue;
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.Write(" " + (char)62 + " ");
+                                    }
+                                    Console.WriteLine(menuListas[i]);
+                                    Console.ResetColor();
+                                }
+
+                                ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                switch (tecla2.Key)
+                                {
+                                    case ConsoleKey.Enter:
+                                    case ConsoleKey.Spacebar:
+                                        if (posicionActual == menuListas.Length - 1)
+                                        {
+                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
+                                            bucle = true;
+                                            MenuVehiculos();
+                                        }
+                                        else if (posicionActual == 0)
+                                        {
+                                            // concesionario.ListarAutos();
+                                        }
+
+                                        else if (posicionActual == 1)
+                                        {
+                                            // concesionario.ListarMotos();
+                                        }
+
+                                        else if (posicionActual == 2)
+                                        {
+                                            // concesionaria.ListarCamiones();
+                                        }
+                                        else if (posicionActual == 3)
+                                        {
+                                            // concesionaria.ListarVehiculos();
+                                        }
+
+                                        Console.WriteLine("\nPresione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        break;
+
+                                    case ConsoleKey.UpArrow:
+                                        if (posicionActual == 0)
+                                            posicionActual = menuListas.Length - 1;
+                                        else
+                                            posicionActual--;
+                                        break;
+
+                                    case ConsoleKey.DownArrow:
+                                        if (posicionActual == menuListas.Length - 1)
+                                            posicionActual = 0;
+                                        else
+                                            posicionActual++;
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Opción no válida.");
+                                        break;
+
+                                }
+                            }
                         }
 
                         else if (posicionActual == 4)
                         {
-                            // concesionaria.BuscarVehiculo();
-                        }
+                            string[] menuBuscar = { "Buscar un auto o una camioneta", "Buscar una moto", "Buscar un camión", "Salir" };
+                            posicionActual = 0;
+                            Console.CursorVisible = false;
+                            bucle = false;
 
+                            while (!bucle)
+                            {
+                                Console.Clear();
+                                Console.ResetColor();
+                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                                Console.WriteLine("-------------------------------------------");
+
+                                for (int i = 0; i < menuBuscar.Length; i++)
+                                {
+                                    if (posicionActual == i)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Blue;
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.Write(" " + (char)62 + " ");
+                                    }
+                                    Console.WriteLine(menuBuscar[i]);
+                                    Console.ResetColor();
+                                }
+
+                                ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                switch (tecla2.Key)
+                                {
+                                    case ConsoleKey.Enter:
+                                    case ConsoleKey.Spacebar:
+                                        if (posicionActual == menuBuscar.Length - 1)
+                                        {
+                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
+                                            bucle = true;
+                                            MenuVehiculos();
+                                        }
+                                        else if (posicionActual == 0)
+                                        {
+                                            // concesionario.BuscarAutos();
+                                        }
+
+                                        else if (posicionActual == 1)
+                                        {
+                                            // concesionario.BuscarMotos();
+                                        }
+
+                                        else if (posicionActual == 2)
+                                        {
+                                            // concesionaria.BuscarCamiones();
+                                        }
+
+                                        Console.WriteLine("\nPresione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        break;
+
+                                    case ConsoleKey.UpArrow:
+                                        if (posicionActual == 0)
+                                            posicionActual = menuBuscar.Length - 1;
+                                        else
+                                            posicionActual--;
+                                        break;
+
+                                    case ConsoleKey.DownArrow:
+                                        if (posicionActual == menuBuscar.Length - 1)
+                                            posicionActual = 0;
+                                        else
+                                            posicionActual++;
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Opción no válida.");
+                                        break;
+
+                                }
+                            }
+                        }
                         Console.WriteLine("\nPresione una tecla para continuar.");
                         Console.ReadKey();
                         break;
@@ -248,9 +545,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                     default:
                         Console.WriteLine("Opción no válida.");
-                        break;
+                    break;
                 }
+                        
             }
+
         }
 
         // Menú clientes
