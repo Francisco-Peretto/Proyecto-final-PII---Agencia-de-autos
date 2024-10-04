@@ -73,11 +73,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        posicionActual = Math.Max(0, posicionActual - 1);
+                        if (posicionActual == 0)
+                            posicionActual = menuOpciones.Length - 1;
+                        else
+                            posicionActual--;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        posicionActual = Math.Min(menuOpciones.Length - 1, posicionActual + 1);
+                        if (posicionActual == menuOpciones.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
                         break;
 
                     default:
@@ -90,7 +96,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         // Ménú vehículos
         void MenuVehiculos()
         {
-            string[] menuOpcionesVehiculos = { "Agregar nuevo vehículo", "Modificar vehículo", "Eliminar vehículo", "Listar vehículos", "Buscar vehículo", "Salir" };
+            string[] menuOpcionesVehiculos = { "Registrar nuevo vehículo", "Modificar un vehículo existente", "Eliminar un vehículo existente", "Listar vehículos", "Buscar un vehículo", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
@@ -122,12 +128,84 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         if (posicionActual == menuOpcionesVehiculos.Length - 1)
                         {
                             Console.WriteLine("\nSaliendo del menú de vehículos.");
-                            bucle = true;
-                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            MenuPrincipal();
                         }
-                        else if (posicionActual == 0)
+                        else if (posicionActual == 0) 
                         {
-                            concesionaria.CargarVehiculo();
+                                string[] menuTresVehiculos = { "Registrar un auto o una camioneta", "Registar una moto", "Registrar un camión", "Salir" };
+                                posicionActual = 0;
+                                Console.CursorVisible = false;
+                                bucle = false;
+
+                                while (!bucle)
+                                {
+                                    Console.Clear();
+                                    Console.ResetColor();
+                                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                                    Console.WriteLine("-------------------------------------------");
+
+                                    for (int i = 0; i < menuTresVehiculos.Length; i++)
+                                    {
+                                        if (posicionActual == i)
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.Blue;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.Write(" " + (char)62 + " ");
+                                        }
+                                        Console.WriteLine(menuTresVehiculos[i]);
+                                        Console.ResetColor();
+                                    }
+
+                                    ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                    switch (tecla2.Key)
+                                    {
+                                        case ConsoleKey.Enter:
+                                        case ConsoleKey.Spacebar:
+                                            if (posicionActual == menuTresVehiculos.Length - 1)
+                                            {
+                                                Console.WriteLine("\nSaliendo del menú de vehículos.");
+                                                bucle = true;
+                                                MenuVehiculos();
+                                            }
+                                            else if (posicionActual == 0)
+                                            {
+                                                // concesionario.CargarAutoCamioneta();
+                                            }
+
+                                            else if (posicionActual == 1)
+                                            {
+                                                // concesionario.CargarMoto();
+                                            }
+
+                                            else if (posicionActual == 2)
+                                            {
+                                                // concesionaria.CargarCamion();
+                                            }
+
+                                            Console.WriteLine("\nPresione una tecla para continuar.");
+                                            Console.ReadKey();
+                                            break;
+
+                                    case ConsoleKey.UpArrow:
+                                        if (posicionActual == 0)
+                                            posicionActual = menuTresVehiculos.Length - 1;
+                                        else
+                                            posicionActual--;
+                                        break;
+
+                                    case ConsoleKey.DownArrow:
+                                        if (posicionActual == menuTresVehiculos.Length - 1)
+                                            posicionActual = 0;
+                                        else
+                                            posicionActual++;
+                                        break;
+
+                                    default:
+                                            Console.WriteLine("Opción no válida.");
+                                            break;
+                                    
+                                }
+                            }
                         }
 
                         else if (posicionActual == 1)
@@ -155,11 +233,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        posicionActual = Math.Max(0, posicionActual - 1);
+                        if (posicionActual == 0)
+                            posicionActual = menuOpcionesVehiculos.Length - 1;
+                        else
+                            posicionActual--;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        posicionActual = Math.Min(menuOpcionesVehiculos.Length - 1, posicionActual + 1);
+                        if (posicionActual == menuOpcionesVehiculos.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
                         break;
 
                     default:
@@ -205,7 +289,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             Console.WriteLine("\nSaliendo del menú de clientes.");
                             bucle = true;
-                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            MenuPrincipal();
                         }
                         else if (posicionActual == 0)
                         {
@@ -237,11 +321,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        posicionActual = Math.Max(0, posicionActual - 1);
+                        if (posicionActual == 0)
+                            posicionActual = menuOpcionesClientes.Length - 1;
+                        else
+                            posicionActual--;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        posicionActual = Math.Min(menuOpcionesClientes.Length - 1, posicionActual + 1);
+                        if (posicionActual == menuOpcionesClientes.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
                         break;
 
                     default:
@@ -287,7 +377,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             Console.WriteLine("\nSaliendo del menú de ventas.");
                             bucle = true;
-                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            MenuPrincipal();
                         }
                         else if (posicionActual == 0)
                         {
@@ -319,11 +409,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        posicionActual = Math.Max(0, posicionActual - 1);
+                        if (posicionActual == 0)
+                            posicionActual = menuOpcionesVentas.Length - 1;
+                        else
+                            posicionActual--;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        posicionActual = Math.Min(menuOpcionesVentas.Length - 1, posicionActual + 1);
+                        if (posicionActual == menuOpcionesVentas.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
                         break;
 
                     default:
@@ -369,7 +465,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             Console.WriteLine("\nSaliendo del menú de parámetros.");
                             bucle = true;
-                            // A probar. Tal vez haya que llamar a MenuVehiculos()
+                            MenuPrincipal();
                         }
                         else if (posicionActual == 0) // Marcas
                         {
@@ -401,11 +497,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        posicionActual = Math.Max(0, posicionActual - 1);
+                        if (posicionActual == 0)
+                            posicionActual = menuOpcionesParametros.Length - 1;
+                        else
+                            posicionActual--;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        posicionActual = Math.Min(menuOpcionesParametros.Length - 1, posicionActual + 1);
+                        if (posicionActual == menuOpcionesParametros.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
                         break;
 
                     default:
@@ -471,11 +573,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
 
                         case ConsoleKey.UpArrow:
-                            posicionActual = Math.Max(0, posicionActual - 1);
+                            if (posicionActual == 0)
+                                posicionActual = menuMarcas.Length - 1;
+                            else
+                                posicionActual--;
                             break;
 
                         case ConsoleKey.DownArrow:
-                            posicionActual = Math.Min(menuMarcas.Length - 1, posicionActual + 1);
+                            if (posicionActual == menuMarcas.Length - 1)
+                                posicionActual = 0;
+                            else
+                                posicionActual++;
                             break;
 
                         default:
@@ -520,7 +628,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             {
                                 Console.WriteLine("\nSaliendo del menú de parámetros.");
                                 bucle = true;
-                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                                MenuParametros();
                             }
                             else if (posicionActual == 0)
                             {
@@ -542,11 +650,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
 
                         case ConsoleKey.UpArrow:
-                            posicionActual = Math.Max(0, posicionActual - 1);
+                            if (posicionActual == 0)
+                                posicionActual = menuModelos.Length - 1;
+                            else
+                                posicionActual--;
                             break;
 
                         case ConsoleKey.DownArrow:
-                            posicionActual = Math.Min(menuModelos.Length - 1, posicionActual + 1);
+                            if (posicionActual == menuModelos.Length - 1)
+                                posicionActual = 0;
+                            else
+                                posicionActual++;
                             break;
 
                         default:
@@ -591,7 +705,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             {
                                 Console.WriteLine("\nSaliendo del menú de parámetros.");
                                 bucle = true;
-                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                                MenuParametros();
                             }
                             else if (posicionActual == 0)
                             {
@@ -613,11 +727,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
 
                         case ConsoleKey.UpArrow:
-                            posicionActual = Math.Max(0, posicionActual - 1);
+                            if (posicionActual == 0)
+                                posicionActual = menuColores.Length - 1;
+                            else
+                                posicionActual--;
                             break;
 
                         case ConsoleKey.DownArrow:
-                            posicionActual = Math.Min(menuColores.Length - 1, posicionActual + 1);
+                            if (posicionActual == menuColores.Length - 1)
+                                posicionActual = 0;
+                            else
+                                posicionActual++;
                             break;
 
                         default:
@@ -662,7 +782,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             {
                                 Console.WriteLine("\nSaliendo del menú de parámetros.");
                                 bucle = true;
-                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                                MenuParametros();
                             }
                             else if (posicionActual == 0)
                             {
@@ -684,11 +804,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
 
                         case ConsoleKey.UpArrow:
-                            posicionActual = Math.Max(0, posicionActual - 1);
+                            if (posicionActual == 0)
+                                posicionActual = menuLocalidades.Length - 1;
+                            else
+                                posicionActual--;
                             break;
 
                         case ConsoleKey.DownArrow:
-                            posicionActual = Math.Min(menuLocalidades.Length - 1, posicionActual + 1);
+                            if (posicionActual == menuLocalidades.Length - 1)
+                                posicionActual = 0;
+                            else
+                                posicionActual++;
                             break;
 
                         default:
@@ -733,7 +859,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             {
                                 Console.WriteLine("\nSaliendo del menú de parámetros.");
                                 bucle = true;
-                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                                MenuParametros();
                             }
                             else if (posicionActual == 0)
                             {
@@ -755,11 +881,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
 
                         case ConsoleKey.UpArrow:
-                            posicionActual = Math.Max(0, posicionActual - 1);
+                            if (posicionActual == 0)
+                                posicionActual = menuProvincias.Length - 1;
+                            else
+                                posicionActual--;
                             break;
 
                         case ConsoleKey.DownArrow:
-                            posicionActual = Math.Min(menuProvincias.Length - 1, posicionActual + 1);
+                            if (posicionActual == menuProvincias.Length - 1)
+                                posicionActual = 0;
+                            else
+                                posicionActual++;
                             break;
 
                         default:

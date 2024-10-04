@@ -12,6 +12,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             Concesionaria con = new Concesionaria ();
             Vehiculo vehiculo = new Vehiculo ();
+            Menu menu = new Menu ();
+            menu.MenuPrincipal();
             int opc;
             /*
             con.CargarVehiculo();
