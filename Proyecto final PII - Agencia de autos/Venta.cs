@@ -8,17 +8,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
 {
     internal class Venta
     {
-        private int id_cliente, id_vehiculo;
+        private int id_cliente, id_vehiculo, id_venta;
         private DateTime fecha_compra, fecha_entrega;
         private double subtotal;
         private int iva;
         private int descuento;
         private double total;
 
+        public Venta(int id_venta, int id_cliente, int id_vehiculo, DateTime fecha_compra, DateTime fecha_entrega,
+            double subtotal, int iva, int descuento, double total)
 
-        public Venta(int id_cliente, int id_vehiculo, DateTime fecha_compra, DateTime fecha_entrega,
-            double subtotal, int iva, int descuento)
         {
+            this.pId_venta = id_venta;
             this.pId_cliente = id_cliente;
             this.pId_vehiculo = id_vehiculo;
             this.pFecha_compra = fecha_compra;
@@ -30,6 +31,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public Venta()
         {
+            this.pId_venta = 0;
             this.pId_cliente = 0;
             this.pId_vehiculo = 0;
             this.pFecha_compra = new DateTime(01 / 01 / 2000);
@@ -47,6 +49,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 $"- Total: {this.pTotal}");
         }
         //GETTERS Y SETTERS
+        public int pId_venta
+        {
+            get { return id_venta; }
+            set { id_venta = value; }
+        }
         public int pId_cliente
         {
             get { return id_cliente; }
