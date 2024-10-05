@@ -25,6 +25,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pId_provincia = 0;
         }
 
+        public void mostrarLocalidad()
+        {
+            Console.Write($"ID Provincia: {this.pId_provincia} - ID Localidad:{this.pId_localidad} - {this.pLocalidad} ");
+        }
+
         //GETTERS Y WSETTERS
         public int pId_localidad
         {
