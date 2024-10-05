@@ -787,7 +787,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             int id_venta, id_cliente, id_vehiculo = 0, iva, descuento;
             DateTime fecha_compra, fecha_entrega;
-            double subtotal, total;
+            double subtotal;
             Console.WriteLine("****CARGA DE VENTA****\n\n");
 
 
