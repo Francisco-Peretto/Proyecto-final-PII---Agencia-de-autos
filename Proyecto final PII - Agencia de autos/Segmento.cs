@@ -11,7 +11,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
         // prop privadas
         private int _id_segmento;
         private string _segmento;
+        public Segmento()
+        {
+            this.pIdSegmento = 0;
+            this.pSegmento = string.Empty;
+        }
 
+        public Segmento(int id_segmento, string segmento)
+        {
+            this.pIdSegmento = id_segmento;
+            this.pSegmento = segmento;
+        }
+
+        public void mostrarSegmento()
+        {
+            Console.Write($"ID Segmento:{this.pIdSegmento} - {this.pSegmento}");
+        }
         // prop publicas
         public int pIdSegmento
         {
@@ -25,16 +40,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             set { this._segmento = value; }
         }
 
-        public Segmento()
-        {
-            this.pIdSegmento = 0;
-            this.pSegmento = string.Empty;
-        }
 
-        public Segmento(int id_segmento, string segmento)
-        {
-            this.pIdSegmento = id_segmento;
-            this.pSegmento = segmento;
-        }
     }
 }

@@ -16,7 +16,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private double total;
 
         public Venta(int id_venta, int id_cliente, int id_vehiculo, DateTime fecha_compra, DateTime fecha_entrega,
-            double subtotal, int iva, int descuento, double total)
+            double subtotal, int iva, int descuento)
+
         {
             this.pId_venta = id_venta;
             this.pId_cliente = id_cliente;
@@ -24,9 +25,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pFecha_compra = fecha_compra;
             this.pFecha_entrega = fecha_entrega;
             this.pSubtotal = subtotal;
-            this.pId_vehiculo = iva;
+            this.pIva = iva;
             this.pDescuento = descuento;
-            this.pTotal = total;
+
         }
         public Venta()
         {
@@ -36,9 +37,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pFecha_compra = new DateTime(01 / 01 / 2000);
             this.pFecha_entrega = new DateTime(01 / 01 / 2000);
             this.pSubtotal = 0;
-            this.pId_vehiculo = 0;
+            this.pIva = 0;
             this.pDescuento = 0;
-            this.pTotal = 0;
+
+        }
+
+        public void mostrarVenta()
+        {
+            Console.Write($"ID Cliente:{this.pId_cliente} - ID Vehiculo: {this.pId_vehiculo} - Fecha de compra: {this.pFecha_compra} " +
+                $"- Fecha de entrega: {this.pFecha_entrega} - Subtotal: {this.pSubtotal} - IVA: {this.pIva}% - Descuento: {this.pDescuento}% " +
+                $"- Total: {this.pTotal}");
         }
         //GETTERS Y SETTERS
         public int pId_venta
@@ -118,11 +126,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public double pTotal
         {
-            get { return total; }
-            set
-            {
-                total = value;
-            }
+            get { return (subtotal + ((21 * subtotal) / 100) - ((descuento * subtotal) / 100)); }
+
         }
     }
+
 }

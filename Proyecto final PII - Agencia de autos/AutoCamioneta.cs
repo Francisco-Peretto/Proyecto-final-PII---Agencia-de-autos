@@ -11,18 +11,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public AutoCamioneta(int id_vehiculo, string patente, double kilometros, int anio, int id_marca,
             string modelo, int id_segmento, int id_combustible, double precio_vta, string observaciones,
             string color)
-            :base(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible,
+            : base(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible,
                  precio_vta, observaciones, color)
-        { 
+        {
 
         }
         public AutoCamioneta()
         {
 
         }
-        public override string MostrarDatos()
+        public override void MostrarDatos()
         {
-            return base.MostrarDatos();
             base.MostrarDatos();
         }
     }

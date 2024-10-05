@@ -12,7 +12,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private int _dimension_caja;
         private int _carga_max;
 
-        public Camion(bool _caja_carga, int _dimension_caja, int _carga_max)
+        public Camion(int id_vehiculo, string patente, double kilometros, int anio, int id_marca,
+            string modelo, int id_segmento, bool _caja_carga, int _dimension_caja, int _carga_max, int id_combustible, double precio_vta, string observaciones,
+            string color) : base(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible,
+                 precio_vta, observaciones, color)
         {
             this.pCaja_Carga = _caja_carga;
             this.pDimension_caja = _dimension_caja;
@@ -26,17 +29,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
 
-        public override string MostrarDatos()
+        public override void MostrarDatos()
         {
-            return base.MostrarDatos() + $"\nCaja de Carga: {pCaja_Carga}\n" +
-                                     $"Dimensión de Caja: {pDimension_caja}\n" +
-                                     $"Carga Máxima: {pCarga_max}";
+
             Console.Write($"Id Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
                 $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
                 $"- Segmento: {this.pId_segmento} - Caja de carga: {this.pCaja_Carga} - Dimensión de caja: {this.pDimension_caja} -" +
                 $" Carga máxima: {this.pDimension_caja} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +
                 $"- Observaciones: {this.pObservaciones} - Color: {this.pColor} ");
-            
+
         }
         //GETTERS Y SETTERS
         public bool pCaja_Carga { get { return _caja_carga; } set { _caja_carga = value; } }

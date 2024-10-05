@@ -12,6 +12,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private int _id_combustible;
         private string combustible;
 
+        // constructores
+        public Combustible()
+        {
+            this.pIdCombustible = 0;
+            this.pCombustible = string.Empty;
+        }
+
+        public Combustible(int idCombustible, string combustible)
+        {
+            this.pIdCombustible = idCombustible;
+            this.pCombustible = combustible;
+        }
+
+        public void mostrarCombustible()
+        {
+            Console.Write($"ID Combustible:{this.pIdCombustible} - {this.pCombustible}");
+        }
         // prop publicas
         public int pIdCombustible
         {
@@ -25,18 +42,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             set { this.combustible = value; }
         }
 
-        // constructores
-        public Combustible()
-        {
-            this.pIdCombustible = 0;
-            this.pCombustible = string.Empty;
-        }
 
-        public Combustible(int idCombustible, string combustible)
-        {
-            this.pIdCombustible = idCombustible;
-            this.pCombustible = combustible;
-        }
     }
 }
 

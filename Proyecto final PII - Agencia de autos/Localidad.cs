@@ -17,12 +17,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pLocalidad = localidad;
             this.pId_provincia = id_provincia;
         }
-    
+
         public Localidad()
         {
             this.pId_localidad = 0;
             this.pLocalidad = "";
             this.pId_provincia = 0;
+        }
+
+        public void mostrarLocalidad()
+        {
+            Console.Write($"ID Provincia: {this.pId_provincia} - ID Localidad:{this.pId_localidad} - {this.pLocalidad} ");
         }
 
         //GETTERS Y WSETTERS
