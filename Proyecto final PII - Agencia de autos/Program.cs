@@ -24,7 +24,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Clear();
                 con.CargarVehiculo();
-                con.mostrarVehiculos();
+                con.mostrarDatos();
                 Console.WriteLine("\n\nIngrese 1");
                 opc = int.Parse(Console.ReadLine());
             } while (opc == 1);
