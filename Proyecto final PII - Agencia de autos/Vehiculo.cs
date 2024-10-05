@@ -150,9 +150,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 color = value;
             }
         }
-        public virtual void MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
+        public virtual string MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
         {
-          
+            return $"ID Vehículo: {pId_vehiculo}\n" +
+               $"Patente: {pPatente}\n" +
+               $"Kilómetros: {pKilometros}\n" +
+               $"Año: {pAnio}\n" +
+               $"ID Marca: {pId_marca}\n" +
+               $"Modelo: {pModelo}\n" +
+               $"ID Segmento: {pId_segmento}\n" +
+               $"ID Combustible: {pId_combustible}\n" +
+               $"Precio de Venta: {pPrecio_vta}\n" +
+               $"Observaciones: {pObservaciones}\n" +
+               $"Color: {pColor}";
             Console.Write($"Id Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
                 $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
                 $"- Segmento: {this.pId_segmento} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +
