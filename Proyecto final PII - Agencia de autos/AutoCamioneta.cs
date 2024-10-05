@@ -20,9 +20,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
 
         }
-        public override string MostrarDatos()
+        public override void MostrarDatos()
         {
-            return base.MostrarDatos();
             base.MostrarDatos();
         }
     }
