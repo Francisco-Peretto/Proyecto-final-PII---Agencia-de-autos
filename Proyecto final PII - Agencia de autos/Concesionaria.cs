@@ -62,7 +62,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this._listaAutoCamionetas = new List<AutoCamioneta>();
             this._listaCamiones = new List<Camion>();
         }
-        // metodos
+        // métodos de cargar listas
         public void CargarVehiculos(string nombreArchivo)
         {
     
@@ -95,6 +95,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         }
+        public void CargarMotos(string nombreArchivo)
+        {
+
+        } // falta
+        public void CargarAutosCamionetas(string nombreArchivo)
+        {
+
+        } // falta
+        public void CargarCamiones(string nombreArchivo)
+        {
+
+        } // falta
         public void CargarVentas(string nombreArchivo)
         {
             if (File.Exists(nombreArchivo))
@@ -151,10 +163,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         }
-        public void CargarMarcas()
+        public void CargarMarcas(string nombreArchivo)
         {
 
-        }
+        } // falta
         public void CargarSegmentos(string nombreArchivo)
         {
             if (File.Exists(nombreArchivo))
@@ -227,171 +239,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         }
-        public void CargarProvincias()
+        public void CargarProvincias(string nombreArchivo)
         {
 
-        }
-        /*
-        public void CargarVehiculo()
+        } // falta
+        public void CargarColores(string nombreArchivo) 
         {
-            int id_vehiculo, anio, id_marca, id_combustible, id_segmento, cilindrada, dimension_caja, carga_max, largocaja, anchocaja;
-            double kilometros, precio_vta;
-            bool caja_carga;
-            Vehiculo vehi = new Vehiculo();
-            Moto mot = new Moto();
-            AutoCamioneta autcam = new AutoCamioneta();
-            Camion cam = new Camion();
+        } // falta
+        public void CargarCilindradas(string nombreArchivo)
+        {
+        } // falta
 
-            // Los métodos Array van a desaparecer o a modificarse una vez estén las listas
-            Console.Clear();
-            Console.Write("\t\t\t*****CARGA DE VEHICULO*****\n\n");
-            Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pId_vehiculo = id_vehiculo;
-
-            Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
-            //patente = Console.ReadLine();
-            vehi.pPatente = Console.ReadLine();
-
-            Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
-            if (!double.TryParse(Console.ReadLine(), out kilometros))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pKilometros = kilometros;
-
-            Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año. Se puede establecer rango min-max
-            if (!int.TryParse(Console.ReadLine(), out anio))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pAnio = anio;
-
-            Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: ");
-            if (!int.TryParse(Console.ReadLine(), out id_marca))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pId_marca = id_marca;
-
-            Console.Write("\nIngrese el nombre del MODELO del vehiculo a registrar: ");
-            vehi.pModelo = Console.ReadLine();
-
-            Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
-            if (!int.TryParse(Console.ReadLine(), out id_segmento))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pId_segmento = id_segmento;
-            if (vehi.pId_segmento >= 5 && vehi.pId_segmento <= 7)
-            {
-                vehi = new Moto();
-                Console.Write("\nIngrese la CILINDRADA: ");
-                if (!int.TryParse(Console.ReadLine(), out cilindrada))
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                ((Moto)vehi).pCilindrada = cilindrada;
-
-
-            }
-            else if (vehi.pId_segmento == 8)
-            {
-                vehi = new Camion();
-                Console.Write("\nIngrese si el camion posee caja (true/false): "); //HACER MENU PARA SELECCIONAR
-
-                if (!bool.TryParse(Console.ReadLine(), out caja_carga))
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                ((Camion)vehi).pCaja_Carga = caja_carga;
-
-                Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
-                if (!int.TryParse(Console.ReadLine(), out largocaja))
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
-                if (!int.TryParse(Console.ReadLine(), out anchocaja))
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                dimension_caja = largocaja * anchocaja;
-                ((Camion)vehi).pDimension_caja = dimension_caja;
-
-                Console.Write("\nIngrese la CARGA MAXIMA de la caja del camion (en kg): ");
-                if (!int.TryParse(Console.ReadLine(), out carga_max))
-                {
-                    Console.WriteLine("Error. Presione una tecla y reintente.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                ((Camion)vehi).pCarga_max = carga_max;
-
-            }
-            else
-            {
-                vehi = new Vehiculo();
-            }
-
-            Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: ");
-            if (!int.TryParse(Console.ReadLine(), out id_combustible))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pId_combustible = id_combustible;
-
-
-            Console.Write("\nIngrese el precio de venta del vehículo a registrar: "); // Precio
-            if (!double.TryParse(Console.ReadLine(), out precio_vta))
-            {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            vehi.pPrecio_vta = precio_vta;
-
-            Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones
-            vehi.pObservaciones = Console.ReadLine();
-            if (vehi.pObservaciones == " ")
-            {
-                vehi.pObservaciones = "Sin observaciones";
-            }
-
-            Console.Write("\nIngrese el COLOR del vehículo a registrar: "); // color. SE PUEDE HACER UNA LISTA DE COLORES
-            vehi.pColor = Console.ReadLine();
-
-            _listaVehiculos.Add(vehi);
-
-        }
-        */
-        
-
-
-        public void cargarAutoCamioneta()
+        // Métodos automóviles falta buscar por ID, falta modificar vehículo por id --  a cambiar todo lo que ingresa y modifica color, segmento, combustible marca a método
+        public void IngresarAutoCamioneta()
         {
 
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento;
@@ -494,7 +354,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             _listaAutoCamionetas.Add(autcam);
         }
-        public void cargarMoto()
+        public void IngresarMoto()
         {
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento, cilindrada;
             double kilometros, precio_vta;
@@ -599,7 +459,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             _listaMotos.Add(mot);
             }
-        public void cargarCamion()
+        public void IngresarCamion()
         {
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento, dimension_caja, carga_max, largocaja, anchocaja;
             double kilometros, precio_vta;
@@ -737,7 +597,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             _listaCamiones.Add(cam);
         }
-        public void CargarVehiculo()
+        public void IngresarVehiculo()
         {
             Console.WriteLine("****carga de vehiculo***");
             Vehiculo vehi = new Vehiculo();
@@ -750,20 +610,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             if (opc == 1)
             {
-                cargarAutoCamioneta();
+                IngresarAutoCamioneta();
             }
             else if (opc == 2)
             {
-                cargarMoto();
+                IngresarMoto();
             }
             else if (opc == 3)
             {
-                cargarCamion();
+                IngresarCamion();
             }
 
-        }
-
-        public void mostrarVehiculos()
+        } // A borrar?
+        public void MostrarVehiculos()
         {
             Console.WriteLine("Autos y Camionets\n");
             foreach (AutoCamioneta a in _listaAutoCamionetas)
@@ -780,9 +639,106 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 cam.MostrarDatos();
             }
+        } // Falta mostrar individualmente
+        public void ActualizarAutoCamioneta()
+        {
+            arch = new FileStream("AutosCamioneta.txt", FileMode.Create);
+            wr = new StreamWriter(arch);
+            foreach (AutoCamioneta autcam in this._listaAutoCamionetas)
+            {
+                wr.WriteLine($"{autcam.pId_vehiculo};{autcam.pPatente};{autcam.pKilometros};{autcam.pAnio};" +
+                    $"{autcam.pId_marca};{autcam.pModelo};{autcam.pId_segmento};{autcam.pId_combustible};" +
+                    $"{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor}");
+            }
+            wr.Close();
+            arch.Close();
+        }
+        public void ActualizarMotos()
+        {
+            arch = new FileStream("Motos.txt", FileMode.Create);
+            wr = new StreamWriter(arch);
+            foreach (Moto moto in this._listaMotos)
+            {
+                wr.WriteLine($"{moto.pId_vehiculo};{moto.pPatente};{moto.pKilometros};{moto.pAnio};" +
+                    $"{moto.pId_marca};{moto.pModelo};{moto.pId_segmento};{moto.pId_combustible};" +
+                    $"{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor};{moto.pCilindrada}");
+            }
+            wr.Close();
+            arch.Close();
+        }
+        public void ActualizarCamiones()
+        {
+            arch = new FileStream("Camiones.txt", FileMode.Create);
+            wr = new StreamWriter(arch);
+            foreach (Camion cam in this._listaCamiones)
+            {
+                wr.WriteLine($"{cam.pId_vehiculo};{cam.pPatente};{cam.pKilometros};{cam.pAnio};" +
+                    $"{cam.pId_marca};{cam.pModelo};{cam.pId_segmento};{cam.pId_combustible};" +
+                    $"{cam.pPrecio_vta};{cam.pObservaciones};{cam.pColor};{cam.pCaja_Carga};" +
+                    $"{cam.pDimension_caja};{cam.pCarga_max}");
+            }
+            wr.Close();
+            arch.Close();
+        }
+        public void BorrarVehiculo()
+        {
+            int id, flag = 0, i, j, k;
+            string cad;
+            Console.WriteLine("Ingrese el ID del Vehiculo a eliminar: ");
+            cad = Console.ReadLine();
+            id = int.Parse(cad);
+            for (i = _listaAutoCamionetas.Count() - 1; i >= 0; i--)
+            {
+                if (_listaAutoCamionetas[i].pId_vehiculo == id)
+                {
+                    flag = i;
+                }
+
+            }
+            for (j = _listaMotos.Count() - 1; j >= 0; j--)
+            {
+                if (_listaMotos[j].pId_vehiculo == id)
+                {
+                    flag = j;
+                }
+
+            }
+            for (k = _listaCamiones.Count() - 1; k >= 0; k--)
+            {
+                if (_listaCamiones[k].pId_vehiculo == id)
+                {
+                    flag = k;
+                }
+
+            }
+
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Vehiculos");
+
+            }
+            else
+            {
+                if (flag == i)
+                {
+                    _listaAutoCamionetas.RemoveAt(flag);
+                }
+                else if (flag == j)
+                {
+                    _listaMotos.RemoveAt(flag);
+                }
+                else if (flag == k)
+                {
+                    _listaCamiones.RemoveAt(flag);
+                }
+
+                Console.Write($"El articulo con ID -{id}- fue eliminado");
+            }
+
         }
 
-        public void cargarVenta()
+        // Métodos ventas falta mostrar / borrar
+        public void CargarVenta()
         {
 
             int id_venta, id_cliente, id_vehiculo = 0, iva, descuento;
@@ -858,83 +814,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
 
         }
-
-        public void cargarLocalidad()
-        {
-            int id_localidad, id_provincia;
-            string localidad;
-            Console.Write("****CARGA DE LOCALIDAD****\n\n");
-            Console.Write("Ingrese el ID de la Localidad: ");
-            id_localidad = int.Parse(Console.ReadLine());
-
-            Console.Write("\nIngrese el NOMBRE de la localidad");
-            localidad = Console.ReadLine();
-
-            foreach (Provincia prov in this._listaProvincias)
-            {
-                Console.Write($"ID: {prov.pId_provincia} -> {prov.pProvincia}");
-            }
-            Console.Write("\nIngrese el ID de la Provincia");
-            id_provincia = int.Parse(Console.ReadLine());
-
-            Localidad loc = new Localidad(id_localidad, localidad, id_provincia);
-        }
-
-        public void cargarProvincia()
-        {
-            int id_provincia;
-            string provincia;
-            Console.Write("****CARGA DE PROVINCIA****\n\n");
-            Console.Write("Ingrese el ID de la Provincia: ");
-            id_provincia = int.Parse(Console.ReadLine());
-            Console.Write("\nIngrese el NOMBRE de la Provincia");
-            provincia = Console.ReadLine();
-
-            Provincia prov = new Provincia(id_provincia, provincia);
-
-        }
-        public void cargarMarca()
-        {
-            int id_marca;
-            string marca;
-            Console.Write("****CARGA DE MARCA****\n\n");
-            Console.Write("Ingrese el ID de la Marca: ");
-            id_marca = int.Parse(Console.ReadLine());
-            Console.Write("\nIngrese el NOMBRE de la Marca");
-            marca = Console.ReadLine();
-
-            Marca marc = new Marca(id_marca, marca);
-
-        }
-        public void cargarCombustible()
-        {
-            int id_combustible;
-            string combustible;
-            Console.Write("****CARGA DE COMBUSTIBLE****\n\n");
-            Console.Write("Ingrese el ID del Combustible: ");
-            id_combustible = int.Parse(Console.ReadLine());
-            Console.Write("\nIngrese el NOMBRE del Combustible");
-            combustible = Console.ReadLine();
-
-            Combustible comb = new Combustible(id_combustible, combustible);
-
-        }
-        public void cargarSegmento()
-        {
-            int id_segmento;
-            string segmento;
-            Console.Write("****CARGA DE SEGMENTO****\n\n");
-            Console.Write("Ingrese el ID del Segmento: ");
-            id_segmento = int.Parse(Console.ReadLine());
-            Console.Write("\nIngrese el NOMBRE del Segmento");
-            segmento = Console.ReadLine();
-
-            Segmento seg = new Segmento(id_segmento, segmento);
-
-        }
-
-
-        public void actualizarVentas()
+        public void ActualizarVentas()
         {
             arch = new FileStream("Ventas.txt", FileMode.Create);
             wr = new StreamWriter(arch);
@@ -946,66 +826,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
-        }
-
-        public void actualizarClientes()
+        } // Modifica lista
+        public void ModificarVenta()
         {
-            arch = new FileStream("Clientes.txt", FileMode.Create);
-            wr = new StreamWriter(arch);
-            foreach (Cliente cl in this._listaClientes)
-            {
-                wr.WriteLine($"{cl.pId_cliente};{cl.pCliente}" +
-                    $";{cl.pCuit};{cl.pDomicilio};{cl.pId_localidad};{cl.pTelefono};" +
-                    $"{cl.pCorreo}");
-            }
-            wr.Close();
-            arch.Close();
-        }
-
-        public void actualizarAutoCamioneta()
-        {
-            arch = new FileStream("AutosCamioneta.txt", FileMode.Create);
-            wr = new StreamWriter(arch);
-            foreach (AutoCamioneta autcam in this._listaAutoCamionetas)
-            {
-                wr.WriteLine($"{autcam.pId_vehiculo};{autcam.pPatente};{autcam.pKilometros};{autcam.pAnio};" +
-                    $"{autcam.pId_marca};{autcam.pModelo};{autcam.pId_segmento};{autcam.pId_combustible};" +
-                    $"{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor}");
-            }
-            wr.Close();
-            arch.Close();
-        }
-        public void actualizarMotos()
-        {
-            arch = new FileStream("Motos.txt", FileMode.Create);
-            wr = new StreamWriter(arch);
-            foreach (Moto moto in this._listaMotos)
-            {
-                wr.WriteLine($"{moto.pId_vehiculo};{moto.pPatente};{moto.pKilometros};{moto.pAnio};" +
-                    $"{moto.pId_marca};{moto.pModelo};{moto.pId_segmento};{moto.pId_combustible};" +
-                    $"{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor};{moto.pCilindrada}");
-            }
-            wr.Close();
-            arch.Close();
-        }
-        public void actualizarCamiones()
-        {
-            arch = new FileStream("Camiones.txt", FileMode.Create);
-            wr = new StreamWriter(arch);
-            foreach (Camion cam in this._listaCamiones)
-            {
-                wr.WriteLine($"{cam.pId_vehiculo};{cam.pPatente};{cam.pKilometros};{cam.pAnio};" +
-                    $"{cam.pId_marca};{cam.pModelo};{cam.pId_segmento};{cam.pId_combustible};" +
-                    $"{cam.pPrecio_vta};{cam.pObservaciones};{cam.pColor};{cam.pCaja_Carga};" +
-                    $"{cam.pDimension_caja};{cam.pCarga_max}");
-            }
-            wr.Close();
-            arch.Close();
-        }
-
-        public void modificarVenta()
-        {
-            Venta venta= new Venta();
+            Venta venta = new Venta();
             int id, flag = 0;
             string cad;
             Console.WriteLine("Ingrese el ID de la venta a modificar");
@@ -1181,7 +1005,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     cad = Console.ReadLine();
                                     descmodif = int.Parse(cad);
                                     venta.pDescuento = descmodif;
-                                    totalmodif = (subtotmodif+((ivamodif*subtotmodif)/100))-((descmodif*subtotmodif)/100);
+                                    totalmodif = (subtotmodif + ((ivamodif * subtotmodif) / 100)) - ((descmodif * subtotmodif) / 100);
                                     //venta.pTotal = totalmodif;
 
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -1213,7 +1037,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
-        public void modificarCliente()
+        // Métodos clientes falta cargar nuevo / eliminar / buscar por ID
+        public void ModificarCliente()
         {
             Cliente cliente = new Cliente();
             int id, flag = 0;
@@ -1374,8 +1199,63 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
 
         }
+        public void ActualizarClientes()
+        {
+            arch = new FileStream("Clientes.txt", FileMode.Create);
+            wr = new StreamWriter(arch);
+            foreach (Cliente cl in this._listaClientes)
+            {
+                wr.WriteLine($"{cl.pId_cliente};{cl.pCliente}" +
+                    $";{cl.pCuit};{cl.pDomicilio};{cl.pId_localidad};{cl.pTelefono};" +
+                    $"{cl.pCorreo}");
+            }
+            wr.Close();
+            arch.Close();
+        }
 
-        public void modifcarLocalidad()
+
+        // Métodos marcas falta buscar o listar / modificar / borrar
+        public void IngresarMarca()
+        {
+            int id_marca;
+            string marca;
+            Console.Write("****CARGA DE MARCA****\n\n");
+            Console.Write("Ingrese el ID de la Marca: ");
+            id_marca = int.Parse(Console.ReadLine());
+            Console.Write("\nIngrese el NOMBRE de la Marca");
+            marca = Console.ReadLine();
+
+            Marca marc = new Marca(id_marca, marca);
+
+        }
+
+
+        // Métodos Modelos falta crear / buscar o listar/ modificar / borrar LUEGO implementar en vehìculos
+
+        // Métodos colores falta crear / buscar o listar / modificar / borrar LUEGO implementar en vehìculos
+
+        // Métodos localidades falta buscar o listar / borrar
+        public void CargarLocalidad()
+        {
+            int id_localidad, id_provincia;
+            string localidad;
+            Console.Write("****CARGA DE LOCALIDAD****\n\n");
+            Console.Write("Ingrese el ID de la Localidad: ");
+            id_localidad = int.Parse(Console.ReadLine());
+
+            Console.Write("\nIngrese el NOMBRE de la localidad");
+            localidad = Console.ReadLine();
+
+            foreach (Provincia prov in this._listaProvincias)
+            {
+                Console.Write($"ID: {prov.pId_provincia} -> {prov.pProvincia}");
+            }
+            Console.Write("\nIngrese el ID de la Provincia");
+            id_provincia = int.Parse(Console.ReadLine());
+
+            Localidad loc = new Localidad(id_localidad, localidad, id_provincia);
+        }
+        public void ModificarLocalidad()
         {
             Localidad localidad = new Localidad();
             int id, flag = 0;
@@ -1387,7 +1267,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 if (loc.pId_localidad == id)
                 {
-                    string[] menumodif = { "Localidad", "ID Provincia"};
+                    string[] menumodif = { "Localidad", "ID Provincia" };
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
@@ -1449,7 +1329,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese la localidad que modficara la actual -{localidad.pLocalidad}");
-                                    localidad.pLocalidad= Console.ReadLine();
+                                    localidad.pLocalidad = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
 
@@ -1465,7 +1345,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
 
                                 }
-                                
+
 
 
                                 Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu");
@@ -1490,7 +1370,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
-        public void modificarProvincia()
+        // Métodos provincias falta buscar o listar / borrar
+        public void CargarProvincia()
+        {
+            int id_provincia;
+            string provincia;
+            Console.Write("****CARGA DE PROVINCIA****\n\n");
+            Console.Write("Ingrese el ID de la Provincia: ");
+            id_provincia = int.Parse(Console.ReadLine());
+            Console.Write("\nIngrese el NOMBRE de la Provincia");
+            provincia = Console.ReadLine();
+
+            Provincia prov = new Provincia(id_provincia, provincia);
+
+        }
+        public void ModificarProvincia()
         {
             Provincia provincia = new Provincia();
             int id, flag = 0;
@@ -1508,7 +1402,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine($"\n\n\t\tProvincia Modificada correctamente.");
                     Console.WriteLine("Ingrese el dato que desea modificar\n");
-                    
+
 
                 }
                 else
@@ -1524,62 +1418,39 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
-        public void borrarVehiculo()
+        // Métodos combustible crear / buscar o listar / modificar / borrar
+        public void IngresarNuevoCombustible()
         {
-            int id, flag = 0, i, j, k;
-            string cad;
-            Console.WriteLine("Ingrese el ID del Vehiculo a eliminar: ");
-            cad = Console.ReadLine();
-            id = int.Parse(cad);
-            for (i = _listaAutoCamionetas.Count() - 1; i >= 0; i--)
-            {
-                if (_listaAutoCamionetas[i].pId_vehiculo == id)
-                {
-                    flag = i;
-                }
+            int id_combustible;
+            string combustible;
+            Console.Write("****CARGA DE COMBUSTIBLE****\n\n");
+            Console.Write("Ingrese el ID del Combustible: ");
+            id_combustible = int.Parse(Console.ReadLine());
+            Console.Write("\nIngrese el NOMBRE del Combustible");
+            combustible = Console.ReadLine();
 
-            }
-            for (j = _listaMotos.Count() - 1; j >= 0; j--)
-            {
-                if (_listaMotos[j].pId_vehiculo == id)
-                {
-                    flag = j;
-                }
-
-            }
-            for (k = _listaCamiones.Count() - 1; k >= 0; k--)
-            {
-                if (_listaCamiones[k].pId_vehiculo == id)
-                {
-                    flag = k;
-                }
-
-            }
-
-            if (flag == 0)
-            {
-                Console.Write($"El ID -{id}- no existe en la lista de Vehiculos");
-
-            }
-            else
-            {
-                if (flag == i)
-                {
-                    _listaAutoCamionetas.RemoveAt(flag);
-                }
-                else if (flag == j)
-                {
-                    _listaMotos.RemoveAt(flag);
-                }
-                else if (flag == k)
-                {
-                    _listaCamiones.RemoveAt(flag);
-                }
-
-                Console.Write($"El articulo con ID -{id}- fue eliminado");
-            }
+            Combustible comb = new Combustible(id_combustible, combustible);
+            // ingresar lista
+            //sobreescribir txt
 
         }
+
+        // Métodos segmentos crear / buscar o listar / modificar / borrar
+        public void CargarSegmento()
+        {
+            int id_segmento;
+            string segmento;
+            Console.Write("****CARGA DE SEGMENTO****\n\n");
+            Console.Write("Ingrese el ID del Segmento: ");
+            id_segmento = int.Parse(Console.ReadLine());
+            Console.Write("\nIngrese el NOMBRE del Segmento");
+            segmento = Console.ReadLine();
+
+            Segmento seg = new Segmento(id_segmento, segmento);
+
+        }
+
+        // Métodos cilindrada crear / buscar o listar / modificar / borrar
     }
 }
 
