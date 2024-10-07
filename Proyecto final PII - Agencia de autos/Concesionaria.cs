@@ -62,7 +62,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this._listaAutoCamionetas = new List<AutoCamioneta>();
             this._listaCamiones = new List<Camion>();
         }
-        // métodos de cargar listas
+        //METODOS DE CARGAR LISTAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarVehiculos(string nombreArchivo)
         {
     
@@ -371,7 +372,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
 
-        //VEHICULOS
+        //VEHICULOS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void IngresarAutoCamioneta()
         {
 
@@ -649,7 +651,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.ReadKey();
             }
             // } while (!int.TryParse(Console.ReadLine(), out id_segmento) || id_segmento != 8);
-
             cam.pId_segmento = id_segmento;
 
             Console.Write("\nIngrese si el camion posee caja (true/false): ");
@@ -668,6 +669,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.ReadKey();
                 Console.Clear();
             }
+
             Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
             if (!int.TryParse(Console.ReadLine(), out anchocaja))
             {
@@ -1501,7 +1503,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        //VENTAS
+        //VENTAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarVenta()
         {
 
@@ -1830,7 +1833,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        //CLIENTES
+        //CLIENTE----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void ModificarCliente()
         {
             Cliente cliente = new Cliente();
@@ -2075,7 +2079,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        //MARCAS
+        //MARCAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void IngresarMarca()
         {
             int id_marca;
@@ -2153,7 +2158,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
 
-        // LOCALIDADES
+        //LOCALIDADES----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarLocalidad()
         {
             int id_localidad, id_provincia;
@@ -2329,7 +2335,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        // PROVINCIAS
+        //PROVINCIAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarProvincia()
         {
             int id_provincia;
@@ -2417,7 +2424,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        // COMBUSTIBLES
+        //COMBUSTIBLES----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void IngresarNuevoCombustible()
         {
             int id_combustible;
@@ -2507,7 +2515,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
-        // SEGMENTOS
+        //SEGMENTOS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarSegmento()
         {
             int id_segmento;
