@@ -1497,7 +1497,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             if (flag == 1)
             {
                 Console.Clear();
-                Console.Write($"La ID -{id}- no existe en la lista de vehiculos.");
+                Console.Write($"La ID -{id}- no existe en la lista de Vehiculos.");
             }
         }
 
@@ -1796,7 +1796,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             if (flag == 1)
             {
                 Console.Clear();
-                Console.Write($"La ID -{id}- no existe en la lista de articulos.");
+                Console.Write($"La ID -{id}- no existe en la lista de Ventas.");
             }
 
         }
@@ -1812,7 +1812,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaVentas[i].pId_venta == id)
                 {
                     _listaVentas.RemoveAt(i);
+                    flag = 1;
                 }
+
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Ventas");
 
             }
         }
@@ -1982,7 +1988,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             if (flag == 1)
             {
                 Console.Clear();
-                Console.Write($"La ID -{id}- no existe en la lista de articulos.");
+                Console.Write($"La ID -{id}- no existe en la lista de Clientes.");
             }
 
         }
@@ -2011,7 +2017,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaClientes[i].pId_cliente == id)
                 {
                     _listaClientes.RemoveAt(i);
+                    flag = 1;
                 }
+
+
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Clientes");
 
             }
         }
@@ -2076,7 +2089,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BorrarMarca()
         {
-            int id;
+            int id, flag=0;
             string cad;
             Console.WriteLine("Ingrese el ID de la Marca a eliminar: ");
             cad = Console.ReadLine();
@@ -2086,7 +2099,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaMarcas[i].pId_marca == id)
                 {
                     _listaMarcas.RemoveAt(i);
+                    flag = 1;
                 }
+
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Marcas");
 
             }
         }
@@ -2100,7 +2119,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ModificarMarca()
         {
             Marca marca = new Marca();
-            int id, flag = 0;
+            int id;
             string cad;
             Console.WriteLine("Ingrese el ID de la marca a modificar: ");
             cad = Console.ReadLine();
@@ -2113,7 +2132,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             else
             {
-                Console.WriteLine($"El ID {id} no corresponde a una marca registrada.");
+                Console.Write($"El ID -{id}- no existe en la lista de Marcas");
+
             }
 
         }
@@ -2267,7 +2287,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BorrarLocalidad()
         {
-            int id;
+            int id, flag=0;
             string cad;
             Console.WriteLine("Ingrese el ID de la Localidad a eliminar: ");
             cad = Console.ReadLine();
@@ -2277,8 +2297,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaLocalidades[i].pId_localidad == id)
                 {
                     _listaLocalidades.RemoveAt(i);
+                    flag = 1;
                 }
 
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Localidades");
             }
         }
         public void ListarLocalidades()
@@ -2349,7 +2374,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BorrarProvincia()
         {
-            int id;
+            int id, flag=0;
             string cad;
             Console.WriteLine("Ingrese el ID de la Provincia a eliminar: ");
             cad = Console.ReadLine();
@@ -2359,8 +2384,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaProvincias[i].pId_provincia == id)
                 {
                     _listaProvincias.RemoveAt(i);
+                    flag = 1;
                 }
 
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Provincias");
             }
         }
         public void ListarProvincias()
@@ -2401,7 +2431,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BorrarCombustible()
         {
-            int id;
+            int id, flag=0;
             string cad;
             Console.WriteLine("Ingrese el ID del Combustible a eliminar: ");
             cad = Console.ReadLine();
@@ -2411,8 +2441,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaCombustibles[i].pIdCombustible == id)
                 {
                     _listaCombustibles.RemoveAt(i);
+                    flag = 1;
                 }
 
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Combustibles");
             }
         }
         public void ListarCombustibles()
@@ -2516,7 +2551,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BorrarSegmento()
         {
-            int id;
+            int id, flag=0;
             string cad;
             Console.WriteLine("Ingrese el ID del Segmento a eliminar: ");
             cad = Console.ReadLine();
@@ -2526,7 +2561,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (_listaSegmentos[i].pIdSegmento == id)
                 {
                     _listaSegmentos.RemoveAt(i);
+                    flag = 1;
                 }
+
+            }
+            if (flag == 0)
+            {
+                Console.Write($"El ID -{id}- no existe en la lista de Segmentos");
 
             }
         }
