@@ -179,6 +179,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         else if (posicionActual == 2)
                                         {
                                             concesionaria.IngresarCamion();
+                                            concesionaria.ActualizarCamiones();
                                         }
 
                                         Console.WriteLine("\nPresione una tecla para continuar.");
