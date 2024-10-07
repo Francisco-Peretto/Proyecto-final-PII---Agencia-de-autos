@@ -37,6 +37,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pTelefono = 0;
             this.pCorreo = "";
         }
+
+        public void mostrarCliente()
+        {
+            Console.Write($"ID Cliente:{this.pId_cliente} - Razon Social: {this.pCliente} - CUIT: {this.pCuit} - Domicilio: {this.pDomicilio} - " +
+                $"ID Localidad: {this.pId_localidad} - Telefono: {this.pTelefono} - Correo: {this.pCorreo}");
+        }   
         //GETTERS Y SETTERS
         public int pId_cliente { get { return id_cliente; } set { id_cliente = value; } }
         public string pCliente { get { return cliente; } set { cliente = value; } }
