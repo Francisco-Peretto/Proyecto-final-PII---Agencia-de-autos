@@ -23,8 +23,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string motosArchivo = "Motos.txt";
             string autosCamionetasArchivo = "Autoscamionetas.txt";
             string camionesArchivo = "Camion.txt";
-            string cilindradasArchivo = "Cilindradas.txt";
-            string coloresArchivo = "Colores.txt";
+
 
             Concesionaria con = new Concesionaria ();
             con.CargarVehiculos(vehiculosArchivo);
@@ -38,8 +37,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             con.CargarMotos(motosArchivo);
             con.CargarAutosCamionetas(autosCamionetasArchivo);
             con.CargarCamiones(camionesArchivo);
-            con.CargarCilindradas(cilindradasArchivo);
-            con.CargarColores(coloresArchivo);
+
 
             Vehiculo vehiculo = new Vehiculo ();
             Menu menu = new Menu ();
