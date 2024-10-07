@@ -210,85 +210,94 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         else if (posicionActual == 1)
                         {
 
-                            string[] menuTresModificaciones = { "Modificar un auto o una camioneta", "Modificar una moto", "Modificar un camión", "Salir" };
-                            posicionActual = 0;
-                            Console.CursorVisible = false;
-                            bucle = false;
+                            concesionaria.ModificarVehiculo(); //MODIFICA
+                            //Actualiza los txt
+                            concesionaria.ActualizarAutoCamioneta();
+                            concesionaria.ActualizarCamiones();
+                            concesionaria.ActualizarMotos();
 
-                            while (!bucle)
-                            {
-                                Console.Clear();
-                                Console.ResetColor();
-                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                                Console.WriteLine("-------------------------------------------");
+                            //string[] menuTresModificaciones = { "Modificar un auto o una camioneta", "Modificar una moto", "Modificar un camión", "Salir" };
+                            //posicionActual = 0;
+                            //Console.CursorVisible = false;
+                            //bucle = false;
 
-                                for (int i = 0; i < menuTresModificaciones.Length; i++)
-                                {
-                                    if (posicionActual == i)
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.Blue;
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.Write(" " + (char)62 + " ");
-                                    }
-                                    Console.WriteLine(menuTresModificaciones[i]);
-                                    Console.ResetColor();
-                                }
+                            //while (!bucle)
+                            //{
+                            //    Console.Clear();
+                            //    Console.ResetColor();
+                            //    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                            //    Console.WriteLine("-------------------------------------------");
 
-                                ConsoleKeyInfo tecla2 = Console.ReadKey();
-                                switch (tecla2.Key)
-                                {
-                                    case ConsoleKey.Enter:
-                                    case ConsoleKey.Spacebar:
-                                        if (posicionActual == menuTresModificaciones.Length - 1)
-                                        {
-                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
-                                            bucle = true;
-                                            MenuVehiculos();
-                                        } 
-                                        else if (posicionActual == 0) // Buscar por ID
-                                        {
-                                            concesionaria.ActualizarAutoCamioneta();
-                                        }
+                            //    for (int i = 0; i < menuTresModificaciones.Length; i++)
+                            //    {
+                            //        if (posicionActual == i)
+                            //        {
+                            //            Console.BackgroundColor = ConsoleColor.Blue;
+                            //            Console.ForegroundColor = ConsoleColor.Yellow;
+                            //            Console.Write(" " + (char)62 + " ");
+                            //        }
+                            //        Console.WriteLine(menuTresModificaciones[i]);
+                            //        Console.ResetColor();
+                            //    }
 
-                                        else if (posicionActual == 1)
-                                        {
-                                            concesionaria.ActualizarMotos();
-                                        }
+                            //    ConsoleKeyInfo tecla2 = Console.ReadKey();
+                            //    switch (tecla2.Key)
+                            //    {
+                            //        case ConsoleKey.Enter:
+                            //        case ConsoleKey.Spacebar:
+                            //            if (posicionActual == menuTresModificaciones.Length - 1)
+                            //            {
+                            //                Console.WriteLine("\nSaliendo del menú de vehículos.");
+                            //                bucle = true;
+                            //                MenuVehiculos();
+                            //            } 
+                            //            else if (posicionActual == 0) // Buscar por ID
+                            //            {
+                            //                concesionaria.ActualizarAutoCamioneta();
+                            //            }
 
-                                        else if (posicionActual == 2)
-                                        {
-                                            concesionaria.ActualizarCamiones();
-                                        }
+                            //            else if (posicionActual == 1)
+                            //            {
+                            //                concesionaria.ActualizarMotos();
+                            //            }
 
-                                        Console.WriteLine("\nPresione una tecla para continuar.");
-                                        Console.ReadKey();
-                                        break;
+                            //            else if (posicionActual == 2)
+                            //            {
+                            //                concesionaria.ActualizarCamiones();
+                            //            }
 
-                                    case ConsoleKey.UpArrow:
-                                        if (posicionActual == 0)
-                                            posicionActual = menuTresModificaciones.Length - 1;
-                                        else
-                                            posicionActual--;
-                                        break;
+                            //            Console.WriteLine("\nPresione una tecla para continuar.");
+                            //            Console.ReadKey();
+                            //            break;
 
-                                    case ConsoleKey.DownArrow:
-                                        if (posicionActual == menuTresModificaciones.Length - 1)
-                                            posicionActual = 0;
-                                        else
-                                            posicionActual++;
-                                        break;
+                            //        case ConsoleKey.UpArrow:
+                            //            if (posicionActual == 0)
+                            //                posicionActual = menuTresModificaciones.Length - 1;
+                            //            else
+                            //                posicionActual--;
+                            //            break;
 
-                                    default:
-                                        Console.WriteLine("Opción no válida.");
-                                        break;
+                            //        case ConsoleKey.DownArrow:
+                            //            if (posicionActual == menuTresModificaciones.Length - 1)
+                            //                posicionActual = 0;
+                            //            else
+                            //                posicionActual++;
+                            //            break;
 
-                                }
-                            }
+                            //        default:
+                            //            Console.WriteLine("Opción no válida.");
+                            //            break;
+
+                            //    }
+                            //}
                         } // Modificar un vehículo
 
                         else if (posicionActual == 2)
                         {
                             concesionaria.BorrarVehiculo();
+                            concesionaria.ActualizarAutoCamioneta();
+                            concesionaria.ActualizarCamiones();
+                            concesionaria.ActualizarMotos();
                         } // Eliminar un vehículo
 
                         else if (posicionActual == 3)
@@ -372,7 +381,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                                 }
                             }
-                        } // Buscar vehículo FALTA
+                        } // Buscar vehículo (PARA MI NO VA - GENA)
                         
                         Console.WriteLine("\nPresione una tecla para continuar.");
                         Console.ReadKey();
@@ -438,25 +447,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         }
                         else if (posicionActual == 0)
                         {
-                            // concesionaria.CargarCliente();
+                            concesionaria.CargarCliente();
                         }
 
                         else if (posicionActual == 1)
                         {
                             concesionaria.ModificarCliente();
+                            concesionaria.ActualizarClientes();
                         }
 
                         else if (posicionActual == 2)
                         {
-                            // concesionaria.EliminarCliente();
+                            concesionaria.BorrarCliente();
+                            concesionaria.ActualizarClientes();
                         }
 
                         else if (posicionActual == 3)
                         {
-                            // concesionaria.ListarCliente();
+                            concesionaria.ListarClientes();
                         }
 
-                        else if (posicionActual == 4)
+                        else if (posicionActual == 4) //(PARA MI NO VA- GENA)
                         {
                             // concesionaria.BuscarCliente();
                         }
@@ -484,9 +495,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
                 }
             }
-        } // Falta cargar eliminar buscar listar cliente
+        } 
 
-        void MenuVentas() // FALTA eliminar, listar, buscar
+        void MenuVentas() 
         {
             string[] menuOpcionesVentas = { "Realizar nueva venta", "Modificar venta", "Eliminar venta", "Listado de ventas", "Búsqueda de una venta", "Salir" };
             posicionActual = 0;
@@ -531,19 +542,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         else if (posicionActual == 1)
                         {
                             concesionaria.ModificarVenta();
+                            concesionaria.ActualizarVentas();
                         }
 
                         else if (posicionActual == 2)
                         {
-                            // concesionaria.EliminarVenta();
+                             concesionaria.BorrarVenta();
+                             concesionaria.ActualizarVentas();
                         }
 
                         else if (posicionActual == 3)
                         {
-                            // concesionaria.ListarVenta();
+                             concesionaria.ListarVentas();
                         }
 
-                        else if (posicionActual == 4)
+                        else if (posicionActual == 4) //IDEM DEMAS
                         {
                             // concesionaria.BuscarVenta();
                         }
@@ -713,17 +726,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                             else if (posicionActual == 1)
                             {
-                                // concesionaria.ListarMarca()
+                                concesionaria.ListarMarcas();
                             }
 
                             else if (posicionActual == 2)
                             {
-                                // concesionaria.EliminarMarca()
+                                concesionaria.ModificarMarca();
+                                concesionaria.ActualizarMarcas();
                             }
 
-                            else if (posicionActual == 2)
+                            else if (posicionActual == 3)
                             {
-                                // concesionaria.EliminarMarca()
+                                concesionaria.BorrarMarca();
+                                concesionaria.ActualizarMarcas();
                             }
 
                             Console.WriteLine("\nPresione una tecla para continuar.");
@@ -751,6 +766,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
             }
 
+            
             void MenuModelos()
             {   // Agregar, listar, eliminar
                 string[] menuModelos = { "Agregar modelo", "Listar modelos", "Modificar modelo", "Eliminar modelo", "Salir" };
@@ -831,7 +847,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
                     }
                 }
-            }
+            } //IDEM
 
             void MenuColores()
             {   // Agregar, listar, eliminar
@@ -913,7 +929,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             break;
                     }
                 }
-            }
+            } //IDEM
 
             void MenuLocalidades()
             {   // Agregar, listar, eliminar
@@ -959,17 +975,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                             else if (posicionActual == 1)
                             {
-                                // concesionaria.ListarLocalidad()
+                                concesionaria.ListarLocalidades();
                             }
 
                             else if (posicionActual == 2)
                             {
                                 concesionaria.ModificarLocalidad();
+                                concesionaria.actualizarLocalidades();
                             }
 
                             else if (posicionActual == 3)
                             {
-                                // concesionaria.EliminarLocalidad()
+                                concesionaria.BorrarLocalidad();
+                                concesionaria.actualizarLocalidades();
                             }
 
                             Console.WriteLine("\nPresione una tecla para continuar.");
@@ -1036,22 +1054,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
                             else if (posicionActual == 0)
                             {
-                                // concesionaria.AgregarProvincia()
+                                concesionaria.CargarProvincia();
                             }
 
                             else if (posicionActual == 1)
                             {
-                                // concesionaria.ListarProvincia()
+                                concesionaria.ListarProvincias();
                             }
 
                             else if (posicionActual == 2)
                             {
-                                // concesionaria.ListarProvincia()
+                                concesionaria.ModificarProvincia();
                             }
 
                             else if (posicionActual == 3)
                             {
-                                // concesionaria.EliminarProvincia()
+                                concesionaria.BorrarProvincia();
                             }
 
                             Console.WriteLine("\nPresione una tecla para continuar.");
@@ -1118,22 +1136,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
                             else if (posicionActual == 0)
                             {
-                                // concesionaria.AgregarCombustible()
+                                concesionaria.IngresarNuevoCombustible();
                             }
 
                             else if (posicionActual == 1)
                             {
-                                // concesionaria.ListarCombustible()
+                                concesionaria.ListarCombustibles();
                             }
 
                             else if (posicionActual == 2)
                             {
-                                // concesionaria.ListarCombustible()
+                                concesionaria.ModificarCombustible();
+                                concesionaria.actualizarCombustibles();
                             }
 
                             else if (posicionActual == 3)
                             {
-                                // concesionaria.EliminarCombustible()
+                                concesionaria.BorrarCombustible();
+                                concesionaria.actualizarCombustibles();                               
                             }
 
                             Console.WriteLine("\nPresione una tecla para continuar.");
@@ -1200,22 +1220,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
                             else if (posicionActual == 0)
                             {
-                                // concesionaria.AgregarSegmento()
+                                concesionaria.CargarSegmento();
                             }
 
                             else if (posicionActual == 1)
                             {
-                                // concesionaria.ListarSegmentos()
+                                concesionaria.ListarSegmentos();
                             }
 
                             else if (posicionActual == 2)
                             {
-                                // concesionaria.ListarSegmento()
+                                concesionaria.ModificarSegmento();
+                                concesionaria.actualizarSegmentos();
                             }
 
                             else if (posicionActual == 3)
                             {
-                                // concesionaria.EliminarSegmento()
+                                concesionaria.BorrarSegmento();
+                                concesionaria.actualizarSegmentos();
                             }
 
                             Console.WriteLine("\nPresione una tecla para continuar.");

@@ -42,20 +42,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Vehiculo vehiculo = new Vehiculo ();
             Menu menu = new Menu ();
             menu.MenuPrincipal();
-            int opc;
             /*
-            con.CargarVehiculo();
-            con.mostrarDatos();
-            Console.ReadKey();
-            */
-            do
-            {
-                Console.Clear();
-                con.IngresarVehiculo();
-                con.MostrarVehiculos();
-                Console.WriteLine("\n\nIngrese 1");
-                opc = int.Parse(Console.ReadLine());
-            } while (opc == 1);
+int opc;
+con.CargarVehiculo();
+con.mostrarDatos();
+Console.ReadKey();
+*/
+            //do
+            //{
+            //    Console.Clear();
+            //    con.IngresarVehiculo();
+            //    con.MostrarVehiculos();
+            //    Console.WriteLine("\n\nIngrese 1");
+            //    opc = int.Parse(Console.ReadLine());
+            //} while (opc == 1);
             Console.ReadKey();
         }
     }

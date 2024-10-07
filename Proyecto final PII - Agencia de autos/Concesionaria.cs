@@ -204,7 +204,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 while (reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
 
                     int id_venta = int.Parse(split[0]);
                     int id_cliente = int.Parse(split[1]);
@@ -233,7 +233,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 while (reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
 
                     int id_cliente = int.Parse(split[0]);
                     string cliente = split[1];
@@ -260,7 +260,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 while (reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
 
                     int id_marca = int.Parse(split[0]);
                     string marca = split[1];
@@ -282,7 +282,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 while (reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
 
                     int id_segmento = int.Parse(split[0]);
                     string segmento = split[1];
@@ -305,7 +305,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 while (reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
 
 
                     int id_combustible = int.Parse(split[0]);
@@ -1575,7 +1575,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
 
             Venta venta = new Venta(id_venta, id_cliente, id_vehiculo, fecha_compra, fecha_entrega, subtotal, iva, descuento);
-
+            _listaVentas.Add(venta);
 
         }
         public void ActualizarVentas()
@@ -1902,7 +1902,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 break;
                             case ConsoleKey.Enter:
                                 Console.Clear();
-                                if (menumodif[indexmodif] == "Razon Social")
+                                if (menumodif[indexmodif] == "Razon social")
                                 {
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese la razon social que modficara la actual -{cliente.pCliente}");
@@ -2027,6 +2027,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write($"El ID -{id}- no existe en la lista de Clientes");
 
             }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine($"\n\n\t\tCliente borrado correctamente.");
         }
         public void CargarCliente()
         {
@@ -2085,6 +2087,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             marca = Console.ReadLine();
 
             Marca marc = new Marca(id_marca, marca);
+            _listaMarcas.Add(marc);
 
         }
         public void BorrarMarca()
@@ -2137,6 +2140,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
 
         }
+        public void ActualizarMarcas()
+        {
+            arch = new FileStream("Marcas.txt", FileMode.Create);
+            wr = new StreamWriter(arch);
+            foreach (Marca m in this._listaMarcas)
+            {
+                wr.WriteLine($"{m.pId_marca};{m.pMarca}");
+            }
+            wr.Close();
+            arch.Close();
+        }
 
 
         // LOCALIDADES
@@ -2159,6 +2173,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             id_provincia = int.Parse(Console.ReadLine());
 
             Localidad loc = new Localidad(id_localidad, localidad, id_provincia);
+            _listaLocalidades.Add(loc);
         }
         public void actualizarLocalidades()
         {
@@ -2326,6 +2341,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             provincia = Console.ReadLine();
 
             Provincia prov = new Provincia(id_provincia, provincia);
+            _listaProvincias.Add(prov);
 
         }
         public void actualizarProvincias()
@@ -2503,6 +2519,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             segmento = Console.ReadLine();
 
             Segmento seg = new Segmento(id_segmento, segmento);
+            _listaSegmentos.Add(seg);
 
         }
         public void ModificarSegmento()
