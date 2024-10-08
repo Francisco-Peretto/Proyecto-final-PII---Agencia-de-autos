@@ -26,6 +26,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
 
             Concesionaria con = new Concesionaria ();
+            con.CargarAutosCamionetas(autosCamionetasArchivo);
+            con.CargarCamiones(camionesArchivo);
+            /*
             con.CargarVehiculos(vehiculosArchivo);
             con.CargarVentas(ventasArchivo);
             con.CargarClientes(clientesArchivo);
@@ -37,6 +40,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
             con.CargarMotos(motosArchivo);
             con.CargarAutosCamionetas(autosCamionetasArchivo);
             con.CargarCamiones(camionesArchivo);
+            con.actualizarProvincias();
+            con.actualizarCombustibles();
+            con.actualizarLocalidades();
+            con.actualizarSegmentos();
+            con.ActualizarAutoCamioneta();
+            con.ActualizarCamiones();
+            con.ActualizarClientes();
+            con.ActualizarMarcas();
+            con.ActualizarMotos();
+            con.ActualizarVentas();
+            */
 
 
             Vehiculo vehiculo = new Vehiculo ();

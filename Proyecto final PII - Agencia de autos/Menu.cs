@@ -169,16 +169,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         else if (posicionActual == 0)
                                         {
                                             concesionaria.IngresarAutoCamioneta();
+                                            concesionaria.ActualizarAutoCamioneta();
+                                            
                                         }
 
                                         else if (posicionActual == 1)
                                         {
                                             concesionaria.IngresarMoto();
+                                            
+                                            concesionaria.ActualizarMotos();
                                         }
 
                                         else if (posicionActual == 2)
                                         {
                                             concesionaria.IngresarCamion();
+                                            concesionaria.ActualizarCamiones();
                                         }
 
                                         Console.WriteLine("\nPresione una tecla para continuar.");
@@ -448,6 +453,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         else if (posicionActual == 0)
                         {
                             concesionaria.CargarCliente();
+                            concesionaria.ActualizarClientes();
                         }
 
                         else if (posicionActual == 1)
@@ -537,6 +543,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         else if (posicionActual == 0)
                         {
                             concesionaria.CargarVenta();
+                            concesionaria.ActualizarVentas();
                         }
 
                         else if (posicionActual == 1)
@@ -722,6 +729,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             else if (posicionActual == 0)
                             {
                                 concesionaria.IngresarMarca();
+                                concesionaria.ActualizarMarcas();
                             }
 
                             else if (posicionActual == 1)
@@ -971,6 +979,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             else if (posicionActual == 0)
                             {
                                 concesionaria.CargarLocalidad();
+                                concesionaria.actualizarLocalidades();
                             }
 
                             else if (posicionActual == 1)
@@ -1055,6 +1064,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             else if (posicionActual == 0)
                             {
                                 concesionaria.CargarProvincia();
+                                concesionaria.actualizarProvincias();
                             }
 
                             else if (posicionActual == 1)
@@ -1065,11 +1075,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             else if (posicionActual == 2)
                             {
                                 concesionaria.ModificarProvincia();
+                                concesionaria.actualizarProvincias();
                             }
 
                             else if (posicionActual == 3)
                             {
                                 concesionaria.BorrarProvincia();
+                                concesionaria.actualizarProvincias();
                             }
 
                             Console.WriteLine("\nPresione una tecla para continuar.");
@@ -1221,6 +1233,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             else if (posicionActual == 0)
                             {
                                 concesionaria.CargarSegmento();
+                                concesionaria.actualizarSegmentos();
                             }
 
                             else if (posicionActual == 1)
