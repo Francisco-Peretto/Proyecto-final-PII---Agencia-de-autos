@@ -62,7 +62,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this._listaAutoCamionetas = new List<AutoCamioneta>();
             this._listaCamiones = new List<Camion>();
         }
-        // métodos de cargar listas
+        //METODOS DE CARGAR LISTAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarVehiculos(string nombreArchivo)
         {
     
@@ -371,7 +372,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
 
-        //VEHICULOS
+        //VEHICULOS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void IngresarAutoCamioneta()
         {
 
@@ -601,9 +603,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             cam.pId_vehiculo = id_vehiculo;
 
+
             Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
-                                                                                                    //patente = Console.ReadLine();
-            cam.pPatente = Console.ReadLine();
+            string patente = Console.ReadLine();
+            cam.pPatente = patente;
+
 
             Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
             if (!double.TryParse(Console.ReadLine(), out kilometros))
@@ -614,6 +618,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             cam.pKilometros = kilometros;
 
+
             Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año. Se puede establecer rango min-max
             if (!int.TryParse(Console.ReadLine(), out anio))
             {
@@ -622,6 +627,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
             }
             cam.pAnio = anio;
+
 
             Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: ");
             if (!int.TryParse(Console.ReadLine(), out id_marca))
@@ -632,8 +638,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             cam.pId_marca = id_marca;
 
+
             Console.Write("\nIngrese el nombre del MODELO del vehiculo a registrar: ");
             cam.pModelo = Console.ReadLine();
+
+
             // do
             // {
             Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
@@ -649,8 +658,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.ReadKey();
             }
             // } while (!int.TryParse(Console.ReadLine(), out id_segmento) || id_segmento != 8);
-
             cam.pId_segmento = id_segmento;
+
 
             Console.Write("\nIngrese si el camion posee caja (true/false): ");
             if (!bool.TryParse(Console.ReadLine(), out caja_carga))
@@ -661,6 +670,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             cam.pCaja_Carga = caja_carga;
 
+
             Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
             if (!int.TryParse(Console.ReadLine(), out largocaja))
             {
@@ -668,6 +678,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.ReadKey();
                 Console.Clear();
             }
+
             Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
             if (!int.TryParse(Console.ReadLine(), out anchocaja))
             {
@@ -678,6 +689,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             dimension_caja = largocaja * anchocaja;
             cam.pDimension_caja = dimension_caja;
 
+
             Console.Write("\nIngrese la CARGA MAXIMA de la caja del camion (en kg): ");
             if (!int.TryParse(Console.ReadLine(), out carga_max))
             {
@@ -686,6 +698,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
             }
             cam.pCarga_max = carga_max;
+
 
             Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: ");
             if (!int.TryParse(Console.ReadLine(), out id_combustible))
@@ -2156,7 +2169,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
-        //VENTAS
+        //VENTAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarVenta()
         {
 
@@ -2485,7 +2499,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        //CLIENTES
+        //CLIENTE----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void ModificarCliente()
         {
             Cliente cliente = new Cliente();
@@ -2730,7 +2745,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        //MARCAS
+        //MARCAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void IngresarMarca()
         {
             int id_marca;
@@ -2808,7 +2824,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
 
-        // LOCALIDADES
+        //LOCALIDADES----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarLocalidad()
         {
             int id_localidad, id_provincia;
@@ -2984,7 +3001,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        // PROVINCIAS
+        //PROVINCIAS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarProvincia()
         {
             int id_provincia;
@@ -3072,7 +3090,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        // COMBUSTIBLES
+        //COMBUSTIBLES----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void IngresarNuevoCombustible()
         {
             int id_combustible;
@@ -3162,7 +3181,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
-        // SEGMENTOS
+        //SEGMENTOS----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
         public void CargarSegmento()
         {
             int id_segmento;
