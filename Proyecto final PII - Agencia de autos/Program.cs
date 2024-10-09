@@ -22,13 +22,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string provinciasArchivo = "Provincias.txt";
             string motosArchivo = "Motos.txt";
             string autosCamionetasArchivo = "Autoscamionetas.txt";
-            string camionesArchivo = "Camion.txt";
+            string camionesArchivo = "Camiones.txt";
 
 
             Concesionaria con = new Concesionaria ();
-            con.CargarAutosCamionetas(autosCamionetasArchivo);
-            con.CargarCamiones(camionesArchivo);
-            /*
+            
             con.CargarVehiculos(vehiculosArchivo);
             con.CargarVentas(ventasArchivo);
             con.CargarClientes(clientesArchivo);
@@ -50,7 +48,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             con.ActualizarMarcas();
             con.ActualizarMotos();
             con.ActualizarVentas();
-            */
+            
 
 
             Vehiculo vehiculo = new Vehiculo ();
