@@ -72,10 +72,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
                 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
                     //validar.validarEntero(id_vehiculo);
                     int id_vehiculo = int.Parse(split[0]);
                     string patente = split[1];
@@ -103,7 +103,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -136,10 +136,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
                     //validar.validarEntero(id_vehiculo);
                     int id_vehiculo = int.Parse(split[0]);
                     string patente = split[1];
@@ -167,10 +167,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+
+                while (!reader.EndOfStream)
                 {
+
                     string cadena = reader.ReadLine();
-                    string[] split = cadena.Split(':');
+                    string[] split = cadena.Split(';');
                     //validar.validarEntero(id_vehiculo);
                     int id_vehiculo = int.Parse(split[0]);
                     string patente = split[1];
@@ -187,6 +189,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int dimension_caja = int.Parse(split[12]);
                     int carga_max = int.Parse(split[13]);
 
+
                     Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, 
                         id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, carga_max);
                     _listaCamiones.Add(cam);
@@ -202,7 +205,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -231,7 +234,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -258,7 +261,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -280,7 +283,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -303,7 +306,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -328,7 +331,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
@@ -353,7 +356,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
-                while (reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
