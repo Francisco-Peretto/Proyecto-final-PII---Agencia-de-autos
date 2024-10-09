@@ -67,9 +67,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             MenuParametros();
                         }
-
-                        Console.WriteLine("\nPresione una tecla para continuar.");
-                        Console.ReadKey();
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -186,8 +183,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             concesionaria.ActualizarCamiones();
                                         }
 
-                                        Console.WriteLine("\nPresione una tecla para continuar.");
-                                        Console.ReadKey();
                                         break;
 
                                     case ConsoleKey.UpArrow:
@@ -270,10 +265,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             //            {
                             //                concesionaria.ActualizarCamiones();
                             //            }
-
-                            //            Console.WriteLine("\nPresione una tecla para continuar.");
-                            //            Console.ReadKey();
-                            //            break;
 
                             //        case ConsoleKey.UpArrow:
                             //            if (posicionActual == 0)
@@ -361,9 +352,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         {
                                             // concesionaria.BuscarCamiones();
                                         }
-
-                                        Console.WriteLine("\nPresione una tecla para continuar.");
-                                        Console.ReadKey();
                                         break;
 
                                     case ConsoleKey.UpArrow:
@@ -388,8 +376,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
                         } // Buscar vehículo (PARA MI NO VA - GENA)
                         
-                        Console.WriteLine("\nPresione una tecla para continuar.");
-                        Console.ReadKey();
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -478,8 +464,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             // concesionaria.BuscarCliente();
                         }
 
-                        Console.WriteLine("\nPresione una tecla para continuar.");
-                        Console.ReadKey();
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -568,8 +552,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             // concesionaria.BuscarVenta();
                         }
 
-                        Console.WriteLine("\nPresione una tecla para continuar.");
-                        Console.ReadKey();
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -665,8 +647,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             MenuSegmentos();
                         }
 
-                        Console.WriteLine("\nPresione una tecla para continuar.");
-                        Console.ReadKey();
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -724,7 +704,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             {
                                 Console.WriteLine("\nSaliendo del menú de parámetros.");
                                 bucle = true;
-                                // A probar. Tal vez haya que llamar a MenuVehiculos()
+                                MenuParametros();
                             }
                             else if (posicionActual == 0)
                             {
@@ -749,8 +729,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 concesionaria.ActualizarMarcas();
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
@@ -814,26 +792,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
                             else if (posicionActual == 0)
                             {
-                                // concesionaria.AgregarMarca()
+                                concesionaria.IngresarMarca();
                             }
 
                             else if (posicionActual == 1)
                             {
-                                // concesionaria.ListarMarca()
+                                concesionaria.ListarMarcas();
                             }
 
                             else if (posicionActual == 2)
                             {
-                                // concesionaria.ModificarMarca()
+                                concesionaria.ModificarMarca();
                             }
 
                             else if (posicionActual == 2)
                             {
-                                // concesionaria.EliminarMarca()
+                                concesionaria.BorrarMarca();
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
@@ -896,7 +872,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             }
                             else if (posicionActual == 0)
                             {
-                                // concesionaria.AgregarColor()
+                                // concesionaria.IngresarColor()
                             }
 
                             else if (posicionActual == 1)
@@ -914,8 +890,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 // concesionaria.EliminarColor()
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
@@ -999,8 +973,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 concesionaria.actualizarLocalidades();
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
@@ -1084,8 +1056,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 concesionaria.actualizarProvincias();
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
@@ -1168,8 +1138,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 concesionaria.actualizarCombustibles();                               
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
@@ -1253,8 +1221,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 concesionaria.actualizarSegmentos();
                             }
 
-                            Console.WriteLine("\nPresione una tecla para continuar.");
-                            Console.ReadKey();
                             break;
 
                         case ConsoleKey.UpArrow:
