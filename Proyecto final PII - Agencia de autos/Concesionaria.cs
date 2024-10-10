@@ -387,15 +387,49 @@ namespace Proyecto_final_PII___Agencia_de_autos
             AutoCamioneta autcam = new AutoCamioneta();
             Camion cam = new Camion();
 
-
-            Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
-            Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
+            do
             {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
+                Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
+                Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
+                if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
+                {
+                    
+                    Console.WriteLine("Error. Presione una tecla y reintente.");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                }
+            } while (!int.TryParse(Console.ReadLine(), out id_vehiculo));
+            foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+            {
+                do
+                {
+                    if (ac.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe.\nIngrese un nuevo ID");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    Console.Write("Ingrese el ID del vehículo a registrar: ");
+
+                } while (ac.pId_vehiculo == id_vehiculo);
+                
             }
+            foreach (Moto m in this._listaMotos)
+            {
+                if (m.pId_vehiculo == id_vehiculo)
+                {
+
+                }
+            }
+            foreach (Camion c in this._listaCamiones)
+            {
+                if (c.pId_vehiculo == id_vehiculo)
+                {
+
+                }
+            }
+
             autcam.pId_vehiculo = id_vehiculo;
 
             Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
@@ -737,7 +771,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }       
         public void MostrarVehiculos()
         {
-            Console.WriteLine("Autos y Camionets\n");
+            Console.WriteLine("Autos y Camionetas\n");
             foreach (AutoCamioneta a in _listaAutoCamionetas)
             {
                 a.MostrarDatos();
@@ -747,7 +781,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 mot.MostrarDatos();
             }
-            Console.WriteLine("Camiones\n");
+            Console.WriteLine("\nCamiones\n");
             foreach (Camion cam in _listaCamiones)
             {
                 cam.MostrarDatos();
