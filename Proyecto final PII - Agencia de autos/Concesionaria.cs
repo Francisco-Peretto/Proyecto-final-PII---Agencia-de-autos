@@ -390,12 +390,50 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
+            while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
+
+                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+                {
+
+                    while (ac.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+
+
+
+                }
+                foreach (Moto m in this._listaMotos)
+                {
+                    while (m.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+                }
+                foreach (Camion c in this._listaCamiones)
+                {
+                    while (c.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+                }
             }
+
+            
+
             autcam.pId_vehiculo = id_vehiculo;
 
             Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
@@ -492,11 +530,46 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\t\t\t*****CARGA DE MOTO*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
+            while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
+
+                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+                {
+
+                    while (ac.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+
+
+
+                }
+                foreach (Moto m in this._listaMotos)
+                {
+                    while (m.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+                }
+                foreach (Camion c in this._listaCamiones)
+                {
+                    while (c.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+                }
             }
             mot.pId_vehiculo = id_vehiculo;
 
@@ -598,11 +671,46 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\t\t\t*****CARGA DE CAMION*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            if (!int.TryParse(Console.ReadLine(), out id_vehiculo))
+            while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
-                Console.WriteLine("Error. Presione una tecla y reintente.");
-                Console.ReadKey();
-                Console.Clear();
+
+                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+                {
+
+                    while (ac.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+
+
+
+                }
+                foreach (Moto m in this._listaMotos)
+                {
+                    while (m.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+                }
+                foreach (Camion c in this._listaCamiones)
+                {
+                    while (c.pId_vehiculo == id_vehiculo)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del vehículo a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_vehiculo);
+                    }
+                }
             }
             cam.pId_vehiculo = id_vehiculo;
 
@@ -737,7 +845,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }       
         public void MostrarVehiculos()
         {
-            Console.WriteLine("Autos y Camionets\n");
+            Console.WriteLine("Autos y Camionetas\n");
             foreach (AutoCamioneta a in _listaAutoCamionetas)
             {
                 a.MostrarDatos();
@@ -747,7 +855,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 mot.MostrarDatos();
             }
-            Console.WriteLine("Camiones\n");
+            Console.WriteLine("\nCamiones\n");
             foreach (Camion cam in _listaCamiones)
             {
                 cam.MostrarDatos();
@@ -2171,6 +2279,43 @@ namespace Proyecto_final_PII___Agencia_de_autos
             */
 
         }
+        public void BuscarVehiculo()
+        {
+            string patente;
+            Console.WriteLine("Ingrese la PATENTE del vehiculo que desea buscar: ");
+            patente = Console.ReadLine();
+            foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+            {
+                if(patente == ac.pPatente)
+                {
+                    Console.WriteLine($"Id Vehículo: {ac.pId_vehiculo} - Patente: {ac.pPatente} - Kilómetros: {ac.pKilometros} " +
+                    $"- Año: {ac.pAnio} - Marca: {ac.pId_marca} - modelo: {ac.pModelo} " +
+                    $"- Segmento: {ac.pId_segmento} - combustible: {ac.pId_combustible} - Precio de venta: {ac.pPrecio_vta} " +
+                    $"- Observaciones: {ac.pObservaciones} - Color: {ac.pColor}");
+                }
+            }
+            foreach (Moto m in this._listaMotos)
+            {
+                if (patente == m.pPatente)
+                {
+                    Console.WriteLine($"Id Vehículo: {m.pId_vehiculo} - Patente: {m.pPatente} - Kilómetros: {m.pKilometros} " +
+                $"- Año: {m.pAnio} - Marca: {m.pId_marca} - modelo: {m.pModelo} " +
+                $"- Segmento: {m.pId_segmento} - Cilindrada: {m.pCilindrada} - combustible: {m.pId_combustible} - Precio de venta: {m.pPrecio_vta} " +
+                $"- Observaciones: {m.pObservaciones} - Color: {m.pColor}");
+                }
+            }
+            foreach (Camion c in this._listaCamiones)
+            {
+                if (patente == c.pPatente)
+                {
+                    Console.WriteLine($"Id Vehículo: {c.pId_vehiculo} - Patente: {c.pPatente} - Kilómetros: {c.pKilometros} " +
+                $"- Año: {c.pAnio} - Marca: {c.pId_marca} - modelo: {c.pModelo} " +
+                $"- Segmento: {c.pId_segmento} - Caja de carga: {c.pCaja_Carga} - Dimensión de caja: {c.pDimension_caja} -" +
+                $" Carga máxima: {c.pCarga_max} - combustible: {c.pId_combustible} - Precio de venta: {c.pPrecio_vta} " +
+                $"- Observaciones: {c.pObservaciones} - Color: {c.pColor}");
+                }
+            }
+        }
 
         //VENTAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -2184,7 +2329,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
 
             Console.Write("Ingrese el ID de la Venta: ");
-            id_venta = int.Parse(Console.ReadLine());
+
+            while(!int.TryParse(Console.ReadLine(), out id_venta))
+            {
+                foreach(Venta v in this._listaVentas)
+                {
+                    if(v.pId_venta == id_venta)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID de la Venta a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_venta);
+                    }
+                }
+            }
 
             Console.Write("Ingrese el ID del cliente: ");
             foreach (Cliente cl in this._listaClientes)
@@ -2501,6 +2660,30 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 venta.mostrarVenta();
             }
         }
+        public void BuscarVenta()
+        {
+            int idc;
+            foreach(Cliente c in this._listaClientes)
+            {
+                Console.WriteLine($"{c.pId_cliente} -> {c.pCliente}");
+            }
+            Console.Write("Ingrese el ID del cliente que desea ver sus ventas: ");
+            while (!int.TryParse(Console.ReadLine(), out idc))
+            {
+                Console.WriteLine($"Las ventas realizadas al cliente {idc} son: ");
+                foreach (Venta v in this._listaVentas)
+                {
+                    if (v.pId_cliente == idc)
+                    {
+                        Console.WriteLine($"ID Cliente:{v.pId_cliente} - ID Vehiculo: {v.pId_vehiculo} - Fecha de compra: {v.pFecha_compra} " +
+                        $"- Fecha de entrega: {v.pFecha_entrega} - Subtotal: {v.pSubtotal} - IVA: {v.pIva}% - Descuento: {v.pDescuento}% " +
+                        $"- Total: {v.pTotal}");
+
+                    }
+                }
+            }
+
+        }
 
         //CLIENTE----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -2713,7 +2896,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
 
             Console.Write("Ingrese el ID del Cliente: ");
-            id_cliente = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out id_cliente))
+            {
+                foreach (Cliente c in this._listaClientes)
+                {
+                    if (c.pId_cliente == id_cliente)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del Cliente a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_cliente);
+                    }
+                }
+            }
 
             Console.Write("\nIngrese la Razon Social: ");
             cliente = Console.ReadLine();
@@ -2747,7 +2943,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 cliente.mostrarCliente();
             }
         }
+        public void BuscarCliente()
+        {
+            string cad;
 
+            Console.Write("Ingrese la Razon Social del cliente: ");
+            cad = Console.ReadLine().ToLower();
+            
+            foreach (Cliente c in this._listaClientes)
+            {
+                if (c.pCliente.ToLower() == cad)
+                {
+                    Console.WriteLine($"ID Cliente:{c.pId_cliente} - Razon Social: {c.pCliente} - CUIT: {c.pCuit} - Domicilio: {c.pDomicilio} - " +
+                $"ID Localidad: {c.pId_localidad} - Telefono: {c.pTelefono} - Correo: {c.pCorreo}");
+
+                }
+            }
+            
+        }
         //MARCAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
         public void IngresarMarca()
@@ -2756,7 +2969,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string marca;
             Console.Write("****CARGA DE MARCA****\n\n");
             Console.Write("Ingrese el ID de la Marca: ");
-            id_marca = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out id_marca))
+            {
+                foreach (Marca m in this._listaMarcas)
+                {
+                    if (m.pId_marca== id_marca)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID de la Marca a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_marca);
+                    }
+                }
+            }
             Console.Write("\nIngrese el NOMBRE de la Marca");
             marca = Console.ReadLine();
 
@@ -2825,7 +3051,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
             wr.Close();
             arch.Close();
         }
+        public void BuscarMarca()
+        {
 
+            string cad;
+
+            Console.Write("Ingrese el nombre de la Marca: ");
+            cad = Console.ReadLine().ToLower();
+            
+            foreach (Marca m in this._listaMarcas)
+            {
+                if (m.pMarca.ToLower() == cad)
+                {
+                    Console.WriteLine($"ID Marca: {m.pId_marca} --> {m.pMarca}");
+
+                }
+            }
+            
+        }
 
         //LOCALIDADES----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -2835,7 +3078,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string localidad;
             Console.Write("****CARGA DE LOCALIDAD****\n\n");
             Console.Write("Ingrese el ID de la Localidad: ");
-            id_localidad = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out id_localidad))
+            {
+                foreach (Localidad l in this._listaLocalidades)
+                {
+                    if (l.pId_localidad == id_localidad)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID de la Localidad a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_localidad);
+                    }
+                }
+            }
 
             Console.Write("\nIngrese el NOMBRE de la localidad");
             localidad = Console.ReadLine();
@@ -3003,6 +3259,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 loc.mostrarLocalidad();
             }
         }
+        public void BuscarLocalidad()
+        {
+
+            string cad;
+
+            Console.Write("Ingrese el nombre de la Localidad: ");
+            cad = Console.ReadLine().ToLower();
+
+            foreach (Localidad l in this._listaLocalidades)
+            {
+                if (l.pLocalidad.ToLower() == cad)
+                {
+                    Console.WriteLine($"ID Localidad: {l.pId_localidad} ---> {l.pLocalidad} - ID Provincia: {l.pId_provincia}");
+
+                }
+            }
+
+        }
 
         //PROVINCIAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -3012,7 +3286,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string provincia;
             Console.Write("****CARGA DE PROVINCIA****\n\n");
             Console.Write("Ingrese el ID de la Provincia: ");
-            id_provincia = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out id_provincia))
+            {
+                foreach (Provincia p in this._listaProvincias)
+                {
+                    if (p.pId_provincia == id_provincia)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID de la Provincia a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_provincia);
+                    }
+                }
+            }
             Console.Write("\nIngrese el NOMBRE de la Provincia");
             provincia = Console.ReadLine();
 
@@ -3092,6 +3379,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 prov.mostrarProvincia();
             }
         }
+        public void BuscarProvincia()
+        {
+
+            string cad;
+
+            Console.Write("Ingrese el nombre de la Provincia: ");
+            cad = Console.ReadLine().ToLower();
+
+            foreach (Provincia p in this._listaProvincias)
+            {
+                if (p.pProvincia.ToLower() == cad)
+                {
+                    Console.WriteLine($"ID Provincia: {p.pId_provincia} ---> {p.pProvincia}");
+
+                }
+            }
+
+        }
 
         //COMBUSTIBLES----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -3101,7 +3406,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string combustible;
             Console.Write("****CARGA DE COMBUSTIBLE****\n\n");
             Console.Write("Ingrese el ID del Combustible: ");
-            id_combustible = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out id_combustible))
+            {
+                foreach (Combustible c in this._listaCombustibles)
+                {
+                    if (c.pIdCombustible == id_combustible)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del Combustible a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_combustible);
+                    }
+                }
+            }
             Console.Write("\nIngrese el NOMBRE del Combustible");
             combustible = Console.ReadLine();
 
@@ -3183,6 +3501,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
 
         }
+        public void BuscarCombustible()
+        {
+
+            string cad;
+
+            Console.Write("Ingrese el nombre del Combustible: ");
+            cad = Console.ReadLine().ToLower();
+
+            foreach (Combustible c in this._listaCombustibles)
+            {
+                if (c.pCombustible.ToLower() == cad)
+                {
+                    Console.WriteLine($"ID Combustible: {c.pIdCombustible} ---> {c.pCombustible}");
+
+                }
+            }
+
+        }
 
         //SEGMENTOS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -3192,7 +3528,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string segmento;
             Console.Write("****CARGA DE SEGMENTO****\n\n");
             Console.Write("Ingrese el ID del Segmento: ");
-            id_segmento = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out id_segmento))
+            {
+                foreach (Segmento s in this._listaSegmentos)
+                {
+                    if (s.pIdSegmento == id_segmento)
+                    {
+                        Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Console.Write("Ingrese el ID del Segmento a registrar: ");
+                        int.TryParse(Console.ReadLine(), out id_segmento);
+                    }
+                }
+            }
             Console.Write("\nIngrese el NOMBRE del Segmento");
             segmento = Console.ReadLine();
 
@@ -3272,6 +3621,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 seg.mostrarSegmento();
             }
+        }
+        public void BuscarSegmento()
+        {
+
+            string cad;
+
+            Console.Write("Ingrese el nombre del Segmento: ");
+            cad = Console.ReadLine().ToLower();
+
+            foreach (Segmento s in this._listaSegmentos)
+            {
+                if (s.pSegmento.ToLower() == cad)
+                {
+                    Console.WriteLine($"ID Segmennto: {s.pIdSegmento} ---> {s.pSegmento}");
+
+                }
+            }
+
         }
 
     }
