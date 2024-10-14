@@ -21,23 +21,34 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string localidadesArchivo = "Localidades.txt";
             string provinciasArchivo = "Provincias.txt";
             string motosArchivo = "Motos.txt";
-            string autosCamionetasArchivo = "Autoscamionetas.txt";
+            string autosCamionetasArchivo = "AutosCamioneta.txt";
             string camionesArchivo = "Camiones.txt";
 
 
             Concesionaria con = new Concesionaria ();
-            
+
+            //con.CargarVehiculos(vehiculosArchivo);
+            //con.CargarVentas(ventasArchivo);
+            //con.CargarClientes(clientesArchivo);
+            //con.CargarMarcas(marcasArchivo);
+            //con.CargarSegmentos(segmentosArchivo);
+            //con.CargarCombustibles(combustiblesArchivo);
+            //con.CargarLocalidades(localidadesArchivo);
+            //con.CargarProvincias(provinciasArchivo);
+            //con.CargarMotos(motosArchivo);
+            //con.CargarAutosCamionetas(autosCamionetasArchivo);
+            //con.CargarCamiones(camionesArchivo);
             con.CargarVehiculos(vehiculosArchivo);
-            con.CargarVentas(ventasArchivo);
-            con.CargarClientes(clientesArchivo);
+            con.CargarVentas();
+            con.CargarClientes();
             con.CargarMarcas(marcasArchivo);
             con.CargarSegmentos(segmentosArchivo);
             con.CargarCombustibles(combustiblesArchivo);
             con.CargarLocalidades(localidadesArchivo);
             con.CargarProvincias(provinciasArchivo);
-            con.CargarMotos(motosArchivo);
-            con.CargarAutosCamionetas(autosCamionetasArchivo);
-            con.CargarCamiones(camionesArchivo);
+            con.CargarMotos();
+            con.CargarAutosCamionetas();
+            con.CargarCamiones();
             con.actualizarProvincias();
             con.actualizarCombustibles();
             con.actualizarLocalidades();
@@ -48,11 +59,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
             con.ActualizarMarcas();
             con.ActualizarMotos();
             con.ActualizarVentas();
-            
 
 
-            Vehiculo vehiculo = new Vehiculo ();
+
+            AutoCamioneta ac = new AutoCamioneta();
             Menu menu = new Menu ();
+            Console.Write($"{ac.pPatente}");
+            Console.ReadKey();
             menu.MenuPrincipal();
             /*
 int opc;

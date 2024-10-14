@@ -27,7 +27,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
         List<Moto> _listaMotos;
         List<AutoCamioneta> _listaAutoCamionetas;
         List<Camion> _listaCamiones;
-
+        /*
+         *  NO VERIFICAR QUE EL ID YA EXISTA
+         * NO VERIFICA CUIT
+         * REVISAR TODOS LOS TRYPARSE(CUANDO CARGO UN DATO MAL NO ME DEJA VOLVER A CARGARLO, LO SALTEA)
+         * SI REALIZO LA VENTA DE UN VEHICULO, EL ID DE ESE VEHICULO NO PUEDE VOLVER A UTILIZARSE
+         * 
+         */
         // constructores
         public Concesionaria(Validacion validar, List<Vehiculo> _listaVehiculos, List<Venta> _listaVentas, List<Cliente> _listaClientes,
             List<Marca> _listaMarcas, List<Segmento> _listaSegmentos, List<Combustible> _listaCombustibles,
@@ -96,11 +102,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         }
-        public void CargarMotos(string nombreArchivo)
+        public void CargarMotos()
         {
-            if (File.Exists(nombreArchivo))
+            if (File.Exists("Motos.txt"))
             {
-                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                FileStream archivo = new FileStream("Motos.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
                 while (!reader.EndOfStream)
@@ -129,42 +135,75 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         } 
-        public void CargarAutosCamionetas(string nombreArchivo)
+        public void CargarAutosCamionetas()
         {
-            if (File.Exists(nombreArchivo))
+            //AutoCamioneta autocam = new AutoCamioneta();
+            
+            if (File.Exists("AutosCamioneta.txt"))
             {
-                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
-                StreamReader reader = new StreamReader(archivo);
 
-                while (!reader.EndOfStream)
+                FileStream archivo = new FileStream("AutosCamioneta.txt", FileMode.Open);
+                StreamReader reader = new StreamReader(archivo);
+                while (reader.EndOfStream == false)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
-                    //validar.validarEntero(id_vehiculo);
-                    int id_vehiculo = int.Parse(split[0]);
-                    string patente = split[1];
-                    double kilometros = double.Parse(split[2]);
-                    int anio = int.Parse(split[3]);
-                    int id_marca = int.Parse(split[4]);
-                    string modelo = split[5];
-                    int id_segmento = int.Parse(split[6]);
-                    int id_combustible = int.Parse(split[7]);
-                    double precio_vta = double.Parse(split[8]);
-                    string observaciones = split[9];
-                    string color = split[10];
-
-                    AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color);
+          
+                    AutoCamioneta ac = new AutoCamioneta(int.Parse(split[0]), split[1], double.Parse(split[2]),
+                        int.Parse(split[3]), int.Parse(split[4]), split[5], int.Parse(split[6]),
+                        int.Parse(split[7]), double.Parse(split[8]), split[9], split[10]);
                     _listaAutoCamionetas.Add(ac);
+                    /*
+                    int id_vehiculo = int.Parse(split[0]);
+                    autocam.pId_vehiculo = id_vehiculo;
+
+                    string patente = split[1];
+                    autocam.pPatente = patente;
+
+                    double kilometros = double.Parse(split[2]);
+                    autocam.pKilometros = kilometros;
+
+                    int anio = int.Parse(split[3]);
+                    autocam.pAnio = anio;
+
+                    int id_marca = int.Parse(split[4]);
+                    autocam.pId_marca = id_marca;
+
+                    string modelo = split[5];
+                    autocam.pModelo = modelo;
+
+                    int id_segmento = int.Parse(split[6]);
+                    autocam.pId_segmento = id_segmento;
+
+                    int id_combustible = int.Parse(split[7]);
+                    autocam.pId_combustible = id_combustible;
+
+                    double precio_vta = double.Parse(split[8]);
+                    autocam.pPrecio_vta = precio_vta;
+
+                    string observaciones = split[9];
+                    autocam.pObservaciones = observaciones;
+
+                    string color = split[10];
+                    autocam.pColor = color;
+
+                    _listaAutoCamionetas.Add(autocam);
+
+                    //AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color);
+                    //_listaAutoCamionetas.Add(ac);
+                    */
                 }
-                archivo.Close();
                 reader.Close();
+                archivo.Close();
+
+              
             }
         } 
-        public void CargarCamiones(string nombreArchivo)
+        public void CargarCamiones()
         {
-            if (File.Exists(nombreArchivo))
+            if (File.Exists("Camiones.txt"))
             {
-                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                FileStream archivo = new FileStream("Camiones.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
 
@@ -198,11 +237,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         } 
-        public void CargarVentas(string nombreArchivo)
+        public void CargarVentas()
         {
-            if (File.Exists(nombreArchivo))
+            if (File.Exists("Ventas.txt"))
             {
-                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                FileStream archivo = new FileStream("Ventas.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
                 while (!reader.EndOfStream)
@@ -227,11 +266,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 reader.Close();
             }
         }
-        public void CargarClientes(string nombreArchivo)
+        public void CargarClientes()
         {
-            if (File.Exists(nombreArchivo))
+            if (File.Exists("Ventas.txt"))
             {
-                FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
+                FileStream archivo = new FileStream("Ventas.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
                 while (!reader.EndOfStream)
@@ -241,7 +280,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                     int id_cliente = int.Parse(split[0]);
                     string cliente = split[1];
-                    long cuit = int.Parse(split[2]);
+                    long cuit = long.Parse(split[2]);
                     string domicilio = split[3];
                     int id_localidad = int.Parse(split[4]);
                     long telefono = long.Parse(split[5]);
@@ -845,9 +884,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }       
         public void MostrarVehiculos()
         {
+            CargarAutosCamionetas();
+
             Console.WriteLine("Autos y Camionetas\n");
-            foreach (AutoCamioneta a in _listaAutoCamionetas)
+            Console.Write(this._listaAutoCamionetas[0].pPatente);
+            foreach (AutoCamioneta a in this._listaAutoCamionetas)
             {
+
                 a.MostrarDatos();
             }
             Console.WriteLine("\nMotos\n");
@@ -2415,7 +2458,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             wr = new StreamWriter(arch);
             foreach (Venta ven in this._listaVentas)
             {
-                wr.WriteLine($"{ven.pId_cliente};{ven.pId_vehiculo}" +
+                wr.WriteLine($"{ven.pId_venta};{ven.pId_cliente};{ven.pId_vehiculo}" +
                     $";{ven.pFecha_compra};{ven.pFecha_entrega};{ven.pSubtotal};{ven.pIva};" +
                     $"{ven.pDescuento};{ven.pTotal}");
             }
@@ -2663,14 +2706,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void BuscarVenta()
         {
             int idc;
+            
+
+            
             foreach(Cliente c in this._listaClientes)
             {
                 Console.WriteLine($"{c.pId_cliente} -> {c.pCliente}");
             }
+            
             Console.Write("Ingrese el ID del cliente que desea ver sus ventas: ");
             while (!int.TryParse(Console.ReadLine(), out idc))
             {
-                Console.WriteLine($"Las ventas realizadas al cliente {idc} son: ");
+                Console.Write("El ID ingresado no corresponde a un cliente.\nIngrese un nuevo ID:");
+                int.TryParse(Console.ReadLine(), out idc);
+            }
+            Console.WriteLine($"Las ventas realizadas al cliente {idc} son: ");
                 foreach (Venta v in this._listaVentas)
                 {
                     if (v.pId_cliente == idc)
@@ -2681,7 +2731,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                     }
                 }
-            }
+            
 
         }
 
