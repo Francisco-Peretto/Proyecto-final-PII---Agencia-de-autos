@@ -303,6 +303,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                         else if (posicionActual == 4)
                         {
+                            concesionaria.BuscarVehiculo();
+                            /*
                             string[] menuBuscar = { "Buscar un auto o una camioneta", "Buscar una moto", "Buscar un camión", "Salir" };
                             posicionActual = 0;
                             Console.CursorVisible = false;
@@ -340,7 +342,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         }
                                         else if (posicionActual == 0)
                                         {
-                                            // concesionario.BuscarAutos();
+                                            
                                         }
 
                                         else if (posicionActual == 1)
@@ -374,6 +376,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                                 }
                             }
+                            */
                         } // Buscar vehículo (PARA MI NO VA - GENA)
                         
                         break;
@@ -461,7 +464,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                         else if (posicionActual == 4) //(PARA MI NO VA- GENA)
                         {
-                            // concesionaria.BuscarCliente();
+                            concesionaria.BuscarCliente();
                         }
 
                         break;
@@ -549,7 +552,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                         else if (posicionActual == 4) //IDEM DEMAS
                         {
-                            // concesionaria.BuscarVenta();
+                             concesionaria.BuscarVenta();
                         }
 
                         break;
