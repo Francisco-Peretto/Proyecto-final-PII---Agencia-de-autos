@@ -56,32 +56,26 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                         else if (posicionActual == 1)
                         {
-                            MenuClientes();
+                            MenuClientes(20, 1);
                         }
 
                         else if (posicionActual == 2)
                         {
-                            MenuVentas();
+                            MenuVentas(20, 2);
                         }
 
                         else if (posicionActual == 3)
                         {
-                            MenuParametros();
+                            MenuParametros(20, 3);
                         }
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuOpciones.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuOpciones.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuOpciones.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuOpciones.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -172,10 +166,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.SetCursorPosition(0, 10);
                                         if (posicionActual == menuTresVehiculos.Length - 1) // "Salir"
                                         {
-                                            Console.Clear(); // Clear the console
-                                            Console.ResetColor(); // Reset colors
-                                            MenuPrincipal(); // Return to MenuPrincipal
-                                            return; // Ensure to exit the current method
+                                            Console.Clear();
+                                            Console.ResetColor();
+                                            MenuPrincipal();
+                                            return; 
                                         }
 
                                         else if (posicionActual == 0)
@@ -231,7 +225,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuClientes()
+        void MenuClientes(int posX, int posY)
         {
             string[] menuOpcionesClientes = { "Agregar nuevo cliente", "Modificar cliente", "Eliminar cliente", "Listar clientes", "Buscar cliente", "Salir" };
             posicionActual = 0;
@@ -240,21 +234,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuOpcionesClientes.Length; i++)
                 {
+                    Console.SetCursorPosition(posX, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuOpcionesClientes[i]);
-                    Console.ResetColor();
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -262,11 +258,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        if (posicionActual == menuOpcionesClientes.Length - 1)
+                        if (posicionActual == menuOpcionesClientes.Length - 1) // "Salir"
                         {
-                            Console.WriteLine("\nSaliendo del menú de clientes.");
-                            bucle = true;
+                            Console.Clear();
+                            Console.ResetColor();
                             MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -299,17 +296,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuOpcionesClientes.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuOpcionesClientes.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuOpcionesClientes.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuOpcionesClientes.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -319,7 +310,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuVentas()
+        void MenuVentas(int posX, int posY)
         {
             string[] menuOpcionesVentas = { "Realizar nueva venta", "Modificar venta", "Eliminar venta", "Listado de ventas", "Búsqueda de una venta", "Salir" };
             posicionActual = 0;
@@ -328,21 +319,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuOpcionesVentas.Length; i++)
                 {
+                    Console.SetCursorPosition(posX, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuOpcionesVentas[i]);
-                    Console.ResetColor();
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -350,11 +343,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        if (posicionActual == menuOpcionesVentas.Length - 1)
+                        if (posicionActual == menuOpcionesVentas.Length - 1) // "Salir"
                         {
-                            Console.WriteLine("\nSaliendo del menú de ventas.");
-                            bucle = true;
+                            Console.Clear();
+                            Console.ResetColor();
                             MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -387,17 +381,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuOpcionesVentas.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuOpcionesVentas.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuOpcionesVentas.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuOpcionesVentas.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -407,7 +395,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuParametros()
+        void MenuParametros(int posX, int posY)
         {
             string[] menuOpcionesParametros = { "Marcas", "Localidades", "Provincias", "Combustible", "Segmento", "Salir" };
             posicionActual = 0;
@@ -416,21 +404,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuOpcionesParametros.Length; i++)
                 {
+                    Console.SetCursorPosition(posX, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuOpcionesParametros[i]);
-                    Console.ResetColor();
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -438,51 +428,46 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        if (posicionActual == menuOpcionesParametros.Length - 1)
+                        if (posicionActual == menuOpcionesParametros.Length - 1) // "Salir"
                         {
-                            Console.WriteLine("\nSaliendo del menú de parámetros.");
-                            bucle = true;
+                            Console.Clear();
+                            Console.ResetColor();
                             MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0) // Marcas
                         {
-                            MenuMarcas();
+                            MenuMarcas(20, 3);
                         }
 
                         else if (posicionActual == 1) // Localidades
                         {
-                            MenuLocalidades();
+                            MenuLocalidades(20, 4);
                         }
 
                         else if (posicionActual == 2) // Provincias
                         {
-                            MenuProvincias();
+                            MenuProvincias(20, 5);
                         }
 
                         else if (posicionActual == 3) // Combustibles
                         {
-                            MenuCombustibles();
+                            MenuCombustibles(20, 6);
                         }
 
                         else if (posicionActual == 4) // Segmentos
                         {
-                            MenuSegmentos();
+                            MenuSegmentos(20, 7);
                         }
 
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuOpcionesParametros.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuOpcionesParametros.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuOpcionesParametros.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuOpcionesParametros.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -492,7 +477,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuMarcas()
+        void MenuMarcas(int posX, int posY)
         {
             string[] menuMarcas = { "Agregar marca", "Listar marcas", "Modificar marca", "Eliminar marca", "Salir" };
             posicionActual = 0;
@@ -501,21 +486,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuMarcas.Length; i++)
                 {
+                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuMarcas[i]);
-                    Console.ResetColor();
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -523,11 +510,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        if (posicionActual == menuMarcas.Length - 1)
+                        if (posicionActual == menuMarcas.Length - 1) // "Salir"
                         {
-                            Console.WriteLine("\nSaliendo del menú de parámetros.");
-                            bucle = true;
-                            MenuParametros();
+                            Console.Clear();
+                            Console.ResetColor();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -555,17 +543,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuMarcas.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuMarcas.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuMarcas.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuMarcas.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -575,7 +557,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuLocalidades()
+        void MenuLocalidades(int posX, int posY)
         {
             string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Modificar localidad", "Eliminar localidad", "Salir" };
             posicionActual = 0;
@@ -584,21 +566,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuLocalidades.Length; i++)
                 {
+                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuLocalidades[i]);
-                    Console.ResetColor();
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -608,9 +592,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     case ConsoleKey.Spacebar:
                         if (posicionActual == menuLocalidades.Length - 1)
                         {
-                            Console.WriteLine("\nSaliendo del menú de parámetros.");
-                            bucle = true;
-                            MenuParametros();
+                            Console.Clear();
+                            Console.ResetColor();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -638,17 +623,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuLocalidades.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuLocalidades.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuLocalidades.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuLocalidades.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -658,7 +637,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuProvincias()
+        void MenuProvincias(int posX, int posY)
         {
             string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Modificar provincia", "Eliminar provincia", "Salir" };
             posicionActual = 0;
@@ -667,21 +646,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuProvincias.Length; i++)
                 {
+                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuProvincias[i]);
-                    Console.ResetColor();
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -691,9 +672,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     case ConsoleKey.Spacebar:
                         if (posicionActual == menuProvincias.Length - 1)
                         {
-                            Console.WriteLine("\nSaliendo del menú de parámetros.");
-                            bucle = true;
-                            MenuParametros();
+                            Console.Clear();
+                            Console.ResetColor();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -721,17 +703,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuProvincias.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuProvincias.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuProvincias.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuProvincias.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -741,30 +717,32 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuCombustibles()
+        void MenuCombustibles(int posX, int posY)
         {
-            string[] menuCombustible = { "Agregar combustible", "Listar combustibles", "Modificar combustible", "Eliminar combustible", "Salir" };
+            string[] menuCombustibles = { "Agregar combustible", "Listar combustibles", "Modificar combustible", "Eliminar combustible", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
-                for (int i = 0; i < menuCombustible.Length; i++)
+                for (int i = 0; i < menuCombustibles.Length; i++)
                 {
+                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
-                    Console.WriteLine(menuCombustible[i]);
-                    Console.ResetColor();
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
+                    Console.WriteLine(menuCombustibles[i]);
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -772,11 +750,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        if (posicionActual == menuCombustible.Length - 1)
+                        if (posicionActual == menuCombustibles.Length - 1)
                         {
-                            Console.WriteLine("\nSaliendo del menú de parámetros.");
-                            bucle = true;
-                            MenuParametros();
+                            Console.Clear();
+                            Console.ResetColor();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -803,17 +782,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuCombustible.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuCombustibles.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuCombustible.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuCombustibles.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
@@ -823,30 +796,32 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-        void MenuSegmentos()
+        void MenuSegmentos(int posX, int posY)
         {
-            string[] menuSegmento = { "Agregar Segmento", "Listar Segmentos", "Modificar Segmento", "Eliminar Segmento", "Salir" };
+            string[] menuSegmentos = { "Agregar Segmento", "Listar Segmentos", "Modificar Segmento", "Eliminar Segmento", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
-                for (int i = 0; i < menuSegmento.Length; i++)
+                for (int i = 0; i < menuSegmentos.Length; i++)
                 {
+                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
-                    Console.WriteLine(menuSegmento[i]);
-                    Console.ResetColor();
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
+                    Console.WriteLine(menuSegmentos[i]);
                 }
 
                 ConsoleKeyInfo tecla = Console.ReadKey();
@@ -854,11 +829,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        if (posicionActual == menuSegmento.Length - 1)
+                        if (posicionActual == menuSegmentos.Length - 1)
                         {
-                            Console.WriteLine("\nSaliendo del menú de parámetros.");
-                            bucle = true;
-                            MenuParametros();
+                            Console.Clear();
+                            Console.ResetColor();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -886,17 +862,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuSegmento.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuSegmentos.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuSegmento.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuSegmentos.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     default:
