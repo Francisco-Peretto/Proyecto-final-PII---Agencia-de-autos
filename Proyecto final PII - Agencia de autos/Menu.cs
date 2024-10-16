@@ -34,6 +34,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+
                     Console.WriteLine(menuOpciones[i]);
                     Console.ResetColor();
                 }
@@ -50,7 +51,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         }
                         else if (posicionActual == 0)
                         {
-                            MenuVehiculos();
+                            MenuVehiculos(20, 0);
                         }
 
                         else if (posicionActual == 1)
@@ -89,320 +90,148 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
             }
         }
-    
-        void MenuVehiculos()
+
+        void MenuVehiculos(int posX, int posY)
         {
             string[] menuOpcionesVehiculos = { "Registrar nuevo vehículo", "Modificar un vehículo existente", "Eliminar un vehículo existente", "Listar vehículos", "Buscar un vehículo", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            bool bucle = false;
+
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+            Console.WriteLine("-------------------------------------------");
 
             while (!bucle)
             {
-                Console.Clear();
-                Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                Console.WriteLine("-------------------------------------------");
-
                 for (int i = 0; i < menuOpcionesVehiculos.Length; i++)
                 {
+                    Console.SetCursorPosition(posX, posY + 2 + i);
+                    Console.ResetColor();
+
                     if (posicionActual == i)
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(" " + (char)62 + " ");
                     }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
                     Console.WriteLine(menuOpcionesVehiculos[i]);
-                    Console.ResetColor();
                 }
 
-                ConsoleKeyInfo tecla = Console.ReadKey();
+                ConsoleKeyInfo tecla = Console.ReadKey(true);
                 switch (tecla.Key)
                 {
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
                         if (posicionActual == menuOpcionesVehiculos.Length - 1)
                         {
+                            Console.ResetColor();
+                            Console.Clear();
                             Console.WriteLine("\nSaliendo del menú de vehículos.");
                             MenuPrincipal();
                         }
                         else if (posicionActual == 0)
                         {
-                            string[] menuTresVehiculos = { "Registrar un auto o una camioneta", "Registar una moto", "Registrar un camión", "Salir" };
+                            string[] menuTresVehiculos = { "Registrar un auto o una camioneta", "Registrar una moto", "Registrar un camión", "Salir" };
                             posicionActual = 0;
-                            Console.CursorVisible = false;
-                            bucle = false;
+                            Console.SetCursorPosition(0, 0);
+                            Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                            Console.WriteLine("-------------------------------------------");
 
-                            while (!bucle)
+                            while (true)
                             {
-                                Console.Clear();
-                                Console.ResetColor();
-                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                                Console.WriteLine("-------------------------------------------");
-
-                                for (int i = 0; i < menuTresVehiculos.Length; i++)
+                                for (int j = 0; j < menuTresVehiculos.Length; j++)
                                 {
-                                    if (posicionActual == i)
+                                    Console.SetCursorPosition(60, posY + 2 + j);
+                                    Console.ResetColor();
+
+                                    if (posicionActual == j)
                                     {
                                         Console.BackgroundColor = ConsoleColor.Blue;
                                         Console.ForegroundColor = ConsoleColor.Yellow;
                                         Console.Write(" " + (char)62 + " ");
                                     }
-                                    Console.WriteLine(menuTresVehiculos[i]);
-                                    Console.ResetColor();
+                                    else
+                                    {
+                                        Console.Write("   ");
+                                    }
+
+                                    Console.WriteLine(menuTresVehiculos[j]);
                                 }
 
-                                ConsoleKeyInfo tecla2 = Console.ReadKey();
+                                ConsoleKeyInfo tecla2 = Console.ReadKey(true);
                                 switch (tecla2.Key)
                                 {
                                     case ConsoleKey.Enter:
                                     case ConsoleKey.Spacebar:
-                                        if (posicionActual == menuTresVehiculos.Length - 1)
+                                        Console.SetCursorPosition(0, 10);
+                                        if (posicionActual == menuTresVehiculos.Length - 1) // "Salir"
                                         {
-                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
-                                            bucle = true;
-                                            MenuVehiculos();
+                                            Console.Clear(); // Clear the console
+                                            Console.ResetColor(); // Reset colors
+                                            MenuPrincipal(); // Return to MenuPrincipal
+                                            return; // Ensure to exit the current method
                                         }
+
                                         else if (posicionActual == 0)
                                         {
                                             concesionaria.IngresarAutoCamioneta();
-                                            concesionaria.ActualizarAutoCamioneta();
-                                            
                                         }
-
                                         else if (posicionActual == 1)
                                         {
                                             concesionaria.IngresarMoto();
-                                            
-                                            concesionaria.ActualizarMotos();
                                         }
-
                                         else if (posicionActual == 2)
                                         {
                                             concesionaria.IngresarCamion();
-                                            concesionaria.ActualizarCamiones();
                                         }
-
                                         break;
 
                                     case ConsoleKey.UpArrow:
-                                        if (posicionActual == 0)
-                                            posicionActual = menuTresVehiculos.Length - 1;
-                                        else
-                                            posicionActual--;
+                                        posicionActual = (posicionActual == 0) ? menuTresVehiculos.Length - 1 : posicionActual - 1;
                                         break;
 
                                     case ConsoleKey.DownArrow:
-                                        if (posicionActual == menuTresVehiculos.Length - 1)
-                                            posicionActual = 0;
-                                        else
-                                            posicionActual++;
+                                        posicionActual = (posicionActual == menuTresVehiculos.Length - 1) ? 0 : posicionActual + 1;
                                         break;
-
-                                    default:
-                                        Console.WriteLine("Opción no válida.");
-                                        break;
-
                                 }
                             }
-                        } // Registrar vehículo
-
+                        }
                         else if (posicionActual == 1)
                         {
-
-                            concesionaria.ModificarVehiculo(); //MODIFICA
-                            //Actualiza los txt
-                            concesionaria.ActualizarAutoCamioneta();
-                            concesionaria.ActualizarCamiones();
-                            concesionaria.ActualizarMotos();
-
-                            //string[] menuTresModificaciones = { "Modificar un auto o una camioneta", "Modificar una moto", "Modificar un camión", "Salir" };
-                            //posicionActual = 0;
-                            //Console.CursorVisible = false;
-                            //bucle = false;
-
-                            //while (!bucle)
-                            //{
-                            //    Console.Clear();
-                            //    Console.ResetColor();
-                            //    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                            //    Console.WriteLine("-------------------------------------------");
-
-                            //    for (int i = 0; i < menuTresModificaciones.Length; i++)
-                            //    {
-                            //        if (posicionActual == i)
-                            //        {
-                            //            Console.BackgroundColor = ConsoleColor.Blue;
-                            //            Console.ForegroundColor = ConsoleColor.Yellow;
-                            //            Console.Write(" " + (char)62 + " ");
-                            //        }
-                            //        Console.WriteLine(menuTresModificaciones[i]);
-                            //        Console.ResetColor();
-                            //    }
-
-                            //    ConsoleKeyInfo tecla2 = Console.ReadKey();
-                            //    switch (tecla2.Key)
-                            //    {
-                            //        case ConsoleKey.Enter:
-                            //        case ConsoleKey.Spacebar:
-                            //            if (posicionActual == menuTresModificaciones.Length - 1)
-                            //            {
-                            //                Console.WriteLine("\nSaliendo del menú de vehículos.");
-                            //                bucle = true;
-                            //                MenuVehiculos();
-                            //            } 
-                            //            else if (posicionActual == 0) // Buscar por ID
-                            //            {
-                            //                concesionaria.ActualizarAutoCamioneta();
-                            //            }
-
-                            //            else if (posicionActual == 1)
-                            //            {
-                            //                concesionaria.ActualizarMotos();
-                            //            }
-
-                            //            else if (posicionActual == 2)
-                            //            {
-                            //                concesionaria.ActualizarCamiones();
-                            //            }
-
-                            //        case ConsoleKey.UpArrow:
-                            //            if (posicionActual == 0)
-                            //                posicionActual = menuTresModificaciones.Length - 1;
-                            //            else
-                            //                posicionActual--;
-                            //            break;
-
-                            //        case ConsoleKey.DownArrow:
-                            //            if (posicionActual == menuTresModificaciones.Length - 1)
-                            //                posicionActual = 0;
-                            //            else
-                            //                posicionActual++;
-                            //            break;
-
-                            //        default:
-                            //            Console.WriteLine("Opción no válida.");
-                            //            break;
-
-                            //    }
-                            //}
-                        } // Modificar un vehículo
-
+                            concesionaria.ModificarVehiculo();
+                        }
                         else if (posicionActual == 2)
                         {
                             concesionaria.BorrarVehiculo();
-                            concesionaria.ActualizarAutoCamioneta();
-                            concesionaria.ActualizarCamiones();
-                            concesionaria.ActualizarMotos();
-                        } // Eliminar un vehículo
-
+                        }
                         else if (posicionActual == 3)
                         {
                             concesionaria.MostrarVehiculos();
-                        } // Listar vehículos
-
+                        }
                         else if (posicionActual == 4)
                         {
                             concesionaria.BuscarVehiculo();
-                            /*
-                            string[] menuBuscar = { "Buscar un auto o una camioneta", "Buscar una moto", "Buscar un camión", "Salir" };
-                            posicionActual = 0;
-                            Console.CursorVisible = false;
-                            bucle = false;
-
-                            while (!bucle)
-                            {
-                                Console.Clear();
-                                Console.ResetColor();
-                                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                                Console.WriteLine("-------------------------------------------");
-
-                                for (int i = 0; i < menuBuscar.Length; i++)
-                                {
-                                    if (posicionActual == i)
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.Blue;
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.Write(" " + (char)62 + " ");
-                                    }
-                                    Console.WriteLine(menuBuscar[i]);
-                                    Console.ResetColor();
-                                }
-
-                                ConsoleKeyInfo tecla2 = Console.ReadKey();
-                                switch (tecla2.Key)
-                                {
-                                    case ConsoleKey.Enter:
-                                    case ConsoleKey.Spacebar:
-                                        if (posicionActual == menuBuscar.Length - 1)
-                                        {
-                                            Console.WriteLine("\nSaliendo del menú de vehículos.");
-                                            bucle = true;
-                                            MenuVehiculos();
-                                        }
-                                        else if (posicionActual == 0)
-                                        {
-                                            
-                                        }
-
-                                        else if (posicionActual == 1)
-                                        {
-                                            // concesionario.BuscarMotos();
-                                        }
-
-                                        else if (posicionActual == 2)
-                                        {
-                                            // concesionaria.BuscarCamiones();
-                                        }
-                                        break;
-
-                                    case ConsoleKey.UpArrow:
-                                        if (posicionActual == 0)
-                                            posicionActual = menuBuscar.Length - 1;
-                                        else
-                                            posicionActual--;
-                                        break;
-
-                                    case ConsoleKey.DownArrow:
-                                        if (posicionActual == menuBuscar.Length - 1)
-                                            posicionActual = 0;
-                                        else
-                                            posicionActual++;
-                                        break;
-
-                                    default:
-                                        Console.WriteLine("Opción no válida.");
-                                        break;
-
-                                }
-                            }
-                            */
-                        } // Buscar vehículo (PARA MI NO VA - GENA)
-                        
+                        }
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (posicionActual == 0)
-                            posicionActual = menuOpcionesVehiculos.Length - 1;
-                        else
-                            posicionActual--;
+                        posicionActual = (posicionActual == 0) ? menuOpcionesVehiculos.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (posicionActual == menuOpcionesVehiculos.Length - 1)
-                            posicionActual = 0;
-                        else
-                            posicionActual++;
+                        posicionActual = (posicionActual == menuOpcionesVehiculos.Length - 1) ? 0 : posicionActual + 1;
                         break;
-
-                    default:
-                        Console.WriteLine("Opción no válida.");
-                    break;
-                }    
+                }
             }
-        } // FALTA búsqueda
+        }
 
-        void MenuClientes() 
+        void MenuClientes()
         {
             string[] menuOpcionesClientes = { "Agregar nuevo cliente", "Modificar cliente", "Eliminar cliente", "Listar clientes", "Buscar cliente", "Salir" };
             posicionActual = 0;
@@ -462,7 +291,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ListarClientes();
                         }
 
-                        else if (posicionActual == 4) //(PARA MI NO VA- GENA)
+                        else if (posicionActual == 4)
                         {
                             concesionaria.BuscarCliente();
                         }
@@ -488,9 +317,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
                 }
             }
-        } 
+        }
 
-        void MenuVentas() 
+        void MenuVentas()
         {
             string[] menuOpcionesVentas = { "Realizar nueva venta", "Modificar venta", "Eliminar venta", "Listado de ventas", "Búsqueda de una venta", "Salir" };
             posicionActual = 0;
@@ -541,18 +370,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                         else if (posicionActual == 2)
                         {
-                             concesionaria.BorrarVenta();
-                             concesionaria.ActualizarVentas();
+                            concesionaria.BorrarVenta();
+                            concesionaria.ActualizarVentas();
                         }
 
                         else if (posicionActual == 3)
                         {
-                             concesionaria.ListarVentas();
+                            concesionaria.ListarVentas();
                         }
 
-                        else if (posicionActual == 4) //IDEM DEMAS
+                        else if (posicionActual == 4)
                         {
-                             concesionaria.BuscarVenta();
+                            concesionaria.BuscarVenta();
                         }
 
                         break;
@@ -579,8 +408,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
         void MenuParametros()
-        {   // Agregar, listar, eliminar
-            string[] menuOpcionesParametros = { "Marcas", "Modelos", "Colores", "Localidades", "Provincias", "Combustible", "Segmento", "Salir" };
+        {
+            string[] menuOpcionesParametros = { "Marcas", "Localidades", "Provincias", "Combustible", "Segmento", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
@@ -620,27 +449,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             MenuMarcas();
                         }
 
-                        else if (posicionActual == 1) // Modelos
-                        {
-                            MenuModelos();
-                        }
-
-                        else if (posicionActual == 2) // Colores
-                        {
-                            MenuColores();
-                        }
-
-                        else if (posicionActual == 3) // Localidades
+                        else if (posicionActual == 1) // Localidades
                         {
                             MenuLocalidades();
                         }
 
-                        else if (posicionActual == 4) // Provincias
+                        else if (posicionActual == 2) // Provincias
                         {
                             MenuProvincias();
                         }
 
-                        else if (posicionActual == 4) // Combustibles
+                        else if (posicionActual == 3) // Combustibles
                         {
                             MenuCombustibles();
                         }
@@ -671,579 +490,418 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
                 }
             }
+        }
 
-            void MenuMarcas()
-            {   // Agregar, listar, eliminar
-                string[] menuMarcas = { "Agregar marca", "Listar marcas", "Modificar marca", "Eliminar marca", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
+        void MenuMarcas()
+        {
+            string[] menuMarcas = { "Agregar marca", "Listar marcas", "Modificar marca", "Eliminar marca", "Salir" };
+            posicionActual = 0;
+            Console.CursorVisible = false;
+            bucle = false;
 
-                while (!bucle)
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuMarcas.Length; i++)
                 {
-                    Console.Clear();
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuMarcas[i]);
                     Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
+                }
 
-                    for (int i = 0; i < menuMarcas.Length; i++)
-                    {
-                        if (posicionActual == i)
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuMarcas.Length - 1)
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
+                            Console.WriteLine("\nSaliendo del menú de parámetros.");
+                            bucle = true;
+                            MenuParametros();
                         }
-                        Console.WriteLine(menuMarcas[i]);
-                        Console.ResetColor();
-                    }
+                        else if (posicionActual == 0)
+                        {
+                            concesionaria.IngresarMarca();
+                            concesionaria.ActualizarMarcas();
+                        }
 
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuMarcas.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                concesionaria.IngresarMarca();
-                                concesionaria.ActualizarMarcas();
-                            }
+                        else if (posicionActual == 1)
+                        {
+                            concesionaria.ListarMarcas();
+                        }
 
-                            else if (posicionActual == 1)
-                            {
-                                concesionaria.ListarMarcas();
-                            }
+                        else if (posicionActual == 2)
+                        {
+                            concesionaria.ModificarMarca();
+                            concesionaria.ActualizarMarcas();
+                        }
 
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.ModificarMarca();
-                                concesionaria.ActualizarMarcas();
-                            }
+                        else if (posicionActual == 3)
+                        {
+                            concesionaria.BorrarMarca();
+                            concesionaria.ActualizarMarcas();
+                        }
 
-                            else if (posicionActual == 3)
-                            {
-                                concesionaria.BorrarMarca();
-                                concesionaria.ActualizarMarcas();
-                            }
+                        break;
 
-                            break;
+                    case ConsoleKey.UpArrow:
+                        if (posicionActual == 0)
+                            posicionActual = menuMarcas.Length - 1;
+                        else
+                            posicionActual--;
+                        break;
 
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuMarcas.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
+                    case ConsoleKey.DownArrow:
+                        if (posicionActual == menuMarcas.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
+                        break;
 
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuMarcas.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
+        }
 
-            
-            void MenuModelos()
-            {   // Agregar, listar, eliminar
-                string[] menuModelos = { "Agregar modelo", "Listar modelos", "Modificar modelo", "Eliminar modelo", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
+        void MenuLocalidades()
+        {
+            string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Modificar localidad", "Eliminar localidad", "Salir" };
+            posicionActual = 0;
+            Console.CursorVisible = false;
+            bucle = false;
 
-                while (!bucle)
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuLocalidades.Length; i++)
                 {
-                    Console.Clear();
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuLocalidades[i]);
                     Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
-
-                    for (int i = 0; i < menuModelos.Length; i++)
-                    {
-                        if (posicionActual == i)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
-                        }
-                        Console.WriteLine(menuModelos[i]);
-                        Console.ResetColor();
-                    }
-
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuModelos.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                concesionaria.IngresarMarca();
-                            }
-
-                            else if (posicionActual == 1)
-                            {
-                                concesionaria.ListarMarcas();
-                            }
-
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.ModificarMarca();
-                            }
-
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.BorrarMarca();
-                            }
-
-                            break;
-
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuModelos.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
-
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuModelos.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
                 }
-            } //IDEM
 
-            void MenuColores()
-            {   // Agregar, listar, eliminar
-                string[] menuColores = { "Agregar color", "Listar colores", "Modificar color", "Eliminar color", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
-
-                while (!bucle)
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
                 {
-                    Console.Clear();
-                    Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
-
-                    for (int i = 0; i < menuColores.Length; i++)
-                    {
-                        if (posicionActual == i)
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuLocalidades.Length - 1)
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
+                            Console.WriteLine("\nSaliendo del menú de parámetros.");
+                            bucle = true;
+                            MenuParametros();
                         }
-                        Console.WriteLine(menuColores[i]);
-                        Console.ResetColor();
-                    }
-
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuColores.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                // concesionaria.IngresarColor()
-                            }
-
-                            else if (posicionActual == 1)
-                            {
-                                // concesionaria.ListarColor()
-                            }
-
-                            else if (posicionActual == 2)
-                            {
-                                // concesionaria.EliminarColor()
-                            }
-
-                            else if (posicionActual == 3)
-                            {
-                                // concesionaria.EliminarColor()
-                            }
-
-                            break;
-
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuColores.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
-
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuColores.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
-                }
-            } //IDEM
-
-            void MenuLocalidades()
-            {   // Agregar, listar, eliminar
-                string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Modificar localidad", "Eliminar localidad", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
-
-                while (!bucle)
-                {
-                    Console.Clear();
-                    Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
-
-                    for (int i = 0; i < menuLocalidades.Length; i++)
-                    {
-                        if (posicionActual == i)
+                        else if (posicionActual == 0)
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
+                            concesionaria.CargarLocalidad();
+                            concesionaria.actualizarLocalidades();
                         }
-                        Console.WriteLine(menuLocalidades[i]);
-                        Console.ResetColor();
-                    }
 
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuLocalidades.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                concesionaria.CargarLocalidad();
-                                concesionaria.actualizarLocalidades();
-                            }
+                        else if (posicionActual == 1)
+                        {
+                            concesionaria.ListarLocalidades();
+                        }
 
-                            else if (posicionActual == 1)
-                            {
-                                concesionaria.ListarLocalidades();
-                            }
+                        else if (posicionActual == 2)
+                        {
+                            concesionaria.ModificarLocalidad();
+                            concesionaria.actualizarLocalidades();
+                        }
 
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.ModificarLocalidad();
-                                concesionaria.actualizarLocalidades();
-                            }
+                        else if (posicionActual == 3)
+                        {
+                            concesionaria.BorrarLocalidad();
+                            concesionaria.actualizarLocalidades();
+                        }
 
-                            else if (posicionActual == 3)
-                            {
-                                concesionaria.BorrarLocalidad();
-                                concesionaria.actualizarLocalidades();
-                            }
+                        break;
 
-                            break;
+                    case ConsoleKey.UpArrow:
+                        if (posicionActual == 0)
+                            posicionActual = menuLocalidades.Length - 1;
+                        else
+                            posicionActual--;
+                        break;
 
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuLocalidades.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
+                    case ConsoleKey.DownArrow:
+                        if (posicionActual == menuLocalidades.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
+                        break;
 
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuLocalidades.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
+        }
 
-            void MenuProvincias()
-            {   // Agregar, listar, eliminar
-                string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Modificar provincia", "Eliminar provincia", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
+        void MenuProvincias()
+        {
+            string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Modificar provincia", "Eliminar provincia", "Salir" };
+            posicionActual = 0;
+            Console.CursorVisible = false;
+            bucle = false;
 
-                while (!bucle)
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuProvincias.Length; i++)
                 {
-                    Console.Clear();
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuProvincias[i]);
                     Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
+                }
 
-                    for (int i = 0; i < menuProvincias.Length; i++)
-                    {
-                        if (posicionActual == i)
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuProvincias.Length - 1)
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
+                            Console.WriteLine("\nSaliendo del menú de parámetros.");
+                            bucle = true;
+                            MenuParametros();
                         }
-                        Console.WriteLine(menuProvincias[i]);
-                        Console.ResetColor();
-                    }
+                        else if (posicionActual == 0)
+                        {
+                            concesionaria.CargarProvincia();
+                            concesionaria.actualizarProvincias();
+                        }
 
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuProvincias.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                concesionaria.CargarProvincia();
-                                concesionaria.actualizarProvincias();
-                            }
+                        else if (posicionActual == 1)
+                        {
+                            concesionaria.ListarProvincias();
+                        }
 
-                            else if (posicionActual == 1)
-                            {
-                                concesionaria.ListarProvincias();
-                            }
+                        else if (posicionActual == 2)
+                        {
+                            concesionaria.ModificarProvincia();
+                            concesionaria.actualizarProvincias();
+                        }
 
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.ModificarProvincia();
-                                concesionaria.actualizarProvincias();
-                            }
+                        else if (posicionActual == 3)
+                        {
+                            concesionaria.BorrarProvincia();
+                            concesionaria.actualizarProvincias();
+                        }
 
-                            else if (posicionActual == 3)
-                            {
-                                concesionaria.BorrarProvincia();
-                                concesionaria.actualizarProvincias();
-                            }
+                        break;
 
-                            break;
+                    case ConsoleKey.UpArrow:
+                        if (posicionActual == 0)
+                            posicionActual = menuProvincias.Length - 1;
+                        else
+                            posicionActual--;
+                        break;
 
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuProvincias.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
+                    case ConsoleKey.DownArrow:
+                        if (posicionActual == menuProvincias.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
+                        break;
 
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuProvincias.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
+        }
 
-            void MenuCombustibles()
-            {   // Agregar, listar, eliminar
-                string[] menuCombustible = { "Agregar combustible", "Listar combustibles", "Modificar combustible", "Eliminar combustible", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
+        void MenuCombustibles()
+        {
+            string[] menuCombustible = { "Agregar combustible", "Listar combustibles", "Modificar combustible", "Eliminar combustible", "Salir" };
+            posicionActual = 0;
+            Console.CursorVisible = false;
+            bucle = false;
 
-                while (!bucle)
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuCombustible.Length; i++)
                 {
-                    Console.Clear();
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuCombustible[i]);
                     Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
+                }
 
-                    for (int i = 0; i < menuCombustible.Length; i++)
-                    {
-                        if (posicionActual == i)
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuCombustible.Length - 1)
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
+                            Console.WriteLine("\nSaliendo del menú de parámetros.");
+                            bucle = true;
+                            MenuParametros();
                         }
-                        Console.WriteLine(menuCombustible[i]);
-                        Console.ResetColor();
-                    }
+                        else if (posicionActual == 0)
+                        {
+                            concesionaria.IngresarNuevoCombustible();
+                        }
 
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuCombustible.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                concesionaria.IngresarNuevoCombustible();
-                            }
+                        else if (posicionActual == 1)
+                        {
+                            concesionaria.ListarCombustibles();
+                        }
 
-                            else if (posicionActual == 1)
-                            {
-                                concesionaria.ListarCombustibles();
-                            }
+                        else if (posicionActual == 2)
+                        {
+                            concesionaria.ModificarCombustible();
+                            concesionaria.actualizarCombustibles();
+                        }
 
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.ModificarCombustible();
-                                concesionaria.actualizarCombustibles();
-                            }
+                        else if (posicionActual == 3)
+                        {
+                            concesionaria.BorrarCombustible();
+                            concesionaria.actualizarCombustibles();
+                        }
 
-                            else if (posicionActual == 3)
-                            {
-                                concesionaria.BorrarCombustible();
-                                concesionaria.actualizarCombustibles();                               
-                            }
+                        break;
 
-                            break;
+                    case ConsoleKey.UpArrow:
+                        if (posicionActual == 0)
+                            posicionActual = menuCombustible.Length - 1;
+                        else
+                            posicionActual--;
+                        break;
 
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuCombustible.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
+                    case ConsoleKey.DownArrow:
+                        if (posicionActual == menuCombustible.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
+                        break;
 
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuCombustible.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
+        }
 
-            void MenuSegmentos()
-            {   // Agregar, listar, eliminar
-                string[] menuSegmento = { "Agregar Segmento", "Listar Segmentos", "Modificar Segmento", "Eliminar Segmento", "Salir" };
-                posicionActual = 0;
-                Console.CursorVisible = false;
-                bucle = false;
+        void MenuSegmentos()
+        {
+            string[] menuSegmento = { "Agregar Segmento", "Listar Segmentos", "Modificar Segmento", "Eliminar Segmento", "Salir" };
+            posicionActual = 0;
+            Console.CursorVisible = false;
+            bucle = false;
 
-                while (!bucle)
+            while (!bucle)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("-------------------------------------------");
+
+                for (int i = 0; i < menuSegmento.Length; i++)
                 {
-                    Console.Clear();
+                    if (posicionActual == i)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    Console.WriteLine(menuSegmento[i]);
                     Console.ResetColor();
-                    Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
-                    Console.WriteLine("-------------------------------------------");
+                }
 
-                    for (int i = 0; i < menuSegmento.Length; i++)
-                    {
-                        if (posicionActual == i)
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.Enter:
+                    case ConsoleKey.Spacebar:
+                        if (posicionActual == menuSegmento.Length - 1)
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(" " + (char)62 + " ");
+                            Console.WriteLine("\nSaliendo del menú de parámetros.");
+                            bucle = true;
+                            MenuParametros();
                         }
-                        Console.WriteLine(menuSegmento[i]);
-                        Console.ResetColor();
-                    }
+                        else if (posicionActual == 0)
+                        {
+                            concesionaria.CargarSegmento();
+                            concesionaria.actualizarSegmentos();
+                        }
 
-                    ConsoleKeyInfo tecla = Console.ReadKey();
-                    switch (tecla.Key)
-                    {
-                        case ConsoleKey.Enter:
-                        case ConsoleKey.Spacebar:
-                            if (posicionActual == menuSegmento.Length - 1)
-                            {
-                                Console.WriteLine("\nSaliendo del menú de parámetros.");
-                                bucle = true;
-                                MenuParametros();
-                            }
-                            else if (posicionActual == 0)
-                            {
-                                concesionaria.CargarSegmento();
-                                concesionaria.actualizarSegmentos();
-                            }
+                        else if (posicionActual == 1)
+                        {
+                            concesionaria.ListarSegmentos();
+                        }
 
-                            else if (posicionActual == 1)
-                            {
-                                concesionaria.ListarSegmentos();
-                            }
+                        else if (posicionActual == 2)
+                        {
+                            concesionaria.ModificarSegmento();
+                            concesionaria.actualizarSegmentos();
+                        }
 
-                            else if (posicionActual == 2)
-                            {
-                                concesionaria.ModificarSegmento();
-                                concesionaria.actualizarSegmentos();
-                            }
+                        else if (posicionActual == 3)
+                        {
+                            concesionaria.BorrarSegmento();
+                            concesionaria.actualizarSegmentos();
+                        }
 
-                            else if (posicionActual == 3)
-                            {
-                                concesionaria.BorrarSegmento();
-                                concesionaria.actualizarSegmentos();
-                            }
+                        break;
 
-                            break;
+                    case ConsoleKey.UpArrow:
+                        if (posicionActual == 0)
+                            posicionActual = menuSegmento.Length - 1;
+                        else
+                            posicionActual--;
+                        break;
 
-                        case ConsoleKey.UpArrow:
-                            if (posicionActual == 0)
-                                posicionActual = menuSegmento.Length - 1;
-                            else
-                                posicionActual--;
-                            break;
+                    case ConsoleKey.DownArrow:
+                        if (posicionActual == menuSegmento.Length - 1)
+                            posicionActual = 0;
+                        else
+                            posicionActual++;
+                        break;
 
-                        case ConsoleKey.DownArrow:
-                            if (posicionActual == menuSegmento.Length - 1)
-                                posicionActual = 0;
-                            else
-                                posicionActual++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Opción no válida.");
-                            break;
-                    }
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
                 }
             }
         }

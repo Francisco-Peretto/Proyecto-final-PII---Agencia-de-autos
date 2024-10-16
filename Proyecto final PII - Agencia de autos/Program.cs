@@ -10,8 +10,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
     {
         static void Main(string[] args)
         {
-            // testeo de push --- Franco 
-            
+           
             string vehiculosArchivo = "Vehiculos.txt";
             string ventasArchivo = "Ventas.txt";
             string clientesArchivo = "Clientes.txt";
@@ -65,7 +64,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             AutoCamioneta ac = new AutoCamioneta();
             Menu menu = new Menu ();
             Console.Write($"{ac.pPatente}");
-            Console.ReadKey();
             menu.MenuPrincipal();
             /*
 int opc;
