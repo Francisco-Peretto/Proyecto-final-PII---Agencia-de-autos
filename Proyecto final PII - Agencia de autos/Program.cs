@@ -10,20 +10,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
     {
         static void Main(string[] args)
         {
-            // testeo de push --- Franco 
-            
-            //string vehiculosArchivo = "Vehiculos.txt";
-            //string ventasArchivo = "Ventas.txt";
-            //string clientesArchivo = "Clientes.txt";
-            //string marcasArchivo = "Marcas.txt";
-            //string segmentosArchivo = "Segmentos.txt";
-            //string combustiblesArchivo = "Combustibles.txt";
-            //string localidadesArchivo = "Localidades.txt";
-            //string provinciasArchivo = "Provincias.txt";
-            //string motosArchivo = "Motos.txt";
-            //string autosCamionetasArchivo = "AutosCamioneta.txt";
-            //string camionesArchivo = "Camiones.txt";
-
+           
+            string vehiculosArchivo = "Vehiculos.txt";
+            string ventasArchivo = "Ventas.txt";
+            string clientesArchivo = "Clientes.txt";
+            string marcasArchivo = "Marcas.txt";
+            string segmentosArchivo = "Segmentos.txt";
+            string combustiblesArchivo = "Combustibles.txt";
+            string localidadesArchivo = "Localidades.txt";
+            string provinciasArchivo = "Provincias.txt";
+            string motosArchivo = "Motos.txt";
+            string autosCamionetasArchivo = "AutosCamioneta.txt";
+            string camionesArchivo = "Camiones.txt";
 
             Concesionaria con = new Concesionaria ();
 
@@ -54,6 +52,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             AutoCamioneta ac = new AutoCamioneta();
             Menu menu = new Menu ();
+
             menu.MenuPrincipal();
             /*
 int opc;
