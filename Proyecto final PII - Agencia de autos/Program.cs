@@ -23,7 +23,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string autosCamionetasArchivo = "AutosCamioneta.txt";
             string camionesArchivo = "Camiones.txt";
 
-
             Concesionaria con = new Concesionaria ();
 
             //con.CargarVehiculos(vehiculosArchivo);
@@ -37,33 +36,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
             //con.CargarMotos(motosArchivo);
             //con.CargarAutosCamionetas(autosCamionetasArchivo);
             //con.CargarCamiones(camionesArchivo);
-            con.CargarVehiculos(vehiculosArchivo);
+            //con.CargarVehiculos(vehiculosArchivo);
             con.CargarVentas();
             con.CargarClientes();
-            con.CargarMarcas(marcasArchivo);
-            con.CargarSegmentos(segmentosArchivo);
-            con.CargarCombustibles(combustiblesArchivo);
-            con.CargarLocalidades(localidadesArchivo);
-            con.CargarProvincias(provinciasArchivo);
+            con.CargarMarcas();
+            con.CargarSegmentos();
+            con.CargarCombustibles();
+            con.CargarLocalidades();
+            con.CargarProvincias();
             con.CargarMotos();
             con.CargarAutosCamionetas();
             con.CargarCamiones();
-            con.actualizarProvincias();
-            con.actualizarCombustibles();
-            con.actualizarLocalidades();
-            con.actualizarSegmentos();
-            con.ActualizarAutoCamioneta();
-            con.ActualizarCamiones();
-            con.ActualizarClientes();
-            con.ActualizarMarcas();
-            con.ActualizarMotos();
-            con.ActualizarVentas();
-
+            
 
 
             AutoCamioneta ac = new AutoCamioneta();
             Menu menu = new Menu ();
-            Console.Write($"{ac.pPatente}");
+
             menu.MenuPrincipal();
             /*
 int opc;
