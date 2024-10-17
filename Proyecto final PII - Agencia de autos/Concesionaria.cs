@@ -73,7 +73,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void CargarVehiculos(string nombreArchivo)
         {
     
-            if (File.Exists(nombreArchivo))
+            try
             {
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
@@ -101,10 +101,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         }
         public void CargarMotos()
         {
-            if (File.Exists("Motos.txt"))
+            try
             {
                 FileStream archivo = new FileStream("Motos.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
@@ -134,12 +146,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         } 
         public void CargarAutosCamionetas()
         {
             //AutoCamioneta autocam = new AutoCamioneta();
             
-            if (File.Exists("AutosCamioneta.txt"))
+            try
             {
 
                 FileStream archivo = new FileStream("AutosCamioneta.txt", FileMode.Open);
@@ -194,14 +218,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     */
                 }
                 reader.Close();
-                archivo.Close();
-
-              
+                archivo.Close();              
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
             }
         } 
         public void CargarCamiones()
         {
-            if (File.Exists("Camiones.txt"))
+            try
             {
                 FileStream archivo = new FileStream("Camiones.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
@@ -236,10 +270,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         } 
         public void CargarVentas()
         {
-            if (File.Exists("Ventas.txt"))
+            try
             {
                 FileStream archivo = new FileStream("Ventas.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
@@ -265,12 +311,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         }
         public void CargarClientes()
         {
-            if (File.Exists("Ventas.txt"))
+            try
             {
-                FileStream archivo = new FileStream("Ventas.txt", FileMode.Open);
+                FileStream archivo = new FileStream("Clientes.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
                 while (!reader.EndOfStream)
@@ -292,10 +350,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         }
         public void CargarMarcas()
         {
-            if (File.Exists("Marcas.txt"))
+            try
             {
                 FileStream archivo = new FileStream("Marcas.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
@@ -314,10 +384,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         } 
         public void CargarSegmentos()
         {
-            if (File.Exists("Segmentos.txt"))
+            try
             {
                 FileStream archivo = new FileStream("Segmentos.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
@@ -336,10 +418,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         }
         public void CargarCombustibles()
         {
-            if (File.Exists("Combustibles.txt"))
+            try
             {
 
                 FileStream archivo = new FileStream("Combustibles.txt", FileMode.Open);
@@ -361,10 +455,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         }
         public void CargarLocalidades()
         {
-            if (File.Exists("Localidades.txt"))
+            try
             {
 
                 FileStream archivo = new FileStream("Localidades.txt", FileMode.Open);
@@ -386,10 +492,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 archivo.Close();
                 reader.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
+            }
         }
         public void CargarProvincias()
         {
-            if (File.Exists("Provincias.txt"))
+            try
             {
 
                 FileStream archivo = new FileStream("Provincias.txt", FileMode.Open);
@@ -410,6 +528,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
                 archivo.Close();
                 reader.Close();
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Archivo no encontrado: {e.Message}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Error al parsear datos: {e.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Se ha producido un error.");
             }
         }
 

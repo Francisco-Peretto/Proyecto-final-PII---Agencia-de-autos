@@ -437,27 +437,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         }
                         else if (posicionActual == 0) // Marcas
                         {
-                            MenuMarcas(20, 3);
+                            MenuMarcas(40, 3);
                         }
 
                         else if (posicionActual == 1) // Localidades
                         {
-                            MenuLocalidades(20, 4);
+                            MenuLocalidades(40, 4);
                         }
 
                         else if (posicionActual == 2) // Provincias
                         {
-                            MenuProvincias(20, 5);
+                            MenuProvincias(40, 5);
                         }
 
                         else if (posicionActual == 3) // Combustibles
                         {
-                            MenuCombustibles(20, 6);
+                            MenuCombustibles(40, 6);
                         }
 
                         else if (posicionActual == 4) // Segmentos
                         {
-                            MenuSegmentos(20, 7);
+                            MenuSegmentos(40, 7);
                         }
 
                         break;
@@ -488,7 +488,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 for (int i = 0; i < menuMarcas.Length; i++)
                 {
-                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.SetCursorPosition(posX, posY + 2 + i);
                     Console.ResetColor();
 
                     if (posicionActual == i)
@@ -568,7 +568,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 for (int i = 0; i < menuLocalidades.Length; i++)
                 {
-                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.SetCursorPosition(posX, posY + 2 + i);
                     Console.ResetColor();
 
                     if (posicionActual == i)
@@ -648,7 +648,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 for (int i = 0; i < menuProvincias.Length; i++)
                 {
-                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.SetCursorPosition(posX, posY + 2 + i);
                     Console.ResetColor();
 
                     if (posicionActual == i)
@@ -728,7 +728,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 for (int i = 0; i < menuCombustibles.Length; i++)
                 {
-                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.SetCursorPosition(posX, posY + 2 + i);
                     Console.ResetColor();
 
                     if (posicionActual == i)
@@ -807,7 +807,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 for (int i = 0; i < menuSegmentos.Length; i++)
                 {
-                    Console.SetCursorPosition(60, posY + 2 + i);
+                    Console.SetCursorPosition(posX, posY + 2 + i);
                     Console.ResetColor();
 
                     if (posicionActual == i)
