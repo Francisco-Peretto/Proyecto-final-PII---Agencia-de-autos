@@ -27,18 +27,25 @@ namespace Proyecto_final_PII___Agencia_de_autos
         List<Moto> _listaMotos;
         List<AutoCamioneta> _listaAutoCamionetas;
         List<Camion> _listaCamiones;
+        List<AutoCamioneta> _listaAutoCamionetasDisponibles;
+        List<AutoCamioneta> _listaAutoCamionetasVendidos;
+        List<Camion> _listaCamionesDisponibles;
+        List<Camion> _listaCamionesVendidos;
+        List<Moto> _listaMotosDisponibles;
+        List<Moto> _listaMotosVendidas;
         /*
-         *  NO VERIFICAR QUE EL ID YA EXISTA
          * NO VERIFICA CUIT
-         * REVISAR TODOS LOS TRYPARSE(CUANDO CARGO UN DATO MAL NO ME DEJA VOLVER A CARGARLO, LO SALTEA)
-         * SI REALIZO LA VENTA DE UN VEHICULO, EL ID DE ESE VEHICULO NO PUEDE VOLVER A UTILIZARSE
+         * VER CLEARS <- GENA
+         * VER DOBLE CARGA <- GENA
+         * VER CAJA DE CAMION <- GENA
          * 
          */
         // constructores
         public Concesionaria(Validacion validar, List<Vehiculo> _listaVehiculos, List<Venta> _listaVentas, List<Cliente> _listaClientes,
             List<Marca> _listaMarcas, List<Segmento> _listaSegmentos, List<Combustible> _listaCombustibles,
             List<Localidad> _listaLocalidades, List<Provincia> _listaProvincias, List<Moto> _listaMotos, List<AutoCamioneta> _listaAutoCamionetas,
-            List<Camion> _listaCamiones)
+            List<Camion> _listaCamiones, List<AutoCamioneta> _listaAutoCamionetasDisponibles, List<AutoCamioneta> _listaAutoCamionetasVendidos,
+            List<Camion> _listaCamionesDisponibles, List<Camion> _listaCamionesVendidos, List<Moto> _listaMotosDisponibles, List<Moto> _listaMotosVendidas)
         {
             this.validar = new Validacion();
             this._listaVehiculos = new List<Vehiculo>();
@@ -52,6 +59,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this._listaMotos = new List<Moto>();
             this._listaAutoCamionetas = new List<AutoCamioneta>();
             this._listaCamiones = new List<Camion>();
+            this._listaAutoCamionetasDisponibles = new List<AutoCamioneta>();
+            this._listaAutoCamionetasVendidos = new List<AutoCamioneta>();
+            this._listaCamionesDisponibles = new List<Camion>();
+            this._listaCamionesVendidos = new List<Camion>();
+            this._listaMotosDisponibles = new List<Moto>();
+            this._listaMotosVendidas = new List<Moto>();
         }
         public Concesionaria()
         {
@@ -67,6 +80,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this._listaMotos = new List<Moto>();
             this._listaAutoCamionetas = new List<AutoCamioneta>();
             this._listaCamiones = new List<Camion>();
+            this._listaAutoCamionetasDisponibles = new List<AutoCamioneta>();
+            this._listaAutoCamionetasVendidos = new List<AutoCamioneta>();
+            this._listaCamionesDisponibles = new List<Camion>();
+            this._listaCamionesVendidos = new List<Camion>();
+            this._listaMotosDisponibles = new List<Moto>();
+            this._listaMotosVendidas = new List<Moto>();
         }
         //METODOS DE CARGAR LISTAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -94,8 +113,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     double precio_vta = double.Parse(split[8]);
                     string observaciones = split[9];
                     string color = split[10];
+                    bool estado = bool.Parse(split[11]);
 
-                    Vehiculo v = new Vehiculo(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color);
+                    Vehiculo v = new Vehiculo(id_vehiculo, patente, kilometros, anio, id_marca, 
+                        modelo, id_segmento, id_combustible, precio_vta, observaciones, color, estado);
                     _listaVehiculos.Add(v);
                 }
                 archivo.Close();
@@ -138,9 +159,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     string observaciones = split[9];
                     string color = split[10];
                     int cilindrada = int.Parse(split[11]);
+                    bool estado = bool.Parse(split[12]);
 
                     Moto m = new Moto(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento,
-                        id_combustible, precio_vta, observaciones, color, cilindrada);
+                        id_combustible, precio_vta, observaciones, color, cilindrada, estado);
                     _listaMotos.Add(m);
                 }
                 archivo.Close();
@@ -175,7 +197,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
           
                     AutoCamioneta ac = new AutoCamioneta(int.Parse(split[0]), split[1], double.Parse(split[2]),
                         int.Parse(split[3]), int.Parse(split[4]), split[5], int.Parse(split[6]),
-                        int.Parse(split[7]), double.Parse(split[8]), split[9], split[10]);
+                        int.Parse(split[7]), double.Parse(split[8]), split[9], split[10], bool.Parse(split[11]));
                     _listaAutoCamionetas.Add(ac);
                     /*
                     int id_vehiculo = int.Parse(split[0]);
@@ -261,10 +283,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     bool caja_carga = bool.Parse(split[11]);
                     int dimension_caja = int.Parse(split[12]);
                     int carga_max = int.Parse(split[13]);
-
+                    bool estado = bool.Parse(split[14]);
 
                     Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, 
-                        id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, carga_max);
+                        id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, 
+                        carga_max, estado);
                     _listaCamiones.Add(cam);
                 }
                 archivo.Close();
@@ -555,12 +578,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Moto mot = new Moto();
             AutoCamioneta autcam = new AutoCamioneta();
             Camion cam = new Camion();
-
+            
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
             while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
+                
                 Console.WriteLine("Error. El ID ingrsado no es valido. Presione una tecla para continuar");
                 Console.ReadKey();
                 Console.Clear();
@@ -568,12 +592,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 int.TryParse(Console.ReadLine(), out id_vehiculo);
 
             }
+
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
 
-                while (ac.pId_vehiculo == id_vehiculo)
+                while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -585,9 +610,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Moto m in this._listaMotos)
             {
-                while (m.pId_vehiculo == id_vehiculo)
+                while (m.pId_vehiculo == id_vehiculo || m.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -596,9 +621,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Camion c in this._listaCamiones)
             {
-                while (c.pId_vehiculo == id_vehiculo)
+                while (c.pId_vehiculo == id_vehiculo || c.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -738,9 +763,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
 
-                while (ac.pId_vehiculo == id_vehiculo)
+                while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -752,9 +777,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Moto m in this._listaMotos)
             {
-                while (m.pId_vehiculo == id_vehiculo)
+                while (m.pId_vehiculo == id_vehiculo || m.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -763,9 +788,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Camion c in this._listaCamiones)
             {
-                while (c.pId_vehiculo == id_vehiculo)
+                while (c.pId_vehiculo == id_vehiculo || c.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -908,9 +933,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
 
-                while (ac.pId_vehiculo == id_vehiculo)
+                while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -922,9 +947,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Moto m in this._listaMotos)
             {
-                while (m.pId_vehiculo == id_vehiculo)
+                while (m.pId_vehiculo == id_vehiculo || m.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -933,9 +958,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Camion c in this._listaCamiones)
             {
-                while (c.pId_vehiculo == id_vehiculo)
+                while (c.pId_vehiculo == id_vehiculo || c.pEstado == true)
                 {
-                    Console.WriteLine("Error. El ID ingrsado ya existe. Presione una tecla para continuar");
+                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -1015,57 +1040,82 @@ namespace Proyecto_final_PII___Agencia_de_autos
             // } while (!int.TryParse(Console.ReadLine(), out id_segmento) || id_segmento != 8);
             cam.pId_segmento = id_segmento;
 
-            string[] menuOpcionesCaja = { "SI", "NO"};
-            int posicionActual = 0;
-            Console.CursorVisible = false;
-            bool bucle = false;
-            while (!bucle)
+            string[] menumodif = { "SI", "NO" };
+            int indexmodif = 0;
+            ConsoleKeyInfo opcmodif;
+            Console.Clear();
+            Console.WriteLine("Ingrese si el camion tiene caja\n");
+            do
             {
 
-                for (int i = 0; i < menuOpcionesCaja.Length; i++)
-                {
-                    if (posicionActual == i)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Blue;
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write(" " + (char)62 + " ");
-                    }
 
-                    Console.WriteLine(menuOpcionesCaja[i]);
-                    Console.ResetColor();
-                }
-                ConsoleKeyInfo tecla = Console.ReadKey();
-                switch (tecla.Key)
+                //Fondo menu
+                for (int i = 0; i < menumodif.Length; i++)
                 {
-                    case ConsoleKey.Enter:
-                    case ConsoleKey.Spacebar:
-                        if (posicionActual == menuOpcionesCaja.Length - 1)
+
+                    if (i == indexmodif)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.Gray;
+
+                    }
+                    else
+                    {
+                        Console.ResetColor();
+                    }
+                    Console.WriteLine(menumodif[i]);
+
+
+                }
+
+                Console.ResetColor();
+                Console.Write($"\n\n\t\tPresiones ESCAPE para salir.");
+                opcmodif = Console.ReadKey();
+
+                switch (opcmodif.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        Console.Clear();
+                        if (indexmodif > 0)
                         {
-                            Console.WriteLine("\nSaliendo del programa.");
-                            bucle = true;
+                            indexmodif--;
                         }
-                        else if (posicionActual == 0)
+                        else if (indexmodif == 0)
+                        {
+                            indexmodif = 1;
+                        }
+                        break;
+                    case ConsoleKey.DownArrow:
+                        Console.Clear();
+                        if (indexmodif < (menumodif.Length - 1))
+                        {
+                            indexmodif++;
+                        }
+                        else if (indexmodif == 1)
+                        {
+                            indexmodif = 0;
+                        }
+                        break;
+                    case ConsoleKey.Enter:
+                        Console.Clear();
+                        if (menumodif[indexmodif] == "SI")
+                        {
+                            cam.pCaja_Carga = true;
+                        }
+                        else if (menumodif[indexmodif] == "NO")
                         {
                             cam.pCaja_Carga = true;
                         }
 
-                        else if (posicionActual == 1)
-                        {
-                            cam.pCaja_Carga = false;
-                        }
+
+
+                        Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
+
                 }
-            }
-
-            //    Console.Write("\nIngrese si el camion posee caja (true/false): ");
-            //if (!bool.TryParse(Console.ReadLine(), out caja_carga))
-            //{
-            //    Console.WriteLine("Error. Presione una tecla y reintente.");
-            //    Console.ReadKey();
-            //    Console.Clear();
-            //}
-            //cam.pCaja_Carga = caja_carga;
-
+            } while (opcmodif.Key != ConsoleKey.Escape);
 
             Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
             while (!int.TryParse(Console.ReadLine(), out largocaja))
@@ -1147,21 +1197,59 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarAutosCamionetas();
             Console.WriteLine("Autos y Camionetas\n");
+            
             foreach (AutoCamioneta a in this._listaAutoCamionetas)
             {
-
-                a.MostrarDatos();
+                if (a.pEstado == true)
+                {
+                    this._listaAutoCamionetasVendidos.Add(a);
+                }
+                else
+                {
+                    this._listaAutoCamionetasDisponibles.Add(a);
+                }
+        
+            }
+            foreach(AutoCamioneta acam in this._listaAutoCamionetasDisponibles)
+            {
+                acam.MostrarDatos();
             }
             Console.WriteLine("\nMotos\n");
-            foreach (Moto mot in _listaMotos)
+            foreach (Moto m in this._listaMotos)
+            {
+                if (m.pEstado == true)
+                {
+                    this._listaMotosVendidas.Add(m);
+                }
+                else
+                {
+                    this._listaMotosDisponibles.Add(m);
+                }
+
+            }
+            foreach (Moto mot in _listaMotosDisponibles)
             {
                 mot.MostrarDatos();
             }
             Console.WriteLine("\nCamiones\n");
-            foreach (Camion cam in _listaCamiones)
+            foreach (Camion c in this._listaCamiones)
+            {
+                if (c.pEstado == true)
+                {
+                    this._listaCamionesVendidos.Add(c);
+                }
+                else
+                {
+                    this._listaCamionesDisponibles.Add(c);
+                }
+
+            }
+            foreach (Camion cam in _listaCamionesDisponibles)
             {
                 cam.MostrarDatos();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         } 
         public void ActualizarAutoCamioneta()
         {
@@ -1171,10 +1259,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 wr.WriteLine($"{autcam.pId_vehiculo};{autcam.pPatente};{autcam.pKilometros};{autcam.pAnio};" +
                     $"{autcam.pId_marca};{autcam.pModelo};{autcam.pId_segmento};{autcam.pId_combustible};" +
-                    $"{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor}");
+                    $"{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor};{autcam.pEstado}");
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ActualizarMotos()
         {
@@ -1184,10 +1274,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 wr.WriteLine($"{moto.pId_vehiculo};{moto.pPatente};{moto.pKilometros};{moto.pAnio};" +
                     $"{moto.pId_marca};{moto.pModelo};{moto.pId_segmento};{moto.pId_combustible};" +
-                    $"{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor};{moto.pCilindrada}");
+                    $"{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor};{moto.pCilindrada};{moto.pEstado}");
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ActualizarCamiones()
         {
@@ -1198,10 +1290,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 wr.WriteLine($"{cam.pId_vehiculo};{cam.pPatente};{cam.pKilometros};{cam.pAnio};" +
                     $"{cam.pId_marca};{cam.pModelo};{cam.pId_segmento};{cam.pId_combustible};" +
                     $"{cam.pPrecio_vta};{cam.pObservaciones};{cam.pColor};{cam.pCaja_Carga};" +
-                    $"{cam.pDimension_caja};{cam.pCarga_max}");
+                    $"{cam.pDimension_caja};{cam.pCarga_max};{cam.pEstado}");
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BorrarVehiculo()
         {
@@ -1212,30 +1306,30 @@ namespace Proyecto_final_PII___Agencia_de_autos
             id = int.Parse(cad);
             
             
-            for (i = _listaAutoCamionetas.Count() - 1; i >= 0; i--)
+            for (i = _listaAutoCamionetasDisponibles.Count() - 1; i >= 0; i--)
             {
-                if (_listaAutoCamionetas[i].pId_vehiculo == id)
+                if (_listaAutoCamionetasDisponibles[i].pId_vehiculo == id)
                 {
                     flag = 1;
-                    _listaAutoCamionetas.RemoveAt(i);
+                    _listaAutoCamionetasDisponibles.RemoveAt(i);
                 }
 
             }
-            for (j = _listaMotos.Count() - 1; j >= 0; j--)
+            for (j = _listaMotosDisponibles.Count() - 1; j >= 0; j--)
             {
-                if (_listaMotos[j].pId_vehiculo == id)
+                if (_listaMotosDisponibles[j].pId_vehiculo == id)
                 {
                     flag = 1;
-                    _listaMotos.RemoveAt(j);
+                    _listaMotosDisponibles.RemoveAt(j);
                 }
 
             }
-            for (k = _listaCamiones.Count() - 1; k >= 0; k--)
+            for (k = _listaCamionesDisponibles.Count() - 1; k >= 0; k--)
             {
-                if (_listaCamiones[k].pId_vehiculo == id)
+                if (_listaCamionesDisponibles[k].pId_vehiculo == id)
                 {
                     flag = 1;
-                    _listaCamiones.RemoveAt(k); ;
+                    _listaCamionesDisponibles.RemoveAt(k); ;
                 }
 
             }
@@ -1268,19 +1362,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write($"El articulo con ID -{id}- fue eliminado");
             }
             */
+  
         }
         public void ModificarVehiculo()
         {
             AutoCamioneta autoCamioneta = new AutoCamioneta();
             Camion camion = new Camion();
             Moto moto = new Moto();
-            int id, flag = 0, i=_listaAutoCamionetas.Count() - 1, j= _listaMotos.Count() - 1,
-                k= _listaCamiones.Count() - 1;
+            int id, flag = 0, i=_listaAutoCamionetasDisponibles.Count() - 1, j= _listaMotosDisponibles.Count() - 1,
+                k= _listaCamionesDisponibles.Count() - 1;
             string cad;
             Console.WriteLine("Ingrese el ID del vehiculo a modificar");
             cad = Console.ReadLine();
             id = int.Parse(cad);
-            foreach(AutoCamioneta autcam in _listaAutoCamionetas)
+            foreach(AutoCamioneta autcam in _listaAutoCamionetasDisponibles)
             {
                 if(autcam.pId_vehiculo == id)
                 {
@@ -1520,7 +1615,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 
                 }
             }
-            foreach (Moto mot in _listaMotos)
+            foreach (Moto mot in _listaMotosDisponibles)
             {
                 if (mot.pId_vehiculo == id)
                 {
@@ -1782,7 +1877,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     }
                 }
             }
-            foreach (Camion cam in _listaCamiones)
+            foreach (Camion cam in _listaCamionesDisponibles)
             {
                 if (cam.pId_vehiculo == id)
                 {
@@ -2168,6 +2263,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID de la venta: ");
                 int.TryParse(Console.ReadLine(), out id_venta);
             }
+            
             foreach (Venta v in this._listaVentas)
             {
                 if (v.pId_venta == id_venta)
@@ -2191,7 +2287,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             if (opc == 1)
             {
-                foreach (AutoCamioneta gen in this._listaAutoCamionetas)
+                foreach (AutoCamioneta gen in this._listaAutoCamionetasDisponibles)
                 {
                     Console.WriteLine($"ID: {gen.pId_vehiculo} Modelo: {gen.pModelo}");
                 }
@@ -2210,7 +2306,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             else if (opc == 2)
             {
-                foreach (Moto moto in this._listaMotos)
+                foreach (Moto moto in this._listaMotosDisponibles)
                 {
                     Console.WriteLine($"ID: {moto.pId_vehiculo} Modelo: {moto.pModelo}");
                 }
@@ -2228,7 +2324,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             else if (opc == 3)
             {
-                foreach (Camion camion in this._listaCamiones)
+                foreach (Camion camion in this._listaCamionesDisponibles)
                 {
                     Console.WriteLine($"ID: {camion.pId_vehiculo} Modelo: {camion.pModelo}");
                 }
@@ -2245,7 +2341,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
 
             }
-
+            foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+            {
+                if (ac.pId_vehiculo == id_vehiculo)
+                {
+                    ac.pEstado = true;
+                }
+            }
+            foreach (Moto m in this._listaMotos)
+            {
+                if(m.pId_vehiculo == id_vehiculo)
+                {
+                    m.pEstado = true;
+                }
+            }
+            foreach (Camion c in this._listaCamiones)
+            {
+                if (c.pId_vehiculo == id_vehiculo)
+                {
+                    c.pEstado = true;
+                }
+            }
             Console.Write("\nIngrese la FECHA DE COMPRA del vehiculo: ");
             while (!DateTime.TryParse(Console.ReadLine(), out fecha_compra))
             { 
@@ -2318,6 +2434,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ModificarVenta()
         {
@@ -2637,6 +2755,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 venta.mostrarVenta();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BuscarVenta()
         {
@@ -2873,6 +2993,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BorrarCliente()
         {
@@ -2985,6 +3107,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 cliente.mostrarCliente();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BuscarCliente()
         {
@@ -3068,6 +3192,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 marca.mostrarMarca();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ModificarMarca()
         {
@@ -3108,6 +3234,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BuscarMarca()
         {
@@ -3188,6 +3316,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ModificarLocalidad()
         {
@@ -3347,6 +3477,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 loc.mostrarLocalidad();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BuscarLocalidad()
         {
@@ -3412,6 +3544,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ModificarProvincia()
         {
@@ -3490,6 +3624,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 prov.mostrarProvincia();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BuscarProvincia()
         {
@@ -3557,6 +3693,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BorrarCombustible()
         {
@@ -3594,6 +3732,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 comb.mostrarCombustible();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void ModificarCombustible()
         {
@@ -3741,6 +3881,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BorrarSegmento()
         {
@@ -3779,6 +3921,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 seg.mostrarSegmento();
             }
+            Console.Write("\n\nPresione cualquier tecla para continuar.");
+            Console.ReadKey();
         }
         public void BuscarSegmento()
         {

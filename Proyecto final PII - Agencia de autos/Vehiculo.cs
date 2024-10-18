@@ -16,10 +16,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private double precio_vta;
         private string observaciones;
         private string color;
+        private bool estado = false;
 
         public Vehiculo(int id_vehiculo, string patente, double kilometros, int anio, int id_marca,
             string modelo, int id_segmento, int id_combustible, double precio_vta, string observaciones,
-            string color)
+            string color, bool estado)
         {
             this.pId_vehiculo = id_vehiculo;
             this.pPatente = patente;
@@ -32,6 +33,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pPrecio_vta = precio_vta;
             this.pObservaciones = observaciones;
             this.pColor = color;
+            this.pEstado = estado;
         }
         public Vehiculo()
         {
@@ -46,6 +48,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pPrecio_vta = 0;
             this.pObservaciones = "";
             this.pColor = "";
+            this.pEstado = false;
         }
 
 
@@ -148,6 +151,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             set
             {
                 color = value;
+            }
+        }
+        public bool pEstado
+        {
+            get { return estado; }
+            set
+            {
+                estado = value;
             }
         }
         public virtual void MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
