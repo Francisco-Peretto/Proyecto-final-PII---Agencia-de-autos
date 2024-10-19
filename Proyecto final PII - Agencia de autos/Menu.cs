@@ -178,6 +178,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             concesionaria.IngresarAutoCamioneta();
                                             concesionaria.ActualizarAutoCamioneta();
                                             Console.Clear();
+                                            MenuPrincipal();
+                                            return;
                                         }
                                         else if (posicionActual == 1)
                                         {
@@ -185,6 +187,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             concesionaria.IngresarMoto();
                                             concesionaria.ActualizarMotos();
                                             Console.Clear();
+                                            MenuPrincipal();
+                                            return;
                                         }
                                         else if (posicionActual == 2)
                                         {
@@ -192,6 +196,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             concesionaria.IngresarCamion();
                                             concesionaria.ActualizarCamiones();
                                             Console.Clear();
+                                            MenuPrincipal();
+                                            return;
                                         }
                                         break;
 
@@ -210,25 +216,32 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ModificarVehiculo();
                             Console.Clear();
-
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 2)
                         {
                             Console.Clear();
                             concesionaria.BorrarVehiculo();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 3)
                         {
                             Console.Clear();
                             concesionaria.MostrarVehiculos();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 4)
                         {
                             Console.Clear();
                             concesionaria.BuscarVehiculo();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
                         break;
 
@@ -289,6 +302,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.CargarCliente();
                             concesionaria.ActualizarClientes();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 1)
@@ -297,6 +312,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarCliente();
                             concesionaria.ActualizarClientes();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -305,6 +322,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarCliente();
                             concesionaria.ActualizarClientes();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -312,6 +331,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarClientes();
                             Console.Clear();
+                            return;
                         }
 
                         else if (posicionActual == 4)
@@ -319,8 +339,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.BuscarCliente();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
-
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -384,6 +405,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.CargarVenta();
                             concesionaria.ActualizarVentas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 1)
@@ -392,6 +415,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarVenta();
                             concesionaria.ActualizarVentas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -400,6 +425,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarVenta();
                             concesionaria.ActualizarVentas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -407,6 +434,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarVentas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 4)
@@ -414,6 +443,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.BuscarVenta();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         break;
@@ -561,6 +592,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.IngresarMarca();
                             concesionaria.ActualizarMarcas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 1)
@@ -568,6 +601,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarMarcas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -576,6 +611,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarMarca();
                             concesionaria.ActualizarMarcas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -584,6 +621,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarMarca();
                             concesionaria.ActualizarMarcas();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         break;
@@ -656,6 +695,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarLocalidades();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -664,6 +705,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarLocalidad();
                             concesionaria.actualizarLocalidades();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -672,6 +715,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarLocalidad();
                             concesionaria.actualizarLocalidades();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         break;
@@ -744,6 +789,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarProvincias();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -752,6 +799,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarProvincia();
                             concesionaria.actualizarProvincias();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -760,6 +809,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarProvincia();
                             concesionaria.actualizarProvincias();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         break;
@@ -825,6 +876,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.IngresarNuevoCombustible();
                             concesionaria.actualizarCombustibles();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 1)
@@ -832,6 +885,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarCombustibles();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -840,6 +895,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarCombustible();
                             concesionaria.actualizarCombustibles();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -848,6 +905,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarCombustible();
                             concesionaria.actualizarCombustibles();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         break;
@@ -913,6 +972,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.CargarSegmento();
                             concesionaria.actualizarSegmentos();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 1)
@@ -920,6 +981,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.ListarSegmentos();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 2)
@@ -928,6 +991,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.ModificarSegmento();
                             concesionaria.actualizarSegmentos();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         else if (posicionActual == 3)
@@ -936,6 +1001,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             concesionaria.BorrarSegmento();
                             concesionaria.actualizarSegmentos();
                             Console.Clear();
+                            MenuPrincipal();
+                            return;
                         }
 
                         break;
