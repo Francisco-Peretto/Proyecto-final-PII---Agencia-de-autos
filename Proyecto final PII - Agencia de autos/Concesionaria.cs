@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -35,9 +36,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
         List<Moto> _listaMotosVendidas;
         /*
          * NO VERIFICA CUIT
-         * VER CLEARS <- GENA
-         * VER DOBLE CARGA <- GENA
-         * VER CAJA DE CAMION <- GENA
          * 
          */
         // constructores
@@ -163,6 +161,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                     Moto m = new Moto(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento,
                         id_combustible, precio_vta, observaciones, color, cilindrada, estado);
+
+                    if (bool.Parse(split[12]) == true)
+                    {
+                        this._listaMotosVendidas.Add(m);
+                    }
+                    else
+                    {
+                        this._listaMotosDisponibles.Add(m);
+                    }
+
+
                     _listaMotos.Add(m);
                 }
                 archivo.Close();
@@ -183,7 +192,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
         } 
         public void CargarAutosCamionetas()
         {
-            //AutoCamioneta autocam = new AutoCamioneta();
             
             try
             {
@@ -198,46 +206,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     AutoCamioneta ac = new AutoCamioneta(int.Parse(split[0]), split[1], double.Parse(split[2]),
                         int.Parse(split[3]), int.Parse(split[4]), split[5], int.Parse(split[6]),
                         int.Parse(split[7]), double.Parse(split[8]), split[9], split[10], bool.Parse(split[11]));
+
+                    if (bool.Parse(split[11]) == true)
+                    {
+                        this._listaAutoCamionetasVendidos.Add(ac);
+                    }
+                    else
+                    {
+                        this._listaAutoCamionetasDisponibles.Add(ac);
+                    }
+
                     _listaAutoCamionetas.Add(ac);
-                    /*
-                    int id_vehiculo = int.Parse(split[0]);
-                    autocam.pId_vehiculo = id_vehiculo;
-
-                    string patente = split[1];
-                    autocam.pPatente = patente;
-
-                    double kilometros = double.Parse(split[2]);
-                    autocam.pKilometros = kilometros;
-
-                    int anio = int.Parse(split[3]);
-                    autocam.pAnio = anio;
-
-                    int id_marca = int.Parse(split[4]);
-                    autocam.pId_marca = id_marca;
-
-                    string modelo = split[5];
-                    autocam.pModelo = modelo;
-
-                    int id_segmento = int.Parse(split[6]);
-                    autocam.pId_segmento = id_segmento;
-
-                    int id_combustible = int.Parse(split[7]);
-                    autocam.pId_combustible = id_combustible;
-
-                    double precio_vta = double.Parse(split[8]);
-                    autocam.pPrecio_vta = precio_vta;
-
-                    string observaciones = split[9];
-                    autocam.pObservaciones = observaciones;
-
-                    string color = split[10];
-                    autocam.pColor = color;
-
-                    _listaAutoCamionetas.Add(autocam);
-
-                    //AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color);
-                    //_listaAutoCamionetas.Add(ac);
-                    */
+                    
                 }
                 reader.Close();
                 archivo.Close();              
@@ -288,6 +268,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, 
                         id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, 
                         carga_max, estado);
+
+
+                    if (bool.Parse(split[14]) == true)
+                    {
+                        this._listaCamionesVendidos.Add(cam);
+                    }
+                    else
+                    {
+                        this._listaCamionesDisponibles.Add(cam);
+                    }
+
+                    
                     _listaCamiones.Add(cam);
                 }
                 archivo.Close();
@@ -738,6 +730,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             autcam.pColor = Console.ReadLine();
 
             _listaAutoCamionetas.Add(autcam);
+            _listaAutoCamionetasDisponibles.Add(autcam);
         }
         public void IngresarMoto()
         {
@@ -907,7 +900,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             mot.pColor = Console.ReadLine();
 
             _listaMotos.Add(mot);
-            }
+            _listaMotosDisponibles.Add(mot);
+        }
         public void IngresarCamion()
         {
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento, dimension_caja, carga_max, largocaja, anchocaja;
@@ -1040,20 +1034,38 @@ namespace Proyecto_final_PII___Agencia_de_autos
             // } while (!int.TryParse(Console.ReadLine(), out id_segmento) || id_segmento != 8);
             cam.pId_segmento = id_segmento;
 
-            string[] menumodif = { "SI", "NO" };
-            int indexmodif = 0;
-            ConsoleKeyInfo opcmodif;
-            Console.Clear();
-            Console.WriteLine("Ingrese si el camion tiene caja\n");
+            string[] menucaja = { "SI", "NO" };
+            int indexcaja = 0;
+            ConsoleKeyInfo opccaja;
+
+            Console.WriteLine("\nIngrese si el camion tiene caja 1 -> SI\t2 -> NO: ");
+            int opc = int.Parse(Console.ReadLine());
+            while(opc > 2)
+            {
+                Console.WriteLine("\nEl dato ingresado no es correcto.\nIngrese si el camion tiene caja 1 -> SI\t2 -> NO: ");
+                opc = int.Parse(Console.ReadLine());
+            }
+            if (opc == 1)
+            {
+                cam.pCaja_Carga = true;
+            }
+            else if (opc == 2)
+            {
+                cam.pCaja_Carga = false;
+            }
+
+
+
+            /*
             do
             {
 
 
                 //Fondo menu
-                for (int i = 0; i < menumodif.Length; i++)
+                for (int i = 0; i < menucaja.Length; i++)
                 {
 
-                    if (i == indexmodif)
+                    if (i == indexcaja)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.Gray;
@@ -1063,60 +1075,56 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     {
                         Console.ResetColor();
                     }
-                    Console.WriteLine(menumodif[i]);
+                    Console.WriteLine(menucaja[i]);
 
 
                 }
 
                 Console.ResetColor();
-                Console.Write($"\n\n\t\tPresiones ESCAPE para salir.");
-                opcmodif = Console.ReadKey();
+                opccaja = Console.ReadKey();
 
-                switch (opcmodif.Key)
+                switch (opccaja.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        Console.Clear();
-                        if (indexmodif > 0)
+                        if (indexcaja > 0)
                         {
-                            indexmodif--;
+                            indexcaja--;
                         }
-                        else if (indexmodif == 0)
+                        else if (indexcaja == 0)
                         {
-                            indexmodif = 1;
+                            indexcaja = 1;
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        Console.Clear();
-                        if (indexmodif < (menumodif.Length - 1))
+
+                        if (indexcaja < (menucaja.Length - 1))
                         {
-                            indexmodif++;
+                            indexcaja++;
                         }
-                        else if (indexmodif == 1)
+                        else if (indexcaja == 1)
                         {
-                            indexmodif = 0;
+                            indexcaja = 0;
                         }
                         break;
                     case ConsoleKey.Enter:
                         Console.Clear();
-                        if (menumodif[indexmodif] == "SI")
+                        if (menucaja[indexcaja] == "SI")
                         {
                             cam.pCaja_Carga = true;
+
                         }
-                        else if (menumodif[indexmodif] == "NO")
+                        else if (menucaja[indexcaja] == "NO")
                         {
                             cam.pCaja_Carga = true;
+
                         }
 
-
-
-                        Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu");
-                        Console.ReadKey();
-                        Console.Clear();
+                        Console.Write($"El camion {menucaja[indexcaja]} tiene caja.");
                         break;
-
+                        
                 }
-            } while (opcmodif.Key != ConsoleKey.Escape);
-
+            } while (opccaja.Key != ConsoleKey.Escape);
+            */
             Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
             while (!int.TryParse(Console.ReadLine(), out largocaja))
             {
@@ -1192,58 +1200,25 @@ namespace Proyecto_final_PII___Agencia_de_autos
             
 
             _listaCamiones.Add(cam);
+            _listaCamionesDisponibles.Add(cam);
         }       
         public void MostrarVehiculos()
         {
-            CargarAutosCamionetas();
             Console.WriteLine("Autos y Camionetas\n");
             
-            foreach (AutoCamioneta a in this._listaAutoCamionetas)
-            {
-                if (a.pEstado == true)
-                {
-                    this._listaAutoCamionetasVendidos.Add(a);
-                }
-                else
-                {
-                    this._listaAutoCamionetasDisponibles.Add(a);
-                }
-        
-            }
+            
             foreach(AutoCamioneta acam in this._listaAutoCamionetasDisponibles)
             {
                 acam.MostrarDatos();
             }
             Console.WriteLine("\nMotos\n");
-            foreach (Moto m in this._listaMotos)
-            {
-                if (m.pEstado == true)
-                {
-                    this._listaMotosVendidas.Add(m);
-                }
-                else
-                {
-                    this._listaMotosDisponibles.Add(m);
-                }
-
-            }
+            
             foreach (Moto mot in _listaMotosDisponibles)
             {
                 mot.MostrarDatos();
             }
             Console.WriteLine("\nCamiones\n");
-            foreach (Camion c in this._listaCamiones)
-            {
-                if (c.pEstado == true)
-                {
-                    this._listaCamionesVendidos.Add(c);
-                }
-                else
-                {
-                    this._listaCamionesDisponibles.Add(c);
-                }
 
-            }
             foreach (Camion cam in _listaCamionesDisponibles)
             {
                 cam.MostrarDatos();

@@ -33,10 +33,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         */
         public override void MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
         {
-            Console.Write($"Id Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
+            Console.Write($"\nId Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
                 $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
                 $"- Segmento: {this.pId_segmento} - Cilindrada: {this.pCilindrada} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +
-                $"- Observaciones: {this.pObservaciones} - Color: {this.pColor} ");
+                $"- Observaciones: {this.pObservaciones} - Color: {this.pColor}\n");
         }
 
         //GETTERS Y SETTERS
