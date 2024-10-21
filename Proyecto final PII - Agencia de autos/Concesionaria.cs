@@ -96,7 +96,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
-                    //validar.validarEntero(id_vehiculo);
                     int id_vehiculo = int.Parse(split[0]);
                     string patente = split[1];
                     double kilometros = double.Parse(split[2]);
@@ -199,10 +198,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
-          
-                    AutoCamioneta ac = new AutoCamioneta(int.Parse(split[0]), split[1], double.Parse(split[2]),
-                        int.Parse(split[3]), int.Parse(split[4]), split[5], int.Parse(split[6]),
-                        int.Parse(split[7]), double.Parse(split[8]), split[9], split[10], bool.Parse(split[11]));
+
+                    int id_vehiculo = int.Parse(split[0]);
+                    string patente = split[0];
+                    double kilometros = double.Parse(split[0]);
+                    int anio = int.Parse(split[0]);
+                    int id_marca = int.Parse(split[0]);
+                    string modelo = split[0];
+                    int id_segmento = int.Parse(split[0]);
+                    int id_combustible = int.Parse(split[0]);
+                    double precio_venta = double.Parse(split[0]);
+                    string observaciones = split[0];
+                    string color = split[0];
+                    bool estado = bool.Parse(split[0]);
+
+                    AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_venta, observaciones, color, estado);
 
                     if (bool.Parse(split[11]) == true)
                     {
@@ -571,56 +581,55 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
+            while (!int.TryParse(Console.ReadLine(), out id_vehiculo) || !IsIdValid(id_vehiculo)) // se podria llamar al metodo de validacion 
             {
                 
                 Console.WriteLine("Error. El ID ingrsado no es valido. Presione una tecla para continuar");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el ID del vehículo a registrar: ");
-                int.TryParse(Console.ReadLine(), out id_vehiculo);
+                int.TryParse(Console.ReadLine(), out id_vehiculo); // ya esta en el while?
 
             }
 
-            foreach (AutoCamioneta ac in this._listaAutoCamionetas)
-            {
+            //foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+            //{
 
-                while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
-                {
-                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehículo a registrar: ");
-                    int.TryParse(Console.ReadLine(), out id_vehiculo);
-                }
+            //    while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
+            //    {
+            //        Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
+            //        Console.ReadKey();
+            //        Console.Clear();
+            //        Console.Write("Ingrese el ID del vehículo a registrar: ");
+            //        int.TryParse(Console.ReadLine(), out id_vehiculo);
+            //    }
 
 
+            //}
+            //foreach (Moto m in this._listaMotos)
+            //{
+            //    while (m.pId_vehiculo == id_vehiculo || m.pEstado == true)
+            //    {
+            //        Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
+            //        Console.ReadKey();
+            //        Console.Clear();
+            //        Console.Write("Ingrese el ID del vehículo a registrar: ");
+            //        int.TryParse(Console.ReadLine(), out id_vehiculo);
+            //    }
+            //}
 
-            }
-            foreach (Moto m in this._listaMotos)
-            {
-                while (m.pId_vehiculo == id_vehiculo || m.pEstado == true)
-                {
-                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehículo a registrar: ");
-                    int.TryParse(Console.ReadLine(), out id_vehiculo);
-                }
-            }
-            foreach (Camion c in this._listaCamiones)
-            {
-                while (c.pId_vehiculo == id_vehiculo || c.pEstado == true)
-                {
-                    Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehículo a registrar: ");
-                    int.TryParse(Console.ReadLine(), out id_vehiculo);
-                }
-            }
-            
 
+            //foreach (Camion c in this._listaCamiones)
+            //{
+            //    while (c.pId_vehiculo == id_vehiculo || c.pEstado == true)
+            //    {
+            //        Console.WriteLine("Error. El ID ingrsado ya existe o ya fue vendido. Presione una tecla para continuar");
+            //        Console.ReadKey();
+            //        Console.Clear();
+            //        Console.Write("Ingrese el ID del vehículo a registrar: ");
+            //        int.TryParse(Console.ReadLine(), out id_vehiculo);
+            //    }
+            //}
             
 
             autcam.pId_vehiculo = id_vehiculo;
@@ -653,7 +662,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             autcam.pAnio = anio;
 
-            Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: ");
+            Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: "); // ID Marca
             while (!int.TryParse(Console.ReadLine(), out id_marca))
             {
                 Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
@@ -665,11 +674,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             autcam.pId_marca = id_marca;
 
-            Console.Write("\nIngrese el nombre del MODELO del vehiculo a registrar: ");
+            Console.Write("\nIngrese el nombre del MODELO del vehiculo a registrar: "); // Nombre Modelo 
             autcam.pModelo = Console.ReadLine();
             // do
             // {
-            Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
+            Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento
             while (!int.TryParse(Console.ReadLine(), out id_segmento))
             {
                 Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
@@ -687,11 +696,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID del segmento del vehiculo a registrar");
                 id_segmento = int.Parse(Console.ReadLine());
             }
-            //} while (!int.TryParse(Console.ReadLine(), out id_segmento) || id_segmento>4);
-
             autcam.pId_segmento = id_segmento;
 
-            Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: ");
+            //} while (!int.TryParse(Console.ReadLine(), out id_segmento) || id_segmento>4);
+
+            Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: "); // ID Combustible
             while (!int.TryParse(Console.ReadLine(), out id_combustible))
             {
                 Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
@@ -704,7 +713,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             autcam.pId_combustible = id_combustible;
 
 
-            Console.Write("\nIngrese el precio de venta del vehículo a registrar: "); // Precio
+            Console.Write("\nIngrese el precio de venta del vehículo a registrar: "); // Precio Venta
             while (!double.TryParse(Console.ReadLine(), out precio_vta))
             {
                 Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
@@ -728,7 +737,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             _listaAutoCamionetas.Add(autcam);
             _listaAutoCamionetasDisponibles.Add(autcam);
-        }
+        } // modificar las validaciones del resto de los ingresos con el nuevo metodo 
         public void IngresarMoto()
         {
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento, cilindrada;
@@ -750,6 +759,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 int.TryParse(Console.ReadLine(), out id_vehiculo);
 
             }
+
+            
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
 
@@ -761,10 +772,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
                     int.TryParse(Console.ReadLine(), out id_vehiculo);
                 }
-
-
-
             }
+
+
             foreach (Moto m in this._listaMotos)
             {
                 while (m.pId_vehiculo == id_vehiculo || m.pEstado == true)
@@ -776,6 +786,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int.TryParse(Console.ReadLine(), out id_vehiculo);
                 }
             }
+
+
             foreach (Camion c in this._listaCamiones)
             {
                 while (c.pId_vehiculo == id_vehiculo || c.pEstado == true)
@@ -788,6 +800,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
             }
             mot.pId_vehiculo = id_vehiculo;
+
 
             Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
             //patente = Console.ReadLine();
@@ -1199,7 +1212,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             _listaCamiones.Add(cam);
             _listaCamionesDisponibles.Add(cam);
         }       
-        public void MostrarVehiculos()
+        public void MostrarVehiculos() // muestra distintas listas de las que se cargan al inicio de la consola, por eso no muestra ningun vehiculo
         {
             Console.WriteLine("Autos y Camionetas\n");
             
@@ -2216,7 +2229,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         //VENTAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
-        public void CargarVenta()
+        public void CargarVenta() // modificar validaciones (foreach) con el mismo metodo como en los ingresos
         {
 
             int id_venta, id_cliente, id_vehiculo = 0, iva, descuento;
@@ -2225,7 +2238,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.WriteLine("****CARGA DE VENTA****\n\n");
 
 
-            Console.Write("Ingrese el ID de la Venta: ");
+            Console.Write("Ingrese el ID de la Venta: "); // automatizar? cada id es unico 
 
             while(!int.TryParse(Console.ReadLine(), out id_venta))
             {
@@ -2247,6 +2260,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int.TryParse(Console.ReadLine(), out id_venta);
                 }
             }
+
+
             Console.Write("Ingrese el ID del cliente: ");
             foreach (Cliente cl in this._listaClientes)
             {
@@ -2254,7 +2269,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             id_cliente = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("\nIngrese el tipo vehiculo que desea vender:\n\t1 auto, 2 moto, 3 camion");
+            Console.WriteLine("\nIngrese el numero del tipo vehiculo que desea vender:\n 1) Auto/Camioneta\n2) Moto\n3) Camion\n\nOpcion: ");
             int opc = int.Parse(Console.ReadLine());
 
             if (opc == 1)
@@ -3897,6 +3912,37 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         }
 
+        // VALIDACIONES
+        private bool IsIdValid(int id_vehiculo)
+        {
+            foreach (AutoCamioneta autoCamioneta in this._listaAutoCamionetas)
+            {
+                if (autoCamioneta.pId_vehiculo == id_vehiculo || autoCamioneta.pEstado == true)
+                {
+                    return false;
+                }
+            }
+
+            foreach (Moto moto in this._listaMotos)
+            {
+                if (moto.pId_vehiculo == id_vehiculo || moto.pEstado == true)
+                {
+                    return false;
+                }
+            }
+
+            foreach (Camion camion in this._listaCamiones)
+            {
+                if (camion.pId_vehiculo == id_vehiculo || camion.pEstado == true)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        //private bool IsPatenteValid (s)
     }
 }
 

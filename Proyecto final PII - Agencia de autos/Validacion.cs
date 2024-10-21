@@ -9,8 +9,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
 {
     internal class Validacion
     {
+        public Validacion() 
+        {
 
-        public Validacion() { }
+        }
 
         public DateTime validarFecha(string fecha)
         {
@@ -52,6 +54,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 return FechaValida;
             }
         }
+
         public int validarEntero(string entero)
         {
             int enteroparse;
@@ -64,6 +67,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             return enteroparse;
         }
+
         public double validarDouble(string doble)
         {
             double dobleparse;
