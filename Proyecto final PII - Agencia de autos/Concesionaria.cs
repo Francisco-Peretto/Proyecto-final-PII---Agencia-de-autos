@@ -109,8 +109,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     string color = split[10];
                     bool estado = bool.Parse(split[11]);
 
-                    Vehiculo v = new Vehiculo(id_vehiculo, patente, kilometros, anio, id_marca, 
-                        modelo, id_segmento, id_combustible, precio_vta, observaciones, color, estado);
+                    Vehiculo v = new Vehiculo(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, observaciones, color, estado);
+                    
+                    //if (v.pEstado == true )
+                    //{
+                    //    _listaAutoCamionetasVendidos.Add(v);
+                    //}
+                    //else
+                    //{
+                    //    _listaAutoCamionetasDisponibles.Add(v);
+                    //}
                     _listaVehiculos.Add(v);
                 }
                 archivo.Close();
@@ -581,16 +589,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
-            while (!int.TryParse(Console.ReadLine(), out id_vehiculo) || !IsIdValid(id_vehiculo)) // se podria llamar al metodo de validacion 
+            while (!int.TryParse(Console.ReadLine(), out id_vehiculo) || !IsIdValid(id_vehiculo)) // se podria llamar al metodo de validacion - ya esta
             {
                 
-                Console.WriteLine("Error. El ID ingrsado no es valido. Presione una tecla para continuar");
+                Console.WriteLine("Error. El ID ingresado no es valido. Presione una tecla para continuar");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el ID del vehículo a registrar: ");
                 int.TryParse(Console.ReadLine(), out id_vehiculo); // ya esta en el while?
 
             }
+            autcam.pId_vehiculo = id_vehiculo;
 
             //foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             //{
@@ -630,14 +639,31 @@ namespace Proyecto_final_PII___Agencia_de_autos
             //        int.TryParse(Console.ReadLine(), out id_vehiculo);
             //    }
             //}
-            
 
-            autcam.pId_vehiculo = id_vehiculo;
 
-            Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
-            //patente = Console.ReadLine();
-            autcam.pPatente = Console.ReadLine();
-            
+
+            // Ingreso de patente 
+            //bool bucle = false;
+            do
+            {
+                Console.Write("\nIngrese la PATENTE del vehículo a registrar (AAA000 / AA000AA): "); // Patente
+                string patente = Console.ReadLine();
+
+                if (IsPatenteUnique(patente))
+                {
+                    autcam.pPatente = patente;
+                    //bucle = false;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Error. La Patente ingresada ya existe. Ingrese una patente diferente.");
+                }
+
+            } while (true);
+
+
+            // Ingreso de los Kilometros
             Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
             while (!double.TryParse(Console.ReadLine(), out kilometros))
             {
@@ -1216,6 +1242,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             Console.WriteLine("Autos y Camionetas\n");
             
+            foreach (Vehiculo vehiculo in _listaVehiculos)
+            {
+                vehiculo.MostrarDatos();
+            }
             
             foreach(AutoCamioneta acam in this._listaAutoCamionetasDisponibles)
             {
@@ -3942,7 +3972,44 @@ namespace Proyecto_final_PII___Agencia_de_autos
             return true;
         }
 
-        //private bool IsPatenteValid (s)
+        public bool IsPatenteUnique (string patente)
+        {
+            //asegura que la patente sea unica
+            foreach (Vehiculo vehiculo in _listaVehiculos)
+            {
+                if (vehiculo.pPatente == patente)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            //foreach (AutoCamioneta autocam in _listaAutoCamionetas)
+            //{
+            //    if (autocam.pPatente == patente)
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            //foreach (Moto moto in _listaMotos)
+            //{
+            //    if (moto.pPatente == patente)
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            //foreach (Camion camion in _listaCamiones)
+            //{
+            //    if (camion.pPatente == patente)
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            return true;
+        }
     }
 }
 
