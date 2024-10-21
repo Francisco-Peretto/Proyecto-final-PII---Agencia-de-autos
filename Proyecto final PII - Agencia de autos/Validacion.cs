@@ -8,8 +8,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
 {
     internal class Validacion
     {
+        Concesionaria concesionaria;
+        public Validacion() 
+        {
 
-        public Validacion() { }
+        }
+
+       
 
         public DateTime validarFecha(string fecha)
         {
