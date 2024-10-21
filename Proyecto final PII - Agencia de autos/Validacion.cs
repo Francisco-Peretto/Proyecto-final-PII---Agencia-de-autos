@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -76,6 +77,75 @@ namespace Proyecto_final_PII___Agencia_de_autos
             return dobleparse;
         }
 
+        public long validarCuit()
+        {
+            int prefijo;
+            string  dni, sexo;
+            while (true)
+            {
+                Console.Write("Ingrese el DNI o CI de empresa sin puntos: ");
+                dni = Console.ReadLine();
 
+                if (dni.Length == 8 && int.TryParse(dni, out _))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("El DNI o CI debe tener exactamente 8 digitos numericos. Intente nuevamente.");
+                    Console.WriteLine("Presione cualquiera tecla para continuar...");
+                    Console.ReadKey();
+                }
+            }
+
+            while (true)
+            {
+                Console.Write("Ingrese si es hombre, mujer o empresa: ");
+                sexo = Console.ReadLine().ToLower();
+                Console.Clear();
+
+                if (sexo == "hombre" || sexo == "mujer" || sexo == "empresa")
+                {
+                    switch (sexo)
+                    {
+                        case "hombre":
+                            prefijo = 20;
+                            break;
+                        case "mujer":
+                            prefijo = 27;
+                            break;
+                        case "empresa":
+                            prefijo = 30;
+                            break;
+                        default:
+                            prefijo = 0;
+                            break;
+                    }
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Sexo Invalido. Debe de ser 'hombre', 'mujer', 'empresa'. Intente nuevamente.");
+                    Console.WriteLine("Presione cualquiera tecla para continuar...");
+                    Console.ReadKey();
+                }
+            }
+
+            string cuilBase = prefijo.ToString() + dni;
+            int[] multiplicadores = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+            int suma = 0;
+
+            for (int i = 0; i < cuilBase.Length; i++)
+            {
+                suma = suma + int.Parse(cuilBase[i].ToString()) * multiplicadores[i];
+            }
+
+            int z = suma / 11;
+            int resto = suma - (z * 11);
+            int digitoVerificador = 11 - resto;
+            return long.Parse(prefijo + dni + digitoVerificador);
+        }
     }
 }

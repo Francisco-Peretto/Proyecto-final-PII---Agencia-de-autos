@@ -34,10 +34,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         List<Camion> _listaCamionesVendidos;
         List<Moto> _listaMotosDisponibles;
         List<Moto> _listaMotosVendidas;
-        /*
-         * NO VERIFICA CUIT
-         * 
-         */
+
         // constructores
         public Concesionaria(Validacion validar, List<Vehiculo> _listaVehiculos, List<Venta> _listaVentas, List<Cliente> _listaClientes,
             List<Marca> _listaMarcas, List<Segmento> _listaSegmentos, List<Combustible> _listaCombustibles,
@@ -2851,16 +2848,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     long cuitmodif;
                                     Console.Clear();
-                                    Console.WriteLine($"Ingrese el CUIT del Cliente que modficara el actual -{cliente.pCuit}-: ");
-                                    while (!long.TryParse(Console.ReadLine(), out cuitmodif))
-                                    {
-                                        Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
-                                        Console.ReadKey();
-                                        Console.Clear();
-                                        Console.Write($"Ingrese el ID que modficara el actual -{cliente.pCuit}-: ");
-                                        long.TryParse(Console.ReadLine(), out cuitmodif);
-
-                                    }
+                                    Console.WriteLine($"El CUIT actual del cliente -{cliente.pCuit}- será modificado: ");
+                                    cuitmodif = validar.validarCuit();
                                     cliente.pCuit = cuitmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2998,12 +2987,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void CargarCliente()
         {
-            int id_cliente, id_localidad, prefijo;
-            string cliente, correo, domicilio, dni, sexo;
-            long cuit, telefono;
+            int id_cliente, id_localidad;
+            string cliente, correo, domicilio;
+            long telefono, cuit;
 
             Console.WriteLine("****CARGA DE CLIENTE****\n\n");
-
 
             Console.Write("Ingrese el ID del Cliente: ");
             while (!int.TryParse(Console.ReadLine(), out id_cliente))
@@ -3029,71 +3017,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.Write("\nIngrese la Razon Social: ");
             cliente = Console.ReadLine();
 
-            while (true)
-            {
-                Console.Write("Ingrese el DNI o CI de empresa sin puntos: ");
-                dni = Console.ReadLine();
-
-                if (dni.Length == 8 && int.TryParse(dni, out _))
-                {
-                    break;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("El DNI o CI debe tener exactamente 8 digitos numericos. Intente nuevamente.");
-                    Console.WriteLine("Presione cualquiera tecla para continuar...");
-                    Console.ReadKey();
-                }
-            }
-
-            while (true)
-            {
-                Console.Write("Ingrese si es hombre, mujer o empresa: ");
-                sexo = Console.ReadLine().ToLower();
-                Console.Clear();
-
-                if (sexo == "hombre" || sexo == "mujer" || sexo == "empresa")
-                {
-                    switch (sexo)
-                    {
-                        case "hombre":
-                            prefijo = 20;
-                            break;
-                        case "mujer":
-                            prefijo = 27;
-                            break;
-                        case "empresa":
-                            prefijo = 30;
-                            break;
-                        default:
-                            prefijo = 0;
-                            break;
-                    }
-                    break;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Sexo Invalido. Debe de ser 'hombre', 'mujer', 'empresa'. Intente nuevamente.");
-                    Console.WriteLine("Presione cualquiera tecla para continuar...");
-                    Console.ReadKey();
-                }
-            }
-
-            string cuilBase = prefijo.ToString() + dni;
-            int[] multiplicadores = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
-            int suma = 0;
-
-            for (int i = 0; i < cuilBase.Length; i++)
-            {
-                suma = suma + int.Parse(cuilBase[i].ToString()) * multiplicadores[i];
-            }
-
-            int z = suma / 11;
-            int resto = suma - (z * 11);
-            int digitoVerificador = 11 - resto;
-            cuit = long.Parse(prefijo + dni + digitoVerificador);
+            cuit = validar.validarCuit();
 
             Console.Write("\nIngrese el Domicilio: ");
             domicilio = Console.ReadLine();
