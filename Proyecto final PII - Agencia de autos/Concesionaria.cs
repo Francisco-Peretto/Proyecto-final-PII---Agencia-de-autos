@@ -2815,47 +2815,41 @@ namespace Proyecto_final_PII___Agencia_de_autos
         //----------------------------------------------------------------------------------------------------------------------
         public void ModificarCliente()
         {
-            Cliente cliente = new Cliente();
+            CargarClientes();
             int id, flag = 0;
             string cad;
             Console.WriteLine("Ingrese el ID del cliente a modificar");
             cad = Console.ReadLine();
             id = int.Parse(cad);
+
             foreach (Cliente cl in this._listaClientes)
             {
                 if (cl.pId_cliente == id)
                 {
                     string[] menumodif = { "Razon social", "CUIT", "Domicilio", "ID Localidad",
-                    "Telefono", "Correo"};
+                "Telefono", "Correo"};
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
                     Console.WriteLine("Ingrese el dato que desea modificar\n");
                     do
                     {
-
-
-                        //Fondo menu
                         for (int i = 0; i < menumodif.Length; i++)
                         {
-
                             if (i == indexmodif)
                             {
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 Console.BackgroundColor = ConsoleColor.Gray;
-
                             }
                             else
                             {
                                 Console.ResetColor();
                             }
                             Console.WriteLine(menumodif[i]);
-
-
                         }
 
                         Console.ResetColor();
-                        Console.Write($"\n\n\t\tPresiones ESCAPE para salir.");
+                        Console.Write($"\n\n\t\tPresione ESCAPE para salir.");
                         opcmodif = Console.ReadKey();
 
                         switch (opcmodif.Key)
@@ -2887,113 +2881,95 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 if (menumodif[indexmodif] == "Razon social")
                                 {
                                     Console.Clear();
-                                    Console.WriteLine($"Ingrese la razon social que modficara la actual -{cliente.pCliente}");
-                                    cliente.pCliente = Console.ReadLine();
+                                    Console.WriteLine($"Ingrese la razon social que modificará la actual -{cl.pCliente}-:");
+                                    cl.pCliente = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
                                 else if (menumodif[indexmodif] == "CUIT")
                                 {
                                     long cuitmodif;
                                     Console.Clear();
-                                    Console.WriteLine($"El CUIT actual del cliente -{cliente.pCuit}- será modificado: ");
+                                    Console.WriteLine($"El CUIT actual del cliente -{cl.pCuit}- será modificado:");
                                     cuitmodif = validar.validarCuit();
-                                    cliente.pCuit = cuitmodif;
+                                    cl.pCuit = cuitmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
                                 else if (menumodif[indexmodif] == "Domicilio")
                                 {
-
                                     Console.Clear();
-                                    Console.WriteLine($"Ingrese la direccion que modficara la actual -{cliente.pDomicilio}-: ");
-                                    cliente.pDomicilio = Console.ReadLine();
+                                    Console.WriteLine($"Ingrese la dirección que modificará la actual -{cl.pDomicilio}-:");
+                                    cl.pDomicilio = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
-
                                 }
                                 else if (menumodif[indexmodif] == "ID Localidad")
                                 {
                                     int localmodif;
                                     Console.Clear();
-                                    foreach(Localidad loc in this._listaLocalidades)
+                                    foreach (Localidad loc in this._listaLocalidades)
                                     {
                                         Console.WriteLine($"\t{loc.pId_localidad} -> {loc.pLocalidad}");
                                     }
-                                    Console.WriteLine($"Ingrese la el ID de localidad que modficara el actual -{cliente.pId_localidad}-: ");
+                                    Console.WriteLine($"Ingrese el ID de localidad que modificará el actual -{cl.pId_localidad}-:");
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out localmodif))
                                     {
-                                        Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                                         Console.ReadKey();
                                         Console.Clear();
-                                        Console.Write($"Ingrese el ID que modficara el actual -{cliente.pId_localidad}-: ");
-                                        int.TryParse(Console.ReadLine(), out localmodif);
-
+                                        Console.Write($"Ingrese el ID que modificará el actual -{cl.pId_localidad}-:");
                                     }
-                                    cliente.pId_localidad = localmodif;
+                                    cl.pId_localidad = localmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
-
                                 }
                                 else if (menumodif[indexmodif] == "Telefono")
                                 {
                                     long telmodif;
                                     Console.Clear();
-                                    Console.WriteLine($"Ingrese el telefono que modificara el actual -{cliente.pTelefono}-: ");
+                                    Console.WriteLine($"Ingrese el teléfono que modificará el actual -{cl.pTelefono}-:");
                                     cad = Console.ReadLine();
                                     while (!long.TryParse(Console.ReadLine(), out telmodif))
                                     {
-                                        Console.WriteLine("Error. El dato ingrsado no es valido. Presione una tecla para continuar");
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                                         Console.ReadKey();
                                         Console.Clear();
-                                        Console.Write($"Ingrese el ID que modficara el actual -{cliente.pTelefono}-: ");
-                                        long.TryParse(Console.ReadLine(), out telmodif);
-
+                                        Console.Write($"Ingrese el teléfono que modificará el actual -{cl.pTelefono}-:");
                                     }
-                                    cliente.pTelefono = telmodif;
+                                    cl.pTelefono = telmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
-
                                 }
                                 else if (menumodif[indexmodif] == "Correo")
                                 {
                                     Console.Clear();
-                                    Console.WriteLine($"Ingrese el Correo que modificara el actual -{cliente.pCorreo}-: ");
-                                    cliente.pCorreo = Console.ReadLine();
+                                    Console.WriteLine($"Ingrese el correo que modificará el actual -{cl.pCorreo}-:");
+                                    cl.pCorreo = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
-
                                 }
 
-
-                                Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu");
+                                Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menú.");
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
-
                         }
                     } while (opcmodif.Key != ConsoleKey.Escape);
 
-                }
-                else
-                {
-                    flag = 1;
+                    ActualizarClientes();
+                    return;
                 }
             }
+
             if (flag == 1)
             {
                 Console.Clear();
                 Console.Write($"La ID -{id}- no existe en la lista de Clientes.");
             }
-
         }
+
         public void ActualizarClientes()
         {
             arch = new FileStream("Clientes.txt", FileMode.Create);
