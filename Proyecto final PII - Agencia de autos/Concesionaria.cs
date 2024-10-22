@@ -1204,6 +1204,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }       
         public void MostrarVehiculos()
         {
+            CargarAutosCamionetas();
+            CargarCamiones();
+            CargarMotos();
+
             Console.WriteLine("Autos y Camionetas\n");
             
             
