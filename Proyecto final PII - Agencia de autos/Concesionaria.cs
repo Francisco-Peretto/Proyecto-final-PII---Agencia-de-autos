@@ -358,6 +358,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
+                _listaClientes.Clear();
                 FileStream archivo = new FileStream("Clientes.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -2818,7 +2819,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarClientes();
             int id, flag = 0;
             string cad;
-            Console.WriteLine("Ingrese el ID del cliente a modificar");
+            Console.Write("Ingrese el ID del cliente a modificar: ");
             cad = Console.ReadLine();
             id = int.Parse(cad);
 
@@ -2958,7 +2959,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         }
                     } while (opcmodif.Key != ConsoleKey.Escape);
 
-                    ActualizarClientes();
+
                     return;
                 }
             }
