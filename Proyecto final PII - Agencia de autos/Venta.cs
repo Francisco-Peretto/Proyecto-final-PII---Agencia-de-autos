@@ -44,7 +44,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarVenta()
         {
-            Console.Write($"ID Cliente:{this.pId_cliente} - ID Vehiculo: {this.pId_vehiculo} - Fecha de compra: {this.pFecha_compra} " +
+            Console.WriteLine($"ID Cliente:{this.pId_cliente} - ID Vehiculo: {this.pId_vehiculo} - Fecha de compra: {this.pFecha_compra} " +
                 $"- Fecha de entrega: {this.pFecha_entrega} - Subtotal: {this.pSubtotal} - IVA: {this.pIva}% - Descuento: {this.pDescuento}% " +
                 $"- Total: {this.pTotal}");
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -89,6 +90,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
     
             try
             {
+                _listaVehiculos.Clear();
                 FileStream archivo = new FileStream(nombreArchivo, FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
                 
@@ -141,6 +143,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
+                _listaMotos.Clear();
                 FileStream archivo = new FileStream("Motos.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -199,7 +202,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             
             try
             {
-
+                _listaAutoCamionetas.Clear();
                 FileStream archivo = new FileStream("AutosCamioneta.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
                 while (reader.EndOfStream == false)
@@ -254,6 +257,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
+                _listaCamiones.Clear();
                 FileStream archivo = new FileStream("Camiones.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -317,6 +321,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
+                _listaVentas.Clear();
                 FileStream archivo = new FileStream("Ventas.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -398,6 +403,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
+                _listaMarcas.Clear();
                 FileStream archivo = new FileStream("Marcas.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -432,6 +438,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
+                _listaSegmentos.Clear();
                 FileStream archivo = new FileStream("Segmentos.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -466,7 +473,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
-
+                _listaCombustibles.Clear();
                 FileStream archivo = new FileStream("Combustibles.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -503,7 +510,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
-
+                _listaLocalidades.Clear();
                 FileStream archivo = new FileStream("Localidades.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -540,7 +547,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             try
             {
-
+                _listaProvincias.Clear();
                 FileStream archivo = new FileStream("Provincias.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 

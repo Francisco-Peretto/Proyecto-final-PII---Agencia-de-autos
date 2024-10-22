@@ -25,7 +25,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarSegmento()
         {
-            Console.Write($"ID Segmento:{this.pIdSegmento} - {this.pSegmento}");
+            Console.WriteLine($"ID Segmento:{this.pIdSegmento} - {this.pSegmento}");
         }
         // prop publicas
         public int pIdSegmento

@@ -32,7 +32,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public override void MostrarDatos()
         {
 
-            Console.Write($"\nId Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
+            Console.WriteLine($"\nId Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
                 $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
                 $"- Segmento: {this.pId_segmento} - Caja de carga: {this.pCaja_Carga} - Dimensión de caja: {this.pDimension_caja} -" +
                 $" Carga máxima: {this.pCarga_max} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +

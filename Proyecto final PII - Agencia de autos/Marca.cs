@@ -24,7 +24,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarMarca()
         {
-            Console.Write($"ID Marca:{this.pId_marca} - {this.pMarca}");
+            Console.WriteLine($"ID Marca:{this.pId_marca} - {this.pMarca}");
         }
         //GETTERS Y SETTERS
         public int pId_marca

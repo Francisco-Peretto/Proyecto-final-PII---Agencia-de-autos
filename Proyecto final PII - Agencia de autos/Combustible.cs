@@ -27,7 +27,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarCombustible()
         {
-            Console.Write($"ID Combustible:{this.pIdCombustible} - {this.pCombustible}");
+            Console.WriteLine($"ID Combustible:{this.pIdCombustible} - {this.pCombustible}");
         }
         // prop publicas
         public int pIdCombustible

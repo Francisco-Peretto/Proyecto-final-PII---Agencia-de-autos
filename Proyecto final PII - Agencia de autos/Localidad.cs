@@ -27,7 +27,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarLocalidad()
         {
-            Console.Write($"ID Provincia: {this.pId_provincia} - ID Localidad:{this.pId_localidad} - {this.pLocalidad} ");
+            Console.WriteLine($"ID Provincia: {this.pId_provincia} - ID Localidad:{this.pId_localidad} - {this.pLocalidad} ");
         }
 
         //GETTERS Y WSETTERS
