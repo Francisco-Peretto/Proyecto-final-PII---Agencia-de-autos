@@ -2167,40 +2167,49 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarVehiculo()
         {
+            CargarAutosCamionetas();
+            CargarMotos();
+            CargarCamiones();
             string patente;
-            Console.WriteLine("Ingrese la PATENTE del vehiculo que desea buscar: ");
-            patente = Console.ReadLine();
-            foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+            bool encontrado = false;
+
+            do
             {
-                if(patente == ac.pPatente)
+                Console.Write("Ingrese la PATENTE del vehiculo que desea buscar: ");
+                patente = Console.ReadLine();
+                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
                 {
-                    Console.WriteLine($"Id Vehículo: {ac.pId_vehiculo} - Patente: {ac.pPatente} - Kilómetros: {ac.pKilometros} " +
-                    $"- Año: {ac.pAnio} - Marca: {ac.pId_marca} - modelo: {ac.pModelo} " +
-                    $"- Segmento: {ac.pId_segmento} - combustible: {ac.pId_combustible} - Precio de venta: {ac.pPrecio_vta} " +
-                    $"- Observaciones: {ac.pObservaciones} - Color: {ac.pColor}");
+                    if (patente == ac.pPatente)
+                    {
+                        ac.MostrarDatos();
+                        encontrado = true;
+                    }
+                }
+                foreach (Moto m in this._listaMotos)
+                {
+                    if (patente == m.pPatente)
+                    {
+                        m.MostrarDatos();
+                        encontrado = true;
+                    }
+                }
+                foreach (Camion c in this._listaCamiones)
+                {
+                    if (patente == c.pPatente)
+                    {
+                        c.MostrarDatos();
+                        encontrado = true;
+                    }
+                }
+                if (!encontrado)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Error en el ingreso. Patente no encontrada.");
                 }
             }
-            foreach (Moto m in this._listaMotos)
-            {
-                if (patente == m.pPatente)
-                {
-                    Console.WriteLine($"Id Vehículo: {m.pId_vehiculo} - Patente: {m.pPatente} - Kilómetros: {m.pKilometros} " +
-                $"- Año: {m.pAnio} - Marca: {m.pId_marca} - modelo: {m.pModelo} " +
-                $"- Segmento: {m.pId_segmento} - Cilindrada: {m.pCilindrada} - combustible: {m.pId_combustible} - Precio de venta: {m.pPrecio_vta} " +
-                $"- Observaciones: {m.pObservaciones} - Color: {m.pColor}");
-                }
-            }
-            foreach (Camion c in this._listaCamiones)
-            {
-                if (patente == c.pPatente)
-                {
-                    Console.WriteLine($"Id Vehículo: {c.pId_vehiculo} - Patente: {c.pPatente} - Kilómetros: {c.pKilometros} " +
-                $"- Año: {c.pAnio} - Marca: {c.pId_marca} - modelo: {c.pModelo} " +
-                $"- Segmento: {c.pId_segmento} - Caja de carga: {c.pCaja_Carga} - Dimensión de caja: {c.pDimension_caja} -" +
-                $" Carga máxima: {c.pCarga_max} - combustible: {c.pId_combustible} - Precio de venta: {c.pPrecio_vta} " +
-                $"- Observaciones: {c.pObservaciones} - Color: {c.pColor}");
-                }
-            }
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadKey();
         }
 
         //VENTAS----------------------------------------------------------------------------------------------------------------
@@ -2620,34 +2629,41 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarVenta()
         {
+            CargarClientes();
+            CargarVentas();
             int idc;
-            
+            bool encontrado = false;
 
-            
             foreach(Cliente c in this._listaClientes)
             {
                 Console.WriteLine($"{c.pId_cliente} -> {c.pCliente}");
             }
-            
-            Console.Write("Ingrese el ID del cliente que desea ver sus ventas: ");
-            while (!int.TryParse(Console.ReadLine(), out idc))
+
+            do
             {
-                Console.Write("El ID ingresado no corresponde a un cliente.\nIngrese un nuevo ID:");
-                int.TryParse(Console.ReadLine(), out idc);
-            }
-            Console.WriteLine($"Las ventas realizadas al cliente {idc} son: ");
-                foreach (Venta v in this._listaVentas)
+                Console.Write("Ingrese el ID del cliente que desea ver sus ventas: ");
+                while (!int.TryParse(Console.ReadLine(), out idc))
                 {
-                    if (v.pId_cliente == idc)
-                    {
-                        Console.WriteLine($"ID Cliente:{v.pId_cliente} - ID Vehiculo: {v.pId_vehiculo} - Fecha de compra: {v.pFecha_compra} " +
-                        $"- Fecha de entrega: {v.pFecha_entrega} - Subtotal: {v.pSubtotal} - IVA: {v.pIva}% - Descuento: {v.pDescuento}% " +
-                        $"- Total: {v.pTotal}");
-
-                    }
+                    Console.Write("El ID ingresado no corresponde a un cliente.\nIngrese un nuevo ID:");
                 }
-            
-
+                Console.WriteLine($"Las ventas realizadas al cliente {idc} son: ");
+                    foreach (Venta v in this._listaVentas)
+                    {
+                        if (v.pId_cliente == idc)
+                        {
+                        v.mostrarVenta();
+                        encontrado = true;
+                        }
+                    }
+                if (!encontrado)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Error en el ingreso. Venta/s no encontrada/s.");
+                }
+            }
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadKey();
         }
 
         //CLIENTE----------------------------------------------------------------------------------------------------------------
@@ -2930,22 +2946,34 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarCliente()
         {
+            CargarClientes();
             string cad;
+            bool encontrado = false;
 
-            Console.Write("Ingrese la Razon Social del cliente: ");
-            cad = Console.ReadLine().ToLower();
-            
-            foreach (Cliente c in this._listaClientes)
+            do
             {
-                if (c.pCliente.ToLower() == cad)
-                {
-                    Console.WriteLine($"ID Cliente:{c.pId_cliente} - Razon Social: {c.pCliente} - CUIT: {c.pCuit} - Domicilio: {c.pDomicilio} - " +
-                $"ID Localidad: {c.pId_localidad} - Telefono: {c.pTelefono} - Correo: {c.pCorreo}");
+                Console.Write("Ingrese la Razon Social del cliente: ");
+                cad = Console.ReadLine().ToLower();
 
+                foreach (Cliente c in this._listaClientes)
+                {
+                    if (c.pCliente.ToLower() == cad)
+                    {
+                        c.mostrarCliente();
+                        encontrado  = true;
+                    }
+                }
+                if (!encontrado)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Error en el ingreso. Cliente no encontrado.");
                 }
             }
-            
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadKey();
         }
+
         //MARCAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
         public void IngresarMarca()
@@ -3126,21 +3154,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarMarca()
         {
-
+            CargarMarcas();
             string cad;
+            bool encontrado = false;
 
-            Console.Write("Ingrese el nombre de la Marca: ");
-            cad = Console.ReadLine().ToLower();
-            
-            foreach (Marca m in this._listaMarcas)
+            do
             {
-                if (m.pMarca.ToLower() == cad)
-                {
-                    Console.WriteLine($"ID Marca: {m.pId_marca} --> {m.pMarca}");
+                Console.Write("Ingrese el nombre de la Marca: ");
+                cad = Console.ReadLine().ToLower();
 
+                foreach (Marca m in this._listaMarcas)
+                {
+                    if (m.pMarca.ToLower() == cad)
+                    {
+                        m.mostrarMarca();
+                        encontrado = true;
+                    }
                 }
             }
-            
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadLine();
         }
 
         //LOCALIDADES----------------------------------------------------------------------------------------------------------------
@@ -3344,21 +3378,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarLocalidad()
         {
-
+            CargarLocalidades();
             string cad;
+            bool encontrado = false;
 
-            Console.Write("Ingrese el nombre de la Localidad: ");
-            cad = Console.ReadLine().ToLower();
-
-            foreach (Localidad l in this._listaLocalidades)
+            do
             {
-                if (l.pLocalidad.ToLower() == cad)
-                {
-                    Console.WriteLine($"ID Localidad: {l.pId_localidad} ---> {l.pLocalidad} - ID Provincia: {l.pId_provincia}");
+                Console.Write("Ingrese el nombre de la Localidad: ");
+                cad = Console.ReadLine().ToLower();
 
+                foreach (Localidad l in this._listaLocalidades)
+                {
+                    if (l.pLocalidad.ToLower() == cad)
+                    {
+                        l.mostrarLocalidad();
+                        encontrado  = true;
+                    }
                 }
             }
-
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadLine();
         }
 
         //PROVINCIAS----------------------------------------------------------------------------------------------------------------
@@ -3548,21 +3588,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarProvincia()
         {
-
+            BuscarProvincia();
             string cad;
+            bool encontrado = false;
 
-            Console.Write("Ingrese el nombre de la Provincia: ");
-            cad = Console.ReadLine().ToLower();
-
-            foreach (Provincia p in this._listaProvincias)
+            do
             {
-                if (p.pProvincia.ToLower() == cad)
-                {
-                    Console.WriteLine($"ID Provincia: {p.pId_provincia} ---> {p.pProvincia}");
+                Console.Write("Ingrese el nombre de la Provincia: ");
+                cad = Console.ReadLine().ToLower();
 
+                foreach (Provincia p in this._listaProvincias)
+                {
+                    if (p.pProvincia.ToLower() == cad)
+                    {
+                        p.mostrarProvincia();
+                        encontrado  = true;
+                    }
                 }
             }
-
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadLine();
         }
 
         //COMBUSTIBLES----------------------------------------------------------------------------------------------------------------
@@ -3753,21 +3799,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarCombustible()
         {
-
+            CargarCombustibles();
             string cad;
+            bool encontrado = false;
 
-            Console.Write("Ingrese el nombre del Combustible: ");
-            cad = Console.ReadLine().ToLower();
-
-            foreach (Combustible c in this._listaCombustibles)
+            do
             {
-                if (c.pCombustible.ToLower() == cad)
-                {
-                    Console.WriteLine($"ID Combustible: {c.pIdCombustible} ---> {c.pCombustible}");
+                Console.Write("Ingrese el nombre del Combustible: ");
+                cad = Console.ReadLine().ToLower();
 
+                foreach (Combustible c in this._listaCombustibles)
+                {
+                    if (c.pCombustible.ToLower() == cad)
+                    {
+                        c.mostrarCombustible();
+                        encontrado = true;
+                    }
                 }
             }
-
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadLine();
         }
 
         //SEGMENTOS----------------------------------------------------------------------------------------------------------------
@@ -3957,21 +4009,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public void BuscarSegmento()
         {
-
+            CargarSegmentos();
             string cad;
+            bool encontrado = false;
 
-            Console.Write("Ingrese el nombre del Segmento: ");
-            cad = Console.ReadLine().ToLower();
-
-            foreach (Segmento s in this._listaSegmentos)
+            do
             {
-                if (s.pSegmento.ToLower() == cad)
-                {
-                    Console.WriteLine($"ID Segmennto: {s.pIdSegmento} ---> {s.pSegmento}");
+                Console.Write("Ingrese el nombre del Segmento: ");
+                cad = Console.ReadLine().ToLower();
 
+                foreach (Segmento s in this._listaSegmentos)
+                {
+                    if (s.pSegmento.ToLower() == cad)
+                    {
+                        s.mostrarSegmento();
+                        encontrado = true;
+                    }
                 }
             }
-
+            while (!encontrado);
+            Console.WriteLine("Presione una tecla para continuar.");
+            Console.ReadLine();
         }
 
         // VALIDACIONES
