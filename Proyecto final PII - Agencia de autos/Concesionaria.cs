@@ -210,17 +210,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
                     int id_vehiculo = int.Parse(split[0]);
-                    string patente = split[0];
-                    double kilometros = double.Parse(split[0]);
-                    int anio = int.Parse(split[0]);
-                    int id_marca = int.Parse(split[0]);
-                    string modelo = split[0];
-                    int id_segmento = int.Parse(split[0]);
-                    int id_combustible = int.Parse(split[0]);
-                    double precio_venta = double.Parse(split[0]);
-                    string observaciones = split[0];
-                    string color = split[0];
-                    bool estado = bool.Parse(split[0]);
+                    string patente = split[1];
+                    double kilometros = double.Parse(split[2]);
+                    int anio = int.Parse(split[3]);
+                    int id_marca = int.Parse(split[4]);
+                    string modelo = split[5];
+                    int id_segmento = int.Parse(split[6]);
+                    int id_combustible = int.Parse(split[7]);
+                    double precio_venta = double.Parse(split[8]);
+                    string observaciones = split[9];
+                    string color = split[10];
+                    bool estado = bool.Parse(split[11]);
 
                     AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_venta, observaciones, color, estado);
 
