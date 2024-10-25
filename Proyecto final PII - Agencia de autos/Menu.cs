@@ -8,9 +8,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
 {
     internal class Menu
     {
+        
         int posicionActual;
         bool bucle;
         Concesionaria concesionaria = new Concesionaria();
+        
+        
 
         public void MenuPrincipal()
         {

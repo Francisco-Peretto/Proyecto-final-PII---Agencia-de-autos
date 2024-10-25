@@ -1155,7 +1155,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             _listaCamionesDisponibles.Add(cam);
         }       
 
-        public void MostrarVehiculos() // muestra distintas listas de las que se cargan al inicio de la consola, por eso no muestra ningun vehiculo
+        public void MostrarVehiculos() 
         {
             CargarAutosCamionetas();
             CargarCamiones();
@@ -1298,6 +1298,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void ModificarVehiculo()
         {
+            CargarMotos();
+            CargarAutosCamionetas();
+            CargarCamiones();
+
             AutoCamioneta autoCamioneta = new AutoCamioneta();
             Camion camion = new Camion();
             Moto moto = new Moto();
@@ -1316,9 +1320,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
-                    Console.WriteLine("Ingrese el dato que desea modificar\n");
+                    
                     do
                     {
+                        Console.WriteLine("Ingrese el dato que desea modificar\n");
                         for (i = 0; i < menumodif.Length; i++)
                         {
 
