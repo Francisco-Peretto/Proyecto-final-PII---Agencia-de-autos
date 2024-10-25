@@ -11,6 +11,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         
         int posicionActual;
         bool bucle;
+        bool subbucle;
         Concesionaria concesionaria = new Concesionaria();
         
         
@@ -51,6 +52,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             Console.WriteLine("\nSaliendo del programa.");
                             bucle = true;
+
                         }
                         else if (posicionActual == 0)
                         {
@@ -93,13 +95,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuOpcionesVehiculos = { "Registrar nuevo vehículo", "Modificar un vehículo existente", "Eliminar un vehículo existente", "Listar vehículos", "Buscar un vehículo", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bool bucle = false;
+            bool subbucle = false;
 
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
             Console.WriteLine("-------------------------------------------");
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuOpcionesVehiculos.Length; i++)
                 {
@@ -131,6 +133,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.WriteLine("\nSaliendo del menú de vehículos.");
                             MenuPrincipal();
+                            return;
                         }
                         else if (posicionActual == 0)
                         {
@@ -171,7 +174,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         {
                                             Console.Clear();
                                             Console.ResetColor();
+                                            subbucle = true;
                                             MenuPrincipal();
+
                                             return; 
                                         }
 
@@ -265,9 +270,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuOpcionesClientes = { "Agregar nuevo cliente", "Modificar cliente", "Eliminar cliente", "Listar clientes", "Buscar cliente", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuOpcionesClientes.Length; i++)
                 {
@@ -368,9 +373,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuOpcionesVentas = { "Realizar nueva venta", "Modificar venta", "Eliminar venta", "Listado de ventas", "Búsqueda de una venta", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuOpcionesVentas.Length; i++)
                 {
@@ -473,9 +478,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuOpcionesParametros = { "Marcas", "Localidades", "Provincias", "Combustible", "Segmento", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuOpcionesParametros.Length; i++)
                 {
@@ -555,9 +560,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuMarcas = { "Agregar marca", "Listar marcas", "Modificar marca", "Eliminar marca", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuMarcas.Length; i++)
                 {
@@ -651,9 +656,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuLocalidades = { "Agregar localidad", "Listar localidades", "Modificar localidad", "Eliminar localidad", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuLocalidades.Length; i++)
                 {
@@ -745,9 +750,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuProvincias = { "Agregar provincia", "Listar provincias", "Modificar provincia", "Eliminar provincia", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuProvincias.Length; i++)
                 {
@@ -839,9 +844,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuCombustibles = { "Agregar combustible", "Listar combustibles", "Modificar combustible", "Eliminar combustible", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuCombustibles.Length; i++)
                 {
@@ -935,9 +940,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string[] menuSegmentos = { "Agregar Segmento", "Listar Segmentos", "Modificar Segmento", "Eliminar Segmento", "Salir" };
             posicionActual = 0;
             Console.CursorVisible = false;
-            bucle = false;
+            subbucle = false;
 
-            while (!bucle)
+            while (!subbucle)
             {
                 for (int i = 0; i < menuSegmentos.Length; i++)
                 {
