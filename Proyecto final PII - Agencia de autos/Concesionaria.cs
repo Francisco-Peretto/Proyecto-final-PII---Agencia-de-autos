@@ -146,6 +146,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             try
             {
                 _listaMotos.Clear();
+                _listaMotosDisponibles.Clear();
+                _listaMotosVendidas.Clear();
                 FileStream archivo = new FileStream("Motos.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -203,6 +205,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             try
             {
                 _listaAutoCamionetas.Clear();
+                _listaAutoCamionetasDisponibles.Clear();
+                _listaAutoCamionetasVendidos.Clear();
                 FileStream archivo = new FileStream("AutosCamioneta.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
                 while (reader.EndOfStream == false)
@@ -258,6 +262,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             try
             {
                 _listaCamiones.Clear();
+                _listaCamionesDisponibles.Clear();
+                _listaCamionesVendidos.Clear();
                 FileStream archivo = new FileStream("Camiones.txt", FileMode.Open);
                 StreamReader reader = new StreamReader(archivo);
 
@@ -751,8 +757,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             autcam.pColor = Console.ReadLine();
 
             autcam.pEstado = false;
+            
+            
             _listaAutoCamionetas.Add(autcam);
             _listaAutoCamionetasDisponibles.Add(autcam);
+            
         } // modificar las validaciones del resto de los ingresos con el nuevo metodo 
 
         public void IngresarMoto()
@@ -1227,13 +1236,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarAutosCamionetas();
             CargarCamiones();
             CargarMotos();
-
             Console.WriteLine("Autos y Camionetas\n");
             
-            foreach (Vehiculo vehiculo in _listaVehiculos)
-            {
-                vehiculo.MostrarDatos();
-            }
+            //foreach (Vehiculo vehiculo in _listaVehiculos)
+            //{
+            //    vehiculo.MostrarDatos();
+            //}
             
             foreach(AutoCamioneta acam in this._listaAutoCamionetasDisponibles)
             {
@@ -1262,7 +1270,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             foreach (AutoCamioneta autcam in this._listaAutoCamionetas)
             {
                 wr.WriteLine($"{autcam.pId_vehiculo};{autcam.pPatente};{autcam.pKilometros};{autcam.pAnio};{autcam.pId_marca};{autcam.pModelo};" +
-                    $"{autcam.pId_segmento};{autcam.pId_combustible};{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor}");
+                    $"{autcam.pId_segmento};{autcam.pId_combustible};{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor};{autcam.pEstado}");
             }
             wr.Close();
             arch.Close();
@@ -1277,7 +1285,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             foreach (Moto moto in this._listaMotos)
             {
                 wr.WriteLine($"{moto.pId_vehiculo};{moto.pPatente};{moto.pKilometros};{moto.pAnio};{moto.pId_marca};{moto.pModelo};" +
-                    $"{moto.pId_segmento};{moto.pCilindrada};{moto.pId_combustible};{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor}");
+                    $"{moto.pId_segmento};{moto.pCilindrada};{moto.pId_combustible};{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor};{moto.pEstado}");
             }
             wr.Close();
             arch.Close();
@@ -1293,7 +1301,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 wr.WriteLine($"{cam.pId_vehiculo};{cam.pPatente};{cam.pKilometros};{cam.pAnio};{cam.pId_marca};{cam.pModelo};" +
                     $"{cam.pId_segmento};{cam.pCaja_Carga};{cam.pDimension_caja};{cam.pCarga_max};{cam.pId_combustible};" +
-                    $"{cam.pPrecio_vta};{cam.pObservaciones};{cam.pColor}");
+                    $"{cam.pPrecio_vta};{cam.pObservaciones};{cam.pColor};{cam.pEstado}");
             }
             wr.Close();
             arch.Close();

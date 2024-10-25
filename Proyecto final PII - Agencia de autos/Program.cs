@@ -21,6 +21,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             AutoCamioneta ac = new AutoCamioneta();
             Menu menu = new Menu ();
 
+            con.CargarVentas();
+            con.CargarClientes();
+            con.CargarMarcas();
+            con.CargarSegmentos();
+            con.CargarCombustibles();
+            con.CargarLocalidades();
+            con.CargarProvincias();
+            con.CargarMotos();
+            con.CargarAutosCamionetas();
+            con.CargarCamiones();
             menu.MenuPrincipal();
 
             con.CargarVentas();
