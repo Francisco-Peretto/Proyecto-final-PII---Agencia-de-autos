@@ -21,7 +21,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             posicionActual = 0;
             Console.CursorVisible = false;
             bucle = false;
-
+            
             while (!bucle)
             {
                 Console.Clear();

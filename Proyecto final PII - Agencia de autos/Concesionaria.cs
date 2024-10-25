@@ -192,9 +192,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarMotos: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarMotos.");
+                Console.WriteLine($"Se ha producido un error en CargarMotos: {e.Message}");
             }
         } 
 
@@ -222,7 +222,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     string color = split[10];
                     bool estado = bool.Parse(split[11]);
 
-                    AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, id_combustible, precio_venta, observaciones, color, estado);
+                    AutoCamioneta ac = new AutoCamioneta(id_vehiculo, patente, kilometros, anio,
+                        id_marca, modelo, id_segmento, id_combustible, precio_venta,
+                        observaciones, color, estado);
 
                     if (bool.Parse(split[11]) == true)
                     {
@@ -245,9 +247,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarAutosCamionetas: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarAutosCamionetas.");
+                Console.WriteLine($"Se ha producido un error en CargarAutosCamionetas: {e.Message}");
             }
         } 
 
@@ -305,9 +307,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarCamiones: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarCamiones.");
+                Console.WriteLine($"Se ha producido un error en CargarCamiones: {e.Message}");
             }
         } 
 
@@ -346,9 +348,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarVentas: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarVentas.");
+                Console.WriteLine($"Se ha producido un error en CargarVentas: {e.Message}");
             }
         }
 
@@ -386,9 +388,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarClientes: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarClientes.");
+                Console.WriteLine($"Se ha producido un error en CargarClientes: {e.Message}");
             }
         }
 
@@ -420,9 +422,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarMarcas: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarMarcas.");
+                Console.WriteLine($"Se ha producido un error en CargarMarcas: {e.Message}");
             }
         } 
 
@@ -455,9 +457,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarSegmentos: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarSegmentos.");
+                Console.WriteLine($"Se ha producido un error en CargarSegmentos: {e.Message}");
             }
         }
 
@@ -489,9 +491,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarCombustibles: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarCombustibles.");
+                Console.WriteLine($"Se ha producido un error en CargarCombustibles: {e.Message}");
             }
         }
 
@@ -524,9 +526,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datosen CargarLocalidades: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un erroren CargarLocalidades.");
+                Console.WriteLine($"Se ha producido un erroren CargarLocalidades: {e.Message}");
             }
         }
 
@@ -558,9 +560,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Error al parsear datos en CargarProvincia: {e.Message}");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine($"Se ha producido un error en CargarProvincia.");
+                Console.WriteLine($"Se ha producido un error en CargarProvincia: {e.Message}");
             }
         }
 
@@ -569,6 +571,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         
         public void IngresarAutoCamioneta()
         {
+            CargarAutosCamionetas();
+            CargarMotos();
+            CargarCamiones();
+            CargarSegmentos();
+            CargarCombustibles();
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento;
             double kilometros, precio_vta;
             DateTime fecact = DateTime.Now;
@@ -743,12 +750,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.Write("\nIngrese el COLOR del vehículo a registrar: "); // color
             autcam.pColor = Console.ReadLine();
 
+            autcam.pEstado = false;
             _listaAutoCamionetas.Add(autcam);
             _listaAutoCamionetasDisponibles.Add(autcam);
         } // modificar las validaciones del resto de los ingresos con el nuevo metodo 
 
         public void IngresarMoto()
         {
+            CargarAutosCamionetas();
+            CargarMotos();
+            CargarCamiones();
+            CargarSegmentos();
+            CargarCombustibles();
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento, cilindrada;
             double kilometros, precio_vta;
             DateTime fecact = DateTime.Now;
@@ -910,12 +923,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.Write("\nIngrese el COLOR del vehículo a registrar: "); // color
             mot.pColor = Console.ReadLine();
 
+            mot.pEstado = false;
             _listaMotos.Add(mot);
             _listaMotosDisponibles.Add(mot);
         }
 
         public void IngresarCamion()
         {
+            CargarAutosCamionetas();
+            CargarMotos();
+            CargarCamiones();
+            CargarSegmentos();
+            CargarCombustibles();
             int id_vehiculo, anio, id_marca, id_combustible, id_segmento, dimension_caja, carga_max, largocaja, anchocaja;
             double kilometros, precio_vta;
             bool caja_carga;
@@ -1196,7 +1215,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\nIngrese el COLOR del vehículo a registrar: "); // color
             cam.pColor = Console.ReadLine();
-            
+
+            cam.pEstado = false;
 
             _listaCamiones.Add(cam);
             _listaCamionesDisponibles.Add(cam);
@@ -2143,7 +2163,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
     
         public void CargarVenta() // modificar validaciones (foreach) con el mismo metodo como en los ingresos
         {
-           
+            CargarAutosCamionetas();
+            CargarCamiones();
+            CargarMotos();
+            CargarClientes();
+
             int id_venta, id_cliente=0, id_vehiculo = 0, iva, descuento, flag=0;
             DateTime fecha_compra, fecha_entrega;
             double subtotal;
@@ -2882,6 +2906,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void CargarCliente()
         {
+            CargarLocalidades();
+            CargarProvincias();
             int id_cliente, id_localidad;
             string cliente, correo, domicilio;
             long telefono, cuit;
@@ -3197,6 +3223,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
     
         public void CargarLocalidad()
         {
+            CargarProvincias();
             int id_localidad, id_provincia;
             string localidad;
 
