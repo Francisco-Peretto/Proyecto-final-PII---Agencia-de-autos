@@ -1194,7 +1194,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             wr = new StreamWriter(arch);
             foreach (AutoCamioneta autcam in this._listaAutoCamionetas)
             {
-                autcam.MostrarDatos();
+                wr.WriteLine($"{autcam.pId_vehiculo};{autcam.pPatente};{autcam.pKilometros};{autcam.pAnio};{autcam.pId_marca};{autcam.pModelo};" +
+                    $"{autcam.pId_segmento};{autcam.pId_combustible};{autcam.pPrecio_vta};{autcam.pObservaciones};{autcam.pColor}");
             }
             wr.Close();
             arch.Close();
@@ -1208,7 +1209,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             wr = new StreamWriter(arch);
             foreach (Moto moto in this._listaMotos)
             {
-                moto.MostrarDatos();
+                wr.WriteLine($"{moto.pId_vehiculo};{moto.pPatente};{moto.pKilometros};{moto.pAnio};{moto.pId_marca};{moto.pModelo};" +
+                    $"{moto.pId_segmento};{moto.pCilindrada};{moto.pId_combustible};{moto.pPrecio_vta};{moto.pObservaciones};{moto.pColor}");
             }
             wr.Close();
             arch.Close();
@@ -1222,7 +1224,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             wr = new StreamWriter(arch);
             foreach (Camion cam in this._listaCamiones)
             {
-                cam.MostrarDatos();
+                wr.WriteLine($"{cam.pId_vehiculo};{cam.pPatente};{cam.pKilometros};{cam.pAnio};{cam.pId_marca};{cam.pModelo};" +
+                    $"{cam.pId_segmento};{cam.pCaja_Carga};{cam.pDimension_caja};{cam.pCarga_max};{cam.pId_combustible};" +
+                    $"{cam.pPrecio_vta};{cam.pObservaciones};{cam.pColor}");
             }
             wr.Close();
             arch.Close();
@@ -2252,7 +2256,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             foreach (Venta ven in this._listaVentas)
             {
-                ven.mostrarVenta();
+                wr.WriteLine($"{ven.pId_venta};{ven.pId_cliente};{ven.pId_vehiculo};{ven.pFecha_compra};{ven.pFecha_entrega};{ven.pSubtotal};" +
+                    $"{ven.pIva};{ven.pDescuento};{ven.pTotal}");
             }
             wr.Close();
             arch.Close();
@@ -2686,7 +2691,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             wr = new StreamWriter(arch);
             foreach (Cliente cl in this._listaClientes)
             {
-                cl.mostrarCliente();
+                wr.WriteLine($"{cl.pId_cliente};{cl.pCliente};{cl.pCuit};{cl.pDomicilio};{cl.pId_localidad};{cl.pTelefono};{cl.pCorreo}");
             }
             wr.Close();
             arch.Close();
