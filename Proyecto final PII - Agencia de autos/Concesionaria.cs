@@ -345,13 +345,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int id_marca = int.Parse(split[4]);
                     string modelo = split[5];
                     int id_segmento = int.Parse(split[6]);
-                    int id_combustible = int.Parse(split[7]);
-                    double precio_vta = double.Parse(split[8]);
-                    string observaciones = split[9];
-                    string color = split[10];
-                    bool caja_carga = bool.Parse(split[11]);
-                    int dimension_caja = int.Parse(split[12]);
-                    int carga_max = int.Parse(split[13]);
+                    bool caja_carga = bool.Parse(split[7]);
+                    int dimension_caja = int.Parse(split[8]);
+                    int carga_max = int.Parse(split[9]);
+                    int id_combustible = int.Parse(split[10]);
+                    double precio_vta = double.Parse(split[11]);
+                    string observaciones = split[12];
+                    string color = split[13];                    
                     bool estado = bool.Parse(split[14]);
 
                     Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento,
