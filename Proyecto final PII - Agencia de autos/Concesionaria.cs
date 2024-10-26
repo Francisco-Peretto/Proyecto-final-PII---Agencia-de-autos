@@ -2265,7 +2265,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write("\nIngrese el número del tipo vehículo que desea vender:\n1) Auto/Camioneta\n2) Moto\n3) Camion\n\nOpción: ");
 
-                if (int.TryParse(Console.ReadLine(), out opc) && (opc == 1 || opc == 2 || opc == 3))
+                if (int.TryParse(Console.ReadLine(), out opc) && (opc >= 1 && opc <= 3))
                 {
                     opcionValida = true;
                 }
@@ -2275,7 +2275,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Console.ReadKey();
                     Console.Clear();
                 }
-
             } while (!opcionValida);
 
             if (opc == 1)
@@ -2284,38 +2283,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     Console.WriteLine($"ID: {gen.pId_vehiculo} Modelo: {gen.pModelo}");
                 }
-                Console.Write("\nIngrese el ID del vehículo a vender: ");
-
-                while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehículo a vender: ");
-
-                }
-                foreach (AutoCamioneta ayc in this._listaAutoCamionetasDisponibles)
-                {
-                    if (id_vehiculo == ayc.pId_vehiculo)
-                    {
-                        flag = true;
-                    }
-                }
-                while (flag == false)
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehículo a vender: ");
-                }
-                while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehículo a vender: ");
-                }
-
             }
             else if (opc == 2)
             {
@@ -2323,37 +2290,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     Console.WriteLine($"ID: {moto.pId_vehiculo} Modelo: {moto.pModelo}");
                 }
-                Console.Write("\nIngrese el ID del vehiculo a vender: ");
-                while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
-
-                }
-                foreach (Moto m in this._listaMotosDisponibles)
-                {
-                    if (id_vehiculo == m.pId_vehiculo)
-                    {
-                        flag = true;
-                    }
-                }
-                while (flag == false)
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
-                }
-                while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
-                }
-
             }
             else if (opc == 3)
             {
@@ -2361,40 +2297,43 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     Console.WriteLine($"ID: {camion.pId_vehiculo} Modelo: {camion.pModelo}");
                 }
-                Console.Write("\nIngrese el ID del vehiculo a vender: ");
+            }
 
-                while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
+            flag = false;
+            do
+            {
+                Console.Write("\nIngrese el ID del vehículo a vender: ");
 
-                }
-                foreach(Camion c in this._listaCamionesDisponibles)
+                if (int.TryParse(Console.ReadLine(), out id_vehiculo))
                 {
-                    if (id_vehiculo == c.pId_vehiculo)
+                    if (opc == 1)
                     {
-                        flag = true;
+                        flag = _listaAutoCamionetasDisponibles.Any(ayc => id_vehiculo == ayc.pId_vehiculo);
+                    }
+                    else if (opc == 2)
+                    {
+                        flag = _listaMotosDisponibles.Any(m => id_vehiculo == m.pId_vehiculo);
+                    }
+                    else if (opc == 3)
+                    {
+                        flag = _listaCamionesDisponibles.Any(c => id_vehiculo == c.pId_vehiculo);
+                    }
+
+                    if (!flag)
+                    {
+                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                        Console.ReadKey();
+                        Console.Clear();
                     }
                 }
-                
-                while (flag == false)
+                else
                 {
                     Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                     Console.ReadKey();
                     Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
                 }
-                while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
-                {
-                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
-                }
-
-            }
+            } while (!flag);
+  
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
                 if (ac.pId_vehiculo == id_vehiculo)
@@ -2416,22 +2355,23 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     c.pEstado = true;
                 }
             }
-            Console.Write("\nIngrese la FECHA DE COMPRA del vehiculo: ");
+
+            Console.Write("\nIngrese la FECHA DE COMPRA del vehiculo (dd/mm/aaaa): ");
             while (!DateTime.TryParse(Console.ReadLine(), out fecha_compra))
             { 
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                 Console.ReadKey();
                 Console.Clear();
-                Console.Write("Ingrese la FECHA DE COMPRA del vehiculo: ");
+                Console.Write("Ingrese la FECHA DE COMPRA del vehiculo (dd/mm/aaaa): ");
             }
 
-            Console.Write("\nIngrese la FECHA DE ENTREGA del vehiculo: ");
+            Console.Write("\nIngrese la FECHA DE ENTREGA del vehiculo (dd/mm/aaaa): ");
             while (!DateTime.TryParse(Console.ReadLine(), out fecha_entrega))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                 Console.ReadKey();
                 Console.Clear();
-                Console.Write("Ingrese la FECHA DE ENTREGA del vehiculo: ");
+                Console.Write("Ingrese la FECHA DE ENTREGA del vehiculo (dd/mm/aaaa): ");
             }
 
             Console.Write("\nIngrese el SUBTOTAL de la VENTA: ");
