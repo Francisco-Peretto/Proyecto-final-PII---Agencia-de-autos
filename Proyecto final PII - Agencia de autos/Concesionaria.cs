@@ -1018,7 +1018,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarCamiones();
             CargarSegmentos();
             CargarCombustibles();
-            int id_vehiculo, anio, id_marca, id_combustible, id_segmento, dimension_caja, carga_max, largocaja, anchocaja;
+            int id_vehiculo, anio, id_marca, id_combustible, id_segmento, dimension_caja, 
+                carga_max, largocaja, anchocaja, opc;
             double kilometros, precio_vta;
             bool caja_carga;
             DateTime fecact = DateTime.Now;
@@ -1148,11 +1149,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             ConsoleKeyInfo opccaja;
 
             Console.WriteLine("\nIngrese si el camion tiene caja 1 -> SI\t2 -> NO: ");
-            int opc = int.Parse(Console.ReadLine());
-            while(opc > 2)
+            while (!int.TryParse(Console.ReadLine(), out opc) || opc > 2)
             {
-                Console.WriteLine("\nEl dato ingresado no es correcto.\nIngrese si el camion tiene caja 1 -> SI\t2 -> NO: ");
-                opc = int.Parse(Console.ReadLine());
+                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
+                Console.ReadKey();
+                Console.Clear();
+                Console.Write("Ingrese si el camion tiene caja 1 -> SI\t2 -> NO:");
             }
             if (opc == 1)
             {
@@ -1603,7 +1605,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     int idsegmentomodif;
                                     Console.Clear();
-                                    Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{autcam.pId_segmento}-: ");
+                                    Console.WriteLine($"Ingrese ID de Segmento que modificará el actual -{autcam.pId_segmento}-: ");
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idsegmentomodif))
                                     {
@@ -2258,7 +2260,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             DateTime fecha_compra, fecha_entrega;
             double subtotal;
             Console.WriteLine("****CARGA DE VENTA****\n\n");
-            Console.Write("Ingrese el ID de la VENTA: "); // automatizar? cada id es unico 
+            Console.Write($"ID's NO disponibles:");
+            foreach (Venta ven in this._listaVentas)
+            {
+                Console.Write($"{ven.pId_venta}\t");
+            }
+            Console.Write("\nIngrese el ID de la VENTA: "); // automatizar? cada id es unico 
 
             while(!int.TryParse(Console.ReadLine(), out id_venta))
             {
@@ -2999,7 +3006,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             long telefono, cuit;
 
             Console.WriteLine("****CARGA DE CLIENTE****\n\n");
-            Console.Write("Ingrese el ID del Cliente: ");
+            Console.Write($"ID's NO disponibles:");
+            foreach (Cliente cli in this._listaClientes)
+            {
+                Console.Write($"{cli.pId_cliente}\t");
+            }
+            Console.Write("\nIngrese el ID del Cliente: ");
             while (!int.TryParse(Console.ReadLine(), out id_cliente))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
