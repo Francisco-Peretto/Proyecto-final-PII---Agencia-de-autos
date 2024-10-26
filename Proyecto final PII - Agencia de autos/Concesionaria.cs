@@ -2195,6 +2195,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarCamiones();
             CargarMotos();
             CargarClientes();
+            CargarVentas();
 
             int id_venta, id_cliente=0, id_vehiculo = 0, iva, descuento, opc;
             DateTime fecha_compra, fecha_entrega;
@@ -2203,9 +2204,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             bool flag = false, opcionValida = false;
 
             Console.WriteLine("****CARGA DE VENTA****\n");
-            Console.Write("Ingrese el ID de la VENTA: ");
-
-            while(!int.TryParse(Console.ReadLine(), out id_venta))
+            Console.Write($"ID's NO disponibles: ");
+            foreach (Venta ven in this._listaVentas)
+            {
+                Console.WriteLine($"{ven.pId_venta}\t");
+            }
+            
+            Console.Write("\nIngrese el ID de la VENTA: ");
+            while (!int.TryParse(Console.ReadLine(), out id_venta))
             {
                 Console.WriteLine("Error. El ID debe de ser numérico. Presione una tecla para continuar.");
                 Console.ReadKey();
