@@ -511,6 +511,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.ResetColor();
                             MenuPrincipal();
+                            subbucle = true;
                             return;
                         }
                         else if (posicionActual == 0) // Marcas
@@ -593,6 +594,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.ResetColor();
                             MenuPrincipal();
+                            subbucle = true;
                             return;
                         }
                         else if (posicionActual == 0)
@@ -689,6 +691,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.ResetColor();
                             MenuPrincipal();
+                            subbucle = true;
                             return;
                         }
                         else if (posicionActual == 0)
@@ -783,6 +786,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.ResetColor();
                             MenuPrincipal();
+                            subbucle = true;
                             return;
                         }
                         else if (posicionActual == 0)
@@ -877,6 +881,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.ResetColor();
                             MenuPrincipal();
+                            subbucle = true;
                             return;
                         }
                         else if (posicionActual == 0)
@@ -973,8 +978,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             Console.ResetColor();
                             MenuPrincipal();
+                            subbucle = true;
                             return;
                         }
+
                         else if (posicionActual == 0)
                         {
                             Console.Clear();
