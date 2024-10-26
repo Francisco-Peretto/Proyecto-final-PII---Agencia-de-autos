@@ -255,7 +255,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Se ha producido un error en CargarAutosCamionetas: {e.Message}");
             }
-        } 
+        }
 
         public void CargarCamiones()
         {
@@ -279,17 +279,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int id_marca = int.Parse(split[4]);
                     string modelo = split[5];
                     int id_segmento = int.Parse(split[6]);
-                    int id_combustible = int.Parse(split[7]);
-                    double precio_vta = double.Parse(split[8]);
-                    string observaciones = split[9];
-                    string color = split[10];
-                    bool caja_carga = bool.Parse(split[11]);
-                    int dimension_caja = int.Parse(split[12]);
-                    int carga_max = int.Parse(split[13]);
+                    bool caja_carga = bool.Parse(split[7]);
+                    int dimension_caja = int.Parse(split[8]);
+                    int carga_max = int.Parse(split[9]);
+                    int id_combustible = int.Parse(split[10]);
+                    double precio_vta = double.Parse(split[11]);
+                    string observaciones = split[12];
+                    string color = split[13];
                     bool estado = bool.Parse(split[14]);
 
-                    Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, 
-                        id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, 
+                    Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento,
+                        id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja,
                         carga_max, estado);
 
                     if (bool.Parse(split[14]) == true)
@@ -317,7 +317,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Se ha producido un error en CargarCamiones: {e.Message}");
             }
-        } 
+        }
+
 
         public void CargarVentas()
         {
@@ -1403,6 +1404,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
+
+
                     
                     do
                     {
@@ -2169,27 +2172,29 @@ namespace Proyecto_final_PII___Agencia_de_autos
         //VENTAS----------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
     
-        public void CargarVenta() // modificar validaciones (foreach) con el mismo metodo como en los ingresos
+        public void CargarVenta()
         {
             CargarAutosCamionetas();
             CargarCamiones();
             CargarMotos();
             CargarClientes();
 
-            int id_venta, id_cliente=0, id_vehiculo = 0, iva, descuento, flag=0;
+            int id_venta, id_cliente=0, id_vehiculo = 0, iva, descuento, opc;
             DateTime fecha_compra, fecha_entrega;
             double subtotal;
-            Console.WriteLine("****CARGA DE VENTA****\n\n");
-            Console.Write("Ingrese el ID de la VENTA: "); // automatizar? cada id es unico 
+            bool flag = false, opcionValida = false;
+
+            Console.WriteLine("****CARGA DE VENTA****\n");
+            Console.Write("Ingrese el ID de la VENTA: ");
 
             while(!int.TryParse(Console.ReadLine(), out id_venta))
             {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                Console.WriteLine("Error. El ID debe de ser numérico. Presione una tecla para continuar.");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el ID de la VENTA: ");
             }
-    
+
             foreach (Venta v in this._listaVentas)
             {
                 if (v.pId_venta == id_venta)
@@ -2202,46 +2207,58 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
             }
 
-            
-            foreach (Cliente cl in this._listaClientes)
+            Console.Write('\n');
+
+            do
             {
-                Console.WriteLine($"ID: {cl.pId_cliente} Razon Social: {cl.pCliente}");
-            }
-            Console.Write("Ingrese el ID del cliente: ");
-            
-            while (!int.TryParse(Console.ReadLine(), out id_cliente))
-            {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                Console.ReadKey();
-                Console.Clear();
-                Console.Write("Ingrese el ID del cliente: ");
-                
-            }
-            foreach (Cliente cl in this._listaClientes)
-            {
-                if (id_cliente == cl.pId_cliente)
+                foreach (Cliente cl in this._listaClientes)
                 {
-                    flag = 1;
+                    Console.WriteLine($"ID: {cl.pId_cliente} Razon Social: {cl.pCliente}");
                 }
-            }
-            while (flag == 0)
-            {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                Console.ReadKey();
-                Console.Clear();
-                Console.Write("Ingrese el ID del cliente: ");
-            }
-            while (!int.TryParse(Console.ReadLine(), out id_cliente))
-            {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                Console.ReadKey();
-                Console.Clear();
-                Console.Write("Ingrese el ID del cliente: ");
 
-            }
+                Console.Write("\nIngrese el ID del cliente: ");
+                if (int.TryParse(Console.ReadLine(), out id_cliente))
+                {
+                    foreach (Cliente cl in _listaClientes)
+                    {
+                        if (id_cliente == cl.pId_cliente)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
 
-            Console.WriteLine("\nIngrese el numero del tipo vehiculo que desea vender:\n 1) Auto/Camioneta\n2) Moto\n3) Camion\n\nOpcion: ");
-            int opc = int.Parse(Console.ReadLine());
+                    if (!flag)
+                    {
+                        Console.WriteLine("Error. El ID ingresado no existe. Presione una tecla para continuar.");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            } while (!flag);
+
+            do
+            {
+                Console.Write("\nIngrese el número del tipo vehículo que desea vender:\n1) Auto/Camioneta\n2) Moto\n3) Camion\n\nOpción: ");
+
+                if (int.TryParse(Console.ReadLine(), out opc) && (opc == 1 || opc == 2 || opc == 3))
+                {
+                    opcionValida = true;
+                }
+                else
+                {
+                    Console.WriteLine("Error. La opción ingresada no es válida. Presione una tecla para continuar.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+
+            } while (!opcionValida);
 
             if (opc == 1)
             {
@@ -2249,37 +2266,36 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     Console.WriteLine($"ID: {gen.pId_vehiculo} Modelo: {gen.pModelo}");
                 }
-                Console.Write("\nIngrese el ID del vehiculo a vender: ");
+                Console.Write("\nIngrese el ID del vehículo a vender: ");
 
                 while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
                 {
                     Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                     Console.ReadKey();
                     Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
+                    Console.Write("Ingrese el ID del vehículo a vender: ");
 
                 }
                 foreach (AutoCamioneta ayc in this._listaAutoCamionetasDisponibles)
                 {
                     if (id_vehiculo == ayc.pId_vehiculo)
                     {
-                        flag = 1;
+                        flag = true;
                     }
                 }
-                while (flag == 0)
+                while (flag == false)
                 {
                     Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                     Console.ReadKey();
                     Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
+                    Console.Write("Ingrese el ID del vehículo a vender: ");
                 }
                 while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
                 {
                     Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                     Console.ReadKey();
                     Console.Clear();
-                    Console.Write("Ingrese el ID del vehiculo a vender: ");
-
+                    Console.Write("Ingrese el ID del vehículo a vender: ");
                 }
 
             }
@@ -2302,10 +2318,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     if (id_vehiculo == m.pId_vehiculo)
                     {
-                        flag = 1;
+                        flag = true;
                     }
                 }
-                while (flag == 0)
+                while (flag == false)
                 {
                     Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                     Console.ReadKey();
@@ -2318,7 +2334,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehiculo a vender: ");
-
                 }
 
             }
@@ -2342,11 +2357,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     if (id_vehiculo == c.pId_vehiculo)
                     {
-                        flag = 1;
+                        flag = true;
                     }
                 }
                 
-                while (flag == 0)
+                while (flag == false)
                 {
                     Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                     Console.ReadKey();
@@ -2359,7 +2374,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Ingrese el ID del vehiculo a vender: ");
-
                 }
 
             }
@@ -2453,23 +2467,29 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ModificarVenta()
         {
             CargarVentas();
-            int id, flag = 0;
-            string cad;
+            int id;
+            bool encontrado = false;
 
             Console.WriteLine("Ingrese el ID de la VENTA a modificar");
-            cad = Console.ReadLine();
-            id = int.Parse(cad);
+
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.Write("El ID ingresado no es válido. Ingrese un ID numérico:");
+            }
 
             foreach (Venta ven in this._listaVentas)
             {
                 if (ven.pId_venta == id)
                 {
+                    encontrado = true;
                     string[] menumodif = { "Cliente", "Vehiculo", "Fecha de compra", "Fecha de entrega",
-            "Subtotal", "IVA", "Descuento", "Total"};
+                "Subtotal", "IVA", "Descuento", "Total" };
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
+
                     Console.Clear();
                     Console.WriteLine("Ingrese el dato que desea modificar\n");
+
                     do
                     {
                         for (int i = 0; i < menumodif.Length; i++)
@@ -2511,131 +2531,40 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         while (!int.TryParse(Console.ReadLine(), out idclmodif))
                                         {
                                             Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el ID que modificará el actual -{ven.pId_cliente}-: ");
                                         }
                                         ven.pId_cliente = idclmodif;
                                         break;
 
-                                    case "Vehiculo":
-                                        int vehimodif;
-                                        Console.WriteLine($"Ingrese el ID del vehículo que modificará el actual -{ven.pId_vehiculo}-: ");
-                                        while (!int.TryParse(Console.ReadLine(), out vehimodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el ID que modificará el actual -{ven.pId_vehiculo}-: ");
-                                        }
-                                        ven.pId_vehiculo = vehimodif;
-                                        break;
-
-                                    case "Fecha de compra":
-                                        DateTime feccompmodif;
-                                        Console.WriteLine($"Ingrese la FECHA DE COMPRA que modificará la actual -{ven.pFecha_compra}-: ");
-                                        while (!DateTime.TryParse(Console.ReadLine(), out feccompmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese la FECHA DE COMPRA que modificará la actual -{ven.pFecha_compra}-: ");
-                                        }
-                                        ven.pFecha_compra = feccompmodif;
-                                        break;
-
-                                    case "Fecha de entrega":
-                                        DateTime fecentmodif;
-                                        Console.WriteLine($"Ingrese la FECHA DE ENTREGA que modificará la actual -{ven.pFecha_entrega}-: ");
-                                        while (!DateTime.TryParse(Console.ReadLine(), out fecentmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese la FECHA DE ENTREGA que modificará la actual -{ven.pFecha_entrega}-: ");
-                                        }
-                                        ven.pFecha_entrega = fecentmodif;
-                                        break;
-
-                                    case "Subtotal":
+                                    case "Total":
                                         double subtotmodif;
                                         Console.WriteLine($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
                                         while (!double.TryParse(Console.ReadLine(), out subtotmodif))
                                         {
                                             Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
                                         }
                                         ven.pSubtotal = subtotmodif;
-                                        break;
-
-                                    case "IVA":
-                                        int ivamodif;
-                                        Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{ven.pIva}-: ");
-                                        while (!int.TryParse(Console.ReadLine(), out ivamodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el % de IVA que modificará el actual -{ven.pIva}-: ");
-                                        }
-                                        ven.pIva = ivamodif;
-                                        break;
-
-                                    case "Descuento":
-                                        int descmodif;
-                                        Console.WriteLine($"Ingrese el DESCUENTO que modificará el actual -{ven.pDescuento}-: ");
-                                        while (!int.TryParse(Console.ReadLine(), out descmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el DESCUENTO que modificará el actual -{ven.pDescuento}-: ");
-                                        }
-                                        ven.pDescuento = descmodif;
-                                        break;
-
-                                    case "Total":
-                                        double totalmodif;
-                                        Console.WriteLine($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
-                                        while (!double.TryParse(Console.ReadLine(), out subtotmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
-                                        }
-                                        ven.pSubtotal = subtotmodif;
-
-                                        Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{ven.pIva}-: ");
-                                        while (!int.TryParse(Console.ReadLine(), out ivamodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el % de IVA que modificará el actual -{ven.pIva}-: ");
-                                        }
-                                        ven.pIva = ivamodif;
-
-                                        Console.WriteLine($"Ingrese el % de DESCUENTO que modificará el actual -{ven.pDescuento}-: ");
-                                        while (!int.TryParse(Console.ReadLine(), out descmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                            Console.Write($"Ingrese el % de DESCUENTO que modificará el actual -{ven.pDescuento}-: ");
-                                        }
-                                        ven.pDescuento = descmodif;
-
-                                        totalmodif = (subtotmodif + ((ivamodif * subtotmodif) / 100)) - ((descmodif * subtotmodif) / 100);
-                                        //ven.pTotal = totalmodif;
                                         break;
                                 }
 
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                                 Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
                                 Console.ResetColor();
-
                                 Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menú.");
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
                         }
-                    } 
-                    while (opcmodif.Key != ConsoleKey.Escape);
+                    } while (opcmodif.Key != ConsoleKey.Escape);
                     return;
-                }
-                else
-                {
-                    flag = 1;
                 }
             }
 
-            if (flag == 1)
+            if (!encontrado)
             {
                 Console.Clear();
                 Console.Write($"El ID -{id}- no existe en la lista de Ventas.");
+                Console.WriteLine("\n\nPresione una tecla para continuar.");
+                Console.ReadKey();
             }
         }
 
