@@ -255,23 +255,89 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Se ha producido un error en CargarAutosCamionetas: {e.Message}");
             }
-        } 
+        }
+
+        //public void CargarCamiones()
+        //{
+        //    try
+        //    {
+        //        _listaCamiones.Clear();
+        //        _listaCamionesDisponibles.Clear();
+        //        _listaCamionesVendidos.Clear();
+        //        FileStream archivo = new FileStream("Camiones.txt", FileMode.Open);
+        //        StreamReader reader = new StreamReader(archivo);
+
+        //        while (!reader.EndOfStream)
+        //        {
+        //            string cadena = reader.ReadLine();
+        //            string[] split = cadena.Split(';');
+        //            //validar.validarEntero(id_vehiculo);
+        //            int id_vehiculo = int.Parse(split[0]);
+        //            string patente = split[1];
+        //            double kilometros = double.Parse(split[2]);
+        //            int anio = int.Parse(split[3]);
+        //            int id_marca = int.Parse(split[4]);
+        //            string modelo = split[5];
+        //            int id_segmento = int.Parse(split[6]);
+        //            int id_combustible = int.Parse(split[7]);
+        //            double precio_vta = double.Parse(split[8]);
+        //            string observaciones = split[9];
+        //            string color = split[10];
+        //            bool caja_carga = bool.Parse(split[11]);
+        //            int dimension_caja = int.Parse(split[12]);
+        //            int carga_max = int.Parse(split[13]);
+        //            bool estado = bool.Parse(split[14]);
+
+        //            Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, 
+        //                id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, 
+        //                carga_max, estado);
+
+        //            if (bool.Parse(split[14]) == true)
+        //            {
+        //                this._listaCamionesVendidos.Add(cam);
+        //            }
+        //            else
+        //            {
+        //                this._listaCamionesDisponibles.Add(cam);
+        //            }
+        //            _listaCamiones.Add(cam);
+        //        }
+        //        archivo.Close();
+        //        reader.Close();
+        //    }
+        //    catch (FileNotFoundException e)
+        //    {
+        //        Console.WriteLine($"Archivo no encontrado en CargarCamiones: {e.Message}");
+        //    }
+        //    catch (FormatException e)
+        //    {
+        //        Console.WriteLine($"Error al parsear datos en CargarCamiones: {e.Message}");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine($"Se ha producido un error en CargarCamiones: {e.Message}");
+        //    }
+        //} 
 
         public void CargarCamiones()
         {
+            FileStream archivo = null;
+            StreamReader reader = null;
+
             try
             {
                 _listaCamiones.Clear();
                 _listaCamionesDisponibles.Clear();
                 _listaCamionesVendidos.Clear();
-                FileStream archivo = new FileStream("Camiones.txt", FileMode.Open);
-                StreamReader reader = new StreamReader(archivo);
+
+                archivo = new FileStream("Camiones.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
+                reader = new StreamReader(archivo);
 
                 while (!reader.EndOfStream)
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
-                    //validar.validarEntero(id_vehiculo);
+
                     int id_vehiculo = int.Parse(split[0]);
                     string patente = split[1];
                     double kilometros = double.Parse(split[2]);
@@ -288,22 +354,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int carga_max = int.Parse(split[13]);
                     bool estado = bool.Parse(split[14]);
 
-                    Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento, 
-                        id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, 
-                        carga_max, estado);
+                    Camion cam = new Camion(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento,
+                    id_combustible, precio_vta, observaciones, color, caja_carga, dimension_caja, carga_max, estado);
 
-                    if (bool.Parse(split[14]) == true)
+                    if (estado)
                     {
-                        this._listaCamionesVendidos.Add(cam);
+                        _listaCamionesVendidos.Add(cam);
                     }
                     else
                     {
-                        this._listaCamionesDisponibles.Add(cam);
+                        _listaCamionesDisponibles.Add(cam);
                     }
                     _listaCamiones.Add(cam);
                 }
-                archivo.Close();
-                reader.Close();
             }
             catch (FileNotFoundException e)
             {
@@ -317,7 +380,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"Se ha producido un error en CargarCamiones: {e.Message}");
             }
-        } 
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (archivo != null)
+                {
+                    archivo.Close();
+                }
+            }
+        }
 
         public void CargarVentas()
         {
@@ -1388,13 +1462,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
             AutoCamioneta autoCamioneta = new AutoCamioneta();
             Camion camion = new Camion();
             Moto moto = new Moto();
-            int id, flag = 0, i=_listaAutoCamionetasDisponibles.Count() - 1, j= _listaMotosDisponibles.Count() - 1,
-                k= _listaCamionesDisponibles.Count() - 1;
+            int id, flag = 0, i =_listaAutoCamionetasDisponibles.Count() - 1, j = _listaMotosDisponibles.Count() - 1, k = _listaCamionesDisponibles.Count() - 1;
             string cad;
-            Console.WriteLine("Ingrese el ID del vehiculo a modificar");
-            cad = Console.ReadLine();
-            id = int.Parse(cad);
-            foreach(AutoCamioneta autcam in _listaAutoCamionetasDisponibles)
+
+            Console.WriteLine("Ingrese el ID del Vehiculo a modificar:");
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Error: El formato del ID ingresado no es correcto, se debe ingresar un numero. Intente Nuevamente.");
+            }
+           
+
+            foreach (AutoCamioneta autcam in _listaAutoCamionetasDisponibles)
             {
                 if(autcam.pId_vehiculo == id)
                 {

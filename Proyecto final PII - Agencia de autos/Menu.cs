@@ -27,7 +27,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Clear();
                 Console.ResetColor();
-                Console.WriteLine("Seleccione una opción con las flechas ↑ y ↓");
+                Console.WriteLine("Seleccione una opción con las flechas \u2191 y \u2193");
                 Console.WriteLine("-------------------------------------------");
 
                 for (int i = 0; i < menuOpciones.Length; i++)
