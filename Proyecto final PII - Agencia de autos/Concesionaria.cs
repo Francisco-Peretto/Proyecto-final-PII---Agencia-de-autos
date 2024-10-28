@@ -2612,117 +2612,327 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.ReadKey();
         }
 
+
+        //public void ModificarVenta()
+        //{
+        //    CargarVentas();
+        //    int id;
+        //    bool encontrado = false;
+
+        //    Console.WriteLine("Ingrese el ID de la VENTA a modificar");
+        //    id = validar.validarEntero(Console.ReadLine());
+        //    /*
+        //    while (!int.TryParse(Console.ReadLine(), out id))
+        //    {
+        //        Console.Write("El ID ingresado no es válido. Ingrese un ID numérico:");
+        //    }
+        //    */
+        //    foreach (Venta ven in this._listaVentas)
+        //    {
+        //        if (ven.pId_venta == id)
+        //        {
+        //            encontrado = true;
+        //            string[] menumodif = { "Cliente", "Vehiculo", "Fecha de compra", "Fecha de entrega",
+        //        "Subtotal", "IVA", "Descuento", "Total" };
+        //            int indexmodif = 0;
+        //            ConsoleKeyInfo opcmodif;
+
+        //            Console.Clear();
+        //            Console.WriteLine("Ingrese el dato que desea modificar\n");
+
+        //            do
+        //            {
+        //                for (int i = 0; i < menumodif.Length; i++)
+        //                {
+        //                    if (i == indexmodif)
+        //                    {
+        //                        Console.ForegroundColor = ConsoleColor.Black;
+        //                        Console.BackgroundColor = ConsoleColor.Gray;
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.ResetColor();
+        //                    }
+        //                    Console.WriteLine(menumodif[i]);
+        //                }
+
+        //                Console.ResetColor();
+        //                Console.Write($"\n\n\t\tPresione ESCAPE para salir.");
+        //                opcmodif = Console.ReadKey();
+
+        //                switch (opcmodif.Key)
+        //                {
+        //                    case ConsoleKey.UpArrow:
+        //                        Console.Clear();
+        //                        indexmodif = indexmodif > 0 ? indexmodif - 1 : menumodif.Length - 1;
+        //                        break;
+        //                    case ConsoleKey.DownArrow:
+        //                        Console.Clear();
+        //                        indexmodif = indexmodif < menumodif.Length - 1 ? indexmodif + 1 : 0;
+        //                        break;
+        //                    case ConsoleKey.Enter:
+        //                        Console.Clear();
+
+        //                        switch (menumodif[indexmodif])
+        //                        {
+        //                            case "Cliente":
+        //                                int idclmodif;
+        //                                Console.WriteLine($"Ingrese el ID que modificará el actual -{ven.pId_cliente}-: ");
+        //                                idclmodif = validar.validarEntero(Console.ReadLine());
+        //                                /*
+        //                                while (!int.TryParse(Console.ReadLine(), out idclmodif))
+        //                                {
+        //                                    Console.WriteLine("Error. El dato ingresado no es válido.");
+        //                                }
+        //                                */
+        //                                ven.pId_cliente = idclmodif;
+        //                                break;
+
+        //                            case "Total":
+        //                                double subtotmodif;
+        //                                Console.WriteLine($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
+        //                                subtotmodif = validar.validarDoble(Console.ReadLine());
+        //                                /*
+        //                                while (!double.TryParse(Console.ReadLine(), out subtotmodif))
+        //                                {
+        //                                    Console.WriteLine("Error. El dato ingresado no es válido.");
+        //                                }
+        //                                */
+        //                                ven.pSubtotal = subtotmodif;
+        //                                break;
+        //                        }
+
+        //                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        //                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+        //                        Console.ResetColor();
+        //                        Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menú.");
+        //                        Console.ReadKey();
+        //                        Console.Clear();
+        //                        break;
+        //                }
+        //            } while (opcmodif.Key != ConsoleKey.Escape);
+        //            return;
+        //        }
+        //    }
+
+        //    if (!encontrado)
+        //    {
+        //        Console.Clear();
+        //        Console.Write($"El ID -{id}- no existe en la lista de Ventas.");
+        //        Console.WriteLine("\n\nPresione una tecla para continuar.");
+        //        Console.ReadKey();
+        //    }
+        //}
+
         public void ModificarVenta()
         {
-            CargarVentas();
-            int id;
-            bool encontrado = false;
-
-            Console.WriteLine("Ingrese el ID de la VENTA a modificar");
+            Venta venta = new Venta();
+            int id, flag = 0;
+            string cad;
+            Console.WriteLine("Ingrese el ID de la venta a modificar");
+            cad = Console.ReadLine();
             id = validar.validarEntero(Console.ReadLine());
-            /*
-            while (!int.TryParse(Console.ReadLine(), out id))
-            {
-                Console.Write("El ID ingresado no es válido. Ingrese un ID numérico:");
-            }
-            */
             foreach (Venta ven in this._listaVentas)
             {
                 if (ven.pId_venta == id)
                 {
-                    encontrado = true;
                     string[] menumodif = { "Cliente", "Vehiculo", "Fecha de compra", "Fecha de entrega",
-                "Subtotal", "IVA", "Descuento", "Total" };
+                    "Subtotal", "IVA", "Descuento", "Total"};
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
-
                     Console.Clear();
                     Console.WriteLine("Ingrese el dato que desea modificar\n");
-
                     do
                     {
+
+
+                        //Fondo menu
                         for (int i = 0; i < menumodif.Length; i++)
                         {
+
                             if (i == indexmodif)
                             {
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 Console.BackgroundColor = ConsoleColor.Gray;
+
                             }
                             else
                             {
                                 Console.ResetColor();
                             }
                             Console.WriteLine(menumodif[i]);
+
+
                         }
 
                         Console.ResetColor();
-                        Console.Write($"\n\n\t\tPresione ESCAPE para salir.");
+                        Console.Write($"\n\n\t\tPresiones ESCAPE para salir.");
                         opcmodif = Console.ReadKey();
 
                         switch (opcmodif.Key)
                         {
                             case ConsoleKey.UpArrow:
                                 Console.Clear();
-                                indexmodif = indexmodif > 0 ? indexmodif - 1 : menumodif.Length - 1;
+                                if (indexmodif > 0)
+                                {
+                                    indexmodif--;
+                                }
+                                else if (indexmodif == 0)
+                                {
+                                    indexmodif = 7;
+                                }
                                 break;
                             case ConsoleKey.DownArrow:
                                 Console.Clear();
-                                indexmodif = indexmodif < menumodif.Length - 1 ? indexmodif + 1 : 0;
+                                if (indexmodif < (menumodif.Length - 1))
+                                {
+                                    indexmodif++;
+                                }
+                                else if (indexmodif == 7)
+                                {
+                                    indexmodif = 0;
+                                }
                                 break;
                             case ConsoleKey.Enter:
                                 Console.Clear();
-
-                                switch (menumodif[indexmodif])
+                                if (menumodif[indexmodif] == "Cliente")
                                 {
-                                    case "Cliente":
-                                        int idclmodif;
-                                        Console.WriteLine($"Ingrese el ID que modificará el actual -{ven.pId_cliente}-: ");
-                                        idclmodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        while (!int.TryParse(Console.ReadLine(), out idclmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                        }
-                                        */
-                                        ven.pId_cliente = idclmodif;
-                                        break;
+                                    int idclmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el ID que modficara el actual -{ven.pId_cliente}-: ");
+                                    idclmodif = int.Parse(Console.ReadLine());
+                                    ven.pId_cliente = idclmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
 
-                                    case "Total":
-                                        double subtotmodif;
-                                        Console.WriteLine($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
-                                        subtotmodif = validar.validarDoble(Console.ReadLine());
-                                        /*
-                                        while (!double.TryParse(Console.ReadLine(), out subtotmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido.");
-                                        }
-                                        */
-                                        ven.pSubtotal = subtotmodif;
-                                        break;
+                                }
+                                else if (menumodif[indexmodif] == "Vehiculo")
+                                {
+                                    int vehimodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el ID del vehiculo que modficara el actual -{ven.pId_vehiculo}-: ");
+                                    vehimodif = int.Parse(Console.ReadLine());
+                                    ven.pId_vehiculo = vehimodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+                                }
+                                else if (menumodif[indexmodif] == "Fecha de compra")
+                                {
+
+                                    DateTime feccompmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese la fecha que modficara la actual -{ven.pFecha_compra}-: ");
+                                    cad = Console.ReadLine();
+                                    feccompmodif = DateTime.Parse(cad);
+                                    ven.pFecha_compra = feccompmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+
+                                }
+                                else if (menumodif[indexmodif] == "Fecha de entrega")
+                                {
+                                    DateTime fecentmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese la fecha que modficara la actual -{ven.pFecha_entrega}-: ");
+                                    cad = Console.ReadLine();
+                                    fecentmodif = DateTime.Parse(cad);
+                                    ven.pFecha_entrega = fecentmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+
+                                }
+                                else if (menumodif[indexmodif] == "Subtotal")
+                                {
+                                    double subtotmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el subtotal que modificara el actual -{ven.pSubtotal}-: ");
+                                    cad = Console.ReadLine();
+                                    subtotmodif = double.Parse(cad);
+                                    ven.pSubtotal = subtotmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+
+                                }
+                                else if (menumodif[indexmodif] == "IVA")
+                                {
+                                    int ivamodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el % de IVA que modificara el actual -{ven.pIva}-: ");
+                                    cad = Console.ReadLine();
+                                    ivamodif = int.Parse(cad);
+                                    ven.pIva = ivamodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+
+                                }
+                                else if (menumodif[indexmodif] == "Descuento")
+                                {
+                                    int descmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el descuento que modificara el actual -{ven.pDescuento}-: ");
+                                    cad = Console.ReadLine();
+                                    descmodif = int.Parse(cad);
+                                    ven.pDescuento = descmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+
+                                }
+                                else if (menumodif[indexmodif] == "Total")
+                                {
+                                    int descmodif, ivamodif;
+                                    double subtotmodif, totalmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el SUBTOTAL que modificar el actual -{ven.pSubtotal}-: ");
+                                    cad = Console.ReadLine();
+                                    subtotmodif = double.Parse(cad);
+                                    ven.pSubtotal = subtotmodif;
+
+                                    Console.WriteLine($"Ingrese el % DE IVA que modificar el actual -{ven.pIva}-: ");
+                                    cad = Console.ReadLine();
+                                    ivamodif = int.Parse(cad);
+                                    ven.pIva = ivamodif;
+
+                                    Console.WriteLine($"Ingrese el % DE DESCUENTO que modificar el actual -{ven.pDescuento}-: ");
+                                    cad = Console.ReadLine();
+                                    descmodif = int.Parse(cad);
+                                    ven.pDescuento = descmodif;
+                                    //totalmodif = (subtotmodif + ((ivamodif * subtotmodif) / 100)) - ((descmodif * subtotmodif) / 100);
+                                    //ven.pTotal = totalmodif;
+
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+
+
                                 }
 
-                                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                Console.ResetColor();
-                                Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menú.");
+
+                                Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu");
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
+
                         }
                     } while (opcmodif.Key != ConsoleKey.Escape);
-                    return;
+
+                }
+                else
+                {
+                    flag = 1;
                 }
             }
-
-            if (!encontrado)
+            if (flag == 1)
             {
                 Console.Clear();
-                Console.Write($"El ID -{id}- no existe en la lista de Ventas.");
-                Console.WriteLine("\n\nPresione una tecla para continuar.");
-                Console.ReadKey();
+                Console.Write($"La ID -{id}- no existe en la lista de Ventas.");
             }
-        }
 
+        }
         public void BorrarVenta()
         {
             CargarVentas();
