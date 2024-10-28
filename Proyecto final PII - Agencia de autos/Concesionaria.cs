@@ -684,7 +684,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
                 else
                 {
-                    Console.WriteLine("Error. La PATENTE ingresada ya existe. Ingrese una PATENTE diferente.");
+                    Console.WriteLine("Error. La PATENTE ingresada ya existe. Presione cualquier tecla para continuar.");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
             } while (true);
 
@@ -1510,11 +1512,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             AutoCamioneta autoCamioneta = new AutoCamioneta();
             Camion camion = new Camion();
             Moto moto = new Moto();
-            int id, flag = 0, i =_listaAutoCamionetasDisponibles.Count() - 1, j = _listaMotosDisponibles.Count() - 1, k = _listaCamionesDisponibles.Count() - 1;
+            int id, flag = 0, i, j, k;
+            string patente;
             //string cad;
 
-            Console.WriteLine("Ingrese el ID del Vehiculo a modificar:");
-            id = validar.validarEntero(Console.ReadLine());
+            //Console.WriteLine("Ingrese el ID del Vehiculo a modificar:");
+            //id = validar.validarEntero(Console.ReadLine());
+            Console.WriteLine("Ingrese la PATENTE del Vehiculo a modificar:");
+            patente = Console.ReadLine();
             /*
             while (!int.TryParse(Console.ReadLine(), out id))
             {
@@ -1524,7 +1529,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             foreach (AutoCamioneta autcam in _listaAutoCamionetasDisponibles)
             {
-                if(autcam.pId_vehiculo == id)
+                if(autcam.pPatente == patente)
                 {
                     string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
                     "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color"};
@@ -1751,256 +1756,255 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Moto mot in _listaMotosDisponibles)
             {
-                if (mot.pId_vehiculo == id)
+                if (mot.pPatente == patente)
                 {
-                    if (flag == j)
+                    
+                    string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
+                    "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color", "Cilindrada"};
+                    int indexmodif = 0;
+                    ConsoleKeyInfo opcmodif;
+                    Console.Clear();
+                    Console.WriteLine("Ingrese el dato que desea modificar.\n");
+                    do
                     {
-                        string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
-                "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color", "Cilindrada"};
-                        int indexmodif = 0;
-                        ConsoleKeyInfo opcmodif;
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el dato que desea modificar.\n");
-                        do
+                        for (i = 0; i < menumodif.Length; i++)
                         {
-                            for (i = 0; i < menumodif.Length; i++)
+                            if (i == indexmodif)
                             {
-                                if (i == indexmodif)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Black;
-                                    Console.BackgroundColor = ConsoleColor.Gray;
-                                }
-                                else
-                                {
-                                    Console.ResetColor();
-                                }
-                                Console.WriteLine(menumodif[i]);
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.BackgroundColor = ConsoleColor.Gray;
                             }
-
-                            Console.ResetColor();
-                            Console.Write($"\n\n\t\tPresiones ESCAPE para salir.");
-                            opcmodif = Console.ReadKey();
-
-                            switch (opcmodif.Key)
+                            else
                             {
-                                case ConsoleKey.UpArrow:
-                                    Console.Clear();
-                                    if (indexmodif > 0)
-                                    {
-                                        indexmodif--;
-                                    }
-                                    else if (indexmodif == 0)
-                                    {
-                                        indexmodif = 10;
-                                    }
-                                    break;
-                                case ConsoleKey.DownArrow:
-                                    Console.Clear();
-                                    if (indexmodif < (menumodif.Length - 1))
-                                    {
-                                        indexmodif++;
-                                    }
-                                    else if (indexmodif == 10)
-                                    {
-                                        indexmodif = 0;
-                                    }
-                                    break;
-                                case ConsoleKey.Enter:
-                                    Console.Clear();
-                                    if (menumodif[indexmodif] == "Patente")
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese la PATENTE que modificará la actual -{mot.pPatente}-: ");
-                                        mot.pPatente = Console.ReadLine();
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Kilometros")
-                                    {
-                                        double kilomodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el Kilometraje que modificará el actual -{mot.pKilometros}-: ");
-                                        kilomodif = validar.validarDoble(Console.ReadLine());
-                                        /*
-                                        while (!double.TryParse(Console.ReadLine(), out kilomodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese el Kilometraje que modificará el actual -{mot.pKilometros}-:  ");
-                                        }
-                                        */
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Año")
-                                    {
-
-                                        int aniomodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el AÑO que modificará el actual -{mot.pAnio}-: ");
-                                        aniomodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        cad = Console.ReadLine();
-                                        while (!int.TryParse(Console.ReadLine(), out aniomodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese el AÑO que modificará el actual -{mot.pAnio}-:  ");
-                                        }
-                                        */
-                                        mot.pAnio = aniomodif;
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Id de marca")
-                                    {
-                                        int idmarcamodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_marca}-: ");
-                                        idmarcamodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        cad = Console.ReadLine();
-                                        while (!int.TryParse(Console.ReadLine(), out idmarcamodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_marca}-:  ");
-                                        }
-                                        */
-                                        mot.pId_marca = idmarcamodif;
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Modelo")
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el MODELO que modificará el actual -{mot.pModelo}-: ");
-                                        mot.pModelo = Console.ReadLine();
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Id de segmento")
-                                    {
-                                        int idsegmentomodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{mot.pId_segmento}-: ");
-                                        idsegmentomodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        cad = Console.ReadLine();
-                                        while (!int.TryParse(Console.ReadLine(), out idsegmentomodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_segmento}-:  ");
-                                        }
-                                        */
-                                        mot.pId_segmento = idsegmentomodif;
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Id de combustible")
-                                    {
-                                        int idcombmodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el ID de COMBUSTIBLE que modificará el actual -{mot.pId_combustible}-: ");
-                                        idcombmodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        cad = Console.ReadLine();
-                                        while (!int.TryParse(Console.ReadLine(), out idcombmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_combustible}-:  ");
-                                        }
-                                        */
-                                        mot.pId_combustible = idcombmodif;
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Precio")
-                                    {
-                                        double preciomodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el PRECIO que modificará el actual -{mot.pPrecio_vta}-: ");
-                                        preciomodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        cad = Console.ReadLine();
-                                        while (!double.TryParse(Console.ReadLine(), out preciomodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pPrecio_vta}-:  ");
-                                        }
-                                        */
-                                        mot.pPrecio_vta = preciomodif;
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Observaciones")
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese la Observacion que modificará la actual -{mot.pObservaciones}-: ");
-                                        mot.pObservaciones = Console.ReadLine();
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Color")
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese el COLOR que modificará el actual -{mot.pColor}-: ");
-                                        mot.pColor = Console.ReadLine();
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificado correctamente.");
-                                    }
-
-                                    else if (menumodif[indexmodif] == "Cilindrada")
-                                    {
-                                        int cilinmodif;
-                                        Console.Clear();
-                                        Console.WriteLine($"Ingrese la Cilindrada que modificará la actual -{mot.pCilindrada}-: ");
-                                        cilinmodif = validar.validarEntero(Console.ReadLine());
-                                        /*
-                                        cad = Console.ReadLine();
-                                        while (!int.TryParse(Console.ReadLine(), out cilinmodif))
-                                        {
-                                            Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
-                                            Console.ReadKey();
-                                            Console.Clear();
-                                            Console.Write($"Ingrese la Cilindrada que modficará el actual -{mot.pPrecio_vta}-: ");
-                                        }
-                                        */
-                                        mot.pCilindrada = cilinmodif;
-                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                    }
-
-                                    Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu.");
-                                    Console.ReadKey();
-                                    Console.Clear();
-                                    break;
+                                Console.ResetColor();
                             }
-                        } while (opcmodif.Key != ConsoleKey.Escape);
-                    }
+                            Console.WriteLine(menumodif[i]);
+                        }
+
+                        Console.ResetColor();
+                        Console.Write($"\n\n\t\tPresiones ESCAPE para salir.");
+                        opcmodif = Console.ReadKey();
+
+                        switch (opcmodif.Key)
+                        {
+                            case ConsoleKey.UpArrow:
+                                Console.Clear();
+                                if (indexmodif > 0)
+                                {
+                                    indexmodif--;
+                                }
+                                else if (indexmodif == 0)
+                                {
+                                    indexmodif = 10;
+                                }
+                                break;
+                            case ConsoleKey.DownArrow:
+                                Console.Clear();
+                                if (indexmodif < (menumodif.Length - 1))
+                                {
+                                    indexmodif++;
+                                }
+                                else if (indexmodif == 10)
+                                {
+                                    indexmodif = 0;
+                                }
+                                break;
+                            case ConsoleKey.Enter:
+                                Console.Clear();
+                                if (menumodif[indexmodif] == "Patente")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese la PATENTE que modificará la actual -{mot.pPatente}-: ");
+                                    mot.pPatente = Console.ReadLine();
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Kilometros")
+                                {
+                                    double kilomodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el Kilometraje que modificará el actual -{mot.pKilometros}-: ");
+                                    kilomodif = validar.validarDoble(Console.ReadLine());
+                                    /*
+                                    while (!double.TryParse(Console.ReadLine(), out kilomodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese el Kilometraje que modificará el actual -{mot.pKilometros}-:  ");
+                                    }
+                                    */
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Año")
+                                {
+
+                                    int aniomodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el AÑO que modificará el actual -{mot.pAnio}-: ");
+                                    aniomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
+                                    while (!int.TryParse(Console.ReadLine(), out aniomodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese el AÑO que modificará el actual -{mot.pAnio}-:  ");
+                                    }
+                                    */
+                                    mot.pAnio = aniomodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Id de marca")
+                                {
+                                    int idmarcamodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_marca}-: ");
+                                    idmarcamodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
+                                    while (!int.TryParse(Console.ReadLine(), out idmarcamodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_marca}-:  ");
+                                    }
+                                    */
+                                    mot.pId_marca = idmarcamodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Modelo")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el MODELO que modificará el actual -{mot.pModelo}-: ");
+                                    mot.pModelo = Console.ReadLine();
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Id de segmento")
+                                {
+                                    int idsegmentomodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{mot.pId_segmento}-: ");
+                                    idsegmentomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
+                                    while (!int.TryParse(Console.ReadLine(), out idsegmentomodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_segmento}-:  ");
+                                    }
+                                    */
+                                    mot.pId_segmento = idsegmentomodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Id de combustible")
+                                {
+                                    int idcombmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el ID de COMBUSTIBLE que modificará el actual -{mot.pId_combustible}-: ");
+                                    idcombmodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
+                                    while (!int.TryParse(Console.ReadLine(), out idcombmodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_combustible}-:  ");
+                                    }
+                                    */
+                                    mot.pId_combustible = idcombmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Precio")
+                                {
+                                    double preciomodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el PRECIO que modificará el actual -{mot.pPrecio_vta}-: ");
+                                    preciomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
+                                    while (!double.TryParse(Console.ReadLine(), out preciomodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pPrecio_vta}-:  ");
+                                    }
+                                    */
+                                    mot.pPrecio_vta = preciomodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Observaciones")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese la Observacion que modificará la actual -{mot.pObservaciones}-: ");
+                                    mot.pObservaciones = Console.ReadLine();
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Color")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese el COLOR que modificará el actual -{mot.pColor}-: ");
+                                    mot.pColor = Console.ReadLine();
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificado correctamente.");
+                                }
+
+                                else if (menumodif[indexmodif] == "Cilindrada")
+                                {
+                                    int cilinmodif;
+                                    Console.Clear();
+                                    Console.WriteLine($"Ingrese la Cilindrada que modificará la actual -{mot.pCilindrada}-: ");
+                                    cilinmodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
+                                    while (!int.TryParse(Console.ReadLine(), out cilinmodif))
+                                    {
+                                        Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        Console.Write($"Ingrese la Cilindrada que modficará el actual -{mot.pPrecio_vta}-: ");
+                                    }
+                                    */
+                                    mot.pCilindrada = cilinmodif;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                }
+
+                                Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu.");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                        }
+                    } while (opcmodif.Key != ConsoleKey.Escape);
+                    
                 }
             }
             foreach (Camion cam in _listaCamionesDisponibles)
             {
-                if (cam.pId_vehiculo == id)
+                if (cam.pPatente == patente)
                 {
                     string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
                 "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color", "Caja de carga", "Dimensiones de caja", "Carga maxima"};
@@ -2307,7 +2311,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if (flag == 1)
                 {
                     Console.Clear();
-                    Console.Write($"La ID -{id}- no existe en la lista de Vehiculos.");
+                    Console.Write($"La PATENTE -{patente}- no existe en la lista de Vehiculos.");
                 }
             }          
         }
@@ -4520,38 +4524,31 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public bool IsPatenteUnique (string patente)
         {
             //asegura que la patente sea unica
-            foreach (Vehiculo vehiculo in _listaVehiculos)
+            foreach (AutoCamioneta acam in _listaAutoCamionetas)
             {
-                if (vehiculo.pPatente == patente)
+                if (acam.pPatente == patente)
                 {
                     return false;
                 }
-                return true;
+
             }
-            /*foreach (AutoCamioneta autocam in _listaAutoCamionetas)
-            //{
-            //    if (autocam.pPatente == patente)
-            //    {
-            //        return false;
-            //    }
-            //}
 
-            //foreach (Moto moto in _listaMotos)
-            //{
-            //    if (moto.pPatente == patente)
-            //    {
-            //        return false;
-            //    }
-            //}
+            foreach (Moto moto in _listaMotos)
+            {
+                if (moto.pPatente == patente)
+                {
+                    return false;
+                }
+            }
 
-            //foreach (Camion camion in _listaCamiones)
-            //{
-            //    if (camion.pPatente == patente)
-            //    {
-            //        return false;
-            //    }
-            //}
-            */
+            foreach (Camion camion in _listaCamiones)
+            {
+                if (camion.pPatente == patente)
+                {
+                    return false;
+                }
+            }
+           
             return true;
         }
     }
