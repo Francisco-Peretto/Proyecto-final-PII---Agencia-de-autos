@@ -605,7 +605,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Camion cam = new Camion();
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
-            Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
             do
             {
                 Console.Write("Ingrese el ID del vehículo a registrar: ");
@@ -1452,10 +1451,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             
             for (i = _listaAutoCamionetasDisponibles.Count() - 1; i >= 0; i--)
             {
-                if (_listaAutoCamionetasDisponibles[i].pPatente.ToLower() == patente.ToLower())
+                if (_listaAutoCamionetasDisponibles[i].pPatente == patente)
                 {
-                    flag = 1;
-                    _listaAutoCamionetasDisponibles.RemoveAt(i);
+                    flag = i;
+                    //_listaAutoCamionetasDisponibles.RemoveAt(i);
                 }
 
             }
@@ -1529,7 +1528,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             foreach (AutoCamioneta autcam in _listaAutoCamionetasDisponibles)
             {
-                if(autcam.pPatente == patente)
+                if(autcam.pPatente.ToLower() == patente.ToLower())
                 {
                     string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
                     "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color"};
@@ -1756,7 +1755,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Moto mot in _listaMotosDisponibles)
             {
-                if (mot.pPatente == patente)
+                if (mot.pPatente.ToLower() == patente.ToLower())
                 {
                     
                     string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
@@ -2004,7 +2003,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             foreach (Camion cam in _listaCamionesDisponibles)
             {
-                if (cam.pPatente == patente)
+                if (cam.pPatente.ToLower() == patente.ToLower())
                 {
                     string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
                 "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color", "Caja de carga", "Dimensiones de caja", "Carga maxima"};
