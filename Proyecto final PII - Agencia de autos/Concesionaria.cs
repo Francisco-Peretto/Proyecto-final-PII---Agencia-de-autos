@@ -163,11 +163,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     int id_marca = int.Parse(split[4]);
                     string modelo = split[5];
                     int id_segmento = int.Parse(split[6]);
-                    int id_combustible = int.Parse(split[7]);
-                    double precio_vta = double.Parse(split[8]);
-                    string observaciones = split[9];
-                    string color = split[10];
-                    int cilindrada = int.Parse(split[11]);
+                    int cilindrada = int.Parse(split[7]);
+                    int id_combustible = int.Parse(split[8]);
+                    double precio_vta = double.Parse(split[9]);
+                    string observaciones = split[10];
+                    string color = split[11];                 
                     bool estado = bool.Parse(split[12]);
 
                     Moto m = new Moto(id_vehiculo, patente, kilometros, anio, id_marca, modelo, id_segmento,
@@ -182,6 +182,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         this._listaMotosDisponibles.Add(m);
                     }
                     _listaMotos.Add(m);
+                    _listaVehiculos.Add(m);
                 }
                 archivo.Close();
                 reader.Close();
@@ -239,6 +240,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         this._listaAutoCamionetasDisponibles.Add(ac);
                     }
                     _listaAutoCamionetas.Add(ac);
+                    _listaVehiculos.Add(ac);
                 }
                 reader.Close();
                 archivo.Close();              
@@ -303,6 +305,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         _listaCamionesDisponibles.Add(cam);
                     }
                     _listaCamiones.Add(cam);
+                    _listaVehiculos.Add(cam);
                 }
             }
             catch (FileNotFoundException e)
@@ -808,7 +811,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             
             _listaAutoCamionetas.Add(autcam);
             _listaAutoCamionetasDisponibles.Add(autcam);
-            
+            _listaVehiculos.Add(autcam);
+
         } // modificar las validaciones del resto de los ingresos con el nuevo metodo 
 
         public void IngresarMoto()
@@ -955,7 +959,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del segmento del vehiculo a registar: ");
                 id_segmento = int.Parse(Console.ReadLine());
-            }          
+            }
             mot.pId_segmento = id_segmento;
 
             Console.Write("\nIngrese la CILINDRADA: ");
@@ -1015,6 +1019,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             mot.pEstado = false;
             _listaMotos.Add(mot);
             _listaMotosDisponibles.Add(mot);
+            _listaVehiculos.Add(mot);
         }
 
         public void IngresarCamion()
@@ -1348,6 +1353,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             _listaCamiones.Add(cam);
             _listaCamionesDisponibles.Add(cam);
+            _listaVehiculos.Add(cam);
         }       
 
         public void MostrarVehiculos() 
@@ -1435,15 +1441,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarMotos();
 
             int id, flag = 0, i, j , k ;
+            string patente;
             //string cad;
-            Console.WriteLine("Ingrese el ID del Vehiculo a eliminar: ");
-            /*cad = Console.ReadLine();
-            id = int.Parse(cad);*/
-            id = validar.validarEntero(Console.ReadLine());
-
+            Console.WriteLine("Ingrese la PATENTE del Vehiculo a eliminar: ");
+            patente = Console.ReadLine();
+            //id = int.Parse(cad);
+            //id = validar.validarEntero(Console.ReadLine());
+            
             for (i = _listaAutoCamionetasDisponibles.Count() - 1; i >= 0; i--)
             {
-                if (_listaAutoCamionetasDisponibles[i].pId_vehiculo == id)
+                if (_listaAutoCamionetasDisponibles[i].pPatente.ToLower() == patente.ToLower())
                 {
                     flag = 1;
                     _listaAutoCamionetasDisponibles.RemoveAt(i);
@@ -1452,50 +1459,46 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             for (j = _listaMotosDisponibles.Count() - 1; j >= 0; j--)
             {
-                if (_listaMotosDisponibles[j].pId_vehiculo == id)
+                if (_listaMotosDisponibles[j].pPatente.ToLower() == patente.ToLower())
                 {
-                    flag = 1;
-                    _listaMotosDisponibles.RemoveAt(j);
+                    flag = j;
+                    //_listaMotosDisponibles.RemoveAt(j);
                 }
 
             }
             for (k = _listaCamionesDisponibles.Count() - 1; k >= 0; k--)
             {
-                if (_listaCamionesDisponibles[k].pId_vehiculo == id)
+                
+                
+                if (_listaCamionesDisponibles[k].pPatente.ToLower() == patente.ToLower())
                 {
-                    flag = 1;
-                    _listaCamionesDisponibles.RemoveAt(k); ;
+                    flag = k;
+                    //_listaCamionesDisponibles.RemoveAt(k); ;
                 }
             }
             
             if (flag == 0)
             {
-                Console.Write($"El ID -{id}- no existe en la lista de Vehiculos");
+                Console.Write($"La PATENTE -{patente}- no existe en la lista de Vehiculos");
             }
-
-            else
-            {
-                Console.Write($"El articulo con ID -{id}- fue eliminado");
-            }
-            /*
             else
             {
                 if (flag == i)
                 {
-                    _listaAutoCamionetas.RemoveAt(flag);
+                    _listaAutoCamionetasDisponibles.RemoveAt(flag);
                 }
                 else if (flag == j)
                 {
-                    _listaMotos.RemoveAt(flag);
+                    _listaMotosDisponibles.RemoveAt(flag);
                 }
                 else if (flag == k)
                 {
-                    _listaCamiones.RemoveAt(flag);
+                    _listaCamionesDisponibles.RemoveAt(flag);
                 }
 
-                Console.Write($"El articulo con ID -{id}- fue eliminado");
+                Console.Write($"El articulo la PATENTE -{patente}- fue eliminado");
             }
-            */  
+             
         }
 
         public void ModificarVehiculo()
