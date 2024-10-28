@@ -48,7 +48,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 while (DateTime.TryParse(fecha, out FechaValida) == false)
                 {
                     Console.Clear();
-                    Console.Write("\nEl dato ingresado no es valido, por favor reingreselo: ");
+                    Console.Write("\n La fecha ingresada no es válida, por favor reingrésela: ");
                     fecha = Console.ReadLine();
                 }
                 return FechaValida;
@@ -61,24 +61,35 @@ namespace Proyecto_final_PII___Agencia_de_autos
             while (int.TryParse(entero, out enteroparse) == false)
             {
                 Console.Clear();
-                Console.Write("\nEl dato ingresado no es valido, por favor reingreselo: ");
+                Console.Write("\nEl número ingresado no es válido, por favor reingréselo: ");
                 entero = Console.ReadLine();
             }
-
             return enteroparse;
         }
 
-        public double validarDouble(string doble)
+        public double validarDoble(string doble)
         {
             double dobleparse;
             while (double.TryParse(doble, out dobleparse) == false)
             {
                 Console.Clear();
-                Console.Write("\nEl dato ingresado no es valido, por favor reingreselo: ");
+                Console.Write("\nEl número ingresado no es valido, por favor reingreselo: ");
                 doble = Console.ReadLine();
             }
 
             return dobleparse;
+        }
+
+        public int validarLong(string longp)
+        {
+            int longparse;
+            while (int.TryParse(longp, out longparse) == false)
+            {
+                Console.Clear();
+                Console.Write("\nEl número ingresado no es válido, por favor reingréselo: ");
+                longp = Console.ReadLine();
+            }
+            return longparse;
         }
 
         public long validarCuit()
