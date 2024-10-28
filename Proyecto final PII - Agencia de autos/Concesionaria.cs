@@ -1400,8 +1400,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
-            Console.Write("\n\nPresione cualquier tecla para continuar.");
-            Console.ReadKey();
         }
 
         public void ActualizarMotos()
@@ -1415,8 +1413,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
-            Console.Write("\n\nPresione cualquier tecla para continuar.");
-            Console.ReadKey();
+
         }
 
         public void ActualizarCamiones()
@@ -1431,8 +1428,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             wr.Close();
             arch.Close();
-            Console.Write("\n\nPresione cualquier tecla para continuar.");
-            Console.ReadKey();
+
         }
 
         public void BorrarVehiculo()
@@ -1451,10 +1447,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             
             for (i = _listaAutoCamionetasDisponibles.Count() - 1; i >= 0; i--)
             {
-                if (_listaAutoCamionetasDisponibles[i].pPatente == patente)
+                if (_listaAutoCamionetasDisponibles[i].pPatente.ToLower() == patente.ToLower())
                 {
-                    flag = i;
-                    //_listaAutoCamionetasDisponibles.RemoveAt(i);
+                    _listaAutoCamionetasDisponibles.RemoveAt(i);
+                    _listaAutoCamionetas.RemoveAt(i);
+
+                    flag = 1;
                 }
 
             }
@@ -1462,8 +1460,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 if (_listaMotosDisponibles[j].pPatente.ToLower() == patente.ToLower())
                 {
-                    flag = j;
-                    //_listaMotosDisponibles.RemoveAt(j);
+                    _listaMotosDisponibles.RemoveAt(j);
+                    _listaMotos.RemoveAt(j);
+
+                    flag = 1;
+                    
                 }
 
             }
@@ -1473,8 +1474,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 
                 if (_listaCamionesDisponibles[k].pPatente.ToLower() == patente.ToLower())
                 {
-                    flag = k;
-                    //_listaCamionesDisponibles.RemoveAt(k); ;
+                    _listaCamionesDisponibles.RemoveAt(k);
+                    _listaCamiones.RemoveAt(k);
+
+                    flag = 1;
+                    
                 }
             }
             
@@ -1482,24 +1486,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write($"La PATENTE -{patente}- no existe en la lista de Vehiculos");
             }
+            
             else
             {
-                if (flag == i)
-                {
-                    _listaAutoCamionetasDisponibles.RemoveAt(flag);
-                }
-                else if (flag == j)
-                {
-                    _listaMotosDisponibles.RemoveAt(flag);
-                }
-                else if (flag == k)
-                {
-                    _listaCamionesDisponibles.RemoveAt(flag);
-                }
-
                 Console.Write($"El articulo la PATENTE -{patente}- fue eliminado");
+                Console.ReadKey();
             }
-             
+            
         }
 
         public void ModificarVehiculo()
