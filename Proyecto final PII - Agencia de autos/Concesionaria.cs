@@ -330,7 +330,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
         }
 
-
         public void CargarVentas()
         {
             try
@@ -585,8 +584,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
 
         //VEHICULOS----------------------------------------------------------------------------------------------------------------
-        //----------------------------------------------------------------------------------------------------------------------
-        
+        //----------------------------------------------------------------------------------------------------------------------    
+
         public void IngresarAutoCamioneta()
         {
             CargarAutosCamionetas();
@@ -604,6 +603,21 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
+            do
+            {
+                Console.Write("Ingrese el ID del vehículo a registrar: ");
+                id_vehiculo = validar.validarEntero(Console.ReadLine());
+
+                if (!IsIdValid(id_vehiculo))
+                {
+                    Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            } while (!IsIdValid(id_vehiculo));
+            autcam.pId_vehiculo = id_vehiculo;
+
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_vehiculo) || !IsIdValid(id_vehiculo))
             {
                 Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
@@ -612,8 +626,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID del vehículo a registrar: ");
             }
             autcam.pId_vehiculo = id_vehiculo;
+            */
 
-            //foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+            /*foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             //{
 
             //    while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
@@ -649,6 +664,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             //        int.TryParse(Console.ReadLine(), out id_vehiculo);
             //    }
             //}
+            */
 
             // Ingreso de patente 
             //bool bucle = false;
@@ -669,7 +685,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
             } while (true);
 
+
             Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
+            kilometros = validar.validarDoble(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out kilometros))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -677,10 +696,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese los KILOMETROS del vehículo a registrar: ");
             }
+            */
             autcam.pKilometros = kilometros;
 
             
-            Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año. Se puede establecer rango min-max
+            Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año.
+
+
+
             while (!int.TryParse(Console.ReadLine(), out anio) || anio > fecact.Year)
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -695,14 +718,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{mar.pId_marca} -> {mar.pMarca}");
             }
+
             Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: "); // ID Marca
-            while (!int.TryParse(Console.ReadLine(), out id_marca))
+            id_marca = validar.validarEntero(Console.ReadLine());
+            /*while (!int.TryParse(Console.ReadLine(), out id_marca))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el ID de la MARCA del vehículo a registrar: ");
-            }
+            }*/
             autcam.pId_marca = id_marca;
 
             Console.Write("\nIngrese el NOMBRE del MODELO del vehiculo a registrar: "); // Nombre Modelo 
@@ -714,7 +739,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{seg.pIdSegmento} -> {seg.pSegmento}");
             }
+
             Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento
+            id_segmento = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_segmento))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -722,6 +750,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del SEGMENTO del vehículo a registrar: ");
             }
+            */
             while (id_segmento > 4)
             {
                 Console.WriteLine("Error. El SEGMENTO ingresado no corresponde a un Auto/Camioneta. Presione una tecla para continuar.");
@@ -738,7 +767,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{comb.pIdCombustible} -> {comb.pCombustible}");
             }
+
             Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: "); // ID Combustible
+            id_combustible = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_combustible))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -746,21 +778,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del COMBUSTIBLE del vehículo a registrar: ");
             }
+            */
             autcam.pId_combustible = id_combustible;
 
             Console.Write("\nIngrese el PRECIO DE VENTA del vehículo a registrar: "); // Precio Venta
+            precio_vta = validar.validarEntero(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out precio_vta))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el PRECIO DE VENTA del vehículo a registrar: ");
-            }
+            }*/
             autcam.pPrecio_vta = precio_vta;
 
             Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones
             autcam.pObservaciones = Console.ReadLine();
-            if (autcam.pObservaciones == " ")
+            if (autcam.pObservaciones == "")
             {
                 autcam.pObservaciones = "Sin observaciones";
             }
@@ -791,15 +826,30 @@ namespace Proyecto_final_PII___Agencia_de_autos
             AutoCamioneta autcam = new AutoCamioneta();
             Camion cam = new Camion();
             Console.Write("\t\t\t*****CARGA DE MOTO*****\n\n");
-            Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
+
+            do
+            {
+                Console.Write("Ingrese el ID del vehículo a registrar: ");
+                id_vehiculo = validar.validarEntero(Console.ReadLine());
+
+                if (!IsIdValid(id_vehiculo))
+                {
+                    Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            } while (!IsIdValid(id_vehiculo));
+            mot.pId_vehiculo = id_vehiculo;
+
+            /*Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
             while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
                 Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el ID del vehículo a registrar: ");
-            }
- 
+            }*/
+
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
                 while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
@@ -842,6 +892,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             mot.pPatente = Console.ReadLine();
 
             Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
+            kilometros = validar.validarDoble(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out kilometros))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -849,6 +901,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese los KILOMETROS del vehículo a registrar: ");
             }
+            */
             mot.pKilometros = kilometros;
 
             Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año
@@ -866,14 +919,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.WriteLine($"{mar.pId_marca} -> {mar.pMarca}");
             }
             Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: ");
+            id_marca = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_marca))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
                 Console.ReadKey();
                 Console.Clear();
                 Console.Write("Ingrese el ID de la MARCA del vehículo a registrar: ");
-
             }
+            */
             mot.pId_marca = id_marca;
 
             Console.Write("\n");
@@ -881,7 +936,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{seg.pIdSegmento} -> {seg.pSegmento}");
             }
+
             Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
+            id_segmento = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_segmento))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -889,6 +947,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del segmento del vehículo a registrar: ");
             }
+            */
             while (id_segmento < 5 || id_segmento > 7)
             {
                 Console.WriteLine("Error. El segmento ingresado no corresponde a una Moto. Presione una tecla para continuar. ");
@@ -900,6 +959,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             mot.pId_segmento = id_segmento;
 
             Console.Write("\nIngrese la CILINDRADA: ");
+            cilindrada = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out cilindrada))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -907,6 +968,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese la Cilindrada del vehículo a registrar: ");
             }
+            */
             mot.pCilindrada = cilindrada;
 
             Console.Write("\n ");
@@ -915,6 +977,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.WriteLine($"{comb.pIdCombustible} -> {comb.pCombustible}");
             }
             Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: ");
+            id_combustible = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_combustible))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -922,9 +986,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del COMBUSTIBLE del vehículo a registrar: ");
             }
+            */
             mot.pId_combustible = id_combustible;
 
             Console.Write("\nIngrese el PRECIO de VENTA del vehículo a registrar: "); // Precio
+            precio_vta = validar.validarEntero(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out precio_vta))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -932,6 +999,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el PRECIO de VENTA del vehículo a registrar: ");
             }
+            */
             mot.pPrecio_vta = precio_vta;
 
             Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones
@@ -967,6 +1035,20 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Camion cam = new Camion();
 
             Console.Write("\t\t\t*****CARGA DE CAMION*****\n\n");
+            do
+            {
+                Console.Write("Ingrese el ID del vehículo a registrar: ");
+                id_vehiculo = validar.validarEntero(Console.ReadLine());
+
+                if (!IsIdValid(id_vehiculo))
+                {
+                    Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            } while (!IsIdValid(id_vehiculo));
+            cam.pId_vehiculo = id_vehiculo;
+            /*
             Console.Write("Ingrese el ID del vehículo a registrar: "); // ID vehículo
             while (!int.TryParse(Console.ReadLine(), out id_vehiculo))
             {
@@ -975,9 +1057,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del vehículo a registrar: ");
             }
+            */
             foreach (AutoCamioneta ac in this._listaAutoCamionetas)
             {
-
                 while (ac.pId_vehiculo == id_vehiculo || ac.pEstado == true)
                 {
                     Console.WriteLine("Error. El ID ingresado ya existe o ya fue vendido. Presione una tecla para continuar");
@@ -986,7 +1068,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     Console.Write("Ingrese el ID del vehículo a registrar: ");
                     int.TryParse(Console.ReadLine(), out id_vehiculo);
                 }
-
 
             }
             foreach (Moto m in this._listaMotos)
@@ -1018,6 +1099,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             cam.pPatente = patente;
 
             Console.Write("\nIngrese los KILOMETROS del vehículo a registrar: "); // Kilómetros
+            kilometros = validar.validarDoble(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out kilometros))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1025,9 +1108,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese los KILOMETROS del vehículo a registrar: ");
             }
+            */
             cam.pKilometros = kilometros;
 
             Console.Write("\nIngrese el AÑO del vehículo a registrar: "); // Año. Se puede establecer rango min-max
+            anio = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out anio) || anio > fecact.Year)
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1035,6 +1121,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el AÑO del vehículo a registrar: ");
             }
+            */
             cam.pAnio = anio;
 
             Console.Write("\n ");
@@ -1042,7 +1129,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{mar.pId_marca} -> {mar.pMarca}");
             }
+
             Console.Write("\nIngrese el ID de la MARCA del vehiculo a registrar: ");
+            id_marca = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_marca))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1050,6 +1140,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la MARCA del vehículo a registrar: ");
             }
+            */
             cam.pId_marca = id_marca;
 
             Console.Write("\nIngrese el NOMBRE del MODELO del vehiculo a registrar: ");
@@ -1063,7 +1154,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{seg.pIdSegmento} -> {seg.pSegmento}");
             }
+
             Console.Write("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
+            id_segmento = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_segmento))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1071,6 +1165,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del segmento del vehículo a registrar: ");
             }
+            */
             while (id_segmento != 8)
             {
                 Console.WriteLine("Error. El segmento ingresado no corresponde a un Camion. Presione una tecla para continuar.");
@@ -1083,8 +1178,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             cam.pId_segmento = id_segmento;
 
             string[] menucaja = { "SI", "NO" };
+            /*
             int indexcaja = 0;
             ConsoleKeyInfo opccaja;
+            */
 
             Console.WriteLine("\nIngrese si el camion tiene caja 1 -> SI\t2 -> NO: ");
             while (!int.TryParse(Console.ReadLine(), out opc) || opc > 2)
@@ -1103,13 +1200,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 cam.pCaja_Carga = false;
             }
 
-
-
             /*
             do
             {
-
-
                 //Fondo menu
                 for (int i = 0; i < menucaja.Length; i++)
                 {
@@ -1118,17 +1211,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.Gray;
-
                     }
                     else
                     {
                         Console.ResetColor();
                     }
                     Console.WriteLine(menucaja[i]);
-
-
                 }
-
                 Console.ResetColor();
                 opccaja = Console.ReadKey();
 
@@ -1174,7 +1263,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
             } while (opccaja.Key != ConsoleKey.Escape);
             */
+
             Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
+            largocaja = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out largocaja))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1182,8 +1274,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el Largo de la caja del camion a registrar(en mts): ");
             }
+            */
 
             Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
+            anchocaja = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out anchocaja))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1191,10 +1286,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ancho de la caja del camion a registrar(en mts): ");
             }
+            */
             dimension_caja = largocaja * anchocaja;
             cam.pDimension_caja = dimension_caja;
 
             Console.Write("\nIngrese la CARGA MAXIMA de la caja del camion (en kg): ");
+            carga_max = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out carga_max))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1202,6 +1300,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese la carga maxima de la caja del camion a registrar: ");
             }
+            */
             cam.pCarga_max = carga_max;
 
             Console.Write("\n ");
@@ -1210,6 +1309,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.WriteLine($"{comb.pIdCombustible} -> {comb.pCombustible}");
             }
             Console.Write("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: ");
+            id_combustible = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_combustible))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1217,9 +1318,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del COMBUSTIBLE del vehículo a registrar: ");
             }
+            */
             cam.pId_combustible = id_combustible;
 
             Console.Write("\nIngrese el PRECIO de VENTA del vehículo a registrar: "); // Precio
+            precio_vta = validar.validarEntero(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out precio_vta))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1227,6 +1331,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el PRECIO de VENTA del vehículo a registrar: ");
             }
+            */
             cam.pPrecio_vta = precio_vta;
 
             Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones
@@ -1330,12 +1435,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarMotos();
 
             int id, flag = 0, i, j , k ;
-            string cad;
+            //string cad;
             Console.WriteLine("Ingrese el ID del Vehiculo a eliminar: ");
-            cad = Console.ReadLine();
-            id = int.Parse(cad);
-            
-            
+            /*cad = Console.ReadLine();
+            id = int.Parse(cad);*/
+            id = validar.validarEntero(Console.ReadLine());
+
             for (i = _listaAutoCamionetasDisponibles.Count() - 1; i >= 0; i--)
             {
                 if (_listaAutoCamionetasDisponibles[i].pId_vehiculo == id)
@@ -1403,14 +1508,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Camion camion = new Camion();
             Moto moto = new Moto();
             int id, flag = 0, i =_listaAutoCamionetasDisponibles.Count() - 1, j = _listaMotosDisponibles.Count() - 1, k = _listaCamionesDisponibles.Count() - 1;
-            string cad;
+            //string cad;
 
             Console.WriteLine("Ingrese el ID del Vehiculo a modificar:");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.WriteLine("Error: El formato del ID ingresado no es correcto, se debe ingresar un numero. Intente Nuevamente.");
             }
-           
+            */
 
             foreach (AutoCamioneta autcam in _listaAutoCamionetasDisponibles)
             {
@@ -1422,8 +1529,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
 
-
-                    
                     do
                     {
                         Console.WriteLine("Ingrese el dato que desea modificar\n");
@@ -1477,13 +1582,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pPatente = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Kilometros")
                                 {
                                     double kilomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el Kilometraje que modificará el actual -{autcam.pKilometros}-: ");
+                                    kilomodif = validar.validarDoble(Console.ReadLine());
+
+                                    /*
                                     while (!double.TryParse(Console.ReadLine(), out kilomodif))
                                     {
                                         Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -1491,16 +1599,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el Kilometraje que modificará el actual -{autcam.pKilometros}-:  ");
                                     }
+                                    */
                                     autcam.pKilometros = kilomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Año")
                                 {
                                     int aniomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el AÑO que modificará el actual -{autcam.pAnio}-: ");
+                                    aniomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out aniomodif))
                                     {
@@ -1509,16 +1620,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el AÑO que modificará el actual -{autcam.pAnio}-:  ");
                                     }
+                                    */
                                     autcam.pAnio = aniomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Id de marca")
                                 {
                                     int idmarcamodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el ID de MARCA que modficará el actual -{autcam.pId_marca}-: ");
+                                    idmarcamodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idmarcamodif))
                                     {
@@ -1527,11 +1641,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modficará el actual -{autcam.pId_marca}-:  ");
                                     }
+                                    */
                                     autcam.pId_marca = idmarcamodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Modelo")
                                 {
                                     Console.Clear();
@@ -1539,13 +1654,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pModelo = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Id de segmento")
                                 {
                                     int idsegmentomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese ID de Segmento que modificará el actual -{autcam.pId_segmento}-: ");
+                                    idsegmentomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idsegmentomodif))
                                     {
@@ -1554,16 +1671,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modficará el actual -{autcam.pId_segmento}-:  ");
                                     }
+                                    */
                                     autcam.pId_segmento = idsegmentomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Id de combustible")
                                 {
                                     int idcombmodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el ID de COMBUSTIBLE que modificará el actual -{autcam.pId_combustible}-: ");
+                                    idcombmodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idcombmodif))
                                     {
@@ -1572,16 +1692,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modificará el actual -{autcam.pId_combustible}-:  ");
                                     }
+                                    */
                                     autcam.pId_combustible = idcombmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Precio")
                                 {
                                     double preciomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el PRECIO que modificará el actual -{autcam.pPrecio_vta}-: ");
+                                    preciomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!double.TryParse(Console.ReadLine(), out preciomodif))
                                     { 
@@ -1590,11 +1713,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modificará el actual -{autcam.pPrecio_vta}-:  ");
                                     }
+                                    */
                                     autcam.pPrecio_vta = preciomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Observaciones")
                                 {
                                     Console.Clear();
@@ -1602,8 +1726,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pObservaciones = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                 }
+
                                 else if (menumodif[indexmodif] == "Color")
                                 {
                                     Console.Clear();
@@ -1686,13 +1810,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         mot.pPatente = Console.ReadLine();
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Kilometros")
                                     {
                                         double kilomodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese el Kilometraje que modificará el actual -{mot.pKilometros}-: ");
+                                        kilomodif = validar.validarDoble(Console.ReadLine());
+                                        /*
                                         while (!double.TryParse(Console.ReadLine(), out kilomodif))
                                         {
                                             Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -1700,16 +1826,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese el Kilometraje que modificará el actual -{mot.pKilometros}-:  ");
                                         }
+                                        */
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Año")
                                     {
 
                                         int aniomodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese el AÑO que modificará el actual -{mot.pAnio}-: ");
+                                        aniomodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         cad = Console.ReadLine();
                                         while (!int.TryParse(Console.ReadLine(), out aniomodif))
                                         {
@@ -1718,16 +1847,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese el AÑO que modificará el actual -{mot.pAnio}-:  ");
                                         }
+                                        */
                                         mot.pAnio = aniomodif;
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Id de marca")
                                     {
                                         int idmarcamodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_marca}-: ");
+                                        idmarcamodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         cad = Console.ReadLine();
                                         while (!int.TryParse(Console.ReadLine(), out idmarcamodif))
                                         {
@@ -1736,11 +1868,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_marca}-:  ");
                                         }
+                                        */
                                         mot.pId_marca = idmarcamodif;
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Modelo")
                                     {
                                         Console.Clear();
@@ -1748,13 +1881,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         mot.pModelo = Console.ReadLine();
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Id de segmento")
                                     {
                                         int idsegmentomodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{mot.pId_segmento}-: ");
+                                        idsegmentomodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         cad = Console.ReadLine();
                                         while (!int.TryParse(Console.ReadLine(), out idsegmentomodif))
                                         {
@@ -1763,16 +1898,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_segmento}-:  ");
                                         }
+                                        */
                                         mot.pId_segmento = idsegmentomodif;
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Id de combustible")
                                     {
                                         int idcombmodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese el ID de COMBUSTIBLE que modificará el actual -{mot.pId_combustible}-: ");
+                                        idcombmodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         cad = Console.ReadLine();
                                         while (!int.TryParse(Console.ReadLine(), out idcombmodif))
                                         {
@@ -1781,17 +1919,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pId_combustible}-:  ");
                                         }
-
+                                        */
                                         mot.pId_combustible = idcombmodif;
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Precio")
                                     {
                                         double preciomodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese el PRECIO que modificará el actual -{mot.pPrecio_vta}-: ");
+                                        preciomodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         cad = Console.ReadLine();
                                         while (!double.TryParse(Console.ReadLine(), out preciomodif))
                                         {
@@ -1800,11 +1940,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese el ID de MARCA que modificará el actual -{mot.pPrecio_vta}-:  ");
                                         }
+                                        */
                                         mot.pPrecio_vta = preciomodif;
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Observaciones")
                                     {
                                         Console.Clear();
@@ -1812,8 +1953,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         mot.pObservaciones = Console.ReadLine();
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Color")
                                     {
                                         Console.Clear();
@@ -1821,13 +1962,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         mot.pColor = Console.ReadLine();
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificado correctamente.");
-
                                     }
+
                                     else if (menumodif[indexmodif] == "Cilindrada")
                                     {
                                         int cilinmodif;
                                         Console.Clear();
                                         Console.WriteLine($"Ingrese la Cilindrada que modificará la actual -{mot.pCilindrada}-: ");
+                                        cilinmodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         cad = Console.ReadLine();
                                         while (!int.TryParse(Console.ReadLine(), out cilinmodif))
                                         {
@@ -1836,6 +1979,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                             Console.Clear();
                                             Console.Write($"Ingrese la Cilindrada que modficará el actual -{mot.pPrecio_vta}-: ");
                                         }
+                                        */
                                         mot.pCilindrada = cilinmodif;
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -1869,8 +2013,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             {
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 Console.BackgroundColor = ConsoleColor.Gray;
-
                             }
+
                             else
                             {
                                 Console.ResetColor();
@@ -1922,6 +2066,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     double kilomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el Kilometraje que modificará el actual -{cam.pKilometros}-: ");
+                                    kilomodif = validar.validarEntero(Console.ReadLine());
+
+                                    /*
                                     while (!double.TryParse(Console.ReadLine(), out kilomodif))
                                     {
                                         Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -1929,6 +2076,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el Kilometraje que modficará el actual -{cam.pKilometros}-:  ");
                                     }
+                                    */
                                     cam.pKilometros = kilomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -1939,6 +2087,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     int aniomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el AÑO que modificará el actual -{cam.pAnio}-: ");
+                                    aniomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out aniomodif))
                                     {
@@ -1947,6 +2097,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el AÑO que modificará el actual -{cam.pAnio}-:  ");
                                     }
+                                    */
                                     cam.pAnio = aniomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -1957,6 +2108,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     int idmarcamodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el ID de MARCA que modificará el actual -{cam.pId_marca}-: ");
+                                    idmarcamodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idmarcamodif))
                                     {
@@ -1965,7 +2118,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modificará el actual -{cam.pId_marca}-:  ");
                                     }
-
+                                    */
                                     cam.pId_marca = idmarcamodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -1985,6 +2138,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     int idsegmentomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el % de IVA que modificará el actual -{cam.pId_segmento}-: ");
+                                    idsegmentomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idsegmentomodif))
                                     {
@@ -1993,6 +2148,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modificará el actual -{cam.pId_segmento}-:  ");
                                     }
+                                    */
                                     cam.pId_segmento = idsegmentomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2003,6 +2159,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     int idcombmodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el ID de COMBUSTIBLE que modificará el actual -{cam.pId_combustible}-: ");
+                                    idcombmodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out idcombmodif))
                                     {
@@ -2011,6 +2169,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modificará el actual -{cam.pId_combustible}-:  ");
                                     }
+                                    */
                                     cam.pId_combustible = idcombmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2021,6 +2180,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     double preciomodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el PRECIO que modificará el actual -{cam.pPrecio_vta}-: ");
+                                    preciomodif = validar.validarDoble(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!double.TryParse(Console.ReadLine(), out preciomodif))
                                     {
@@ -2029,6 +2190,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID de MARCA que modificará el actual -{cam.pPrecio_vta}-:  ");
                                     }
+                                    */
                                     cam.pPrecio_vta = preciomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2076,8 +2238,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese los datos que modificaran la Dimension actual -{cam.pDimension_caja}-: ");
                                     Console.WriteLine($"\nIngrese el LARGO de la caja: ");
+                                    largomodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
-
                                     while (!int.TryParse(Console.ReadLine(), out largomodif))
                                     {
                                         Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2085,9 +2248,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el Largo que modificará el actual: ");
                                     }
-                                    Console.WriteLine($"\nIngrese el ANCHO de la caja: ");
-                                    cad = Console.ReadLine();
+                                    */
 
+                                    Console.WriteLine($"\nIngrese el ANCHO de la caja: ");
+                                    anchomnodif = validar.validarEntero(Console.ReadLine());
+                                    /*
+                                    cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out anchomnodif))
                                     {
                                         Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2095,6 +2261,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el Ancho que modificará el actual: ");
                                     }
+                                    */
                                     dimensionmodif = largomodif * anchomnodif;
                                     cam.pDimension_caja = dimensionmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -2106,8 +2273,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     int cargamaxmodif;
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese la CARGA MAX. que modificará la actual -{cam.pCarga_max}-: ");
+                                    cargamaxmodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
-
                                     while (!int.TryParse(Console.ReadLine(), out cargamaxmodif))
                                     {
                                         Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2115,6 +2283,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese la CILINDRADA que modificará el actual -{cam.pCarga_max}-: ");
                                     }
+                                    */
                                     cam.pCarga_max = cargamaxmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2200,7 +2369,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             int id_venta, id_cliente=0, id_vehiculo = 0, iva, descuento, opc;
             DateTime fecha_compra, fecha_entrega;
             double subtotal;
-
             bool flag = false, opcionValida = false;
 
             Console.WriteLine("****CARGA DE VENTA****\n");
@@ -2209,7 +2377,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.WriteLine($"{ven.pId_venta}\t");
             }
-            
+
+            id_venta = validar.validarEntero(Console.ReadLine());
+            /*
             Console.Write("\nIngrese el ID de la VENTA: ");
             while (!int.TryParse(Console.ReadLine(), out id_venta))
             {
@@ -2218,6 +2388,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la VENTA: ");
             }
+            */
 
             foreach (Venta v in this._listaVentas)
             {
@@ -2232,7 +2403,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
 
             Console.Write('\n');
-
             do
             {
                 foreach (Cliente cl in this._listaClientes)
@@ -2363,6 +2533,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
 
             Console.Write("\nIngrese la FECHA DE COMPRA del vehiculo (dd/mm/aaaa): ");
+            fecha_compra = validar.validarFecha(Console.ReadLine());
+            /*
             while (!DateTime.TryParse(Console.ReadLine(), out fecha_compra))
             { 
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2370,8 +2542,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese la FECHA DE COMPRA del vehiculo (dd/mm/aaaa): ");
             }
+            */
 
             Console.Write("\nIngrese la FECHA DE ENTREGA del vehiculo (dd/mm/aaaa): ");
+            fecha_entrega = validar.validarFecha(Console.ReadLine());
+            /*
             while (!DateTime.TryParse(Console.ReadLine(), out fecha_entrega))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2379,8 +2554,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese la FECHA DE ENTREGA del vehiculo (dd/mm/aaaa): ");
             }
+            */
 
             Console.Write("\nIngrese el SUBTOTAL de la VENTA: ");
+            subtotal = validar.validarDoble(Console.ReadLine());
+            /*
             while (!double.TryParse(Console.ReadLine(), out subtotal))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2388,8 +2566,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el SUBTOTAL de la VENTA: ");
             }
-
+            */
             Console.Write("\nIngrese el % de IVA: ");
+            iva = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out iva))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2397,8 +2577,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el % de IVA: ");
             }
+            */
 
             Console.Write("\nIngrese el % de DESCUENTO: ");
+            descuento = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out descuento))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2406,7 +2589,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el % de DESCUENTO: ");
             }
-
+            */
             Venta venta = new Venta(id_venta, id_cliente, id_vehiculo, fecha_compra, fecha_entrega, subtotal, iva, descuento);
             _listaVentas.Add(venta);
         }
@@ -2435,12 +2618,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
             bool encontrado = false;
 
             Console.WriteLine("Ingrese el ID de la VENTA a modificar");
-
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.Write("El ID ingresado no es válido. Ingrese un ID numérico:");
             }
-
+            */
             foreach (Venta ven in this._listaVentas)
             {
                 if (ven.pId_venta == id)
@@ -2492,20 +2676,26 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     case "Cliente":
                                         int idclmodif;
                                         Console.WriteLine($"Ingrese el ID que modificará el actual -{ven.pId_cliente}-: ");
+                                        idclmodif = validar.validarEntero(Console.ReadLine());
+                                        /*
                                         while (!int.TryParse(Console.ReadLine(), out idclmodif))
                                         {
                                             Console.WriteLine("Error. El dato ingresado no es válido.");
                                         }
+                                        */
                                         ven.pId_cliente = idclmodif;
                                         break;
 
                                     case "Total":
                                         double subtotmodif;
                                         Console.WriteLine($"Ingrese el SUBTOTAL que modificará el actual -{ven.pSubtotal}-: ");
+                                        subtotmodif = validar.validarDoble(Console.ReadLine());
+                                        /*
                                         while (!double.TryParse(Console.ReadLine(), out subtotmodif))
                                         {
                                             Console.WriteLine("Error. El dato ingresado no es válido.");
                                         }
+                                        */
                                         ven.pSubtotal = subtotmodif;
                                         break;
                                 }
@@ -2536,10 +2726,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarVentas();
             int id, flag = 0;
-            string cad;
+            //string cad;
             Console.WriteLine("Ingrese el ID de la VENTA a eliminar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             id = int.Parse(cad);
+            */
             for (int i = _listaVentas.Count() - 1; i >= 0; i--)
             {
                 if (_listaVentas[i].pId_venta == id)
@@ -2615,9 +2808,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             int id, flag = 0;
             string cad;
             Console.Write("Ingrese el ID del cliente a modificar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
-            id = int.Parse(cad);
-
+            id = validar.validarEntero(cad);
+            */
             foreach (Cliente cl in this._listaClientes)
             {
                 if (cl.pId_cliente == id)
@@ -2709,6 +2904,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.WriteLine($"\t{loc.pId_localidad} -> {loc.pLocalidad}");
                                     }
                                     Console.WriteLine($"Ingrese el ID de LOCALIDAD que modificará el actual -{cl.pId_localidad}-:");
+                                    localmodif = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     cad = Console.ReadLine();
                                     while (!int.TryParse(Console.ReadLine(), out localmodif))
                                     {
@@ -2717,6 +2914,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el ID que modificará el actual -{cl.pId_localidad}-:");
                                     }
+                                    */
                                     cl.pId_localidad = localmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2727,6 +2925,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese el teléfono que modificará el actual -{cl.pTelefono}-:");
                                     cad = Console.ReadLine();
+                                    telmodif = validar.validarLong(Console.ReadLine());
+                                    /*
                                     while (!long.TryParse(Console.ReadLine(), out telmodif))
                                     {
                                         Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2734,6 +2934,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                         Console.Clear();
                                         Console.Write($"Ingrese el teléfono que modificará el actual -{cl.pTelefono}-:");
                                     }
+                                    */
                                     cl.pTelefono = telmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
@@ -2785,8 +2986,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             int id, flag = 0;
             string cad;
             Console.WriteLine("Ingrese el ID del Cliente a eliminar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             id = int.Parse(cad);
+            */
             for (int i = _listaClientes.Count() - 1; i >= 0; i--)
             {
                 if (_listaClientes[i].pId_cliente == id)
@@ -2820,6 +3024,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write($"{cli.pId_cliente}\t");
             }
             Console.Write("\nIngrese el ID del Cliente: ");
+            id_cliente = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_cliente))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -2827,6 +3033,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del Cliente: ");
             }
+            */
 
             foreach (Cliente c in this._listaClientes)
             {
@@ -2854,6 +3061,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.WriteLine($"\tID: {loc.pId_localidad} Localidad: {loc.pLocalidad}");
             }
 
+            id_localidad = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_localidad))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2861,8 +3070,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la Localidad: ");
             }
+            */
 
+            telefono = validar.validarLong(Console.ReadLine());
             Console.Write("\nIngrese el Telefono del cliente: ");
+            /*
             while (!long.TryParse(Console.ReadLine(), out telefono))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2870,6 +3082,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el Telefono del cliente: ");
             }
+            */
 
             Console.Write("\nIngrese el Correo: ");
             correo = Console.ReadLine();
@@ -2929,6 +3142,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("****CARGA DE MARCA****\n\n");
             Console.Write("Ingrese el ID de la MARCA: ");
+            id_marca = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_marca))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -2936,6 +3151,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la MARCA: ");
             }
+            */
             foreach (Marca m in this._listaMarcas)
             {
                 if (m.pId_marca == id_marca)
@@ -2958,10 +3174,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarMarcas();
             int id, flag=0;
-            string cad;
+            //string cad;
             Console.WriteLine("Ingrese el ID de la MARCA a eliminar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             id = int.Parse(cad);
+            */
             for (int i = _listaMarcas.Count() - 1; i >= 0; i--)
             {
                 if (_listaMarcas[i].pId_marca == id)
@@ -2991,11 +3210,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarMarcas();
             int id;
-            string cad;
+            //string cad;
 
             Console.WriteLine("Ingrese el ID de la MARCA a modificar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(cad, out id))
+            
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
                 Console.ReadKey();
@@ -3003,6 +3225,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID de la MARCA a modificar: ");
                 cad = Console.ReadLine();
             }
+            */
 
             foreach (Marca marca in this._listaMarcas)
             {
@@ -3055,11 +3278,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     int nuevoIdMarca;
                                     Console.Write("Ingrese el nuevo ID de la MARCA: ");
+                                    nuevoIdMarca = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     while (!int.TryParse(Console.ReadLine(), out nuevoIdMarca))
                                     {
                                         Console.WriteLine("ID inválido. Reingrese.");
                                         Console.Write("Ingrese el nuevo ID de la MARCA: ");
                                     }
+                                    */
                                     marca.pId_marca = nuevoIdMarca;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tID modificada correctamente.");
@@ -3135,6 +3361,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("****CARGA DE LOCALIDAD****\n\n");
             Console.Write("Ingrese el ID de la LOCALIDAD: ");
+
+            id_localidad = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_localidad))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -3142,6 +3371,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la LOCALIDAD: ");
             }
+            */
+
             foreach (Localidad l in this._listaLocalidades)
             {
                 if (l.pId_localidad == id_localidad)
@@ -3161,7 +3392,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write($"ID: {prov.pId_provincia} -> {prov.pProvincia}");
             }
+
             Console.Write("\nIngrese el ID de la PROVINCIA");
+            id_provincia = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_provincia))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
@@ -3169,7 +3403,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la PROVINCIA: ");
             }
-
+            */
             Localidad loc = new Localidad(id_localidad, localidad, id_provincia);
             _listaLocalidades.Add(loc);
         }
@@ -3192,8 +3426,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarLocalidades();
             int id;
-            string cad;
+            //string cad;
             Console.WriteLine("Ingrese el ID de la LOCALIDAD a modificar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(cad, out id))
             {
@@ -3203,7 +3439,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID de la LOCALIDAD a modificar: ");
                 cad = Console.ReadLine();
             }
-
+            */
             foreach (Localidad localidad in this._listaLocalidades)
             {
                 if (localidad.pId_localidad == id)
@@ -3256,11 +3492,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     int nuevoIdLocalidad;
                                     Console.Write("Ingrese el nuevo ID de la LOCALIDAD: ");
+                                    nuevoIdLocalidad = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     while (!int.TryParse(Console.ReadLine(), out nuevoIdLocalidad))
                                     {
                                         Console.WriteLine("ID inválido. Reingrese.");
                                         Console.Write("Ingrese el nuevo ID de la LOCALIDAD: ");
                                     }
+                                    */
                                     localidad.pId_localidad = nuevoIdLocalidad;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tID modificada correctamente.");
@@ -3290,8 +3529,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarLocalidades();
             int id, flag=0;
-            string cad;
+            //string cad;
             Console.WriteLine("Ingrese el ID de la LOCALIDAD a eliminar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(Console.ReadLine(), out id))
             {
@@ -3300,6 +3541,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la LOCALIDAD a eliminar: ");
             }
+            */
             for (int i = _listaLocalidades.Count() - 1; i >= 0; i--)
             {
                 if (_listaLocalidades[i].pId_localidad == id)
@@ -3361,6 +3603,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("****CARGA DE PROVINCIA****\n\n");
             Console.Write("Ingrese el ID de la PROVINCIA: ");
+            id_provincia = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_provincia))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -3368,6 +3612,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la PROVINCIA: ");
             }
+            */
             foreach (Provincia p in this._listaProvincias)
             {
                 if (p.pId_provincia == id_provincia)
@@ -3403,9 +3648,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarProvincias();
             int id;
-            string cad;
+            //string cad;
 
             Console.WriteLine("Ingrese el ID de la PROVINCIA a modificar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(cad, out id))
             {
@@ -3415,7 +3662,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID de la PROVINCIA a modificar: ");
                 cad = Console.ReadLine();
             }
-
+            */
             foreach (Provincia provincia in this._listaProvincias)
             {
                 if (provincia.pId_provincia == id)
@@ -3468,11 +3715,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     int nuevoIdProvincia;
                                     Console.Write("Ingrese el nuevo ID de la PROVINCIA: ");
+                                    nuevoIdProvincia = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     while (!int.TryParse(Console.ReadLine(), out nuevoIdProvincia))
                                     {
                                         Console.WriteLine("ID inválido. Reingrese.");
                                         Console.Write("Ingrese el nuevo ID de la PROVINCIA: ");
                                     }
+                                    */
                                     provincia.pId_provincia = nuevoIdProvincia;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tID modificada correctamente.");
@@ -3502,10 +3752,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarProvincias();
             int id, flag=0;
-            string cad;
+            //string cad;
 
             Console.WriteLine("Ingrese el ID de la PROVINCIA a eliminar: ");
-            cad = Console.ReadLine();
+            id = validar.validarEntero(Console.ReadLine());
+            /*cad = Console.ReadLine();
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -3513,6 +3764,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID de la PROVINCIA a eliminar: ");
             }
+            */
             for (int i = _listaProvincias.Count() - 1; i >= 0; i--)
             {
                 if (_listaProvincias[i].pId_provincia == id)
@@ -3571,8 +3823,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             int id_combustible;
             string combustible;
+
             Console.Write("****CARGA DE COMBUSTIBLE****\n\n");
             Console.Write("Ingrese el ID del COMBUSTIBLE: ");
+            id_combustible = validar.validarEntero(Console.ReadLine());
+
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_combustible))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -3580,6 +3836,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del COMBUSTIBLE: ");
             }
+            */
             foreach (Combustible c in this._listaCombustibles)
             {
                 if (c.pIdCombustible == id_combustible)
@@ -3620,6 +3877,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string cad;
 
             Console.WriteLine("Ingrese el ID del COMBUSTIBLE a eliminar: ");
+            id= validar.validarEntero(Console.ReadLine());
+
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(Console.ReadLine(), out id))
             {
@@ -3628,6 +3888,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del COMBUSTIBLE a eliminar: ");
             }
+            */
             for (int i = _listaCombustibles.Count() - 1; i >= 0; i--)
             {
                 if (_listaCombustibles[i].pIdCombustible == id)
@@ -3658,9 +3919,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarCombustibles();
             int id;
-            string cad;
+            //string cad;
 
             Console.WriteLine("Ingrese el ID del COMBUSTIBLE a modificar: ");
+            id = validar.validarEntero(Console.ReadLine());
+
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(cad, out id))
             {
@@ -3670,7 +3934,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID del COMBUSTIBLE a modificar: ");
                 cad = Console.ReadLine();
             }
-
+            */
             foreach (Combustible combustible in this._listaCombustibles)
             {
                 if (combustible.pIdCombustible == id)
@@ -3722,12 +3986,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 if (opcionesModif[indexmodif] == "ID")
                                 {
                                     int nuevoIdCombustible;
-                                    Console.Write("Ingrese el nuevo ID del COMBUSTIBLE: ");
+
+                                    Console.Write("Ingrese el nuevo ID del COMBUSTIBLE: ");                                    
+                                    nuevoIdCombustible = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     while (!int.TryParse(Console.ReadLine(), out nuevoIdCombustible))
                                     {
                                         Console.WriteLine("ID inválido. Reingrese.");
                                         Console.Write("Ingrese el nuevo ID del COMBUSTIBLE: ");
                                     }
+                                    */
                                     combustible.pIdCombustible = nuevoIdCombustible;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tID modificada correctamente.");
@@ -3788,6 +4056,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             Console.Write("****CARGA DE SEGMENTO****\n\n");
             Console.Write("Ingrese el ID del SEGMENTO: ");
+            id_segmento = validar.validarEntero(Console.ReadLine());
+            /*
             while (!int.TryParse(Console.ReadLine(), out id_segmento))
             {
                 Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar.");
@@ -3795,6 +4065,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del SEGMENTO: ");
             }
+            */
             foreach (Segmento s in this._listaSegmentos)
             {
                 if (s.pIdSegmento == id_segmento)
@@ -3821,6 +4092,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string cad;
 
             Console.WriteLine("Ingrese el ID del SEGMENTO a modificar: ");
+            id = validar.validarEntero(Console.ReadLine());
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(cad, out id))
             {
@@ -3830,6 +4103,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el ID del SEGMENTO a modificar: ");
                 cad = Console.ReadLine();
             }
+            */
 
             foreach (Segmento segmento in this._listaSegmentos)
             {
@@ -3883,11 +4157,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     int nuevoIdSegmento;
                                     Console.Write("Ingrese el nuevo ID del SEGMENTO: ");
+                                    nuevoIdSegmento = validar.validarEntero(Console.ReadLine());
+                                    /*
                                     while (!int.TryParse(Console.ReadLine(), out nuevoIdSegmento))
                                     {
                                         Console.WriteLine("ID inválido. Reingrese.");
                                         Console.Write("Ingrese el nuevo ID del SEGMENTO: ");
                                     }
+                                    */
                                     segmento.pIdSegmento = nuevoIdSegmento;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tID modificada correctamente.");
@@ -3933,6 +4210,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             int id, flag=0;
             string cad;
             Console.WriteLine("Ingrese el ID del SEGMENTO a eliminar: ");
+            id = validar.validarEntero(Console.ReadLine());
+
+            /*
             cad = Console.ReadLine();
             while (!int.TryParse(Console.ReadLine(), out id))
             {
@@ -3941,6 +4221,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Clear();
                 Console.Write("Ingrese el ID del SEGMENTO a eliminar: ");
             }
+            */
             for (int i = _listaSegmentos.Count() - 1; i >= 0; i--)
             {
                 if (_listaSegmentos[i].pIdSegmento == id)
@@ -4033,7 +4314,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 }
                 return true;
             }
-            //foreach (AutoCamioneta autocam in _listaAutoCamionetas)
+            /*foreach (AutoCamioneta autocam in _listaAutoCamionetas)
             //{
             //    if (autocam.pPatente == patente)
             //    {
@@ -4056,6 +4337,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             //        return false;
             //    }
             //}
+            */
             return true;
         }
     }
