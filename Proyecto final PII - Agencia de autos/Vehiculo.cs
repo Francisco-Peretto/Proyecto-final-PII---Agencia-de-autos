@@ -17,6 +17,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private string observaciones;
         private string color;
         private bool estado = false;
+        Concesionaria con = new Concesionaria();
 
         public Vehiculo(int id_vehiculo, string patente, double kilometros, int anio, int id_marca,
             string modelo, int id_segmento, int id_combustible, double precio_vta, string observaciones,
@@ -163,10 +164,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         }
         public virtual void MostrarDatos() // Los IDS tienen que ser reemplazados por el nombre al mostrar
         {
-
+            Concesionaria con = new Concesionaria();
             Console.WriteLine($"\nId Vehículo: {this.pId_vehiculo} - Patente: {this.pPatente} - Kilómetros: {this.pKilometros} " +
-                $"- Año: {this.pAnio} - Marca: {this.pId_marca} - modelo: {this.pModelo} " +
-                $"- Segmento: {this.pId_segmento} - combustible: {this.pId_combustible} - Precio de venta: {this.pPrecio_vta} " +
+                $"- Año: {this.pAnio} - Marca: {con.getMarca(this.pId_marca)} - Modelo: {this.pModelo} " +
+                $"- Segmento: {con.getSegmento(this.pId_segmento)} - Combustible: {con.getCombustible(this.pId_combustible)} " +
+                $"- Precio de venta: {this.pPrecio_vta} " +
                 $"- Observaciones: {this.pObservaciones} - Color: {this.pColor} \n");
         }
     }

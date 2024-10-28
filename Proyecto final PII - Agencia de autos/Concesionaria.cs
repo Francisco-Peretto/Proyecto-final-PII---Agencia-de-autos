@@ -277,7 +277,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 {
                     string cadena = reader.ReadLine();
                     string[] split = cadena.Split(';');
-
+                    int dimension_caja, carga_max;
                     int id_vehiculo = int.Parse(split[0]);
                     string patente = split[1];
                     double kilometros = double.Parse(split[2]);
@@ -286,8 +286,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     string modelo = split[5];
                     int id_segmento = int.Parse(split[6]);
                     bool caja_carga = bool.Parse(split[7]);
-                    int dimension_caja = int.Parse(split[8]);
-                    int carga_max = int.Parse(split[9]);
+                    if (bool.Parse(split[7]) == true)
+                    {
+                        dimension_caja = int.Parse(split[8]);
+                        carga_max = int.Parse(split[9]);
+                    }
+                    else
+                    {
+                        dimension_caja = 0;
+                        carga_max = 0;
+                    }
                     int id_combustible = int.Parse(split[10]);
                     double precio_vta = double.Parse(split[11]);
                     string observaciones = split[12];
@@ -1200,6 +1208,44 @@ namespace Proyecto_final_PII___Agencia_de_autos
             if (opc == 1)
             {
                 cam.pCaja_Carga = true;
+                Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
+                largocaja = validar.validarEntero(Console.ReadLine());
+                /*
+                while (!int.TryParse(Console.ReadLine(), out largocaja))
+                {
+                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Console.Write("Ingrese el Largo de la caja del camion a registrar(en mts): ");
+                }
+                */
+
+                Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
+                anchocaja = validar.validarEntero(Console.ReadLine());
+                /*
+                while (!int.TryParse(Console.ReadLine(), out anchocaja))
+                {
+                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Console.Write("Ingrese el ancho de la caja del camion a registrar(en mts): ");
+                }
+                */
+                dimension_caja = largocaja * anchocaja;
+                cam.pDimension_caja = dimension_caja;
+
+                Console.Write("\nIngrese la CARGA MAXIMA de la caja del camion (en kg): ");
+                carga_max = validar.validarEntero(Console.ReadLine());
+                /*
+                while (!int.TryParse(Console.ReadLine(), out carga_max))
+                {
+                    Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Console.Write("Ingrese la carga maxima de la caja del camion a registrar: ");
+                }
+                */
+                cam.pCarga_max = carga_max;
             }
             else if (opc == 2)
             {
@@ -1270,44 +1316,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             } while (opccaja.Key != ConsoleKey.Escape);
             */
 
-            Console.Write("\nIngrese el LARGO de la caja del camion (en metros): ");
-            largocaja = validar.validarEntero(Console.ReadLine());
-            /*
-            while (!int.TryParse(Console.ReadLine(), out largocaja))
-            {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
-                Console.ReadKey();
-                Console.Clear();
-                Console.Write("Ingrese el Largo de la caja del camion a registrar(en mts): ");
-            }
-            */
-
-            Console.Write("\nIngrese el ANCHO de la caja del camion (en metros): ");
-            anchocaja = validar.validarEntero(Console.ReadLine());
-            /*
-            while (!int.TryParse(Console.ReadLine(), out anchocaja))
-            {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
-                Console.ReadKey();
-                Console.Clear();
-                Console.Write("Ingrese el ancho de la caja del camion a registrar(en mts): ");
-            }
-            */
-            dimension_caja = largocaja * anchocaja;
-            cam.pDimension_caja = dimension_caja;
-
-            Console.Write("\nIngrese la CARGA MAXIMA de la caja del camion (en kg): ");
-            carga_max = validar.validarEntero(Console.ReadLine());
-            /*
-            while (!int.TryParse(Console.ReadLine(), out carga_max))
-            {
-                Console.WriteLine("Error. El dato ingresado no es válido. Presione una tecla para continuar");
-                Console.ReadKey();
-                Console.Clear();
-                Console.Write("Ingrese la carga maxima de la caja del camion a registrar: ");
-            }
-            */
-            cam.pCarga_max = carga_max;
+            
 
             Console.Write("\n ");
             foreach (Combustible comb in this._listaCombustibles)
@@ -1362,6 +1371,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarAutosCamionetas();
             CargarCamiones();
             CargarMotos();
+            CargarSegmentos();
+            CargarMarcas();
+            CargarCombustibles();
             Console.WriteLine("Autos y Camionetas\n");
             
             //foreach (Vehiculo vehiculo in _listaVehiculos)
@@ -2962,6 +2974,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ListarVentas()
         {
             CargarVentas();
+            CargarClientes();
             foreach (Venta venta in _listaVentas)
             {
                 venta.mostrarVenta();
@@ -3304,6 +3317,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ListarClientes()
         {
             CargarClientes();
+            CargarLocalidades();
             foreach (Cliente cliente in _listaClientes)
             {
                 cliente.mostrarCliente();
@@ -3769,6 +3783,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void ListarLocalidades()
         {
+            CargarProvincias();
             CargarLocalidades();
             foreach (Localidad loc in _listaLocalidades)
             {
@@ -3993,6 +4008,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ListarProvincias()
         {
             CargarProvincias();
+            CargarLocalidades();
             foreach (Provincia prov in _listaProvincias)
             {
                 prov.mostrarProvincia();
@@ -4542,6 +4558,91 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
            
             return true;
+        }
+
+        public string getCombustible(int id)
+        {
+            for (int i = 0; i < this._listaCombustibles.Count(); i++)
+            {
+
+                if (id == this._listaCombustibles[i].pIdCombustible)
+                {
+                    return this._listaCombustibles[i].pCombustible;
+                }
+            }
+            return " ";
+
+
+        }
+        public string getSegmento(int id)
+        {
+            for (int i = 0; i < this._listaSegmentos.Count(); i++)
+            {
+
+                if (id == this._listaSegmentos[i].pIdSegmento)
+                {
+                    return this._listaSegmentos[i].pSegmento;
+                }
+            }
+            return " ";
+
+
+        }
+        public string getLocalidad(int id)
+        {
+            for (int i = 0; i < this._listaLocalidades.Count(); i++)
+            {
+
+                if (id == this._listaLocalidades[i].pId_localidad)
+                {
+                    return this._listaLocalidades[i].pLocalidad;
+                }
+            }
+            return " ";
+
+
+        }
+        public string getProvincia(int id)
+        {
+            for (int i = 0; i < this._listaProvincias.Count(); i++)
+            {
+
+                if (id == this._listaProvincias[i].pId_provincia)
+                {
+                    return this._listaProvincias[i].pProvincia;
+                }
+            }
+            return " ";
+
+
+        }
+        public string getMarca(int id)
+        {
+            for (int i = 0; i < this._listaMarcas.Count(); i++)
+            {
+
+                if (id == this._listaMarcas[i].pId_marca)
+                {
+                    return this._listaMarcas[i].pMarca;
+                }
+            }
+            return " ";
+
+
+        }
+        public string getCliente(int id)
+        {
+            for (int i = 0; i < this._listaClientes.Count(); i++)
+            {
+
+                if (id == this._listaClientes[i].pId_cliente)
+                {
+                    return this._listaClientes[i].pCliente;
+                }
+            }
+            return " ";
+
+
         }
     }
 }
