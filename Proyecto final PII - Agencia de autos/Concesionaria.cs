@@ -1524,7 +1524,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 if(autcam.pId_vehiculo == id)
                 {
                     string[] menumodif = { "Patente", "Kilometros", "Año", "Id de marca",
-                "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color"};
+                    "Modelo", "Id de segmento", "Id de combustible", "Precio", "Observaciones", "Color"};
                     int indexmodif = 0;
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
@@ -1579,7 +1579,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 {
                                     Console.Clear();
                                     Console.WriteLine($"Ingrese la PATENTE que modificará la actual -{autcam.pPatente}-: ");
-                                    autcam.pPatente = Console.ReadLine();
+                                    string patentemodif = Console.ReadLine();
+                                    autcam.pPatente = patentemodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
                                 }
