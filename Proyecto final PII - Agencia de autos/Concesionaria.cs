@@ -615,7 +615,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
             do
             {
-                Console.Write("Ingrese el ID del vehículo a registrar: ");
+                Console.Write($"ID's NO disponibles:");
+                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
+                {
+                    Console.Write($"{ac.pId_vehiculo}\t--\t");
+                }
+                Console.Write("\nIngrese el ID del vehículo a registrar: ");
                 id_vehiculo = validar.validarEntero(Console.ReadLine());
 
                 if (!IsIdValid(id_vehiculo))
@@ -842,7 +847,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             do
             {
-                Console.Write("Ingrese el ID del vehículo a registrar: ");
+                Console.Write($"ID's NO disponibles:");
+                foreach (Moto m in this._listaMotos)
+                {
+                    Console.Write($"{m.pId_vehiculo}\t--\t");
+                }
+                Console.Write("\nIngrese el ID del vehículo a registrar: ");
                 id_vehiculo = validar.validarEntero(Console.ReadLine());
 
                 if (!IsIdValid(id_vehiculo))
@@ -1051,7 +1061,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.Write("\t\t\t*****CARGA DE CAMION*****\n\n");
             do
             {
-                Console.Write("Ingrese el ID del vehículo a registrar: ");
+                Console.Write($"ID's NO disponibles:");
+                foreach (Camion c in this._listaCamiones)
+                {
+                    Console.Write($"{c.pId_vehiculo}\t--\t");
+                }
+                Console.Write("\nIngrese el ID del vehículo a registrar: ");
                 id_vehiculo = validar.validarEntero(Console.ReadLine());
 
                 if (!IsIdValid(id_vehiculo))
@@ -1501,7 +1516,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             
             else
             {
-                Console.Write($"El articulo la PATENTE -{patente}- fue eliminado");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tEl vehiculo con la PATENTE -{patente}- fue eliminado.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
                 Console.ReadKey();
             }
             
@@ -1595,6 +1613,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pPatente = patentemodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Kilometros")
@@ -1616,6 +1635,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pKilometros = kilomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Año")
@@ -1637,6 +1657,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pAnio = aniomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Id de marca")
@@ -1658,6 +1679,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pId_marca = idmarcamodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Modelo")
@@ -1667,6 +1689,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pModelo = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Id de segmento")
@@ -1688,6 +1711,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pId_segmento = idsegmentomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Id de combustible")
@@ -1709,6 +1733,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pId_combustible = idcombmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Precio")
@@ -1730,6 +1755,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pPrecio_vta = preciomodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Observaciones")
@@ -1739,6 +1765,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pObservaciones = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 else if (menumodif[indexmodif] == "Color")
@@ -1748,6 +1775,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     autcam.pColor = Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
+                                    Console.ResetColor();
                                 }
 
                                 Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menu.");
@@ -2387,9 +2415,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             Console.Write($"ID's NO disponibles: ");
             foreach (Venta ven in this._listaVentas)
             {
-                Console.WriteLine($"{ven.pId_venta}\t");
+                Console.WriteLine($"{ven.pId_venta}\t--\t");
             }
-
+            Console.Write("\nIngrese el ID de la venta: ");
             id_venta = validar.validarEntero(Console.ReadLine());
             /*
             Console.Write("\nIngrese el ID de la VENTA: ");
@@ -2815,7 +2843,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pId_cliente = idclmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
                                 }
                                 else if (menumodif[indexmodif] == "Vehiculo")
                                 {
@@ -2826,7 +2854,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pId_vehiculo = vehimodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
                                 }
                                 else if (menumodif[indexmodif] == "Fecha de compra")
                                 {
@@ -2839,7 +2867,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pFecha_compra = feccompmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
 
                                 }
                                 else if (menumodif[indexmodif] == "Fecha de entrega")
@@ -2852,7 +2880,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pFecha_entrega = fecentmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
 
                                 }
                                 else if (menumodif[indexmodif] == "Subtotal")
@@ -2865,7 +2893,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pSubtotal = subtotmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
 
                                 }
                                 else if (menumodif[indexmodif] == "IVA")
@@ -2878,7 +2906,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pIva = ivamodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
 
                                 }
                                 else if (menumodif[indexmodif] == "Descuento")
@@ -2891,7 +2919,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                     ven.pDescuento = descmodif;
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
 
                                 }
                                 else if (menumodif[indexmodif] == "Total")
@@ -2918,7 +2946,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-
+                                    Console.ResetColor();
 
                                 }
 
@@ -2968,6 +2996,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write($"El ID -{id}- no existe en la lista de Ventas");
 
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tLa venta con el ID -{id}- fue eliminada.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
             }
         }
 
@@ -3228,8 +3264,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write($"El ID -{id}- no existe en la lista de Clientes.");
 
             }
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine($"\n\n\t\tCliente borrado correctamente.");
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tEl cliente con el ID -{id}- fue eliminado.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
+            }
         }
 
         public void CargarCliente()
@@ -3295,8 +3337,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             */
 
-            telefono = validar.validarLong(Console.ReadLine());
             Console.Write("\nIngrese el Telefono del cliente: ");
+            telefono = validar.validarLong(Console.ReadLine());
+
             /*
             while (!long.TryParse(Console.ReadLine(), out telefono))
             {
@@ -3306,7 +3349,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 Console.Write("Ingrese el Telefono del cliente: ");
             }
             */
-
             Console.Write("\nIngrese el Correo: ");
             correo = Console.ReadLine();
 
@@ -3365,7 +3407,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string marca;
 
             Console.Write("****CARGA DE MARCA****\n\n");
-            Console.Write("Ingrese el ID de la MARCA: ");
+            Console.Write($"ID's NO disponibles:");
+            foreach (Marca m in this._listaMarcas)
+            {
+                Console.Write($"{m.pId_marca}\t--\t");
+            }
+            Console.Write("\nIngrese el ID de la MARCA: ");
             id_marca = validar.validarEntero(Console.ReadLine());
             /*
             while (!int.TryParse(Console.ReadLine(), out id_marca))
@@ -3416,6 +3463,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             if (flag == 0)
             {
                 Console.Write($"El ID -{id}- no existe en la lista de Marcas.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tLa marca con el ID -{id}- fue eliminada.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
             }
         }
 
@@ -3584,7 +3639,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string localidad;
 
             Console.Write("****CARGA DE LOCALIDAD****\n\n");
-            Console.Write("Ingrese el ID de la LOCALIDAD: ");
+            Console.Write($"ID's NO disponibles:");
+            foreach (Localidad l in this._listaLocalidades)
+            {
+                Console.Write($"{l.pId_localidad}\t--\t");
+            }
+            Console.Write("\nIngrese el ID de la LOCALIDAD: ");
 
             id_localidad = validar.validarEntero(Console.ReadLine());
             /*
@@ -3779,6 +3839,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write($"El ID -{id}- no existe en la lista de Localidades.");
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tLa localidad con el ID -{id}- fue eliminada.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
+            }
         }
 
         public void ListarLocalidades()
@@ -3827,7 +3895,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string provincia;
 
             Console.Write("****CARGA DE PROVINCIA****\n\n");
-            Console.Write("Ingrese el ID de la PROVINCIA: ");
+            Console.Write($"ID's NO disponibles:");
+            foreach (Provincia p in this._listaProvincias)
+            {
+                Console.Write($"{p.pId_provincia}\t--\t");
+            }
+            Console.Write("\nIngrese el ID de la PROVINCIA: ");
             id_provincia = validar.validarEntero(Console.ReadLine());
             /*
             while (!int.TryParse(Console.ReadLine(), out id_provincia))
@@ -4003,6 +4076,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write($"El ID -{id}- no existe en la lista de Provincias.");
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tLa Provincia con el ID -{id}- fue eliminada.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
+            }
         }
 
         public void ListarProvincias()
@@ -4051,7 +4132,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string combustible;
 
             Console.Write("****CARGA DE COMBUSTIBLE****\n\n");
-            Console.Write("Ingrese el ID del COMBUSTIBLE: ");
+            Console.Write($"ID's NO disponibles:");
+            foreach (Combustible cb in this._listaCombustibles)
+            {
+                Console.Write($"{cb.pIdCombustible}\t--\t");
+            }
+            Console.Write("\nIngrese el ID del COMBUSTIBLE: ");
             id_combustible = validar.validarEntero(Console.ReadLine());
 
             /*
@@ -4127,6 +4213,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             if (flag == 0)
             {
                 Console.Write($"El ID -{id}- no existe en la lista de Combustibles.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tEl combustible con el ID -{id}- fue eliminado.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
             }
         }
 
@@ -4281,7 +4375,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string segmento;
 
             Console.Write("****CARGA DE SEGMENTO****\n\n");
-            Console.Write("Ingrese el ID del SEGMENTO: ");
+            Console.Write($"ID's NO disponibles:");
+            foreach (Segmento s in this._listaSegmentos)
+            {
+                Console.Write($"{s.pIdSegmento}\t--\t");
+            }
+            Console.Write("\nIngrese el ID del SEGMENTO: ");
             id_segmento = validar.validarEntero(Console.ReadLine());
             /*
             while (!int.TryParse(Console.ReadLine(), out id_segmento))
@@ -4461,6 +4560,14 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Write($"El ID -{id}- no existe en la lista de Segmentos.");
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"\n\tEl Segmento con el ID -{id}- fue eliminado.");
+                Console.ResetColor();
+                Console.Write("\n\tPresione una tecla para continuar.");
+                Console.ReadKey();
+            }
         }
 
         public void ListarSegmentos()
@@ -4562,7 +4669,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public string getCombustible(int id)
         {
-            for (int i = 0; i < this._listaCombustibles.Count(); i++)
+            CargarCombustibles();
+            for (int i = 0; i < this._listaCombustibles.Count() ; i++)
             {
 
                 if (id == this._listaCombustibles[i].pIdCombustible)
@@ -4570,26 +4678,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return this._listaCombustibles[i].pCombustible;
                 }
             }
-            return " ";
+            return "No encontrado";
 
 
         }
         public string getSegmento(int id)
         {
+            CargarSegmentos();
             for (int i = 0; i < this._listaSegmentos.Count(); i++)
             {
 
                 if (id == this._listaSegmentos[i].pIdSegmento)
                 {
+                    
                     return this._listaSegmentos[i].pSegmento;
                 }
             }
-            return " ";
-
-
+            return "No encontrado";
         }
         public string getLocalidad(int id)
         {
+            CargarLocalidades();
             for (int i = 0; i < this._listaLocalidades.Count(); i++)
             {
 
@@ -4598,12 +4707,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return this._listaLocalidades[i].pLocalidad;
                 }
             }
-            return " ";
+            return "No encontrado";
 
 
         }
         public string getProvincia(int id)
         {
+            CargarProvincias();
             for (int i = 0; i < this._listaProvincias.Count(); i++)
             {
 
@@ -4612,12 +4722,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return this._listaProvincias[i].pProvincia;
                 }
             }
-            return " ";
+            return "No encontrado";
 
 
         }
         public string getMarca(int id)
         {
+            CargarMarcas();
             for (int i = 0; i < this._listaMarcas.Count(); i++)
             {
 
@@ -4626,12 +4737,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return this._listaMarcas[i].pMarca;
                 }
             }
-            return " ";
+            return "No encontrado";
 
 
         }
         public string getCliente(int id)
         {
+            CargarClientes();
             for (int i = 0; i < this._listaClientes.Count(); i++)
             {
 
@@ -4640,7 +4752,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return this._listaClientes[i].pCliente;
                 }
             }
-            return " ";
+            return "No encontrado";
 
 
         }
