@@ -1389,29 +1389,46 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarSegmentos();
             CargarMarcas();
             CargarCombustibles();
+            
             Console.WriteLine("Autos y Camionetas\n");
-            
-            //foreach (Vehiculo vehiculo in _listaVehiculos)
-            //{
-            //    vehiculo.MostrarDatos();
-            //}
-            
-            foreach(AutoCamioneta acam in this._listaAutoCamionetasDisponibles)
+            if (_listaAutoCamionetasDisponibles.Count() == 0)
             {
-                acam.MostrarDatos();
+                Console.Write("No hay Autos o Camionetas registradas.\n");
             }
+            else
+            {
+                foreach (AutoCamioneta acam in this._listaAutoCamionetasDisponibles)
+                {
+                    acam.MostrarDatos();
+                }
+            }
+            
             Console.WriteLine("\nMotos\n");
+            if (_listaMotosDisponibles.Count() == 0)
+            {
+                Console.Write("No hay Motos registradas.\n");
+            }
+            else
+            {
+                foreach (Moto mot in _listaMotosDisponibles)
+                {
+                    mot.MostrarDatos();
+                }
+            }
             
-            foreach (Moto mot in _listaMotosDisponibles)
-            {
-                mot.MostrarDatos();
-            }
             Console.WriteLine("\nCamiones\n");
-
-            foreach (Camion cam in _listaCamionesDisponibles)
+            if (_listaCamionesDisponibles.Count() == 0)
             {
-                cam.MostrarDatos();
+                Console.Write("No hay Camiones registrados.\n");
             }
+            else
+            {
+                foreach (Camion cam in _listaCamionesDisponibles)
+                {
+                    cam.MostrarDatos();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         } 
@@ -3011,10 +3028,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarVentas();
             CargarClientes();
-            foreach (Venta venta in _listaVentas)
+            if (_listaVentas.Count() == 0)
             {
-                venta.mostrarVenta();
+                Console.Write("No hay Ventas registradas.\n");
             }
+            else
+            {
+                foreach (Venta venta in _listaVentas)
+                {
+                    venta.mostrarVenta();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
@@ -3360,10 +3385,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarClientes();
             CargarLocalidades();
-            foreach (Cliente cliente in _listaClientes)
+            if (_listaClientes.Count() == 0)
             {
-                cliente.mostrarCliente();
+                Console.Write("No hay Clientes registrados.\n");
             }
+            else
+            {
+                foreach (Cliente cliente in _listaClientes)
+                {
+                    cliente.mostrarCliente();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
@@ -3477,10 +3510,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ListarMarcas()
         {
             CargarMarcas();
-            foreach (Marca marca in _listaMarcas)
+            if (_listaMarcas.Count() == 0)
             {
-                marca.mostrarMarca();
+                Console.Write("No hay Marcas registradas.\n");
             }
+            else
+            {
+                foreach (Marca marca in _listaMarcas)
+                {
+                    marca.mostrarMarca();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
@@ -3853,10 +3894,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarProvincias();
             CargarLocalidades();
-            foreach (Localidad loc in _listaLocalidades)
+            if (_listaLocalidades.Count() == 0)
             {
-                loc.mostrarLocalidad();
+                Console.Write("No hay Localidades registradas.\n");
             }
+            else
+            {
+                foreach (Localidad loc in _listaLocalidades)
+                {
+                    loc.mostrarLocalidad();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
@@ -4090,10 +4139,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarProvincias();
             CargarLocalidades();
-            foreach (Provincia prov in _listaProvincias)
+            if (_listaProvincias.Count() == 0)
             {
-                prov.mostrarProvincia();
+                Console.Write("No hay Provincias registradas.\n");
             }
+            else
+            {
+                foreach (Provincia prov in _listaProvincias)
+                {
+                    prov.mostrarProvincia();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
@@ -4227,10 +4284,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ListarCombustibles()
         {
             CargarCombustibles();
-            foreach (Combustible comb in _listaCombustibles)
+            if (_listaCombustibles.Count() == 0)
             {
-                comb.mostrarCombustible();
+                Console.Write("No hay Combustibles registrados.\n");
             }
+            else
+            {
+                foreach (Combustible comb in _listaCombustibles)
+                {
+                    comb.mostrarCombustible();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
@@ -4573,10 +4638,18 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ListarSegmentos()
         {
             CargarSegmentos();
-            foreach (Segmento seg in _listaSegmentos)
+            if (_listaSegmentos.Count() == 0)
             {
-                seg.mostrarSegmento();
+                Console.Write("No hay Segmentos registrados.\n");
             }
+            else
+            {
+                foreach (Segmento seg in _listaSegmentos)
+                {
+                    seg.mostrarSegmento();
+                }
+            }
+            
             Console.Write("\n\nPresione cualquier tecla para continuar.");
             Console.ReadKey();
         }
