@@ -14,7 +14,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private string domicilio;
         private long telefono;
         private string correo;
-
+        Concesionaria con = new Concesionaria();
         public Cliente(int id_cliente, string cliente, long cuit, string domicilio, int id_localidad,
             long telefono, string correo)
         {
@@ -41,7 +41,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void mostrarCliente()
         {
             Console.WriteLine($"ID Cliente:{this.pId_cliente} - Razon Social: {this.pCliente} - CUIT: {this.pCuit} - Domicilio: {this.pDomicilio} - " +
-                $"ID Localidad: {this.pId_localidad} - Telefono: {this.pTelefono} - Correo: {this.pCorreo}");
+                $"Localidad: {con.getLocalidad(this.pId_localidad)} - Telefono: {this.pTelefono} - Correo: {this.pCorreo}");
         }   
         //GETTERS Y SETTERS
         public int pId_cliente { get { return id_cliente; } set { id_cliente = value; } }

@@ -10,7 +10,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
     {
         private int id_localidad, id_provincia;
         private string localidad;
-
+        Concesionaria con = new Concesionaria();
         public Localidad(int id_localidad, string localidad, int id_provincia)
         {
             this.pId_localidad = id_localidad;
@@ -27,7 +27,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarLocalidad()
         {
-            Console.WriteLine($"ID Provincia: {this.pId_provincia} - ID Localidad:{this.pId_localidad} - {this.pLocalidad} ");
+            Console.WriteLine($"Provincia: {con.getProvincia(this.pId_provincia)} - Localidad: {this.pLocalidad}");
         }
 
         //GETTERS Y WSETTERS

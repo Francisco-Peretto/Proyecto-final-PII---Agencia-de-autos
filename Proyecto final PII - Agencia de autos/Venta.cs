@@ -14,6 +14,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         private int iva;
         private int descuento;
         private double total;
+        Concesionaria con = new Concesionaria();
 
         public Venta(int id_venta, int id_cliente, int id_vehiculo, DateTime fecha_compra, DateTime fecha_entrega,
             double subtotal, int iva, int descuento)
@@ -44,7 +45,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         public void mostrarVenta()
         {
-            Console.WriteLine($"ID Cliente:{this.pId_cliente} - ID Vehiculo: {this.pId_vehiculo} - Fecha de compra: {this.pFecha_compra} " +
+            Console.WriteLine($"Cliente:{con.getCliente(this.pId_cliente)} - ID Vehiculo: {this.pId_vehiculo} - Fecha de compra: {this.pFecha_compra} " +
                 $"- Fecha de entrega: {this.pFecha_entrega} - Subtotal: {this.pSubtotal} - IVA: {this.pIva}% - Descuento: {this.pDescuento}% " +
                 $"- Total: {this.pTotal}");
         }

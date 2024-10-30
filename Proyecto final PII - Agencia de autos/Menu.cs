@@ -223,6 +223,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             Console.Clear();
                             concesionaria.ModificarVehiculo();
+                            concesionaria.ActualizarAutoCamioneta();
+                            concesionaria.ActualizarCamiones();
+                            concesionaria.ActualizarMotos();
                             Console.Clear();
                             MenuPrincipal();
                             return;
@@ -231,6 +234,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         {
                             Console.Clear();
                             concesionaria.BorrarVehiculo();
+                            concesionaria.ActualizarAutoCamioneta();
+                            concesionaria.ActualizarCamiones();
+                            concesionaria.ActualizarMotos();
                             Console.Clear();
                             MenuPrincipal();
                             return;
@@ -413,6 +419,9 @@ namespace Proyecto_final_PII___Agencia_de_autos
                             Console.Clear();
                             concesionaria.CargarVenta();
                             concesionaria.ActualizarVentas();
+                            concesionaria.ActualizarAutoCamioneta();
+                            concesionaria.ActualizarCamiones();
+                            concesionaria.ActualizarMotos();
                             Console.Clear();
                             MenuPrincipal();
                             return;
