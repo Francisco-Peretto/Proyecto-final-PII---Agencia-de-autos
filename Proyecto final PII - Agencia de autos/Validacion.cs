@@ -11,14 +11,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
     {
         public Validacion() 
         {
-
         }
 
-        public DateTime validarFecha(string fecha)
+        public DateTime validarFecha(string mensaje)
         {
-         
             int FechaError = 0;
             DateTime FechaValida = new DateTime();
+
+            Console.Write(mensaje);
+            string fecha = Console.ReadLine();
 
             try
             {
@@ -45,51 +46,85 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             else
             {
-                while (DateTime.TryParse(fecha, out FechaValida) == false)
+                while (!DateTime.TryParse(fecha, out FechaValida) || FechaValida.ToString("dd/MM/yyyy") != fecha)
                 {
+                    Console.Write("\nLa fecha ingresada no es válida. Presione una tecla para continuar: ");
+                    Console.ReadKey();
                     Console.Clear();
-                    Console.Write("\n La fecha ingresada no es válida, por favor reingrésela: ");
+                    Console.Write(mensaje);
+
                     fecha = Console.ReadLine();
                 }
                 return FechaValida;
             }
         }
 
-        public int validarEntero(string entero)
+
+        public int validarEntero(string mensaje)
         {
             int enteroparse;
-            while (int.TryParse(entero, out enteroparse) == false)
+            Console.Write(mensaje);
+            string entero = Console.ReadLine();
+
+            while (!int.TryParse(entero, out enteroparse))
             {
+                Console.WriteLine("El número ingresado no es válido. Presione una tecla para continuar:");
+                Console.ReadKey();
                 Console.Clear();
-                Console.Write("\nEl número ingresado no es válido, por favor reingréselo: ");
+                Console.Write(mensaje);
                 entero = Console.ReadLine();
             }
             return enteroparse;
         }
 
-        public double validarDoble(string doble)
+        public double validarDoble(string mensaje)
         {
             double dobleparse;
-            while (double.TryParse(doble, out dobleparse) == false)
+            Console.Write(mensaje);
+            string doble = Console.ReadLine();
+
+            while (!double.TryParse(doble, out dobleparse))
             {
+                Console.WriteLine("El número ingresado no es válido. Presione una tecla para continuar:");
+                Console.ReadKey();
                 Console.Clear();
-                Console.Write("\nEl número ingresado no es valido, por favor reingreselo: ");
+                Console.Write(mensaje);
                 doble = Console.ReadLine();
             }
-
             return dobleparse;
         }
 
-        public int validarLong(string longp)
+        public long validarLong(string mensaje)
         {
-            int longparse;
-            while (int.TryParse(longp, out longparse) == false)
+            long longparse;
+            Console.Write(mensaje);
+            string longp = Console.ReadLine();
+
+            while (!long.TryParse(longp, out longparse))
             {
+                Console.WriteLine("El número ingresado no es válido. Presione una tecla para continuar:");
+                Console.ReadKey();
                 Console.Clear();
-                Console.Write("\nEl número ingresado no es válido, por favor reingréselo: ");
+                Console.Write(mensaje);
                 longp = Console.ReadLine();
             }
             return longparse;
+        }
+
+        public string validarStr(string mensaje)
+        {
+            string str;
+            Console.Write(mensaje);
+            str = Console.ReadLine();
+            while (string.IsNullOrEmpty(str))
+            {
+                Console.WriteLine("El campo no puede estar vacío. Presione una tecla para continuar:");
+                Console.ReadKey();
+                Console.Clear();
+                Console.Write(mensaje);
+                str = Console.ReadLine();
+            }
+            return str;
         }
 
         public long validarCuit()
