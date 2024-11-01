@@ -1381,6 +1381,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         }
                     } while (opcmodif.Key != ConsoleKey.Escape);
                 }
+                else
+                {
+                    flag = 1;
+                }
             }
             foreach (Moto mot in _listaMotosDisponibles)
             {
@@ -1627,7 +1631,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 break;
                         }
                     } while (opcmodif.Key != ConsoleKey.Escape);
-                    
+
+                }
+                else
+                {
+                    flag = 1;
                 }
             }
             foreach (Camion cam in _listaCamionesDisponibles)
@@ -1936,13 +1944,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     flag = 1;
                 }
 
-                if (flag == 1)
-                {
-                    Console.Clear();
-                    Console.Write($"La PATENTE -{patente}- no existe en la lista de Vehiculos.");
-                }
-            }          
-        } // FALTA
+                
+            }
+            if (flag == 1)
+            {
+                Console.Clear();
+                Console.Write($"La PATENTE -{patente}- no existe en la lista de Vehiculos. Presione una tecla para continuar");
+                Console.ReadKey();
+            }
+        }
 
         public void BuscarVehiculo()
         {
