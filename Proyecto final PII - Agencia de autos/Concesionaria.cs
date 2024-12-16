@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -3808,6 +3809,75 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             return "No encontrado";
         }
+
+        public int MenuReutilizable(string[] opciones)
+        {
+            string[] opcionesConSalir = new string[opciones.Length + 1];
+            Array.Copy(opciones, opcionesConSalir, opciones.Length);
+            opcionesConSalir[opciones.Length] = "Salir";
+
+            int posicionActual = 0;
+            bool seleccionRealizada = false;
+            Console.CursorVisible = false;
+
+            while (!seleccionRealizada)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.WriteLine("Seleccione una opción con las flechas \u2191 y \u2193, y presione Enter:");
+                Console.WriteLine("-----------------------------------------------------");
+
+                for (int i = 0; i < opcionesConSalir.Length; i++)
+                {
+                    if (i == posicionActual)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" " + (char)62 + " ");
+                    }
+                    else
+                    {
+                        Console.Write("   ");
+                    }
+
+                    Console.WriteLine(opcionesConSalir[i]);
+                    Console.ResetColor();
+                }
+
+                ConsoleKeyInfo tecla = Console.ReadKey();
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        posicionActual = (posicionActual == 0) ? opcionesConSalir.Length - 1 : posicionActual - 1;
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        posicionActual = (posicionActual == opcionesConSalir.Length - 1) ? 0 : posicionActual + 1;
+                        break;
+
+                    case ConsoleKey.Enter:
+                        seleccionRealizada = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                }
+            }
+
+            Console.CursorVisible = true;
+
+            if (posicionActual == opcionesConSalir.Length - 1)
+            {
+                Console.WriteLine("\nHa seleccionado 'Salir'.");
+                return -1;
+            }
+
+            return posicionActual;
+        }
+
+
+
 
         // BUSCAR PARÁMETROS NO USADOS
 
