@@ -29,8 +29,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             /*
             string[] opciones = {"Prueba 1", "Prueba 2", "Prueba 3", "Prueba 4", "Prueba 5"};
-
-            int opcion = con.MenuReutilizable(opciones);
+            string mensaje = "Mensaje interno";
+            int opcion = con.MenuReutilizable(opciones, mensaje);
             Console.WriteLine("ID de la opción: " + opcion);
             Console.ReadKey();
             

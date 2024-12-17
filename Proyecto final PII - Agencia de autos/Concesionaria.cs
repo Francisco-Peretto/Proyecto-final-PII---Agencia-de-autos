@@ -696,38 +696,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarSegmentos();
             CargarCombustibles();
             CargarMarcas();
-            int id_vehiculo, anio, id_segmento;
+            int anio;
+            string[] arraySegmentos, arrayMarcas, arrayCombustibles;
+            string mensaje;
             DateTime fecact = DateTime.Now;
             AutoCamioneta autcam = new AutoCamioneta();
 
             Console.Write("\t\t\t*****CARGA DE AUTO/CAMIONETA*****\n\n");
-            do
-            {
-                Console.Write($"IDs NO disponibles: ");
-                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
-                {
-                    Console.Write($"{ac.pId_vehiculo}, ");
-                }
-                foreach (Moto m in this._listaMotos)
-                {
-                    Console.Write($"{m.pId_vehiculo}, ");
-                }
-                foreach (Camion c in this._listaCamiones)
-                {
-                    Console.Write($"{c.pId_vehiculo}, ");
-                }
-                Console.Write("\n");
-
-                id_vehiculo = validar.validarEntero("\nIngrese el ID del vehículo a registrar: "); // ID.
-
-                if (!IsIdValid(id_vehiculo))
-                {
-                    Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-            } while (!IsIdValid(id_vehiculo)); // Listado de IDs e ID.
-            autcam.pId_vehiculo = id_vehiculo;
+            List<int> idsExistentes = this._listaAutoCamionetas.Select(ac => ac.pId_vehiculo).Concat(this._listaMotos.Select(m => m.pId_vehiculo))
+            .Concat(this._listaCamiones.Select(c => c.pId_vehiculo)).ToList();
+            autcam.pId_vehiculo = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
 
             do
             {
@@ -757,48 +735,26 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             autcam.pAnio = anio;
 
-            Console.Write("\n"); // Listado de marcas.
-            foreach (Marca mar in this._listaMarcas)
-            {
-                Console.WriteLine($"{mar.pId_marca} -> {mar.pMarca}");
-            }
-
-            autcam.pId_marca = validar.validarEntero("\nIngrese el ID de la MARCA del vehiculo a registrar: "); // ID Marca.
+            arrayMarcas = this._listaMarcas.Select(seg => seg.pMarca).ToArray();
+            mensaje = "Ingrese la MARCA del vehiculo a registrar "; // Listado de marcas.
+            autcam.pId_marca = MenuReutilizable(arrayMarcas, mensaje);
 
             autcam.pModelo = validar.validarStr("\nIngrese el NOMBRE del MODELO del vehiculo a registrar: "); // Modelo.
 
-            Console.Write("\n"); // Listado de segmentos.
-            foreach (Segmento seg in this._listaSegmentos)
-            {
-                Console.WriteLine($"{seg.pIdSegmento} -> {seg.pSegmento}");
-            }
+            arraySegmentos = this._listaSegmentos.Where(seg => seg.pIdSegmento >= 1 && seg.pIdSegmento <= 4).Select(seg => seg.pSegmento).ToArray();
+            mensaje = "Ingrese el SEGMENTO del vehiculo a registrar";
+            autcam.pId_segmento = MenuReutilizable(arraySegmentos, mensaje);
 
-            id_segmento = validar.validarEntero("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento.
-            while (id_segmento > 4)
-            {
-                Console.WriteLine("Error. El SEGMENTO ingresado no corresponde a un Auto/Camioneta. Presione una tecla para continuar.");
-                Console.ReadKey();
-                Console.Clear();
-                id_segmento = validar.validarEntero("\nIngrese el ID del SEGMENTO del vehiculo a registrar: ");
-            }
-            autcam.pId_segmento = id_segmento;
+            arrayCombustibles = this._listaCombustibles.Select(seg => seg.pCombustible).ToArray();
 
-            Console.Write("\n"); // Lista de combustibles.
-            foreach(Combustible comb in this._listaCombustibles)
-            {
-                Console.WriteLine($"{comb.pIdCombustible} -> {comb.pCombustible}");
-            }
-
-            autcam.pId_combustible = validar.validarEntero("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: "); // ID Combustible.
+            mensaje = "Ingrese el tipo de COMBUSTIBLE del vehiculo a registrar "; // Listado de marcas.
+            autcam.pId_combustible = MenuReutilizable(arrayCombustibles, mensaje);
 
             autcam.pPrecio_vta = validar.validarEntero("\nIngrese el PRECIO DE VENTA del vehículo a registrar: "); // Precio de venta.
 
             Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones.
-            autcam.pObservaciones = Console.ReadLine();
-            if (autcam.pObservaciones == "")
-            {
-                autcam.pObservaciones = "Sin observaciones";
-            }
+            string input = Console.ReadLine();
+            autcam.pObservaciones = string.IsNullOrEmpty(input) ? "Sin observaciones" : input;
 
             autcam.pColor = validar.validarStr("\nIngrese el COLOR del vehículo a registrar: "); // Color.
 
@@ -817,36 +773,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarSegmentos();
             CargarCombustibles();
             CargarMarcas();
-            int id_vehiculo, anio, id_segmento;
+            int anio;
+            string[] arraySegmentos, arrayMarcas, arrayCombustibles;
+            string mensaje;
             DateTime fecact = DateTime.Now;
             Moto mot = new Moto();
 
             Console.Write("\t\t\t*****CARGA DE MOTO*****\n\n");
-            do
-            {
-                Console.Write($"IDs NO disponibles:");
-                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
-                {
-                    Console.Write($"{ac.pId_vehiculo}, ");
-                }
-                foreach (Moto m in this._listaMotos)
-                {
-                    Console.Write($"{m.pId_vehiculo}, ");
-                }
-                foreach (Camion c in this._listaCamiones)
-                {
-                    Console.Write($"{c.pId_vehiculo}, ");
-                }
-                Console.Write("\n");
-                id_vehiculo = validar.validarEntero("\nIngrese el ID del vehículo a registrar: ");
-                if (!IsIdValid(id_vehiculo))
-                {
-                    Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-            } while (!IsIdValid(id_vehiculo)); // Listado de IDs e ID.
-            mot.pId_vehiculo = id_vehiculo;
+            List<int> idsExistentes = this._listaAutoCamionetas.Select(ac => ac.pId_vehiculo).Concat(this._listaMotos.Select(m => m.pId_vehiculo))
+            .Concat(this._listaCamiones.Select(c => c.pId_vehiculo)).ToList();
+            mot.pId_vehiculo = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
 
             do
             {
@@ -876,49 +812,27 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             mot.pAnio = anio;
 
-            Console.Write("\n"); // Listado de marcas.
-            foreach (Marca mar in this._listaMarcas)
-            {
-                Console.WriteLine($"{mar.pId_marca} -> {mar.pMarca}");
-            }
-
-            mot.pId_marca = validar.validarEntero("\nIngrese el ID de la MARCA del vehiculo a registrar: "); // ID Marca.
+            arrayMarcas = this._listaMarcas.Select(seg => seg.pMarca).ToArray();
+            mensaje = "Ingrese la MARCA del vehiculo a registrar "; // Listado de marcas.
+            mot.pId_marca = MenuReutilizable(arrayMarcas, mensaje);
 
             mot.pModelo = validar.validarStr("\nIngrese el NOMBRE del MODELO del vehiculo a registrar: "); // Modelo.
 
-            Console.Write("\n"); // Listado de segmentos.
-            foreach (Segmento seg in this._listaSegmentos)
-            {
-                Console.WriteLine($"{seg.pIdSegmento} -> {seg.pSegmento}");
-            }
-            id_segmento = validar.validarEntero("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento.
-            while (id_segmento < 5 || id_segmento > 7)
-            {
-                Console.WriteLine("Error. El segmento ingresado no corresponde a una Moto. Presione una tecla para continuar. ");
-                Console.ReadKey();
-                Console.Clear();
-                id_segmento = validar.validarEntero("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento.
-            }
-            mot.pId_segmento = id_segmento;
+            arraySegmentos = this._listaSegmentos.Where(seg => seg.pIdSegmento >= 5 && seg.pIdSegmento <= 7).Select(seg => seg.pSegmento).ToArray();
+            mensaje = "Ingrese el SEGMENTO del vehiculo a registrar";
+            mot.pId_segmento = MenuReutilizable(arraySegmentos, mensaje) + 4;
 
             mot.pCilindrada = validar.validarEntero("\nIngrese la CILINDRADA: ");
 
-            Console.Write("\n"); // Lista de combustibles.
-            foreach (Combustible comb in this._listaCombustibles)
-            {
-                Console.WriteLine($"{comb.pIdCombustible} -> {comb.pCombustible}");
-            }
-
-            mot.pId_combustible = validar.validarEntero("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: "); // ID Combustible.
+            arrayCombustibles = this._listaCombustibles.Select(seg => seg.pCombustible).ToArray();
+            mensaje = "Ingrese el tipo de COMBUSTIBLE del vehiculo a registrar "; // Listado de marcas.
+            mot.pId_combustible = MenuReutilizable(arrayCombustibles, mensaje);
 
             mot.pPrecio_vta = validar.validarEntero("\nIngrese el PRECIO DE VENTA del vehículo a registrar: "); // Precio de venta.
-
+            
             Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones.
-            mot.pObservaciones = Console.ReadLine();
-            if (mot.pObservaciones == "")
-            {
-                mot.pObservaciones = "Sin observaciones";
-            }
+            string input = Console.ReadLine();
+            mot.pObservaciones = string.IsNullOrEmpty(input) ? "Sin observaciones" : input;
 
             mot.pColor = validar.validarStr("\nIngrese el COLOR del vehículo a registrar: "); // Color.
 
@@ -937,38 +851,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarSegmentos();
             CargarCombustibles();
             CargarMarcas();
-            int id_vehiculo, anio, id_segmento, largocaja, anchocaja, opc;
+            int anio, largocaja, anchocaja, opc;
+            string[] arrayMarcas, arrayCombustibles;
+            string mensaje;
             DateTime fecact = DateTime.Now;
             Camion cam = new Camion();
 
             Console.Write("\t\t\t*****CARGA DE CAMION*****\n\n");
-            do
-            {
-                Console.Write($"IDs NO disponibles:");
-                foreach (AutoCamioneta ac in this._listaAutoCamionetas)
-                {
-                    Console.Write($"{ac.pId_vehiculo}, ");
-                }
-                foreach (Moto m in this._listaMotos)
-                {
-                    Console.Write($"{m.pId_vehiculo}, ");
-                }
-                foreach (Camion c in this._listaCamiones)
-                {
-                    Console.Write($"{c.pId_vehiculo}, ");
-                }
-                Console.Write("\n");
 
-                id_vehiculo = validar.validarEntero("\nIngrese el ID del vehículo a registrar: "); // ID.
-
-                if (!IsIdValid(id_vehiculo))
-                {
-                    Console.WriteLine("Error. El ID ingresado no es válido. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-            } while (!IsIdValid(id_vehiculo)); // Listado de IDs e ID.
-            cam.pId_vehiculo = id_vehiculo;
+            List<int> idsExistentes = this._listaAutoCamionetas.Select(ac => ac.pId_vehiculo).Concat(this._listaMotos.Select(m => m.pId_vehiculo))
+            .Concat(this._listaCamiones.Select(c => c.pId_vehiculo)).ToList();
+            cam.pId_vehiculo = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
 
             do
             {
@@ -998,30 +891,13 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
             cam.pAnio = anio;
 
-            Console.Write("\n"); // Listado de marcas.
-            foreach (Marca mar in this._listaMarcas)
-            {
-                Console.WriteLine($"{mar.pId_marca} -> {mar.pMarca}");
-            }
-
-            cam.pId_marca = validar.validarEntero("\nIngrese el ID de la MARCA del vehiculo a registrar: "); // ID Marca.
+            arrayMarcas = this._listaMarcas.Select(seg => seg.pMarca).ToArray();
+            mensaje = "Ingrese la MARCA del vehiculo a registrar "; // Listado de marcas.
+            cam.pId_marca = MenuReutilizable(arrayMarcas, mensaje);
 
             cam.pModelo = validar.validarStr("\nIngrese el NOMBRE del MODELO del vehiculo a registrar: "); // Modelo.
 
-            Console.Write("\n"); // Listado de segmentos.
-            foreach (Segmento seg in this._listaSegmentos)
-            {
-                Console.WriteLine($"{seg.pIdSegmento} -> {seg.pSegmento}");
-            }
-            id_segmento = validar.validarEntero("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento.
-            while (id_segmento != 8)
-            {
-                Console.WriteLine("Error. El segmento ingresado no corresponde a un Camion. Presione una tecla para continuar.");
-                Console.ReadKey();
-                Console.Clear();
-                id_segmento = validar.validarEntero("\nIngrese el ID del SEGMENTO del vehiculo a registrar: "); // ID segmento.
-            }
-            cam.pId_segmento = id_segmento;
+            cam.pId_segmento = 8;
 
             Console.Write("\nIngrese si el camion tiene caja 1 -> SI\t2 -> NO: "); // Caja sí o no.
             while (!int.TryParse(Console.ReadLine(), out opc) || opc > 2 || opc < 0)
@@ -1044,22 +920,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 cam.pCaja_Carga = false;
             }
 
-            Console.Write("\n"); // Lista de combustibles.
-            foreach (Combustible comb in this._listaCombustibles)
-            {
-                Console.WriteLine($"{comb.pIdCombustible} -> {comb.pCombustible}");
-            }
-
-            cam.pId_combustible = validar.validarEntero("\nIngrese el ID del COMBUSTIBLE del vehiculo a registrar: "); // ID Combustible.
+            arrayCombustibles = this._listaCombustibles.Select(seg => seg.pCombustible).ToArray();
+            mensaje = "Ingrese el tipo de COMBUSTIBLE del vehiculo a registrar "; // Listado de marcas.
+            cam.pId_combustible = MenuReutilizable(arrayCombustibles, mensaje);
 
             cam.pPrecio_vta = validar.validarEntero("\nIngrese el PRECIO DE VENTA del vehículo a registrar: "); // Precio de venta.
 
             Console.Write("\nIngrese las OBSERVACIONES del vehículo a registrar (en caso de existir alguna): "); // Observaciones.
-            cam.pObservaciones = Console.ReadLine();
-            if (cam.pObservaciones == "")
-            {
-                cam.pObservaciones = "Sin observaciones";
-            }
+            string input = Console.ReadLine();
+            cam.pObservaciones = string.IsNullOrEmpty(input) ? "Sin observaciones" : input;
 
             cam.pColor = validar.validarStr("\nIngrese el COLOR del vehículo a registrar: "); // Color.
 
@@ -3810,12 +3679,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             return "No encontrado";
         }
 
-        public int MenuReutilizable(string[] opciones)
+        public int MenuReutilizable(string[] opciones, string mensaje)
         {
-            string[] opcionesConSalir = new string[opciones.Length + 1];
-            Array.Copy(opciones, opcionesConSalir, opciones.Length);
-            opcionesConSalir[opciones.Length] = "Salir";
-
             int posicionActual = 0;
             bool seleccionRealizada = false;
             Console.CursorVisible = false;
@@ -3824,10 +3689,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
             {
                 Console.Clear();
                 Console.ResetColor();
+                Console.WriteLine(mensaje);
                 Console.WriteLine("Seleccione una opción con las flechas \u2191 y \u2193, y presione Enter:");
                 Console.WriteLine("-----------------------------------------------------");
 
-                for (int i = 0; i < opcionesConSalir.Length; i++)
+                for (int i = 0; i < opciones.Length; i++)
                 {
                     if (i == posicionActual)
                     {
@@ -3840,7 +3706,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         Console.Write("   ");
                     }
 
-                    Console.WriteLine(opcionesConSalir[i]);
+                    Console.WriteLine(opciones[i]);
                     Console.ResetColor();
                 }
 
@@ -3848,11 +3714,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 switch (tecla.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        posicionActual = (posicionActual == 0) ? opcionesConSalir.Length - 1 : posicionActual - 1;
+                        posicionActual = (posicionActual == 0) ? opciones.Length - 1 : posicionActual - 1;
                         break;
 
                     case ConsoleKey.DownArrow:
-                        posicionActual = (posicionActual == opcionesConSalir.Length - 1) ? 0 : posicionActual + 1;
+                        posicionActual = (posicionActual == opciones.Length - 1) ? 0 : posicionActual + 1;
                         break;
 
                     case ConsoleKey.Enter:
@@ -3866,14 +3732,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
             }
 
             Console.CursorVisible = true;
-
-            if (posicionActual == opcionesConSalir.Length - 1)
-            {
-                Console.WriteLine("\nHa seleccionado 'Salir'.");
-                return -1;
-            }
-
-            return posicionActual;
+            return posicionActual+1;
         }
 
 
