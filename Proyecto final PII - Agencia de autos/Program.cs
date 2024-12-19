@@ -17,11 +17,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
             /*
             -(GENERAL) Cambiar TODOS los listados de ids para usar MenuReutilizable, ver ejemplo en Program).
             -En el menú no vuelve a la opción anterior
-            -No debe pedir ID al registrar (hacer autoincremental)
+            -No debe pedir ID al registrar (hacer autoincremental) (hecho en ventas, vehiculos)
             -No se valida provincia al crear localidad (poner lista de provincias con menú reutilizable)
             -No se puede modificar provincia cuando se modifica una localidad
             -Al registrar un cliente, no deja registrar clientes con un mismo DNI (supongo que no debería).
-            -Al modificar una venta no se debe poder modificar el total, se debe recalcular (modificar como el de crear venta).
             -Al consultar una venta no se muestran datos del vehículo (llamar datos del vehículo por id en la venta).
             */
 

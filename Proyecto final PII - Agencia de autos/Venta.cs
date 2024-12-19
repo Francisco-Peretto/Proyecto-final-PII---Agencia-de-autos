@@ -40,15 +40,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
             this.pSubtotal = 0;
             this.pIva = 0;
             this.pDescuento = 0;
-
         }
 
         public void mostrarVenta()
         {
-            Console.WriteLine($"Cliente:{con.getCliente(this.pId_cliente)} - ID Vehiculo: {this.pId_vehiculo} - Fecha de compra: {this.pFecha_compra} " +
+            var listaVehiculos = con.GetVehiculos();
+            var vehiculo = listaVehiculos.FirstOrDefault(v => v.pId_vehiculo == this.pId_vehiculo);
+            string patente = vehiculo?.pPatente ?? "Sin asignar"; // ? Si vehiculo es null arroja null, ?? si no es null asigna el valor, si es null asigna "sin asignar"
+
+            Console.WriteLine($"Cliente: {con.getCliente(this.pId_cliente)} - Vehículo: {patente} - Fecha de compra: {this.pFecha_compra} " +
                 $"- Fecha de entrega: {this.pFecha_entrega} - Subtotal: {this.pSubtotal} - IVA: {this.pIva}% - Descuento: {this.pDescuento}% " +
                 $"- Total: {this.pTotal}");
         }
+
         //GETTERS Y SETTERS
         public int pId_venta
         {
@@ -128,8 +132,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public double pTotal
         {
             get { return (subtotal + ((21 * subtotal) / 100) - ((descuento * subtotal) / 100)); }
-
         }
     }
-
 }
