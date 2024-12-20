@@ -1735,7 +1735,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             string[] placasVentas = _listaVentas
                 .Select(ven => GetVehiculos().FirstOrDefault(v => v.pId_vehiculo == ven.pId_vehiculo)?.pPatente)
-                .Where(placa => placa != null).ToArray(); // Retrieves vehicle plates, avoiding nulls
+                .Where(placa => placa != null).ToArray();
 
             if (placasVentas.Length == 0)
             {
@@ -1743,7 +1743,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 return;
             }
 
-            int indiceSeleccionado = MenuReutilizable(placasVentas, "Seleccione el vehículo por su matrícula:");
+            int indiceSeleccionado = MenuReutilizable(placasVentas, "Seleccione el vehículo por su matrícula: ");
             string placaSeleccionada = placasVentas[indiceSeleccionado];
 
             Venta ventaSeleccionada = _listaVentas.FirstOrDefault(ven =>
@@ -1801,7 +1801,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 break;
 
                             case "Vehiculo":
-                                string[] placas = GetVehiculos().Select(v => v.pPatente).ToArray(); // Use GetVehiculos directly to get plates
+                                string[] placas = GetVehiculos().Select(v => v.pPatente).ToArray();
 
                                 int nuevoVehiculoIndex = MenuReutilizable(placas, "Seleccione el nuevo vehículo por matrícula:");
                                 string nuevaPlacaSeleccionada = placas[nuevoVehiculoIndex];
@@ -1974,20 +1974,12 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
             cliente = validar.validarStr("\nIngrese el nombre o la Razón Social: ");
 
-            cuit = validar.validarCuit();
+            cuit = ValidarCuitUnico();
 
             domicilio = validar.validarStr("\nIngrese el Domicilio: ");
 
             arrayLocalidades = this._listaLocalidades.Select(loc => loc.pLocalidad).ToArray();
             id_localidad = MenuReutilizable(arrayLocalidades, "Seleccione la localidad del cliente");
-
-            Console.WriteLine("Lista de localidades");
-            foreach (Localidad loc in this._listaLocalidades)
-            {
-                Console.WriteLine($"\tID: {loc.pId_localidad} Localidad: {loc.pLocalidad}");
-            }
-
-            id_localidad = validar.validarEntero("\nIngrese el ID de la LOCALIDAD: ");
 
             telefono = validar.validarLong("\nIngrese el TELÉFONO del cliente: ");
 
@@ -2000,177 +1992,177 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void ModificarCliente()
         {
             CargarClientes();
-            int id, flag = 0;
+            int id, opc;
+            string[] arrayClientes, arrayLocalidades, arrayOpciones = { "Sí", "No" };
+            bool flag = false;
 
-            Console.WriteLine($"Lista de clientes");
-            foreach (Cliente cli in this._listaClientes)
+            while (_listaClientes.Count() != 0)
             {
-                Console.WriteLine($"{cli.pId_cliente} -> {cli.pCliente}");
-            }
+                flag = true;
+                arrayClientes = this._listaClientes.Select(cli => cli.pCliente).ToArray();
+                id = MenuReutilizable(arrayClientes, "Seleccione el cliente a modificar: ");
 
-            id = validar.validarEntero("Ingrese el ID del cliente a modificar: ");
-            foreach (Cliente cl in this._listaClientes)
-            {
-                if (cl.pId_cliente == id)
+                foreach (Cliente cl in this._listaClientes)
                 {
-                    string[] menumodif = { "Razón social", "CUIT", "Domicilio", "ID Localidad",
-                "Teléfono", "Correo"};
-                    int indexmodif = 0;
-                    ConsoleKeyInfo opcmodif;
-                    Console.Clear();
-                    Console.WriteLine("Ingrese el dato que desea modificar\n");
-                    do
+                    if (cl.pId_cliente == id)
                     {
-                        for (int i = 0; i < menumodif.Length; i++)
+                        string[] menumodif = { "Nombre o Razón social", "CUIT", "Domicilio", "Localidad",
+                "Teléfono", "Correo"};
+                        int indexmodif = 0;
+                        ConsoleKeyInfo opcmodif;
+                        Console.Clear();
+                        Console.WriteLine("Seleccione el dato que desea modificar\n");
+                        do
                         {
-                            if (i == indexmodif)
+                            for (int i = 0; i < menumodif.Length; i++)
                             {
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                Console.BackgroundColor = ConsoleColor.Gray;
+                                if (i == indexmodif)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.BackgroundColor = ConsoleColor.Gray;
+                                }
+                                else
+                                {
+                                    Console.ResetColor();
+                                }
+                                Console.WriteLine(menumodif[i]);
                             }
-                            else
+
+                            Console.ResetColor();
+                            Console.Write($"\n\n\t\tPresione ESCAPE para salir.");
+                            opcmodif = Console.ReadKey();
+
+                            switch (opcmodif.Key)
                             {
-                                Console.ResetColor();
-                            }
-                            Console.WriteLine(menumodif[i]);
-                        }
-
-                        Console.ResetColor();
-                        Console.Write($"\n\n\t\tPresione ESCAPE para salir.");
-                        opcmodif = Console.ReadKey();
-
-                        switch (opcmodif.Key)
-                        {
-                            case ConsoleKey.UpArrow:
-                                Console.Clear();
-                                if (indexmodif > 0)
-                                {
-                                    indexmodif--;
-                                }
-                                else if (indexmodif == 0)
-                                {
-                                    indexmodif = 5;
-                                }
-                                break;
-                            case ConsoleKey.DownArrow:
-                                Console.Clear();
-                                if (indexmodif < (menumodif.Length - 1))
-                                {
-                                    indexmodif++;
-                                }
-
-                                else if (indexmodif == 5)
-                                {
-                                    indexmodif = 0;
-                                }
-                                break;
-                            case ConsoleKey.Enter:
-                                Console.Clear();
-                                if (menumodif[indexmodif] == "Razón social")
-                                {
+                                case ConsoleKey.UpArrow:
                                     Console.Clear();
-                                    cl.pCliente = validar.validarStr($"Ingrese la razón social que modificará la actual -{cl.pCliente}-: ");
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                }
-
-                                else if (menumodif[indexmodif] == "CUIT")
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine($"El CUIT actual del cliente -{cl.pCuit}- será modificado:");
-                                    cl.pCuit = validar.validarCuit();
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                }
-
-                                else if (menumodif[indexmodif] == "Domicilio")
-                                {
-                                    Console.Clear();
-                                    cl.pDomicilio = validar.validarStr($"Ingrese la dirección que modificará la actual -{cl.pDomicilio}-: ");
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                }
-
-                                else if (menumodif[indexmodif] == "ID Localidad")
-                                {
-                                    Console.Clear();
-                                    foreach (Localidad loc in this._listaLocalidades)
+                                    if (indexmodif > 0)
                                     {
-                                        Console.WriteLine($"\t{loc.pId_localidad} -> {loc.pLocalidad}");
+                                        indexmodif--;
                                     }
-                                    cl.pId_localidad= validar.validarEntero($"Ingrese el ID de LOCALIDAD que modificará el actual -{cl.pId_localidad}-: ");
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                }
-
-                                else if (menumodif[indexmodif] == "Teléfono")
-                                {
+                                    else if (indexmodif == 0)
+                                    {
+                                        indexmodif = 5;
+                                    }
+                                    break;
+                                case ConsoleKey.DownArrow:
                                     Console.Clear();
-                                    cl.pTelefono = validar.validarLong($"Ingrese el teléfono que modificará el actual -{cl.pTelefono}-: ");                                    
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                }
+                                    if (indexmodif < (menumodif.Length - 1))
+                                    {
+                                        indexmodif++;
+                                    }
 
-                                else if (menumodif[indexmodif] == "Correo")
-                                {
+                                    else if (indexmodif == 5)
+                                    {
+                                        indexmodif = 0;
+                                    }
+                                    break;
+                                case ConsoleKey.Enter:
                                     Console.Clear();
-                                    cl.pCorreo = validar.validarStr($"Ingrese el correo que modificará el actual -{cl.pCorreo}-:");
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} Modificada correctamente.");
-                                }
+                                    if (menumodif[indexmodif] == "Nombre o Razón social")
+                                    {
+                                        Console.Clear();
+                                        cl.pCliente = validar.validarStr($"Ingrese el nombre la razón social que modificará la actual -{cl.pCliente}-: ");
 
-                                Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menú.");
-                                Console.ReadKey();
-                                Console.Clear();
-                                break;
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} modificado correctamente.");
+                                    }
+
+                                    else if (menumodif[indexmodif] == "CUIT")
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine($"El CUIT actual del cliente -{cl.pCuit}- será modificado:");
+                                        cl.pCuit = ValidarCuitUnico();
+
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} modificado correctamente.");
+                                    }
+
+                                    else if (menumodif[indexmodif] == "Domicilio")
+                                    {
+                                        Console.Clear();
+                                        cl.pDomicilio = validar.validarStr($"Ingrese la dirección que modificará la actual -{cl.pDomicilio}-: ");
+
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} modificado correctamente.");
+                                    }
+
+                                    else if (menumodif[indexmodif] == "Localidad")
+                                    {
+                                        Console.Clear();
+                                        arrayLocalidades = this._listaLocalidades.Select(loc => loc.pLocalidad).ToArray();
+                                        cl.pId_localidad = MenuReutilizable(arrayLocalidades, $"Seleccione la localidad del cliente ");
+
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} modificada correctamente.");
+                                    }
+
+                                    else if (menumodif[indexmodif] == "Teléfono")
+                                    {
+                                        Console.Clear();
+                                        cl.pTelefono = validar.validarLong($"Ingrese el teléfono que modificará el actual -{cl.pTelefono}-: ");
+
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} modificado correctamente.");
+                                    }
+
+                                    else if (menumodif[indexmodif] == "Correo")
+                                    {
+                                        Console.Clear();
+                                        cl.pCorreo = validar.validarStr($"Ingrese el correo que modificará el actual -{cl.pCorreo}-:");
+
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"\n\n\t\t{menumodif[indexmodif]} modificado correctamente.");
+                                    }
+
+                                    Console.WriteLine("\n\n\tPresione cualquier tecla para volver al menú.");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    break;
+                            }
                         }
-                    } 
-                    while (opcmodif.Key != ConsoleKey.Escape);
-                    return;
+                        while (opcmodif.Key != ConsoleKey.Escape);
+                        return;
+                    }
                 }
             }
 
-            if (flag == 1)
+            if (!flag)
             {
-                Console.Clear();
-                Console.Write($"La ID -{id}- no existe en la lista de Clientes.");
+                opc = MenuReutilizable(arrayOpciones, "No hay clientes registrados. ¿Desea registrar un cliente?");
+                if (opc == 1)
+                {
+                    CargarCliente();
+                }
+                else
+                {
+                    Console.WriteLine("Saliendo.");
+                }
             }
         }
 
         public void BorrarCliente()
         {
             CargarClientes();
-            int id, flag = 0;
+            int id;
+            string[] arrayClientes;
 
-            Console.WriteLine($"Lista de clientes");
-            foreach (Cliente cli in this._listaClientes)
-            {
-                Console.WriteLine($"{cli.pId_cliente} -> {cli.pCliente}");
-            }
+            arrayClientes = this._listaClientes.Select(cli => cli.pCliente).ToArray();
+            id = MenuReutilizable(arrayClientes, "Seleccione el cliente a eliminar: ");
 
-            id = validar.validarEntero("Ingrese el ID del Cliente a eliminar: ");
             for (int i = _listaClientes.Count() - 1; i >= 0; i--)
             {
                 if (_listaClientes[i].pId_cliente == id)
                 {
                     _listaClientes.RemoveAt(i);
-                    flag = 1;
                 }
             }
 
-            if (flag == 0)
-            {
-                Console.Write($"El ID -{id}- no existe en la lista de Clientes.");
-            }
-
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Write($"\n\tEl cliente con el ID -{id}- fue eliminado.");
-                Console.ResetColor();
-                Console.Write("\n\tPresione una tecla para continuar.");
-                Console.ReadKey();
-            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($"\n\tEl cliente fue eliminado.");
+            Console.ResetColor();
+            Console.Write("\n\tPresione una tecla para continuar.");
+            Console.ReadKey();
         }
 
         public void ListarClientes()
@@ -2196,35 +2188,19 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void BuscarCliente()
         {
             CargarClientes();
-            string cad;
-            bool encontrado = false;
+            string[] arrayClientes;
+            int id;
 
-            Console.WriteLine($"Lista de clientes");
-            foreach (Cliente cli in this._listaClientes)
-            {
-                Console.WriteLine($"{cli.pId_cliente} -> {cli.pCliente}");
-            }
-
-            do
-            {
-                Console.Write("Ingrese la Razón Social del cliente: ");
-                cad = Console.ReadLine().ToLower();
+            arrayClientes = this._listaClientes.Select(cli => cli.pCliente).ToArray();
+            id = MenuReutilizable(arrayClientes, "Seleccione el cliente a modificar: ");
 
                 foreach (Cliente c in this._listaClientes)
                 {
-                    if (c.pCliente.ToLower() == cad)
+                    if (c.pId_cliente == id)
                     {
                         c.mostrarCliente();
-                        encontrado  = true;
                     }
                 }
-                if (!encontrado)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Error en el ingreso. Cliente no encontrado.");
-                }
-            }
-            while (!encontrado);
             Console.WriteLine("Presione una tecla para continuar.");
             Console.ReadKey();
         }
@@ -2238,24 +2214,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string marca;
 
             Console.Write("****CARGA DE MARCA****\n\n");
-            Console.Write($"IDs NO disponibles:");
-            foreach (Marca m in this._listaMarcas)
-            {
-                Console.Write($"{m.pId_marca}, ");
-            }
-
-            id_marca = validar.validarEntero("\nIngrese el ID de la MARCA: ");
-            foreach (Marca m in this._listaMarcas)
-            {
-                if (m.pId_marca == id_marca)
-                {
-                    Console.WriteLine("Error. El ID ingresado ya existe. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    id_marca = validar.validarEntero("\nIngrese el ID de la MARCA: ");
-                }
-            }
-
+            List<int> idsExistentes = this._listaClientes.Select(cli => cli.pId_cliente).ToList();
+            id_marca = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
             marca = validar.validarStr("\nIngrese el NOMBRE de la MARCA: ");
             Marca marc = new Marca(id_marca, marca);
             _listaMarcas.Add(marc);
@@ -2264,36 +2224,24 @@ namespace Proyecto_final_PII___Agencia_de_autos
         public void BorrarMarca()
         {
             CargarMarcas();
-            int id, flag=0;
+            int id;
+            string[] arrayMarcas;
 
-            Console.WriteLine($"Lista de marcas");
-            foreach (Marca m in this._listaMarcas)
-            {
-                Console.Write($"{m.pId_marca} -> {m.pMarca} ");
-            }
-            Console.Write("\n\n");
+            arrayMarcas = this._listaMarcas.Select(m => m.pMarca).ToArray();
+            id = MenuReutilizable(arrayMarcas, "Seleccione la marca a eliminar: ");
 
-            id = validar.validarEntero("Ingrese el ID de la MARCA a eliminar: ");
             for (int i = _listaMarcas.Count() - 1; i >= 0; i--)
             {
                 if (_listaMarcas[i].pId_marca == id)
                 {
                     _listaMarcas.RemoveAt(i);
-                    flag = 1;
                 }
             }
-            if (flag == 0)
-            {
-                Console.Write($"El ID -{id}- no existe en la lista de Marcas.");
-            }
-            else
-            {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Write($"\n\tLa marca con el ID -{id}- fue eliminada.");
+                Console.Write($"\n\tLa marca fue eliminada.");
                 Console.ResetColor();
                 Console.Write("\n\tPresione una tecla para continuar.");
                 Console.ReadKey();
-            }
         }
 
         public void ListarMarcas()
@@ -2319,15 +2267,10 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarMarcas();
             int id;
+            string[] arrayMarcas;
 
-            Console.WriteLine($"Lista de marcas");
-            foreach (Marca m in this._listaMarcas)
-            {
-                Console.Write($"{m.pId_marca} -> {m.pMarca} ");
-            }
-            Console.Write("\n\n");
-
-            id = validar.validarEntero("Ingrese el ID de la MARCA a modificar: ");
+            arrayMarcas = this._listaMarcas.Select(m => m.pMarca).ToArray();
+            id = MenuReutilizable(arrayMarcas, "Seleccione la marca a modificar: ");
             foreach (Marca marca in this._listaMarcas)
             {
                 if (marca.pId_marca == id)
@@ -2399,7 +2342,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return;
                 }
             }
-            Console.Write($"El ID -{id}- no existe en la lista de Marcas.");
         }
 
         // LOCALIDADES
@@ -2596,25 +2538,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             int id_provincia;
             string provincia;
 
-            Console.Write("****CARGA DE PROVINCIA****\n\n");
-            Console.Write($"IDs NO disponibles:");
-            foreach (Provincia p in this._listaProvincias)
-            {
-                Console.Write($"{p.pId_provincia}, ");
-            }
-
-            id_provincia = validar.validarEntero("\nIngrese el ID de la PROVINCIA: ");
-            foreach (Provincia p in this._listaProvincias)
-            {
-                if (p.pId_provincia == id_provincia)
-                {
-                    Console.WriteLine("Error. El ID ingresado ya existe. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    id_provincia = validar.validarEntero("\nIngrese el ID de la PROVINCIA: ");
-                }
-            }
-
+            List<int> idsExistentes = this._listaProvincias.Select(p => p.pId_provincia).ToList();
+            id_provincia = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
             provincia = validar.validarStr("\nIngrese el NOMBRE de la PROVINCIA: ");
 
             Provincia prov = new Provincia(id_provincia, provincia);
@@ -2625,15 +2550,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarProvincias();
             int id;
+            string[] arrayProvincias;
 
-            Console.WriteLine($"Lista de provincias");
-            foreach (Provincia p in this._listaProvincias)
-            {
-                Console.WriteLine($"{p.pId_provincia} -> {p.pProvincia} ");
-            }
-            Console.Write("\n\n");
+            arrayProvincias = this._listaProvincias.Select(p => p.pProvincia).ToArray();
+            id = MenuReutilizable(arrayProvincias, "Seleccione la provincia a modificar: ");
 
-            id = validar.validarEntero("Ingrese el ID de la PROVINCIA a modificar: ");
             foreach (Provincia provincia in this._listaProvincias)
             {
                 if (provincia.pId_provincia == id)
@@ -2684,24 +2605,17 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 Console.Clear();
                                 if (opcionesModif[indexmodif] == "ID")
                                 {
-                                    int nuevoIdProvincia;
                                     Console.Write("Ingrese el nuevo ID de la PROVINCIA: ");
-                                    nuevoIdProvincia = validar.validarEntero(Console.ReadLine());
-                                    /*
-                                    while (!int.TryParse(Console.ReadLine(), out nuevoIdProvincia))
-                                    {
-                                        Console.WriteLine("ID inválido. Reingrese.");
-                                        Console.Write("Ingrese el nuevo ID de la PROVINCIA: ");
-                                    }
-                                    */
-                                    provincia.pId_provincia = nuevoIdProvincia;
+                                    provincia.pId_provincia = validar.validarEntero(Console.ReadLine());
+
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine("\n\n\t\tID modificada correctamente.");
+                                    Console.WriteLine("\n\n\t\tID modificado correctamente.");
                                 }
                                 else if (opcionesModif[indexmodif] == "Descripción")
                                 {
                                     Console.Write($"Ingrese la nueva descripción de la PROVINCIA (actual: {provincia.pProvincia}): ");
                                     provincia.pProvincia = Console.ReadLine();
+
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tDescripción modificada correctamente.");
                                 }
@@ -2716,43 +2630,30 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return;
                 }
             }
-            Console.Write($"El ID -{id}- no existe en la lista de Provincias.");
         }
 
         public void BorrarProvincia()
         {
             CargarProvincias();
-            int id, flag=0;
+            int id;
+            string[] arrayProvincias;
 
-            Console.WriteLine($"Lista de provincias");
-            foreach (Provincia p in this._listaProvincias)
-            {
-                Console.WriteLine($"{p.pId_provincia} -> {p.pProvincia} ");
-            }
-            Console.Write("\n\n");
+            arrayProvincias = this._listaProvincias.Select(p => p.pProvincia).ToArray();
+            id = MenuReutilizable(arrayProvincias, "Seleccione la provincia a eliminar: ");
 
-            id = validar.validarEntero("Ingrese el ID de la PROVINCIA a eliminar: ");
             for (int i = _listaProvincias.Count() - 1; i >= 0; i--)
             {
                 if (_listaProvincias[i].pId_provincia == id)
                 {
                     _listaProvincias.RemoveAt(i);
-                    flag = 1;
                 }
+            }
 
-            }
-            if (flag == 0)
-            {
-                Console.Write($"El ID -{id}- no existe en la lista de Provincias.");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Write($"\n\tLa Provincia con el ID -{id}- fue eliminada.");
-                Console.ResetColor();
-                Console.Write("\n\tPresione una tecla para continuar.");
-                Console.ReadKey();
-            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($"\n\tLa Provincia fue eliminada.");
+            Console.ResetColor();
+            Console.Write("\n\tPresione una tecla para continuar.");
+            Console.ReadKey();
         }
 
         public void ListarProvincias()
@@ -3127,34 +3028,6 @@ namespace Proyecto_final_PII___Agencia_de_autos
 
         // VALIDACIONES
 
-        private bool IsIdValid(int id_vehiculo)
-        {
-            foreach (AutoCamioneta autoCamioneta in this._listaAutoCamionetas)
-            {
-                if (autoCamioneta.pId_vehiculo == id_vehiculo || autoCamioneta.pEstado == true)
-                {
-                    return false;
-                }
-            }
-
-            foreach (Moto moto in this._listaMotos)
-            {
-                if (moto.pId_vehiculo == id_vehiculo || moto.pEstado == true)
-                {
-                    return false;
-                }
-            }
-
-            foreach (Camion camion in this._listaCamiones)
-            {
-                if (camion.pId_vehiculo == id_vehiculo || camion.pEstado == true)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         public bool IsPatenteUnique (string patente)
         {
             //asegura que la patente sea unica
@@ -3332,6 +3205,32 @@ namespace Proyecto_final_PII___Agencia_de_autos
                 .Concat(_listaCamiones);
         }
 
+        public long ValidarCuitUnico()
+        {
+            long cuit;
+            bool esUnico;
+
+            do
+            {
+                cuit = validar.validarCuit();
+                esUnico = true;
+
+                foreach (Cliente cli in _listaClientes)
+                {
+                    if (cli.pCuit == cuit)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nEl CUIT ingresado ya está registrado. Reintente.");
+                        Console.ResetColor();
+                        esUnico = false;
+                        break;
+                    }
+                }
+            }
+            while (!esUnico);
+
+            return cuit;
+        }
 
 
         // BUSCAR PARÁMETROS NO USADOS
@@ -3514,6 +3413,34 @@ namespace Proyecto_final_PII___Agencia_de_autos
         Console.WriteLine($"Se ha producido un error en CargarVehiculos.");
     }
 }*/
+
+        /* private bool IsIdValid(int id_vehiculo)
+        {
+            foreach (AutoCamioneta autoCamioneta in this._listaAutoCamionetas)
+            {
+                if (autoCamioneta.pId_vehiculo == id_vehiculo || autoCamioneta.pEstado == true)
+                {
+                    return false;
+                }
+            }
+
+            foreach (Moto moto in this._listaMotos)
+            {
+                if (moto.pId_vehiculo == id_vehiculo || moto.pEstado == true)
+                {
+                    return false;
+                }
+            }
+
+            foreach (Camion camion in this._listaCamiones)
+            {
+                if (camion.pId_vehiculo == id_vehiculo || camion.pEstado == true)
+                {
+                    return false;
+                }
+            }
+            return true;
+        } */
     }
 }
 
