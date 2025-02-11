@@ -1854,7 +1854,7 @@ namespace Proyecto_final_PII___Agencia_de_autos
                         break;
                 }
             } while (opcmodif.Key != ConsoleKey.Escape);
-        }
+        } // Falta arreglar, por lo menos selección de cliente
 
         public void BorrarVenta()
         {
@@ -2352,35 +2352,15 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarLocalidades();
             int id_localidad, id_provincia;
             string localidad;
+            string[] arrayProvincias;
 
             Console.Write("****CARGA DE LOCALIDAD****\n\n");
-            Console.Write($"IDs NO disponibles:");
-            foreach (Localidad l in this._listaLocalidades)
-            {
-                Console.Write($"{l.pId_localidad}, ");
-            }
-
-            id_localidad = validar.validarEntero("\nIngrese el ID de la LOCALIDAD: ");
-            foreach (Localidad l in this._listaLocalidades)
-            {
-                if (l.pId_localidad == id_localidad)
-                {
-                    Console.WriteLine("Error. El ID ingresado ya existe. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    id_localidad = validar.validarEntero("\nIngrese el ID de la LOCALIDAD: ");
-                }
-            }
-
+            List<int> idsExistentes = this._listaLocalidades.Select(p => p.pId_localidad).ToList();
+            id_localidad = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
             localidad = validar.validarStr("\nIngrese el NOMBRE de la LOCALIDAD: ");
 
-            Console.WriteLine("Ingrese el ID de la provincia.");
-            foreach (Provincia prov in this._listaProvincias)
-            {
-                Console.Write($"ID: {prov.pId_provincia} -> {prov.pProvincia}");
-            }
-
-            id_provincia = validar.validarEntero("\nIngrese el ID de la PROVINCIA");
+            arrayProvincias = this._listaProvincias.Select(p => p.pProvincia).ToArray();
+            id_provincia = MenuReutilizable(arrayProvincias, "Seleccione la provincia de la localidad a registrar");
 
             Localidad loc = new Localidad(id_localidad, localidad, id_provincia);
             _listaLocalidades.Add(loc);
@@ -2391,22 +2371,16 @@ namespace Proyecto_final_PII___Agencia_de_autos
             CargarLocalidades();
             CargarProvincias();
             int id;
+            string[] arrayLocalidades, arrayProvincias;
 
-            Console.WriteLine($"Lista de localidades");
-            foreach (Localidad l in this._listaLocalidades)
-            {
-                Console.WriteLine($"{l.pId_localidad} -> {l.pLocalidad} ");
-            }
-            Console.Write("\n\n");
-
-            id = validar.validarEntero("Ingrese el ID de la LOCALIDAD a modificar: ");
+            arrayLocalidades = this._listaMarcas.Select(m => m.pMarca).ToArray();
+            id = MenuReutilizable(arrayLocalidades, "Seleccione la localidad a modificar: ");
             foreach (Localidad localidad in this._listaLocalidades)
             {
                 if (localidad.pId_localidad == id)
                 {
-                    string[] opcionesModif = { "ID", "Descripción" };
+                    string[] opcionesModif = { "ID", "Nombre", "Provincia" };
                     int indexmodif = 0;
-
                     ConsoleKeyInfo opcmodif;
                     Console.Clear();
                     Console.WriteLine("Seleccione el dato que desea modificar:\n");
@@ -2450,15 +2424,22 @@ namespace Proyecto_final_PII___Agencia_de_autos
                                 Console.Clear();
                                 if (opcionesModif[indexmodif] == "ID")
                                 {
-                                    localidad.pId_localidad = validar.validarEntero($"Ingrese el nuevo ID de la LOCALIDAD (actual: {localidad.pId_localidad}: ");
+                                    Console.Write("Ingrese el nuevo ID de la LOCALIDAD: ");
+                                    localidad.pId_localidad = validar.validarEntero(Console.ReadLine());
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     Console.WriteLine("\n\n\t\tID modificada correctamente.");
                                 }
-                                else if (opcionesModif[indexmodif] == "Descripción")
+                                else if (opcionesModif[indexmodif] == "Nombre")
                                 {
-                                    localidad.pLocalidad = validar.validarStr($"Ingrese la nueva descripción de la LOCALIDAD (actual: {localidad.pLocalidad}): ");
+                                    localidad.pLocalidad = validar.validarStr($"Ingrese el nuevo NOMBRE de la LOCALIDAD (actual: {localidad.pLocalidad}): ");
                                     Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine("\n\n\t\tDescripción modificada correctamente.");
+                                    Console.WriteLine("\n\n\t\tNombre modificado correctamente.");
+                                }
+
+                                else if (opcionesModif[indexmodif] == "Provincia")
+                                {
+                                    arrayProvincias = this._listaProvincias.Select(p => p.pProvincia).ToArray();
+                                    localidad.pId_provincia = MenuReutilizable(arrayProvincias, "Seleccione la PROVINCIA de la localidad");
                                 }
 
                                 Console.ResetColor();
@@ -2471,43 +2452,29 @@ namespace Proyecto_final_PII___Agencia_de_autos
                     return;
                 }
             }
-            Console.Write($"El ID -{id}- no existe en la lista de Localidades.");
         }
 
         public void BorrarLocalidad()
         {
             CargarLocalidades();
-            int id, flag=0;
+            int id;
+            string[] arrayLocalidades;
 
-            Console.WriteLine($"Lista de localidades");
-            foreach (Localidad l in this._listaLocalidades)
-            {
-                Console.WriteLine($"{l.pId_localidad} -> {l.pLocalidad} ");
-            }
-            Console.Write("\n\n");
+            arrayLocalidades = this._listaLocalidades.Select(l => l.pLocalidad).ToArray();
+            id = MenuReutilizable(arrayLocalidades, "Seleccione la localidad a eliminar: ");
 
-            id = validar.validarEntero("Ingrese el ID de la LOCALIDAD a eliminar: ");
             for (int i = _listaLocalidades.Count() - 1; i >= 0; i--)
             {
                 if (_listaLocalidades[i].pId_localidad == id)
                 {
                     _listaLocalidades.RemoveAt(i);
-                    flag = 1;
                 }
-
             }
-            if (flag == 0)
-            {
-                Console.Write($"El ID -{id}- no existe en la lista de Localidades.");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Write($"\n\tLa localidad con el ID -{id}- fue eliminada.");
-                Console.ResetColor();
-                Console.Write("\n\tPresione una tecla para continuar.");
-                Console.ReadKey();
-            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($"\n\tLa localidad fue eliminada.");
+            Console.ResetColor();
+            Console.Write("\n\tPresione una tecla para continuar.");
+            Console.ReadKey();
         }
 
         public void ListarLocalidades()
@@ -2685,24 +2652,8 @@ namespace Proyecto_final_PII___Agencia_de_autos
             string combustible;
 
             Console.Write("****CARGA DE COMBUSTIBLE****\n\n");
-            Console.Write($"IDs NO disponibles:");
-            foreach (Combustible cb in this._listaCombustibles)
-            {
-                Console.Write($"{cb.pIdCombustible}, ");
-            }
-
-            id_combustible = validar.validarEntero("\nIngrese el ID del COMBUSTIBLE: ");
-            foreach (Combustible c in this._listaCombustibles)
-            {
-                if (c.pIdCombustible == id_combustible)
-                {
-                    Console.WriteLine("Error. El ID ingresado ya existe. Presione una tecla para continuar.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    id_combustible = validar.validarEntero("\nIngrese el ID del COMBUSTIBLE: ");
-                }
-            }
-
+            List<int> idsExistentes = this._listaCombustibles.Select(c => c.pIdCombustible).ToList();
+            id_combustible = idsExistentes.Count > 0 ? idsExistentes.Max() + 1 : 1;
             combustible = validar.validarStr("\nIngrese el NOMBRE del COMBUSTIBLE: ");
 
             Combustible comb = new Combustible(id_combustible, combustible);
@@ -2713,15 +2664,11 @@ namespace Proyecto_final_PII___Agencia_de_autos
         {
             CargarCombustibles();
             int id;
+            string[] arrayCombustibles;
 
-            Console.WriteLine($"Lista de combustibles");
-            foreach (Combustible c in this._listaCombustibles)
-            {
-                Console.WriteLine($"{c.pIdCombustible} -> {c.pCombustible} ");
-            }
-            Console.Write("\n\n");
-
-            id = validar.validarEntero("Ingrese el ID del combustible a eliminar: ");
+            arrayCombustibles = this._listaCombustibles.Select(c => c.pCombustible).ToArray();
+            id = MenuReutilizable(arrayCombustibles, "Seleccione la provincia a modificar: ");
+            // Hasta acá
             foreach (Combustible combustible in this._listaCombustibles)
             {
                 if (combustible.pIdCombustible == id)
